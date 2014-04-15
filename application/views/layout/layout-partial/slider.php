@@ -19,8 +19,8 @@
                             $imageNameThumb = create_thumbnail($pathImagen, $width, $height);
                             $urlImg = $bannerUrl . $imageNameThumb;
                             ?>
-                            <div class="item">
-                                <img title="<?php echo $array['title']?>" alt="<?php echo $array['title']?>" src="<?php echo $urlImg ?>" width="<?php echo $width ?>" height="<?php echo $height ?>" />
+                            <div class="item"><a href="<?php echo $array['link_image'] ?>" title="<?php echo $array['title']?>" target="_blank">
+                                    <img title="<?php echo $array['title']?>" alt="<?php echo $array['title']?>" src="<?php echo $urlImg ?>" width="<?php echo $width ?>" height="<?php echo $height ?>" /></a>
                             </div>
                             <?php endforeach;?>
                         </div>
@@ -43,59 +43,46 @@
                     <div class="tabCustom">
                         <!-- Nav tabs -->
                         <ul class="nav nav-tabs" id="ulTab">
-                            <li class="active" style="background:url(<?php echo getPublicUrl() ?>/images/tab/tab_border_right.jpg) right 10px no-repeat;"><a href="#one" data-toggle="tab">Home</a></li>
+                            <li class="active" style="background:url(<?php echo getPublicUrl() ?>/images/tab/tab_border_right.jpg) right 10px no-repeat;">
+                                <a href="#one" data-toggle="tab">Home</a>
+                            </li>
                             <li><a href="#two" data-toggle="tab">Populars</a></li>
                         </ul>
 
                         <!-- Tab panes -->
                         <div class="tab-content">
                             <div class="tab-pane active" id="one">
-
-                                <!--Item Tab-->
-                                <div class="tabShowRell">
-                                    <img src="<?php echo getPublicUrl() ?>/images/showreel/image.jpg" class="img-responsive" width="218" height="200" />
-                                </div>
-                                <!--End Item Tab-->
-                                <!--Item Tab-->
-                                <div class="tabShowRell">
-                                    <img src="<?php echo getPublicUrl() ?>/images/showreel/image.jpg" class="img-responsive" width="218" height="200" />
-                                </div>
-                                <!--End Item Tab-->
-                                <!--Item Tab-->
-                                <div class="tabShowRell">
-                                    <img src="<?php echo getPublicUrl() ?>/images/showreel/image.jpg" class="img-responsive" width="218" height="200" />
-                                </div>
-                                <!--End Item Tab-->
-                                <!--Item Tab-->
-                                <div class="tabShowRell">
-                                    <img src="<?php echo getPublicUrl() ?>/images/showreel/image.jpg" class="img-responsive" width="218" height="200" />
-                                </div>
-                                <!--End Item Tab-->
-
+                                <?php $count = 0; foreach ($banner as $array): ?>
+                                <?php 
+                                if ($count == 4) {break;} 
+                                $pathImagen = $bannerPath . $array['url_image'];
+                                $width = 218;
+                                $height = 200;
+                                $imageNameThumb = create_thumbnail($pathImagen, $width, $height);
+                                $urlImg = $bannerUrl . $imageNameThumb;
+                                ?>
+                                <div class="tabShowRell"><a href="<?php echo $array['link_image'] ?>" title="<?php echo $array['title']?>" target="_blank">
+                                    <img src="<?php echo $urlImg ?>" alt="<?php echo $array['title'] ?>" title="<?php echo $array['title'] ?>" 
+                                         class="img-responsive" width="<?php echo $width ?>" height="<?php echo $height ?>" /></a>
+                                </div>                                
+                                <?php $count++; endforeach; ?>
                             </div>
+                            
                             <div class="tab-pane" id="two">
-
-                                <!--Item Tab-->
-                                <div class="tabShowRell">
-                                    <img src="<?php echo getPublicUrl() ?>/images/showreel/image.jpg" class="img-responsive" width="218" height="200" />
-                                </div>
-                                <!--End Item Tab-->
-                                <!--Item Tab-->
-                                <div class="tabShowRell">
-                                    <img src="<?php echo getPublicUrl() ?>/images/showreel/image.jpg" class="img-responsive" width="218" height="200" />
-                                </div>
-                                <!--End Item Tab-->
-                                <!--Item Tab-->
-                                <div class="tabShowRell">
-                                    <img src="<?php echo getPublicUrl() ?>/images/showreel/image.jpg" class="img-responsive" width="218" height="200" />
-                                </div>
-                                <!--End Item Tab-->
-                                <!--Item Tab-->
-                                <div class="tabShowRell">
-                                    <img src="<?php echo getPublicUrl() ?>/images/showreel/image.jpg" class="img-responsive" width="218" height="200" />
-                                </div>
-                                <!--End Item Tab-->
-
+                                <?php $count = 0; foreach ($bannerPopular as $array): ?>
+                                <?php 
+                                if ($count == 4) {break;}
+                                $pathImagen = $bannerPath . $array['url_image'];
+                                $width = 218;
+                                $height = 200;
+                                $imageNameThumb = create_thumbnail($pathImagen, $width, $height);
+                                $urlImg = $bannerUrl . $imageNameThumb;
+                                ?>
+                                <div class="tabShowRell"><a href="<?php echo $array['link_image'] ?>" title="<?php echo $array['title']?>" target="_blank">
+                                    <img src="<?php echo $urlImg ?>" alt="<?php echo $array['title'] ?>" title="<?php echo $array['title'] ?>" 
+                                         class="img-responsive" width="<?php echo $width ?>" height="<?php echo $height ?>" /></a>
+                                </div>                                
+                                <?php $count++; endforeach; ?>
                             </div>
                         </div>
                         <!-- END Nav tabs -->

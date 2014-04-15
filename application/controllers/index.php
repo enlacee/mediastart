@@ -10,7 +10,18 @@ class Index extends MY_Controller {
     public function img()
     {
         $u = FCPATH . 'public/images/banner/google.jpg';
-        create_thumbnail($u, 100, 100);
+        //$this->ZendImage->loadImage($u);
+        
+        $obj = new ZendImage();
+        $obj->loadImage($u);
+        //$obj->resize(218, 'width');
+        $obj->crop(218,200);
+        $obj->save(FCPATH . 'public/images/banner/otro.jpg');
+        
+        /*
+        $u = FCPATH . 'public/images/banner/google.jpg';
+        create_thumbnail($u, 100, 100);        
+         */
     }
     /**
      * home principal login
@@ -18,12 +29,11 @@ class Index extends MY_Controller {
     public function index()
     {   
         $this->load->model('Banner_model');
-        $banner = $this->Banner_model->listBanner();
         $data = array (
             'bannerPath' => FCPATH . 'public/images/banner/',
             'bannerUrl' => getPublicUrl() .'/images/banner/',
-            'banner' => $banner);
-        
+            'banner' => $this->Banner_model->listBanner(),
+            'bannerPopular' => $this->Banner_model->listPopular());
         
         $string = <<<EOT
                 
