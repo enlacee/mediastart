@@ -8,5 +8,8 @@ application/logs/*
 !application/logs/index.html
 !application/logs/.htaccess
 
+# imagenes
+!/public/images/banner/1.jpg
+
 # ide
 nbproject/*
