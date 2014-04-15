@@ -9,6 +9,8 @@ application/logs/*
 !application/logs/.htaccess
 
 # imagenes
+/public/images/banner/*
+!/public/images/banner/t/*
 !/public/images/banner/1.jpg
 
 # ide
