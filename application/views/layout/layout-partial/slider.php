@@ -4,26 +4,25 @@
                     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                         <!-- Indicators -->
                         <ol class="carousel-indicators">
-                            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                            <?php $count = 0; foreach($banner as $array): $active = ($count == 0) ? 'active' : '';?>
+                            <li data-target="#carousel-example-generic" data-slide-to="<?php echo $count ?>" class="<?php echo $active ?>"></li>
+                            <?php $count++; endforeach; ?>
                         </ol>
 
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner borderRadiusButtom" id="esliderWeb">
-
+                            <?php foreach ($banner as $array): ?>
+                            <?php 
+                            $pathImagen = $bannerPath . $array['url_image'];
+                            $width = 1001;
+                            $height = 504;
+                            $imageNameThumb = create_thumbnail($pathImagen, $width, $height);
+                            $urlImg = $bannerUrl . $imageNameThumb;
+                            ?>
                             <div class="item">
-                                <img src="<?php echo getPublicUrl() ?>/images/banner/1.jpg" width="1001" height="504" />
+                                <img title="<?php echo $array['title']?>" alt="<?php echo $array['title']?>" src="<?php echo $urlImg ?>" width="<?php echo $width ?>" height="<?php echo $height ?>" />
                             </div>
-
-                            <div class="item">
-                                <img src="<?php echo getPublicUrl() ?>/images/banner/1.jpg" width="1001" height="504" />
-                            </div>
-
-                            <div class="item">
-                                <img src="<?php echo getPublicUrl() ?>/images/banner/1.jpg" width="1001" height="504" />
-                            </div>
-
+                            <?php endforeach;?>
                         </div>
 
                         <!-- Controls -->

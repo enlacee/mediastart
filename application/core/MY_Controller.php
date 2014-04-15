@@ -7,10 +7,8 @@
  * base CI_Controller ejm : auth, cron, check, etc..
  */
 
-class MY_Controller extends CI_Controller {
-    
-    public $userSession;
-    public $userId; 
+class MY_Controller extends CI_Controller {    
+
     public $dataView = array();       
     private $flagGrid = false;
 
@@ -18,29 +16,12 @@ class MY_Controller extends CI_Controller {
     {
         parent::__construct();
         $this->dependencias();
-        $this->validarUsuario();
-    }
-    
-    /**
-     * validacion  de acceso a la applicacion
-     * - administrador 
-     * - usuario 
-     */    
-    public function validarUsuario()
-    {
-        $user = $this->session->userdata('user');        
-        if (!empty($user) && isset($user['id'])) {
-            $this->userId = $user['id'];            
-            $this->userSession = true;
-        } else {
-            $this->userSession = false;
-        }
-    }    
+    }   
     
     private function dependencias()
     {  
-        $this->load->library(array('layout', 'auth'));        
-        $this->load->helper(array('ayuda_helper', 'url', 'form'));
+        $this->load->library(array('image_lib', 'layout', 'auth'));        
+        $this->load->helper(array('ayuda_helper', 'thumbnail_helper', 'url', 'form'));
     }    
     
     /**

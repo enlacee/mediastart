@@ -11,6 +11,7 @@
         <link rel="stylesheet" type="text/css" href="<?php echo getPublicUrl() ?>/css/style.css">
         <link rel="stylesheet" type="text/css" href="<?php echo getPublicUrl() ?>/css/redmond/jquery-ui-1.10.4.custom.min.css"/>
         <link rel="stylesheet" type="text/css" href="<?php echo getPublicUrl() ?>/source/jquery.fancybox.css">
+        <?php require 'layout-partial/require_css.php';?>
         <!--[if lt IE 9]>
         <script src="<?php echo getPublicUrl() ?>/js/html5.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -536,12 +537,7 @@
                 </div></div>
             <!--End Footer-->
 
-
-
-
-
         </div><!--End Container-->
-
 
         <div class="container">
             <div class="row clearfix text-center mgBottom10 font11">
@@ -573,50 +569,8 @@
                     closeEffect: 'none'
                 });
             });
-
         </script>
-
-
-
-        <script type="text/javascript">
-
-            $(function() {
-
-                //FechaBox
-                $("#fecha").datepicker({
-                    showButtonPanel: false
-                });
-
-                //Idiomas
-                $('.dropdown-toggle').dropdown();
-
-
-                //Tab
-                $('#myTab a').click(function(e) {
-                    e.preventDefault()
-                    $(this).tab('show')
-                });
-
-
-                //Agrega clase al Slider para que pueda funcionar
-                $('#esliderWeb div:last-child').addClass("active");
-
-
-                //Menu
-                $('ul.nav li.dropdown').hover(function() {
-                    $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(200);
-                }, function() {
-                    $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(100);
-                });
-
-
-
-            });
-        </script>
-
-        <script type="text/javascript">
-
-        </script>
-
+    
+        <?php require 'layout-partial/require_js.php';?>
     </body>
 </html>
