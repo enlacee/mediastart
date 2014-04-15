@@ -29,11 +29,17 @@ class Index extends MY_Controller {
     public function index()
     {   
         $this->load->model('Banner_model');
+        $this->load->model('Post_model');
         $data = array (
             'bannerPath' => FCPATH . 'public/images/banner/',
             'bannerUrl' => getPublicUrl() .'/images/banner/',
             'banner' => $this->Banner_model->listBanner(),
-            'bannerPopular' => $this->Banner_model->listPopular());
+            'bannerPopular' => $this->Banner_model->listPopular(),
+            
+            'latestNews' => $this->Post_model->listPost('post', 'desc', 4),
+            'latestNewsPath' => FCPATH . 'public/images/latest-news/',
+            'latestNewsUrl' => getPublicUrl() .'/images/latest-news/');
+        
         
         $string = <<<EOT
                 

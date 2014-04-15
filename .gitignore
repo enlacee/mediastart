@@ -8,10 +8,16 @@ application/logs/*
 !application/logs/index.html
 !application/logs/.htaccess
 
-# imagenes
+# imagenes banner
 /public/images/banner/*
 !/public/images/banner/t/*
 !/public/images/banner/1.jpg
+
+# image latest-news
+/public/images/latest-news/*
+!/public/images/latest-news/1.jpg
+!/public/images/latest-news/att.jpg
+
 
 # ide
 nbproject/*

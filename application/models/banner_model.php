@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Description of cuadro_model
+ * Description of Banner (home, popular)
  *
  * @author anb
  */

@@ -1,75 +1,32 @@
-    <h2>LATEST NEWS</h2>
+<h2>LATEST NEWS</h2>
 
 
     <!--Box LatestNews-->
-    <div class="latesNewsBox">
-        <div class="latesNewImg">
-            <img src="<?php echo getPublicUrl() ?>/images/latest-news/image.jpg" width="300" height="275" class="img-responsive" />
-        </div>
+    <?php if (isset($latestNews) && count($latestNews) > 0) : ?>
+        <?php foreach ($latestNews as $array) : ?>
+        <?php 
+            $pathImagen = $latestNewsPath . $array['url_image'];
+            $width = 300;
+            $height = 275;
+            $imageNameThumb = create_thumbnail($pathImagen, $width, $height);
+            $urlImg = $latestNewsUrl . $imageNameThumb;
+        ?>    
+        <div class="latesNewsBox">
+            <div class="latesNewImg"><a href="/page/index/<?php echo $array['id'] ?>" title="<?php echo $array['title']?>" target="">
+                    <img src="<?php echo $urlImg ?>" width="300" height="275" class="img-responsive"
+                         title="<?php echo $array['title']?>"/></a>
+            </div>
 
-        <div class="latesNewCtn">
-            <p class="latesNewCtnFecha">07 de April del 2014</p>
-            <h3>Lorem Ipsum es simplemente el texto de relleno</h3>
-            <p class="font12">Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto de relleno estándar.</p>
-            <div class="readMoreComment">
-                <span class="readMore"><a href="lastest-new.php" class="btn btn-tamam-ashxarh-ptut-eka-1 btn-xlarge font13">READ MORE</a></span>
-                <span class="latesNewComment"><a href="javascript:voice(0)">0 comment(s)</a></span>
+            <div class="latesNewCtn">
+                <p class="latesNewCtnFecha"><?php echo date_standar($array['created_at']); ?></p>
+                <h3><?php echo $array['title']?></h3>
+                <p class="font12"><?php echo truncate_string($array['content'], 100, ' ', '')?></p>
+                <div class="readMoreComment">
+                    <span class="readMore"><a href="/page/index/<?php echo $array['id']?>" class="btn btn-tamam-ashxarh-ptut-eka-1 btn-xlarge font13">READ MORE</a></span>
+                    <span class="latesNewComment"><a href="javascript:voice(0)"><?php echo $array['comment_count']?> comment(s)</a></span>
+                </div>
             </div>
         </div>
-
-    </div>
-    <!--End Box LatestNews-->
-    <!--Box LatestNews-->
-    <div class="latesNewsBox">
-        <div class="latesNewImg">
-            <img src="<?php echo getPublicUrl() ?>/images/latest-news/image.jpg" width="300" height="275" class="img-responsive" />
-        </div>
-
-        <div class="latesNewCtn">
-            <p class="latesNewCtnFecha">07 de April del 2014</p>
-            <h3>Lorem Ipsum es simplemente el texto de relleno</h3>
-            <p class="font12">Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto de relleno estándar.</p>
-            <div class="readMoreComment">
-                <span class="readMore"><a href="lastest-new.php" class="btn btn-tamam-ashxarh-ptut-eka-1 btn-xlarge font13">READ MORE</a></span>
-                <span class="latesNewComment"><a href="javascript:voice(0)">0 comment(s)</a></span>
-            </div>
-        </div>
-
-    </div>
-    <!--End Box LatestNews-->
-    <!--Box LatestNews-->
-    <div class="latesNewsBox">
-        <div class="latesNewImg">
-            <img src="<?php echo getPublicUrl() ?>/images/latest-news/image.jpg" width="300" height="275" class="img-responsive" />
-        </div>
-
-        <div class="latesNewCtn">
-            <p class="latesNewCtnFecha">07 de April del 2014</p>
-            <h3>Lorem Ipsum es simplemente el texto de relleno</h3>
-            <p class="font12">Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto de relleno estándar.</p>
-            <div class="readMoreComment">
-                <span class="readMore"><a href="lastest-new.php" class="btn btn-tamam-ashxarh-ptut-eka-1 btn-xlarge font13">READ MORE</a></span>
-                <span class="latesNewComment"><a href="javascript:voice(0)">0 comment(s)</a></span>
-            </div>
-        </div>
-
-    </div>
-    <!--End Box LatestNews-->
-    <!--Box LatestNews-->
-    <div class="latesNewsBox">
-        <div class="latesNewImg">
-            <img src="<?php echo getPublicUrl() ?>/images/latest-news/image.jpg" width="300" height="275" class="img-responsive" />
-        </div>
-
-        <div class="latesNewCtn">
-            <p class="latesNewCtnFecha">07 de April del 2014</p>
-            <h3>Lorem Ipsum es simplemente el texto de relleno</h3>
-            <p class="font12">Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto de relleno estándar.</p>
-            <div class="readMoreComment">
-                <span class="readMore"><a href="lastest-new.php" class="btn btn-tamam-ashxarh-ptut-eka-1 btn-xlarge font13">READ MORE</a></span>
-                <span class="latesNewComment"><a href="javascript:voice(0)">0 comment(s)</a></span>
-            </div>
-        </div>
-
-    </div>
+        <?php endforeach; ?>
+    <?php endif; ?>
     <!--End Box LatestNews-->
