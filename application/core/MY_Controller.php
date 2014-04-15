@@ -100,11 +100,28 @@ class MY_Controller extends CI_Controller {
         $data['ourTeamPath'] = FCPATH . 'public/images/ourTeam/';
         $data['ourTeamUrl'] = getPublicUrl() .'/images/ourTeam/';  
         
-                  
+        // work
+        $data['workPath'] = FCPATH . 'public/images/porfolio/';
+        $data['workUrl'] = getPublicUrl() .'/images/porfolio/';       
                     
         $this->load->vars($data);
+        
+        
+        //load category temporalmente
+        $category['category'][] = array('id' => 1, 'name' => 'Showreel');
+        $category['category'][] = array('id' => 2, 'name' => 'Action - Sport');
+        $category['category'][] = array('id' => 3, 'name' => 'Cars');
+        $category['category'][] = array('id' => 4, 'name' => 'Comedy');
+        $category['category'][] = array('id' => 5, 'name' => 'Corporate');
+        $category['category'][] = array('id' => 6, 'name' => 'Fashion');
+        $category['category'][] = array('id' => 7, 'name' => 'Storytelling');
+        $category['category'][] = array('id' => 8, 'name' => 'Trailers');
+        $category['category'][] = array('id' => 9, 'name' => 'Music Videos');
+
+        $this->load->vars($category);
     }
     
+   
     
     
 }

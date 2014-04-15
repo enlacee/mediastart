@@ -1,10 +1,10 @@
-<?php 
-$ourTeam = app_getOurTeam();
-?>
+<?php $ourTeam = app_getOurTeam(); ?>
 
 <h3 class="colorBlanco mayuscula">Our team</h3>
 
-<?php if(isset($ourTeam) && count($ourTeam) > 0) : ?>
+<?php if(isset($ourTeam) 
+        && count($ourTeam) > 0
+        && is_array($ourTeam)) : ?>
     <?php foreach ($ourTeam as $array) : ?>
     <?php 
         $pathImagen = $ourTeamPath . $array['url_image'];

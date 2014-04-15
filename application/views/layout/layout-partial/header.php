@@ -44,7 +44,7 @@
                                         <span class="icon-bar"></span>
                                         <span class="icon-bar"></span>
                                     </button>
-                                    <a href="#" class="navbar-brand"><img src="<?php echo getPublicUrl() ?>/images/menu/logo.png" class="img-responsive" width="221" height="79" /></a>
+                                    <a href="/" class="navbar-brand"><img src="<?php echo getPublicUrl() ?>/images/menu/logo.png" class="img-responsive" width="221" height="79" /></a>
                                 </div>
 
                                 <div class="navbar-collapse collapse floatRight" style="height: auto; margin-right:0;">
@@ -59,18 +59,16 @@
                                         </li>
                                         <li class="dropdown"><a href="#">Porfolio</a>
                                             <ul class="dropdown-menu">
-                                                <li><a href="showreel.php">Showreel</a></li>
-                                                <li><a href="#">Action - Sport</a></li>
-                                                <li><a href="#">Cars</a></li>
-                                                <li><a href="#">Comedy</a></li>
-                                                <li><a href="#">Corporate</a></li>
-                                                <li><a href="#">Fashion</a></li>
-                                                <li><a href="#">Storytelling</a></li>
-                                                <li><a href="#">Trailers</a></li>
-                                                <li><a href="#">Music Videos</a></li>
+                                                <?php if (isset($category)&& is_array($category)): ?>
+                                                <?php foreach ($category as $array) : ?>
+                                                <li><a href="/work/category/<?php echo $array['id'] ?>"><?php echo $array['name'] ?></a></li>
+                                                <?php endforeach;?>
+                                                <?php else :?>
+                                                <li><a href="#">no found data</a></li>
+                                                <?php endif;?>
                                             </ul>
                                         </li>
-                                        <li><a href="contact.php">Contacts</a></li>
+                                        <li><a href="/page/contact">Contacts</a></li>
                                     </ul>
 
                                 </div><!--/.nav-collapse -->

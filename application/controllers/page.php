@@ -1,6 +1,6 @@
 <?php
 
-class page extends MY_Controller {
+class Page extends MY_Controller {
     
     public function __construct()
     {
@@ -9,8 +9,12 @@ class page extends MY_Controller {
     
     public function contact()
     {
+        $this->load->model('Our_team_model');
+        
         $data = array (
-            'columRight' => 'latestWorks');
+            'columRight' => 'latestWorks',
+            'ourTeam' => $this->Our_team_model->listTeam('desc',4));
+        
         $this->layout->view('page/contact', $data);
     }
     

@@ -1,28 +1,27 @@
 <?php
 
 /**
- * Description of Posts.
+ * Description of Team.
  *
  * @author anb
  */
-class Post_model  extends CI_Model {
+class Work_model  extends CI_Model {
     
-    protected $_name = 'ac_posts';
+    protected $_name = 'ac_works';
     
     public function __construct() {
         parent::__construct();
     }    
 
     /***
-     * list of post (lastest news)
+     * list of teams
      */
-    public function listPost($post_type = 'post', $order = 'desc', $limit = 10)
+    public function listWork($order = 'desc', $limit = 7)
     {   
-        $keyCache = __CLASS__ . __FUNCTION__ .'_'. $post_type.$limit;
+        $keyCache = __CLASS__ . __FUNCTION__ .'_'. $order.$limit;
         
         if (($rs = $this->cache->file->get($keyCache)) == false) {
-            $this->db->select()->from($this->_name);
-            $this->db->where('post_type', $post_type);
+            $this->db->select()->from($this->_name);            
             $this->db->where('status', 1);
             $this->db->order_by('created_at', $order);
             $this->db->limit($limit);
@@ -54,6 +53,30 @@ class Post_model  extends CI_Model {
             $this->cache->file->save($keyCache, $rs, 600);
         }
         return $rs;
+    }
+    
+    /**
+     * List of Work by category.
+     * @param Integer $idCategory
+     * @param String $order
+     * @param Integer $limit
+     * @return type Array
+     */
+    public function listWorkByCategory($idCategory, $order = 'desc', $limit = 9)
+    {
+        $keyCache = __CLASS__ . __FUNCTION__ .'_'. $idCategory.'_'.$order.$limit;
+        
+        if (($rs = $this->cache->file->get($keyCache)) == false) {
+            $this->db->select()->from($this->_name);
+            $this->db->where('category', $idCategory);
+            $this->db->where('status', 1);
+            $this->db->limit($limit);
+            $query = $this->db->get();
+            $rs = $query->result_array();            
+            $this->cache->file->save($keyCache, $rs, 600);
+        }
+        return $rs;        
+        
     }
     
 }
