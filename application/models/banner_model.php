@@ -20,7 +20,7 @@ class Banner_model  extends CI_Model {
     {   
         $keyCache = __CLASS__ . __FUNCTION__ .'_'. $status.$limit;
         
-        if (($rs = $this->cache->file->get($keyCache)) == false ) {
+        if (($rs = $this->cache->file->get($keyCache)) == false) {
             $this->db->select()->from($this->_name);
             $this->db->where("status = $status");
             $this->db->limit($limit);

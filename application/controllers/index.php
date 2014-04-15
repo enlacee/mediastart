@@ -38,9 +38,8 @@ class Index extends MY_Controller {
             
             'latestNews' => $this->Post_model->listPost('post', 'desc', 4),
             'latestNewsPath' => FCPATH . 'public/images/latest-news/',
-            'latestNewsUrl' => getPublicUrl() .'/images/latest-news/');
-        
-        
+            'latestNewsUrl' => getPublicUrl() .'/images/latest-news/');        
+
         $string = <<<EOT
                 
             $(function() {

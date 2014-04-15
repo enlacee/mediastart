@@ -165,10 +165,9 @@ p,a,ul,li,ol,span,strong,table,thead,tbody,tr,td{
 #menuOpenHover .dropdown-menu{
 	background:#191A1A;
 }
-.tabCustom{
+.tabCustom {
 	margin:0;
 	padding:0;
-	background	
 }
 
 .tabCustom #ulTab{

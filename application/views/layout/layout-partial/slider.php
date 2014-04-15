@@ -1,4 +1,5 @@
-            <!--Slider-->
+<?php if (isset($banner) && count($banner) > 0) : ?>
+<!--Slider-->
             <div class="row clearfix">
                 <div class="col-md-12" id="esliderWeb">
                     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -90,3 +91,7 @@
                 </div>
             </div>
             <!--End Tab Center--> 
+<?php else :?>
+not exist banner in db. 
+<?php endif; ?>
+            
