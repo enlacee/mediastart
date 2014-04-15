@@ -21,7 +21,7 @@ class MY_Controller extends CI_Controller {
     private function dependencias()
     {  
         $this->load->library(array('image_lib', 'layout', 'auth', 'ZendImage'));        
-        $this->load->helper(array('ayuda_helper', 'thumbnail_helper', 'url', 'form'));
+        $this->load->helper(array('ayuda_helper', 'thumbnail_helper','date_helper', 'url', 'form'));
         $this->load->driver('cache');
     }    
     
