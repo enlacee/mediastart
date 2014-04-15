@@ -22,7 +22,7 @@ class Banner_model  extends CI_Model {
         
         if (($rs = $this->cache->file->get($keyCache)) == false) {
             $this->db->select()->from($this->_name);
-            $this->db->where("status = $status");
+            $this->db->where('status', $status);
             $this->db->limit($limit);
             $query = $this->db->get();
             $rs = $query->result_array();
@@ -44,7 +44,7 @@ class Banner_model  extends CI_Model {
         
         if (($rs = $this->cache->file->get($keyCache)) == false ) {
             $this->db->select()->from($this->_name);
-            $this->db->where("status = $status");
+            $this->db->where('status', $status);
             $this->db->order_by('id', 'random');
             $this->db->limit($limit);
             $query = $this->db->get();        

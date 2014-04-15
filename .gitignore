@@ -8,15 +8,30 @@ application/logs/*
 !application/logs/index.html
 !application/logs/.htaccess
 
-# imagenes banner
+# image banner
 /public/images/banner/*
 !/public/images/banner/t/*
 !/public/images/banner/1.jpg
+!/public/images/banner/att.jpg
+!/public/images/banner/brightcove.jpg
+!/public/images/banner/google.jpg
+!/public/images/banner/intel.jpg
+!/public/images/banner/k-net.jpg
+
+
 
 # image latest-news
 /public/images/latest-news/*
 !/public/images/latest-news/1.jpg
 !/public/images/latest-news/att.jpg
+
+# image ourTeam
+/public/images/ourTeam/*
+!/public/images/ourTeam/t/*
+!/public/images/ourTeam/1.jpg
+!/public/images/ourTeam/mario.jpg
+!/public/images/ourTeam/mario1.jpg
+
 
 
 # ide

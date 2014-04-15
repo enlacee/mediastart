@@ -23,6 +23,7 @@ class Post_model  extends CI_Model {
         if (($rs = $this->cache->file->get($keyCache)) == false) {
             $this->db->select()->from($this->_name);
             $this->db->where('post_type', $post_type);
+            $this->db->where('status', 1);
             $this->db->order_by('created_at', $order);
             $this->db->limit($limit);
             $query = $this->db->get();
@@ -31,6 +32,29 @@ class Post_model  extends CI_Model {
             $this->cache->file->save($keyCache, $rs, 600);
         }
         return $rs;
+    }
+    
+    /**
+     * 
+     * @param Integer $id
+     * @return Array data Element.
+     */
+    public function get($id)
+    {
+        $keyCache = __CLASS__ . __FUNCTION__ .'_'. $id;
+        
+        if (($rs = $this->cache->file->get($keyCache)) == false) {
+            $this->db->select()->from($this->_name);
+            $this->db->where('id', $id);
+            $this->db->where('status', 1);
+            $this->db->limit(1);
+            $query = $this->db->get();
+            $response = $query->result_array();
+            $rs = ($response == false) ? null : $response[0];
+            $this->cache->file->save($keyCache, $rs, 600);
+        }
+        return $rs;        
+        
     }
     
 }

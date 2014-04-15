@@ -30,6 +30,8 @@ class Index extends MY_Controller {
     {   
         $this->load->model('Banner_model');
         $this->load->model('Post_model');
+        $this->load->model('Our_team_model');
+        
         $data = array (
             'bannerPath' => FCPATH . 'public/images/banner/',
             'bannerUrl' => getPublicUrl() .'/images/banner/',
@@ -38,7 +40,9 @@ class Index extends MY_Controller {
             
             'latestNews' => $this->Post_model->listPost('post', 'desc', 4),
             'latestNewsPath' => FCPATH . 'public/images/latest-news/',
-            'latestNewsUrl' => getPublicUrl() .'/images/latest-news/');        
+            'latestNewsUrl' => getPublicUrl() .'/images/latest-news/');
+        
+        //var_dump($data['ourTeam']);exit;
 
         $string = <<<EOT
                 

@@ -9,21 +9,26 @@ class page extends MY_Controller {
     
     public function contact()
     {
-        $this->layout->view('page/contact');
+        $data = array (
+            'columRight' => 'latestWorks');
+        $this->layout->view('page/contact', $data);
     }
     
     public function index($id)
     {
+        $this->load->model('Banner_model');
         $this->load->model('Post_model');
         
-       echo $id; exit;
-        
         $data = array (
-            'latestNews' => $this->Post_model->listPost('post', 'desc', 8),
+            'columRight' => false,
+            'latestNewsPath' => FCPATH . 'public/images/latest-news/',
+            'latestNewsUrl' => getPublicUrl() .'/images/latest-news/',
+            
+            'latestNews' => $this->Post_model->get($id),
         );
         
-        //$this->layout->setLayout('layout/layout_main');
-        //$this->layout->view('index/index', $data);        
+        $this->layout->setLayout('layout/layout');
+        $this->layout->view('page/index', $data);        
         
     }
 }

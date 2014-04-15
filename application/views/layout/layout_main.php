@@ -39,7 +39,7 @@
                         <!--End ColumnLef-->
 
                         <!--ColumnRight-->
-                        <?php if (isset($columRight)) : ?>
+                        <?php if (isset($columRight)) : // columRight_ourTeam.php ?>
                             <?php if(is_string($columRight)) : ?>
                             <div class="col-md-4" id="rightColBG">
                                 <div class="rightCtn pdTop10">                                
@@ -47,12 +47,13 @@
                                 </div>            
                             </div>                                
                             <?php endif;?>
-                        <?php else : ?>
+                        <?php elseif (isset($columRight) && $columRight == false ) : ?>   
+                        <?php else: ?>
                             <div class="col-md-4" id="rightColBG">
                                 <div class="rightCtn pdTop10">                                  
                            <?php    require_once "layout-partial/columRight_ourTeam.php"; ?>
                                 </div>            
-                            </div> 
+                            </div>                        
                         <?php endif; ?>
                         <!--End ColumnRight-->
                     </div>
