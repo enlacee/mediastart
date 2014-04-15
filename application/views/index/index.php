@@ -1,4 +1,4 @@
-<h2>LATEST NEWS x</h2>
+<h2>LATEST NEWS</h2>
 
 
     <!--Box LatestNews-->

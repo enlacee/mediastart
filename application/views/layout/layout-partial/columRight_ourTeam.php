@@ -1,8 +1,5 @@
 <?php 
 $ourTeam = app_getOurTeam();
-
-$ourTeamPath = FCPATH . 'public/images/ourTeam/';
-$ourTeamUrl = getPublicUrl() .'/images/ourTeam/';
 ?>
 
 <h3 class="colorBlanco mayuscula">Our team</h3>

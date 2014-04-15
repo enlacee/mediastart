@@ -20,10 +20,7 @@ class page extends MY_Controller {
         $this->load->model('Post_model');
         
         $data = array (
-            'columRight' => false,
-            'latestNewsPath' => FCPATH . 'public/images/latest-news/',
-            'latestNewsUrl' => getPublicUrl() .'/images/latest-news/',
-            
+            'columRight' => false,            
             'latestNews' => $this->Post_model->get($id),
         );
         

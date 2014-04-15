@@ -16,6 +16,7 @@ class MY_Controller extends CI_Controller {
     {
         parent::__construct();
         $this->dependencias();
+        $this->loadVariableImage();
     }   
     
     private function dependencias()
@@ -79,5 +80,31 @@ class MY_Controller extends CI_Controller {
         //$this->load->get_var($key)
         $this->load->vars($this->dataView);
         return $this->dataView;
-    }    
+    }
+    
+    /**
+     * list of variables for consummer and response
+     * process (create thumbnail)
+     */
+    public function loadVariableImage()
+    {   
+        // banner
+        $data['bannerPath'] = FCPATH . 'public/images/banner/';
+        $data['bannerUrl'] = getPublicUrl() .'/images/banner/';
+        
+        // latestNewsUrl
+        $data['latestNewsPath'] = FCPATH . 'public/images/latest-news/';
+        $data['latestNewsUrl'] = getPublicUrl() .'/images/latest-news/';
+
+        // ourTeam
+        $data['ourTeamPath'] = FCPATH . 'public/images/ourTeam/';
+        $data['ourTeamUrl'] = getPublicUrl() .'/images/ourTeam/';  
+        
+                  
+                    
+        $this->load->vars($data);
+    }
+    
+    
+    
 }
