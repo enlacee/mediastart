@@ -18,6 +18,9 @@ class Page extends MY_Controller {
         $this->layout->view('page/contact', $data);
     }
     
+    /*
+     * list only post by category(post)
+     */
     public function index($id)
     {
         $this->load->model('Banner_model');
@@ -31,6 +34,10 @@ class Page extends MY_Controller {
         $this->layout->view('page/index', $data);
     }
     
+    /**
+     * LIST Only by category (page-about)
+     * @param type $id
+     */
     public function about($id)
     {
         $response = $this->Post_model->get($id, $post_type = 'page-about');        
@@ -45,4 +52,21 @@ class Page extends MY_Controller {
         $this->layout->setLayout('layout/layout_contact');
         $this->layout->view('page/about', $data);  
     }
+    
+    /**
+     * List only post by category (page)
+     * @param type $id
+     */
+    public function admin($id = '')
+    {   
+        $this->load->model('Post_model');
+        
+        $data = array (
+            'columRight' => false,            
+            'latestNews' => $this->Post_model->get($id, 'page')
+        );        
+        
+        $this->layout->view('page/admin', $data);
+    }    
+    
 }
