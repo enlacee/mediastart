@@ -16,12 +16,20 @@ class MY_Controller extends CI_Controller {
     {
         parent::__construct();
         $this->dependencias();
+        $this->loadVariableImage();
     }   
     
     private function dependencias()
     {  
         $this->load->library(array('image_lib', 'layout', 'auth', 'ZendImage'));        
-        $this->load->helper(array('my_ayuda_helper', 'my_thumbnail_helper', 'my_date_helper', 'my_string_helper', 'url', 'form'));
+        $this->load->helper(array(
+            'my_ayuda_helper',
+            'my_thumbnail_helper',
+            'my_date_helper',
+            'my_string_helper',
+            'my_application_helper',
+            'url',
+            'form'));
         $this->load->driver('cache');
     }    
     
@@ -72,5 +80,56 @@ class MY_Controller extends CI_Controller {
         //$this->load->get_var($key)
         $this->load->vars($this->dataView);
         return $this->dataView;
-    }    
+    }
+    
+    /**
+     * list of variables for consummer and response
+     * process (create thumbnail)
+     */
+    public function loadVariableImage()
+    {   
+        // banner
+        $data['bannerPath'] = FCPATH . 'public/images/banner/';
+        $data['bannerUrl'] = getPublicUrl() .'/images/banner/';
+        
+        // latestNewsUrl
+        $data['latestNewsPath'] = FCPATH . 'public/images/latest-news/';
+        $data['latestNewsUrl'] = getPublicUrl() .'/images/latest-news/';
+
+        // ourTeam
+        $data['ourTeamPath'] = FCPATH . 'public/images/ourTeam/';
+        $data['ourTeamUrl'] = getPublicUrl() .'/images/ourTeam/';  
+        
+        // work
+        $data['workPath'] = FCPATH . 'public/images/porfolio/';
+        $data['workUrl'] = getPublicUrl() .'/images/porfolio/';       
+                    
+        $this->load->vars($data);
+                
+        //load category temporalmente
+        $category['category'][] = array('id' => 1, 'name' => 'Showreel');
+        $category['category'][] = array('id' => 2, 'name' => 'Action - Sport');
+        $category['category'][] = array('id' => 3, 'name' => 'Cars');
+        $category['category'][] = array('id' => 4, 'name' => 'Comedy');
+        $category['category'][] = array('id' => 5, 'name' => 'Corporate');
+        $category['category'][] = array('id' => 6, 'name' => 'Fashion');
+        $category['category'][] = array('id' => 7, 'name' => 'Storytelling');
+        $category['category'][] = array('id' => 8, 'name' => 'Trailers');
+        $category['category'][] = array('id' => 9, 'name' => 'Music Videos');
+        $this->load->vars($category);
+        
+        //load pages (about us)
+        $this->load->model('Post_model');
+        $pagesAboutUs = array();
+        $pagesAboutUs['pagesAboutUs'] = $this->Post_model->listPost(
+                $post_type = 'page-about',
+                $order = 'desc',
+                $limit = 2);
+        $this->load->vars($pagesAboutUs);
+        
+    }
+    
+   
+    
+    
 }

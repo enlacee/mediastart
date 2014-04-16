@@ -1,6 +1,6 @@
 <?php
 
-class page extends MY_Controller {
+class Page extends MY_Controller {
     
     public function __construct()
     {
@@ -9,21 +9,32 @@ class page extends MY_Controller {
     
     public function contact()
     {
-        $this->layout->view('page/contact');
+        $this->load->model('Our_team_model');
+        
+        $data = array (
+            'columRight' => 'latestWorks',
+            'ourTeam' => $this->Our_team_model->listTeam('desc',4));
+        
+        $this->layout->view('page/contact', $data);
     }
     
     public function index($id)
     {
+        $this->load->model('Banner_model');
         $this->load->model('Post_model');
         
-       echo $id; exit;
-        
         $data = array (
-            'latestNews' => $this->Post_model->listPost('post', 'desc', 8),
+            'columRight' => false,            
+            'latestNews' => $this->Post_model->get($id),
         );
         
-        //$this->layout->setLayout('layout/layout_main');
-        //$this->layout->view('index/index', $data);        
+        $this->layout->setLayout('layout/layout');
+        $this->layout->view('page/index', $data);        
+        
+    }
+    
+    public function about($id)
+    {
         
     }
 }

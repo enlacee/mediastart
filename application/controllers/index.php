@@ -30,43 +30,16 @@ class Index extends MY_Controller {
     {   
         $this->load->model('Banner_model');
         $this->load->model('Post_model');
+        $this->load->model('Our_team_model');
+        
         $data = array (
-            'bannerPath' => FCPATH . 'public/images/banner/',
-            'bannerUrl' => getPublicUrl() .'/images/banner/',
             'banner' => $this->Banner_model->listBanner(),
-            'bannerPopular' => $this->Banner_model->listPopular(),
-            
-            'latestNews' => $this->Post_model->listPost('post', 'desc', 4),
-            'latestNewsPath' => FCPATH . 'public/images/latest-news/',
-            'latestNewsUrl' => getPublicUrl() .'/images/latest-news/');        
+            'bannerPopular' => $this->Banner_model->listPopular(),            
+            'latestNews' => $this->Post_model->listPost('post', 'desc', 4));
 
-        $string = <<<EOT
-                
-            $(function() {
-                //FechaBox
-                $("#fecha").datepicker({
-                    showButtonPanel: false
-                });                
-                //Idiomas
-                $('.dropdown-toggle').dropdown();                
-                //Tab
-                $('#myTab a').click(function(e) {
-                    e.preventDefault()
-                    $(this).tab('show')
-                });
-                //Agrega clase al Slider para que pueda funcionar
-                $('#esliderWeb div:last-child').addClass("active");
-                //Menu
-                $('ul.nav li.dropdown').hover(function() {
-                    $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(200);
-                }, function() {
-                    $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(100);
-                });
-            });
-EOT;
         //$this->loadStatic(array('css' => '/css/anibal.css'));
         //$this->loadStatic(array('js' => '/js/anibal.js'));        
-        $this->loadStatic(array("jstring" => $string));
+        //$this->loadStatic(array("jstring" => $string));
         $this->layout->setLayout('layout/layout_main');
         $this->layout->view('index/index', $data);
     }
