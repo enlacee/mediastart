@@ -43,7 +43,8 @@ class Page extends MY_Controller {
         $response = $this->Post_model->get($id, $post_type = 'page-about');        
         $id_lang = $this->session->userdata('id_lang');  
         
-        if(!empty($id_lang) && $id_lang != false) {         
+        if(!empty($id_lang) && $id_lang != false) {
+            $response['title'] =  $response["title_$id_lang"];
             $response['content'] =  $response["content_$id_lang"];
         }
         
