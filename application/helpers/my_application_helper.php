@@ -76,3 +76,19 @@ if(!function_exists('app_getPortfolioTopView')) {
         return $response;
     }
 }
+
+
+if(!function_exists('app_getPageFooter')) {
+    /**
+     * List post by category page
+     * @return Array
+     */
+    function app_getPageFooter()
+    {   
+        $CI =& get_instance();
+        $CI->load->model('Post_model');
+        $limit = 2 ;
+        $response = $CI->Post_model->listPost('page', 'desc', $limit);
+        return $response;
+    }
+}

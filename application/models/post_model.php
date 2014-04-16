@@ -58,4 +58,28 @@ class Post_model  extends CI_Model {
         return $rs;
     }
     
+    /**
+     * 
+     * @param Integer $id
+     * @param String $post_type
+     */
+    public function getPage($id, $post_type = 'page') {
+        
+        $keyCache = __CLASS__ . __FUNCTION__ .'_'. $id.$post_type;
+        
+        if (($rs = $this->cache->file->get($keyCache)) == false) {
+            $this->db->select()->from($this->_name);
+            $this->db->where('id', $id);
+            $this->db->where('post_type', $post_type);
+            $this->db->where('status', 1);
+            $this->db->limit(1);
+            $query = $this->db->get();
+            $response = $query->result_array();
+            $rs = ($response == false) ? null : $response[0];
+            $this->cache->file->save($keyCache, $rs, 600);
+        }
+        return $rs;
+    }
+    
+    
 }
