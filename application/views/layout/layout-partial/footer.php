@@ -41,14 +41,20 @@
                             <div class="footerWebBox" id="menuUlFooterCol4">
                                 <h4>Partners</h4>
                                 <ul>
-                                    <li><a href="agencies.php">Agencies</a></li>
-                                    <li><a href="producers.php">Producers</a></li>
-                                    <li><a href="directors.php">Directors</a></li>
-                                    <li><a href="directors-of-photography.php">Directors of Photography</a></li>
-                                    <li><a href="filmakers.php">Filmakers</a></li>
-                                    <li><a href="post-production.php">Postproduction</a></li>
-                                    <li><a href="photographer.php">Photographer</a></li>
-                                    <li style="border:none;"><a href="other.php">Other</a></li>
+                                    <?php if (isset($categoryPartner) && is_array($categoryPartner) && count($categoryPartner)>0) : ?>
+                                        <?php $ultimate = count($categoryPartner);
+                                                foreach ($categoryPartner as $array) : ?>    
+                                            
+                                                <?php if ($ultimate == $array['id']): ?>
+                                                    <li style="border:none;"><a href="/partner/category/<?php echo $array['id'] ?>"><?php echo $array['name'] ?></a></li>
+                                                <?php else : ?>
+                                                    <li><a href="/partner/category/<?php echo $array['id'] ?>"><?php echo $array['name'] ?></a></li>
+                                                <?php endif; ?>
+                                            
+                                        <?php endforeach; ?>
+                                    <?php else : ?>
+                                    <li><a href="#">Not found data.</a></li>
+                                    <?php endif; ?>
                                 </ul>
                                 <p><a href="">READ MORE</a></p>
                             </div>

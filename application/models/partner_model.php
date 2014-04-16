@@ -1,0 +1,38 @@
+<?php
+
+/**
+ * Description of Team.
+ *
+ * @author anb
+ */
+class Partner_model  extends CI_Model {
+    
+    protected $_name = 'ac_partners';
+    
+    public function __construct() {
+        parent::__construct();
+    }    
+
+    /***
+     * list of teams
+     */
+    public function listCategory($category, $limit = '')
+    {   
+        $keyCache = __CLASS__ . __FUNCTION__ .'_'.$category.'_'.$limit;
+        
+        if (($rs = $this->cache->file->get($keyCache)) == false) {
+            $this->db->select()->from($this->_name);            
+            $this->db->where('category', $category);
+            $this->db->order_by('created_at', 'desc');
+            if(!empty($limit)) {
+                $this->db->limit($limit);
+            }            
+            $query = $this->db->get();
+            $rs = $query->result_array();
+            
+            $this->cache->file->save($keyCache, $rs, 600);
+        }
+        return $rs;
+    }    
+    
+}

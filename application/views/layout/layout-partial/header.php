@@ -10,16 +10,16 @@
                                 <div class="dropdown floatRight fuenteOswald mayuscula color_ft414447">
                                     <a data-toggle="dropdown" href="#">Idioma</a>
                                     <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                                        <li><a href="javascript:voice(0)"><img src="<?php echo getPublicUrl() ?>/images/iconos/es.png" width="18" height="12" /> Espa&ntilde;ol </a></li>
-                                        <li><a href="javascript:voice(0)"><img src="<?php echo getPublicUrl() ?>/images/iconos/en.png" width="18" height="12" /> English </a></li>
-                                        <li><a href="javascript:voice(0)"><img src="<?php echo getPublicUrl() ?>/images/iconos/fr.png" width="18" height="12" /> Français</a></li>
-                                        <li><a href="javascript:voice(0)"><img src="<?php echo getPublicUrl() ?>/images/iconos/de.png" width="18" height="12" /> Deutsch</a></li>
-                                        <li><a href="javascript:voice(0)"><img src="<?php echo getPublicUrl() ?>/images/iconos/it.png" width="18" height="12" /> Italiano</a></li>
-                                        <li><a href="javascript:voice(0)"><img src="<?php echo getPublicUrl() ?>/images/iconos/pt-br.png" width="18" height="12" /> Português</a></li>
-                                        <li><a href="javascript:voice(0)"><img src="<?php echo getPublicUrl() ?>/images/iconos/ru.png" width="18" height="12" /> Русский</a></li>
-                                        <li><a href="javascript:voice(0)"><img src="<?php echo getPublicUrl() ?>/images/iconos/zh-hans.png" width="18" height="12" /> 简体中文</a></li>
-                                        <li><a href="javascript:voice(0)"><img src="<?php echo getPublicUrl() ?>/images/iconos/ar.png" width="18" height="12" /> العربية</a></li>
-                                        <li><a href="javascript:voice(0)"><img src="<?php echo getPublicUrl() ?>/images/iconos/ja.png" width="18" height="12" /> 日本語</a></li>
+                                        <li><a href="/language/set/1"><img src="<?php echo getPublicUrl() ?>/images/iconos/es.png" width="18" height="12" /> Espa&ntilde;ol </a></li>
+                                        <li><a href="/language/set"><img src="<?php echo getPublicUrl() ?>/images/iconos/en.png" width="18" height="12" /> English </a></li>
+                                        <li><a href="/language/set/2"><img src="<?php echo getPublicUrl() ?>/images/iconos/fr.png" width="18" height="12" /> Français</a></li>
+                                        <li><a href="/language/set/3"><img src="<?php echo getPublicUrl() ?>/images/iconos/de.png" width="18" height="12" /> Deutsch</a></li>
+                                        <li><a href="/language/set/4"><img src="<?php echo getPublicUrl() ?>/images/iconos/it.png" width="18" height="12" /> Italiano</a></li>
+                                        <li><a href="/language/set/5"><img src="<?php echo getPublicUrl() ?>/images/iconos/pt-br.png" width="18" height="12" /> Português</a></li>
+                                        <li><a href="/language/set/6"><img src="<?php echo getPublicUrl() ?>/images/iconos/ru.png" width="18" height="12" /> Русский</a></li>
+                                        <li><a href="/language/set/7"><img src="<?php echo getPublicUrl() ?>/images/iconos/zh-hans.png" width="18" height="12" /> 简体中文</a></li>
+                                        <li><a href="/language/set/8"><img src="<?php echo getPublicUrl() ?>/images/iconos/ar.png" width="18" height="12" /> العربية</a></li>
+                                        <li><a href="/language/set/9"><img src="<?php echo getPublicUrl() ?>/images/iconos/ja.png" width="18" height="12" /> 日本語</a></li>
                                     </ul>
 
                                 </div>
@@ -66,7 +66,7 @@
                                             <ul class="dropdown-menu">
                                                 <?php if (isset($category) && is_array($category) && count($pagesAboutUs) > 0) : ?>
                                                 <?php foreach ($category as $array) : ?>
-                                                <li><a href="/work/category/<?php echo $array['id'] ?>"><?php echo $array['name'] ?></a></li>
+                                                <li><a href="/portfolio/category/<?php echo $array['id'] ?>"><?php echo $array['name'] ?></a></li>
                                                 <?php endforeach;?>
                                                 <?php else :?>
                                                 <li><a href="#">no found data</a></li>

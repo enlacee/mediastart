@@ -33,9 +33,15 @@ class Page extends MY_Controller {
     
     public function about($id)
     {
-        $data = array(
-            'page' => $this->Post_model->get($id, $post_type = 'page-about')
-        );      
+        $response = $this->Post_model->get($id, $post_type = 'page-about');        
+        $id_lang = $this->session->userdata('id_lang');  
+        
+        if(!empty($id_lang) && $id_lang != false) {         
+            $response['content'] =  $response["content_$id_lang"];
+        }
+        
+        //var_dump($response);exit;
+        $data = array('page' => $response);
         $this->layout->setLayout('layout/layout_contact');
         $this->layout->view('page/about', $data);  
     }

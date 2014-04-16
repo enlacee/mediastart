@@ -35,6 +35,10 @@ application/logs/*
 !/public/images/ourTeam/image.jpg
 
 
+# image porfolio
+/public/images/partners/*
+!/public/images/partners/image.jpg
+
 
 # ide
 nbproject/*

@@ -100,22 +100,27 @@ class MY_Controller extends CI_Controller {
         $data['ourTeamPath'] = FCPATH . 'public/images/ourTeam/';
         $data['ourTeamUrl'] = getPublicUrl() .'/images/ourTeam/';  
         
-        // work
-        $data['workPath'] = FCPATH . 'public/images/porfolio/';
-        $data['workUrl'] = getPublicUrl() .'/images/porfolio/';       
-                    
+        // work ourTeam
+        $data['workPath'] = FCPATH . 'public/images/ourTeam/';
+        $data['workUrl'] = getPublicUrl() .'/images/ourTeam/';  
+        
+        // portfolio
+        $data['portfolioPath'] = FCPATH . 'public/images/porfolio/';
+        $data['portfolioUrl'] = getPublicUrl() .'/images/porfolio/';          
+             
+        //partners
+        $data['partnerPath'] = FCPATH . 'public/images/partners/';
+        $data['partnerUrl'] = getPublicUrl() .'/images/partners/';          
+        
         $this->load->vars($data);
+        
+
+        
+        
                 
-        //load category temporalmente
-        $category['category'][] = array('id' => 1, 'name' => 'Showreel');
-        $category['category'][] = array('id' => 2, 'name' => 'Action - Sport');
-        $category['category'][] = array('id' => 3, 'name' => 'Cars');
-        $category['category'][] = array('id' => 4, 'name' => 'Comedy');
-        $category['category'][] = array('id' => 5, 'name' => 'Corporate');
-        $category['category'][] = array('id' => 6, 'name' => 'Fashion');
-        $category['category'][] = array('id' => 7, 'name' => 'Storytelling');
-        $category['category'][] = array('id' => 8, 'name' => 'Trailers');
-        $category['category'][] = array('id' => 9, 'name' => 'Music Videos');
+        //load category 
+        $this->load->model('Category_model');
+        $category['category'] = $this->Category_model->listCategory();        
         $this->load->vars($category);
         
         //load pages (about us)
@@ -126,6 +131,17 @@ class MY_Controller extends CI_Controller {
                 $order = 'desc',
                 $limit = 2);
         $this->load->vars($pagesAboutUs);
+        
+        //load category partners (temp)
+        $categoryPartner['categoryPartner'][] = array('id' => 1, 'name' => 'Agencies');
+        $categoryPartner['categoryPartner'][] = array('id' => 2, 'name' => 'Producers');
+        $categoryPartner['categoryPartner'][] = array('id' => 3, 'name' => 'Directors');
+        $categoryPartner['categoryPartner'][] = array('id' => 4, 'name' => 'Directors of Photography');        
+        $categoryPartner['categoryPartner'][] = array('id' => 5, 'name' => 'Filmakers');
+        $categoryPartner['categoryPartner'][] = array('id' => 6, 'name' => 'Postproduction');
+        $categoryPartner['categoryPartner'][] = array('id' => 7, 'name' => 'Photographer');
+        $categoryPartner['categoryPartner'][] = array('id' => 8, 'name' => 'Other');
+        $this->load->vars($categoryPartner);
         
     }
     

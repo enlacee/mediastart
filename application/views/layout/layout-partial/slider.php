@@ -53,36 +53,42 @@
                         <!-- Tab panes -->
                         <div class="tab-content">
                             <div class="tab-pane active" id="one">
-                                <?php $count = 0; foreach ($banner as $array): ?>
-                                <?php 
-                                if ($count == 4) {break;} 
-                                $pathImagen = $bannerPath . $array['url_image'];
-                                $width = 218;
-                                $height = 200;
-                                $imageNameThumb = create_thumbnail($pathImagen, $width, $height);
-                                $urlImg = $bannerUrl . $imageNameThumb;
-                                ?>
-                                <div class="tabShowRell"><a href="<?php echo $array['link_image'] ?>" title="<?php echo $array['title']?>" target="_blank">
-                                    <img src="<?php echo $urlImg ?>" alt="<?php echo $array['title'] ?>" title="<?php echo $array['title'] ?>" 
-                                         class="img-responsive" width="<?php echo $width ?>" height="<?php echo $height ?>" /></a>
-                                </div>                                
-                                <?php $count++; endforeach; ?>
+                                <?php
+                                $portfolios = app_getOnePortfolioByCategory();
+                                if (is_array($portfolios) && count($portfolios) > 0 ) : ?>
+                                    <?php $count = 0; foreach ($portfolios as $array) : ?>
+                                        <?php 
+                                            if ($count == 4) { break; } 
+                                            $pathImagen = $portfolioPath . $array['url_image'];
+                                            $width = 218;
+                                            $height = 200;
+                                            $imageNameThumb = create_thumbnail($pathImagen, $width, $height);
+                                            $urlImg = $portfolioUrl . $imageNameThumb;
+                                        ?>
+                                        <div class="tabShowRell"><a href="/portfolio/video/<?php echo $array['id']?>" title="<?php echo $array['title']?>" target="">
+                                            <img src="<?php echo $urlImg ?>" alt="<?php echo $array['title'] ?>" title="<?php echo $array['title'] ?>" 
+                                                 class="img-responsive" width="218" height="200" /></a>
+                                        </div>                                
+                                    <?php $count++; endforeach; ?>
+                                <?php else : ?>                             
+                                <?php endif; ?>
                             </div>
                             
                             <div class="tab-pane" id="two">
-                                <?php $count = 0; foreach ($bannerPopular as $array): ?>
-                                <?php 
-                                if ($count == 4) {break;}
-                                $pathImagen = $bannerPath . $array['url_image'];
-                                $width = 218;
-                                $height = 200;
-                                $imageNameThumb = create_thumbnail($pathImagen, $width, $height);
-                                $urlImg = $bannerUrl . $imageNameThumb;
-                                ?>
-                                <div class="tabShowRell"><a href="<?php echo $array['link_image'] ?>" title="<?php echo $array['title']?>" target="_blank">
-                                    <img src="<?php echo $urlImg ?>" alt="<?php echo $array['title'] ?>" title="<?php echo $array['title'] ?>" 
-                                         class="img-responsive" width="<?php echo $width ?>" height="<?php echo $height ?>" /></a>
-                                </div>                                
+                                <?php $portfolios = app_getPortfolioTopView(); ?>
+                                <?php $count = 0; foreach ($portfolios as $array) : ?>
+                                    <?php
+                                        if ($count == 4) { break; }
+                                        $pathImagen = $portfolioPath . $array['url_image'];
+                                        $width = 218;
+                                        $height = 200;
+                                        $imageNameThumb = create_thumbnail($pathImagen, $width, $height);
+                                        $urlImg = $portfolioUrl . $imageNameThumb;
+                                    ?>
+                                    <div class="tabShowRell"><a href="/portfolio/video/<?php echo $array['id']?>" title="<?php echo $array['title']?>" target="">
+                                        <img src="<?php echo $urlImg ?>" alt="<?php echo $array['title'] ?>" title="<?php echo $array['title'] ?>" 
+                                             class="img-responsive" width="218" height="200" /></a>
+                                    </div>                                
                                 <?php $count++; endforeach; ?>
                             </div>
                         </div>

@@ -53,33 +53,5 @@ class Work_model  extends CI_Model {
             $this->cache->file->save($keyCache, $rs, 600);
         }
         return $rs;
-    }
-    
-    /**
-     * List of Work by category.
-     * @param Integer $idCategory
-     * @param String $order
-     * @param Integer $limit
-     * @return type Array
-     */
-    public function listWorkByCategory($idCategory, $order = 'desc', $limit = 9)
-    {
-        $strIdCategoria = str_replace(' ', '_', $idCategory);
-        $strIdCategoria = str_replace('-', '_', $idCategory);
-        
-        $keyCache = __CLASS__ . __FUNCTION__ .'_'. $strIdCategoria.'_'.$order.$limit;
-        
-        if (/*($rs = $this->cache->file->get($keyCache)) == false*/true) {
-            $this->db->select()->from($this->_name);
-            $this->db->where('category', $idCategory);
-            $this->db->where('status', 1);
-            $this->db->limit($limit);
-            $query = $this->db->get();           
-            $rs = $query->result_array();            
-            $this->cache->file->save($keyCache, $rs, 600);
-        }
-        return $rs;        
-        
-    }
-    
+    }    
 }
