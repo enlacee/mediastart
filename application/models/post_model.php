@@ -18,7 +18,8 @@ class Post_model  extends CI_Model {
      */
     public function listPost($post_type = 'post', $order = 'desc', $limit = 10)
     {   
-        $keyCache = __CLASS__ . __FUNCTION__ .'_'. $post_type.$limit;
+        $str_post_type = str_replace('-', '_', $post_type);
+        $keyCache = __CLASS__ . __FUNCTION__ .'_'. $str_post_type.$limit;
         
         if (($rs = $this->cache->file->get($keyCache)) == false) {
             $this->db->select()->from($this->_name);

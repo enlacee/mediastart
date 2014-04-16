@@ -32,4 +32,9 @@ class Page extends MY_Controller {
         $this->layout->view('page/index', $data);        
         
     }
+    
+    public function about($id)
+    {
+        
+    }
 }

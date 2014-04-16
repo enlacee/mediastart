@@ -64,14 +64,17 @@ class Work_model  extends CI_Model {
      */
     public function listWorkByCategory($idCategory, $order = 'desc', $limit = 9)
     {
-        $keyCache = __CLASS__ . __FUNCTION__ .'_'. $idCategory.'_'.$order.$limit;
+        $strIdCategoria = str_replace(' ', '_', $idCategory);
+        $strIdCategoria = str_replace('-', '_', $idCategory);
         
-        if (($rs = $this->cache->file->get($keyCache)) == false) {
+        $keyCache = __CLASS__ . __FUNCTION__ .'_'. $strIdCategoria.'_'.$order.$limit;
+        
+        if (/*($rs = $this->cache->file->get($keyCache)) == false*/true) {
             $this->db->select()->from($this->_name);
             $this->db->where('category', $idCategory);
             $this->db->where('status', 1);
             $this->db->limit($limit);
-            $query = $this->db->get();
+            $query = $this->db->get();           
             $rs = $query->result_array();            
             $this->cache->file->save($keyCache, $rs, 600);
         }

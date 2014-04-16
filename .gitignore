@@ -18,8 +18,6 @@ application/logs/*
 !/public/images/banner/intel.jpg
 !/public/images/banner/k-net.jpg
 
-
-
 # image latest-news
 /public/images/latest-news/*
 !/public/images/latest-news/1.jpg
@@ -31,6 +29,10 @@ application/logs/*
 !/public/images/ourTeam/1.jpg
 !/public/images/ourTeam/mario.jpg
 !/public/images/ourTeam/mario1.jpg
+
+# image porfolio
+/public/images/porfolio/*
+!/public/images/ourTeam/image.jpg
 
 
 

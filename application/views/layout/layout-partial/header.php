@@ -53,13 +53,18 @@
                                         <li class="dropdown">
                                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">About US</a>
                                             <ul class="dropdown-menu">
-                                                <li><a href="about.php">What we do</a></li>
-                                                <li><a href="how.php">How we do it</a></li>
+                                                <?php if(isset($pagesAboutUs) && is_array($pagesAboutUs) && count($pagesAboutUs) > 0): ?>
+                                                    <?php foreach ($pagesAboutUs as $array) : ?>
+                                                        <li><a href="/page/about/<?php echo $array['id'] ?>"><?php echo $array['title'] ?></a></li>
+                                                    <?php endforeach; ?>
+                                                <?php else: ?>
+                                                    <li><a href="#">no found data</a></li>
+                                                <?php endif; ?>
                                             </ul>
                                         </li>
                                         <li class="dropdown"><a href="#">Porfolio</a>
                                             <ul class="dropdown-menu">
-                                                <?php if (isset($category)&& is_array($category)): ?>
+                                                <?php if (isset($category) && is_array($category) && count($pagesAboutUs) > 0) : ?>
                                                 <?php foreach ($category as $array) : ?>
                                                 <li><a href="/work/category/<?php echo $array['id'] ?>"><?php echo $array['name'] ?></a></li>
                                                 <?php endforeach;?>

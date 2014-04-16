@@ -105,8 +105,7 @@ class MY_Controller extends CI_Controller {
         $data['workUrl'] = getPublicUrl() .'/images/porfolio/';       
                     
         $this->load->vars($data);
-        
-        
+                
         //load category temporalmente
         $category['category'][] = array('id' => 1, 'name' => 'Showreel');
         $category['category'][] = array('id' => 2, 'name' => 'Action - Sport');
@@ -117,8 +116,17 @@ class MY_Controller extends CI_Controller {
         $category['category'][] = array('id' => 7, 'name' => 'Storytelling');
         $category['category'][] = array('id' => 8, 'name' => 'Trailers');
         $category['category'][] = array('id' => 9, 'name' => 'Music Videos');
-
         $this->load->vars($category);
+        
+        //load pages (about us)
+        $this->load->model('Post_model');
+        $pagesAboutUs = array();
+        $pagesAboutUs['pagesAboutUs'] = $this->Post_model->listPost(
+                $post_type = 'page-about',
+                $order = 'desc',
+                $limit = 2);
+        $this->load->vars($pagesAboutUs);
+        
     }
     
    
