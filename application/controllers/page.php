@@ -26,15 +26,17 @@ class Page extends MY_Controller {
         $data = array (
             'columRight' => false,            
             'latestNews' => $this->Post_model->get($id),
-        );
+        );        
         
-        $this->layout->setLayout('layout/layout');
-        $this->layout->view('page/index', $data);        
-        
+        $this->layout->view('page/index', $data);
     }
     
     public function about($id)
     {
-        
+        $data = array(
+            'page' => $this->Post_model->get($id, $post_type = 'page-about')
+        );      
+        $this->layout->setLayout('layout/layout_contact');
+        $this->layout->view('page/about', $data);  
     }
 }

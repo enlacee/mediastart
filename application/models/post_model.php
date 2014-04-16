@@ -40,13 +40,14 @@ class Post_model  extends CI_Model {
      * @param Integer $id
      * @return Array data Element.
      */
-    public function get($id)
+    public function get($id, $post_type = 'post')
     {
-        $keyCache = __CLASS__ . __FUNCTION__ .'_'. $id;
+        $keyCache = __CLASS__ . __FUNCTION__ .'_'. $id.$post_type;
         
         if (($rs = $this->cache->file->get($keyCache)) == false) {
             $this->db->select()->from($this->_name);
             $this->db->where('id', $id);
+            $this->db->where('post_type', $post_type);
             $this->db->where('status', 1);
             $this->db->limit(1);
             $query = $this->db->get();
