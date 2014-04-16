@@ -64,7 +64,32 @@ class Portfolio extends MY_Controller {
                 $data['portfolio'] = $this->Portfolio_model->listPortfolioByCategory($id, 'desc', $limit, $start,false);
             }
         }
-        //echo "<pre>"; print_r($data); exit;
+        
+        $stringJs = <<<EOT
+        //Muestra video
+        $(".porfolioCtnVideoShow img").click(function(){
+            // -- Load video
+            var img = $(this);
+            var urlVideo = img.attr('data');
+            
+            var contenHtml = '<iframe ';
+            contenHtml = contenHtml + 'src="'+ urlVideo +'" ';
+            contenHtml += 'width="500" height="281" frameborder="0" ';
+            contenHtml += 'webkitallowfullscreen mozallowfullscreen allowfullscreen> ';
+            contenHtml += '</iframe> ';
+
+            $("#porfolioCtnVideoIframeShow").html(contenHtml);
+   
+            // -- load modal    
+            $('#videoPorfolio').modal({
+                    backdrop: true,
+                    show: true
+            });
+                
+        });                
+EOT;
+        
+        $this->loadStatic(array("jstring" => $stringJs));
         $this->layout->setLayout('layout/layout_body');
         $this->layout->view('portfolio/category', $data);
     }

@@ -1,6 +1,5 @@
 <!--Column-->
 <div class="col-md-12">
-
     <div class="porfolioCtn pdTop10 pdRight10 pdBottom20 pdLeft10">
 
         <h1>Gallery: <?php echo (isset($category_name)) ? $category_name : ''; ?></h1>
@@ -18,9 +17,10 @@
             <div class="porfolioCtnVideo">
                 <div class="porfolioCtnVideoShow">
                         <img src="<?php echo $urlImg ?>" width="375" height="197" class="img-responsive"
-                             alt="<?php echo $array['title']?>"/>
+                             alt="<?php echo $array['title']?>" data="<?php echo $array['url_video']?>"/>
                     <div class="porfolioCtnVideoIframe hide">
-                        <iframe src="//player.vimeo.com/video/81244498" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                        hello word.
+                        <!--<iframe src="//player.vimeo.com/video/81244498" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>-->
                     </div>
                 </div>
                 <h3 class="porfolioCtnVideoTitulo">
@@ -56,12 +56,24 @@
         <?php else : ?>    
             Not found data.
         <?php endif; ?>
-        
-        
-
-
 
     </div>
-
 </div>
 <!--End Column-->
+
+
+<div class="modal fade" id="videoPorfolio">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p id="porfolioCtnVideoIframeShow" class="videoCtn"></p>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
