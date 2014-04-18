@@ -21,7 +21,7 @@
                             $urlImg = $bannerUrl . $imageNameThumb;
                             ?>
                             <div class="item"><a href="<?php echo $array['link_image'] ?>" title="<?php echo $array['title']?>" target="_blank">
-                                    <img title="<?php echo $array['title']?>" alt="<?php echo $array['title']?>" src="<?php echo $urlImg ?>" width="<?php echo $width ?>" height="<?php echo $height ?>" /></a>
+                                    <img title="<?php echo $array['title']?>" alt="<?php echo $array['title']?>" src="<?php echo $urlImg ?>" width="1001" height="504" /></a>
                             </div>
                             <?php endforeach;?>
                         </div>
