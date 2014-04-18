@@ -1,6 +1,8 @@
 <?php
 
-class Admin extends MY_Controller {
+$file = FCPATH."application/core/MY_ControllerAdmin.php"; (is_file($file)) ? include($file) : die("error: {$file}");
+
+class Admin extends MY_ControllerAdmin {
     
     public function __construct()
     {
@@ -9,7 +11,7 @@ class Admin extends MY_Controller {
 
     public function index()
     {   
-        $data = array ();
+        $data = array();
 
         //$this->loadStatic(array('css' => '/css/anibal.css'));
         //$this->loadStatic(array('js' => '/js/anibal.js'));        
