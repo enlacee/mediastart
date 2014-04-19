@@ -1,4 +1,4 @@
-
+<?php if (isset($admin) && is_array($admin)) : ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -43,8 +43,8 @@
                             </div>
 
                             <div class="col-md-6 pdTop5 text-right">
-                                <p class="colorBlanco">Hola <strong style="text-transform:capitalize;">luis</strong>, Bienvenido!</p>
-                                <p><a href="mi-cuenta.php">Mi Cuenta</a> <span class="colorBlanco">|</span> <a href="salir.php">Salir</a></p>
+                                <p class="colorBlanco">Hello <strong style="text-transform:capitalize;"><?php echo $admin['name']?></strong>, Welcome!</p>
+                                <p><a href="mi-cuenta.php">My Account</a> <span class="colorBlanco">|</span> <a href="/admin/logout">Logout</a></p>
                             </div>
                         </div>
                     </div>
@@ -68,7 +68,7 @@
                                 </ul>
                             </li>
                             <li><a href="#" >Multimedia</a></li>
-                            <li><a href="salir.php">Salir</a></li>
+                            <li><a href="/admin/logout">Salir</a></li>
                             <li class="search">
                                 <form name="buscar" id="buscar" method="post">
                                     <input type="text" name="search" class="search" placeholder="Buscar" />
@@ -114,3 +114,6 @@
         <!--Menu-->
     </body>
 </html>
+<?php else: ?>
+    <?php require_once "salir.php"; ?>
+<?php endif; ?>

@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="../../public/ico/favicon.ico">
-    <title><?php echo $titulo ?></title>
-    <link href="../../public/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="<?php echo getPublicUrl()?>/ico/favicon.ico">
+    <title>Session over</title>
+    <link href="<?php echo getPublicUrl()?>/css/bootstrap.css" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="../../public/css/style.css" rel="stylesheet">
+    <link href="<?php echo getPublicUrl()?>/css/styleAdmin.css" rel="stylesheet">
     
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -22,14 +22,13 @@
 
     <div class="container">
       <div class="starter-template">
-        <h1>La Session ya termino.</h1>
-        <p class="lead">Ingres&eacute; nuevamente al sistema. <a href="/index">inicio</a></p>
+        <h1>Session over.</h1>
+        <p class="lead">try again the system</p>
+        <a href="/admin"><span class="colorBlue">inicio</span></a>
       </div>
 
     </div><!-- /.container -->
 
     </div> <!-- /container -->
-    <script src="../../public/js/vendor/jquery/jquery-1.11.0.js"></script>
-    <script src="../../public/dist/js/bootstrap.min.js"></script>
   </body>
 </html>

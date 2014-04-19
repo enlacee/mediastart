@@ -45,7 +45,14 @@
                         <!--Left-->
                         <div class="col-md-12 text-left">
                             <div id="mensajes" style="display:none"></div>
-                            <form name="acceso" id="acceso" method="post" action="">
+                            
+                            <?php 
+                            echo form_open(
+                                    '/admin/login',
+                                    array('name' => 'acceso', 'id' => 'acceso', 'method' => 'POST'),
+                                    array('token' => $token));
+                            ?>                            
+                            <!--<form name="acceso" id="acceso" method="post" action="">-->
                                 <fieldset id="datosForm">
                                     <legend>Acceso de Usuario</legend>
                                     <div class='row'>

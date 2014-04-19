@@ -4,17 +4,21 @@
  */
 class Auth 
 {
-    public $ci;
+    public $CI;
     
     public function Auth()
     { 
-        $this->ci =& get_instance();
+        $this->CI =& get_instance();
     }  
     
+    /**
+     * Token util for CSRF u others.
+     * @return String HASH
+     */
     public function token()	
     { 
-        $token = md5(uniqid(rand(),true));
-        $this->ci->session->set_userdata('token',$token);
+        $token = md5(uniqid(rand(), true));
+        $this->CI->session->set_userdata('token', $token);
         return $token;
     }
 }  
