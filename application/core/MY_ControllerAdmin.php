@@ -12,7 +12,7 @@ class MY_ControllerAdmin extends MY_Controller {
     public function __construct()
     {
         parent::__construct();
-        $this->layout->setLayout('layout-admin/layout');
+        //$this->layout->setLayout('layout-admin/layout');
     }    
     
 }

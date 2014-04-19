@@ -12,10 +12,18 @@ class Admin extends MY_ControllerAdmin {
     public function index()
     {   
         $data = array();
-
         //$this->loadStatic(array('css' => '/css/anibal.css'));
         //$this->loadStatic(array('js' => '/js/anibal.js'));        
         //$this->loadStatic(array("jstring" => $string));        
         $this->load->view('admin/index', $data);
     }
+    
+    public function dashboard()
+    {        
+        $data = array();
+        $this->layout->setLayout('layout-admin/layout');
+        $this->layout->view('admin/dashboard', $data);        
+    }
+    
+    
 }

@@ -7,37 +7,34 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>Acceso de Administrador My Panel</title>
-        <?php require 'layout-partial/require_css.php'; ?>
-
-        <link rel="stylesheet" type="text/css" href="<?php echo getPublicUrl() ?>/css/bootstrap.css">
-        <link rel="stylesheet" type="text/css" href="<?php echo getPublicUrl() ?>/css/styleAdmin.css">
-        <link rel="stylesheet" type="text/css" href="<?php echo getPublicUrl() ?>/source/jquery.fancybox.css"/>
-        <link rel="stylesheet" type="text/css" href="<?php echo getPublicUrl() ?>/css/start/jquery-ui-1.10.4.custom.min.css"/>
+        <title>Bienvenido al panel de adminsitraci&oacute;n</title>
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="source/jquery.fancybox.css"/>
+        <link rel="stylesheet" type="text/css" href="css/start/jquery-ui-1.10.4.custom.min.css"/>
 
         <!--[if lt IE 9]>
-        <script src="<?php echo getPublicUrl() ?>/js/html5.js"></script>
+        <script src="js/html5.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
 
         <!--Menu-->
-        <link rel="stylesheet" type="text/css" href="<?php echo getPublicUrl() ?>/menuElegante/css/menu.css">
-        <link href="<?php echo getPublicUrl() ?>/menuElegante/css/maps.css" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="menuElegante/css/menu.css">
+        <link href="menuElegante/css/maps.css" rel="stylesheet" />
         <!--Menu-->
 
 
         <!--Editor-->
-        <link rel="stylesheet" type="text/css" href="<?php echo getPublicUrl() ?>/editor/bootstrap/bootstrap_extend.css">
-        <!--<link href='http://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>-->
+        <link rel="stylesheet" type="text/css" href="editor/bootstrap/bootstrap_extend.css">
+        <link href='http://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
         <!--Editor-->
 
 
 
         <!--Multimedia-->
-        <link rel="stylesheet" href="<?php echo getPublicUrl() ?>/uploader/assets/css/style.css">
-        <link rel="stylesheet" href="<?php echo getPublicUrl() ?>/uploader/assets/css/lightbox.css">
-        <!--Multimedia-->
-    </head>
+        <link rel="stylesheet" href="uploader/assets/css/style.css">
+        <link rel="stylesheet" href="uploader/assets/css/lightbox.css">
+        <!--Multimedia--></head>
 
     <body>
 
@@ -211,8 +208,15 @@
                 <div class="container">
                     <div class="row clearfix">
                         <div class="col-md-12">
-                            <div style="text-align:center !important; width:100%; max-width:230px; margin:0 auto;">
-                                <img src="<?php echo getPublicUrl() ?>/images/logo.png" class="img-responsive" width="230" height="61" />
+                            <div class="col-md-6">
+                                <div class="logo">
+                                    <a href="admin.php"><img src="images/logo.png" class="img-responsive" width="230" height="61" /></a>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 pdTop5 text-right">
+                                <p class="colorBlanco">Hola <strong style="text-transform:capitalize;">luis</strong>, Bienvenido!</p>
+                                <p><a href="mi-cuenta.php">Mi Cuenta</a> <span class="colorBlanco">|</span> <a href="salir.php">Salir</a></p>
                             </div>
                         </div>
                     </div>
@@ -220,113 +224,91 @@
             </div>
         </header>
 
+        <!--Menu-->
+        <div class="menuBG">
+            <div class="container">
+                <div class="row clearfix">
+                    <div class="col-md-12">
+                        <ul class="venus-menu">
+                            <li class="active"><a href="admin.php">Panel</a></li>
+                            <li><a href="#">Inicio</a></li>
+                            <li><a href="#">Item</a></li>
+                            <li><a href="#">Item</a>
+                                <ul>
+                                    <li><a href="#">Item</a></li>
+                                    <li><a href="#">Item</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="javascript:voice(0)" onclick="show_uploader();">Multimedia</a></li>
+                            <li><a href="salir.php">Salir</a></li>
+                            <li class="search">
+                                <form name="buscar" id="buscar" method="post">
+
+                                    <input type="text" name="search" class="search" placeholder="Buscar" />
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div></div>
+        <!--End Menu-->
 
 
-        <div class="container mgTop30">
+
+
+
+
+
+
+
+        <div class="container">
             <div class="row clearfix">
                 <div class="col-md-12">
+                    <div class="content mgTop20 mgBottom30 pd10">
 
-                    <h1 style="color:#0A9CCC; font-size:16px; font-weight:bold !important; text-align:center; width:100%; margin:0 0 20px 0;">Sistema de administración</h1>
 
-                    <p style="font-size:13px; margin:0 0 20px 0; padding:0; display:block; width:100%; text-align:center;">
-                        100% Seguro <img width="20" height="20" alt="Sistema de seguridad" src="<?php echo getPublicUrl() ?>/images/secure.png">
-                    </p>
-
-                    <div class="content mgTop20 mgBottom30 pd20" style="width:100%; max-width:400px; margin:0 auto !important;">
 
                         <!--Left-->
-                        <div class="col-md-12 text-left">
-
-                            <div id="mensajes" style="display:none"></div>
-
-                            <form name="acceso" id="acceso" method="post" action="">
-                                <fieldset id="datosForm">
-                                    <legend>Acceso de Usuario</legend>
-
-
-                                    <div class='row'>
-
-                                        <div class='col-sm-12'>    
-                                            <div class='form-group'>
-                                                <label for="nombre">Usuario:</label>
-                                                <input class="{required:true,minlength:4,maxlength:25} form-control" id="username" name="username" type="text" placeholder="Coloque su nombre de usuario" />
-                                            </div>
-                                        </div>
-                                        <div class='col-sm-12'>
-                                            <div class='form-group'>
-                                                <label for="clave">Contrase&ntilde;a:</label>
-                                                <input class="{required:true,minlength:1,maxlength:50} form-control" id="pass" name="pass" type="password" placeholder="Coloque su clave secreta" />
-                                            </div>
-                                        </div>
-
-
-                                    </div><!--End Row-->
-
-
-
-
-                                    <div class='row'>
-                                        <div class='col-sm-12 text-left'>
-                                            <input type="submit" name="entrar" class="btn btn-primary" id="entrar" value="Iniciar Sesi&oacute;n" />
-                                            <input type="button" name="resetear" id="resetear" class="btn btn-danger" value="Recuperar Contrase&ntilde;a! " />
-                                        </div>
-                                    </div>
-
-
-                                </fieldset>
-                                <!--END TUS DATOS-->
-                            </form>
-
-
-
-
-
-
-
-                            <form name="resetearForm" id="resetearForm" class="hide" method="post" action="">
-                                <fieldset id="datosForm">
-                                    <legend>Recuperar contrase&ntilde;a</legend>
-
-
-                                    <div class='row'>
-
-                                        <div class='col-sm-12'>    
-                                            <div class='form-group'>
-                                                <label for="nombre">Email:</label>
-                                                <input class="{required:true,minlength:4,maxlength:25} form-control" id="email" name="email" type="text" placeholder="Coloque email o correo" />
-                                            </div>
-                                        </div>
-
-
-                                    </div><!--End Row-->
-
-
-
-
-                                    <div class='row'>
-                                        <div class='col-sm-12 text-left'>
-                                            <input type="submit" name="resetearClave" id="resetearClave" class="btn btn-success" value="Enviar Clave" />
-                                            <input type="button" name="cancelar" id="cancelar" class="btn btn-primary" value="Cancelar" />
-                                        </div>
-                                    </div>
-
-
-                                </fieldset>
-                                <!--END TUS DATOS-->
-                            </form>
-
-
-
-
-
-
+                        <div class="col-md-8">
+                            <h1>Contenido</h1>
+                            <div class="borderEfecto">
+                                <p>Muy Pronto estaremos agregando funcionalidades a esta secci&oacute;n.</p>
+                            </div>
                         </div>
                         <!--End Left-->
+
+
+
+
+
+                        <!--Right-->
+                        <div class="colRight">
+                            <div class="col-md-4">
+                                <h1>¿Necesitas Ayuda?</h1>
+
+                                <div class="borderEfecto">
+                                    <p><strong>Para resolver dudas o sugerencias!</strong></p>	
+                                    <p><strong>Email:</strong></p> 
+                                    <p>contacto@tb.com.ve - milindex@gmail.com</p>
+                                    <p><strong>Tel&eacute;fonos:</strong></p>
+                                    <p>+58 (0281) - 996.93.65</p>
+                                </div>
+                            </div>                </div>
+                        <!--End Right--> 
+
+
 
                     </div>
                 </div>
             </div>
-        </div>    
+        </div>
+
+
+
+
+
+
+
 
 
 
@@ -340,25 +322,25 @@
                 <div style="color:#777777; text-align:center; width:100%;">&copy; 2014 - Todos los derechos reservados</div>
             </div>
         </div>    
-        <script type="text/javascript" src="<?php echo getPublicUrl() ?>/js/jquery-1.11.0.min.js"></script>
-        <script type="text/javascript" src="<?php echo getPublicUrl() ?>/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="<?php echo getPublicUrl() ?>/source/jquery.fancybox.js"></script>
-        <script type="text/javascript" src="<?php echo getPublicUrl() ?>/js/jquery-ui-1.10.4.custom.min.js"></script>
+        <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="source/jquery.fancybox.js"></script>
+        <script type="text/javascript" src="js/jquery-ui-1.10.4.custom.min.js"></script>
 
 
 
         <!--Validador-->
-        <script type="text/javascript" src="<?php echo getPublicUrl() ?>/js/validate/jquery.validate.js"></script>
-        <script type="text/javascript" src="<?php echo getPublicUrl() ?>/js/validate/jquery.metadata.js"></script>
-        <script type="text/javascript" src="<?php echo getPublicUrl() ?>/js/validate/messages_es.js"></script>
+        <script type="text/javascript" src="js/validate/jquery.validate.js"></script>
+        <script type="text/javascript" src="js/validate/jquery.metadata.js"></script>
+        <script type="text/javascript" src="js/validate/messages_es.js"></script>
         <!--Validador-->
 
 
 
         <!--Menu-->
-        <script type="text/javascript" src="<?php echo getPublicUrl() ?>/menuElegante/js/google.js"></script>
+        <script type="text/javascript" src="menuElegante/js/google.js"></script>
         <script type="text/javascript">
-            $(function() {
+            $(function(){
             $().maps();
             });
         </script>
@@ -366,16 +348,17 @@
 
 
         <!--Editor-->
-        <script src="<?php echo getPublicUrl() ?>/editor/scripts/innovaeditor.js"></script>
-        <script src="<?php echo getPublicUrl() ?>/editor/scripts/innovamanager.js"></script>
-        <!--<script src="http://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js" type="text/javascript"></script>-->
+        <script src="editor/scripts/innovaeditor.js"></script>
+        <script src="editor/scripts/innovamanager.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js" type="text/javascript"></script>
+        <script src="scripts/common/webfont.js" type="text/javascript"></script>
         <!--Editor-->
 
 
         <!--Multimedia-->
-        <script src="<?php echo getPublicUrl() ?>/uploader/assets/js/fileupload.js"></script>
-        <script src="<?php echo getPublicUrl() ?>/uploader/assets/js/lightbox-2.6.min.js"></script>
-        <script src="<?php echo getPublicUrl() ?>/uploader/assets/js/script.js"></script>
+        <script src="uploader/assets/js/fileupload.js"></script>
+        <script src="uploader/assets/js/lightbox-2.6.min.js"></script>
+        <script src="uploader/assets/js/script.js"></script>
         <!--Multimedia-->
 
 
@@ -383,15 +366,15 @@
         <script type="text/javascript">
             $(function() {
             $(".fancybox").fancybox({
-            maxWidth: 800,
-            maxHeight: 600,
-            fitToView: false,
-            width: '70%',
-            height: '70%',
-            autoSize: false,
-            closeClick: false,
-            openEffect: 'none',
-            closeEffect: 'none'
+            maxWidth	: 800,
+            maxHeight	: 600,
+            fitToView	: false,
+            width		: '70%',
+            height		: '70%',
+            autoSize	: false,
+            closeClick	: false,
+            openEffect	: 'none',
+            closeEffect	: 'none'
             });
             });
         </script>
@@ -399,142 +382,6 @@
 
 
 
-
-        <script type="text/javascript">
-            $(function() {
-
-            function getID(url) {
-
-            var Marcador = url.lastIndexOf("=");
-            if (Marcador > 0 && url.length - 1 != Marcador) {
-
-            return url.substring(Marcador + 1);
-            }
-            }
-
-            //Obtiene el ID
-            if (getID(window.location.href)) {
-
-            //Si el usuario no es valido
-            if (getID(window.location.href) == 0) {
-            setTimeout(function() {
-            $("#mensajes").slideUp("slow");
-            }, 6000);
-            $("#mensajes").html('<p class="alert-danger">El usuario no existe en nuestra base de datos.</p>')
-            $("#mensajes").slideDown(600);
-            $("#mensajes").css("display", "block");
-            }
-
-            //Si la clave no es valida
-            if (getID(window.location.href) == 1) {
-            setTimeout(function() {
-            $("#mensajes").slideUp("slow");
-            }, 6000);
-            $("#mensajes").html('<p class="alert-danger">La contraseña ingresada es incorrecta.</p>')
-            $("#mensajes").slideDown(600);
-            $("#mensajes").css("display", "block");
-            }
-
-
-            //Si la clave no es valida
-            if (getID(window.location.href) == 3) {
-            setTimeout(function() {
-            $("#mensajes").slideUp("slow");
-            }, 6000);
-            $("#mensajes").html('<p class="alert-danger">La información que ingresó no es correcta.</p>')
-            $("#mensajes").slideDown(600);
-            $("#mensajes").css("display", "block");
-            }
-
-
-            //Si el email no existe para resetear la contraseña
-            if (getID(window.location.href) == 4) {
-            setTimeout(function() {
-            $("#mensajes").slideUp("slow");
-            }, 6000);
-            $("#mensajes").html('<p class="alert-danger">El email no existe en nuestra base de datos.</p>')
-            $("#mensajes").slideDown(600);
-            $("#mensajes").css("display", "block");
-            }
-
-
-
-            //Mensaje de email enviado para resetear contraseñaSolicitud 
-            if (getID(window.location.href) == 5) {
-            setTimeout(function() {
-            $("#mensajes").slideUp("slow");
-            }, 6000);
-            $("#mensajes").html('<p class="alert-success">Revise su correo, le hemos enviado todos los pasos a seguir para resetear su contraseña.</p>')
-            $("#mensajes").slideDown(600);
-            $("#mensajes").css("display", "block");
-            }
-
-
-            // Mensaje cuando el usaurio cambia su contraseña
-            if (getID(window.location.href) == 6) {
-            setTimeout(function() {
-            $("#mensajes").slideUp("slow");
-            }, 10000);
-            $("#mensajes").html('<p class="alert-success">Su clave se reseteo correctamente! Revise su correo, le hemos enviado su nueva clave, una vez que haya ingresado la puede cambiar.</p>')
-            $("#mensajes").slideDown(600);
-            $("#mensajes").css("display", "block");
-            }
-
-            }
-
-
-            $(function() {
-
-            $('#resetearForm').valid();
-
-            //Recuperar clave
-            $("#resetear").click(function() {
-            $("#acceso").fadeOut("fast");
-            $("#resetearForm").fadeIn("fast", function() {
-            $("#resetearForm").removeClass("hide")
-            });
-            });
-
-
-            //Recuperar clave
-            $("#cancelar").click(function() {
-            $("#resetearForm").fadeOut("fast", function() {
-            $("#acceso").fadeIn("fast", function() {
-            $("#acceso").removeClass("hide")
-            });
-            });
-            });
-
-            });
-
-
-
-
-            //Validar campos
-            $(function() {
-
-            $('#acceso').validate({
-            //Detecta cuando se realiza el submit o se presiona el boton
-            submitHandler: function() {
-
-            $("#entrar").attr("type", "button");
-            $("#acceso").submit();
-            return false;
-            },
-            //Detecta los error y abre los span con los posibles errores
-            errorPlacement: function(error, element) {
-            error.insertAfter(element);
-            }
-            });
-
-            });
-
-
-
-            });
-        </script>
-
-
-
     </body>
 </html>
+
