@@ -15,8 +15,7 @@ class Admin extends MY_ControllerAdmin {
 
         //$this->loadStatic(array('css' => '/css/anibal.css'));
         //$this->loadStatic(array('js' => '/js/anibal.js'));        
-        //$this->loadStatic(array("jstring" => $string));
-        $this->layout->setLayout('layout-admin/layout');
-        $this->layout->view('admin/index', $data);
+        //$this->loadStatic(array("jstring" => $string));        
+        $this->load->view('admin/index', $data);
     }
 }

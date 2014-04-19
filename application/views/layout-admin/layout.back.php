@@ -8,7 +8,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <title>Acceso de Administrador My Panel</title>
-        <?php //require 'layout-partial/require_css.php'; ?>
+        <?php require 'layout-partial/require_css.php'; ?>
 
         <link rel="stylesheet" type="text/css" href="<?php echo getPublicUrl() ?>/css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="<?php echo getPublicUrl() ?>/css/styleAdmin.css">
@@ -220,7 +220,7 @@
             </div>
         </header>
 
-zzzzzzzzzzz
+
 
         <div class="container mgTop30">
             <div class="row clearfix">

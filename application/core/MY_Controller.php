@@ -18,7 +18,7 @@ class MY_Controller extends CI_Controller {
         $this->dependencias();
         $this->loadVariableImage();
 
-        var_dump($this->uri->segment(1));// exit;
+        //var_dump($this->uri->segment(1));// exit;
     }   
     
     private function dependencias()
