@@ -17,6 +17,8 @@ class MY_Controller extends CI_Controller {
         parent::__construct();
         $this->dependencias();
         $this->loadVariableImage();
+
+        var_dump($this->uri->segment(1));// exit;
     }   
     
     private function dependencias()
@@ -142,10 +144,25 @@ class MY_Controller extends CI_Controller {
         $categoryPartner['categoryPartner'][] = array('id' => 7, 'name' => 'Photographer');
         $categoryPartner['categoryPartner'][] = array('id' => 8, 'name' => 'Other');
         $this->load->vars($categoryPartner);
-        
     }
-    
-   
-    
-    
+
+    /**
+     * Load language disponible in website
+     * @return Void()
+     */
+    public function loadLanguage()
+    {        
+        $language['language'][] = array('id' => 0, 'name' => 'ENGLISH', 'short_name' => 'en');
+        $language['language'][] = array('id' => 1, 'name' => 'ESPAÑOL', 'short_name' => 'es');
+        $language['language'][] = array('id' => 2, 'name' => 'FRANÇAIS', 'short_name' => 'fr');
+        $language['language'][] = array('id' => 3, 'name' => 'DEUTSCH', 'short_name' => 'de');
+        $language['language'][] = array('id' => 4, 'name' => 'ITALIANO', 'short_name' => 'it');
+        $language['language'][] = array('id' => 5, 'name' => 'PORTUGUÊS', 'short_name' => 'po');
+        $language['language'][] = array('id' => 6, 'name' => 'РУССКИЙ', 'short_name' => 'rs'); // ruso
+        $language['language'][] = array('id' => 7, 'name' => '简体中文', 'short_name' => 'ch'); // chino
+        $language['language'][] = array('id' => 8, 'name' => 'العربية', 'short_name' => 'ar'); // arabe
+        $language['language'][] = array('id' => 9, 'name' => '日本語', 'short_name' => 'jp'); // japones
+
+        $this->load->vars($language); //$language = $this->load->get_var('language');
+    }
 }
