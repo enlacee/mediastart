@@ -9,7 +9,7 @@ class MY_ControllerAdmin extends MY_Controller {
     {
         parent::__construct();
         $this->validateUser();
-        //$this->layout->setLayout('layout-admin/layout');
+        $this->layout->setLayout('layout-admin/layout');
     }
     
     /*
