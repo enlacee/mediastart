@@ -34,22 +34,44 @@
         <div class="text-center pdTop10" id="paginador">
             <ul class="pagination">
                 <?php 
-                $urlPrev = '/portfolio/category/';
-                $category = $category_id.'/';
-                $pag = ($page>1) ? ($page-1) : $page;
-                $urlPrev .= $category . $pag;
-                ?>                
-                <li class="disabledx"><a href="<?php echo $urlPrev ?>">« Previous</a></li>
-                <!--<li class="active"><a title="Go to page 1 of 12" href="#">1</a></li>
-                <li><a title="Go to page 2 of 12" href="/index.php?page=2&ipp=10">2</a></li>
-                <li><a title="Go to page 3 of 12" href="/index.php?page=3&ipp=10">3</a></li>-->
-                <?php 
-                $urlNext = '/portfolio/category/';
-                $category = $category_id.'/';
-                $pag = ($page+1);
-                $urlNext .= $category . $pag;
+                //echo "<pre>"; print_r($pag); echo "</pre>";                
+                $nextpage= $pag['page'] +1;
+                $prevpage= $pag['page'] -1;
                 ?>
-                <li><a href="<?php echo $urlNext ?>">Next »</a></li>
+                <?php if ($pag['page'] == 1) : //SI ES LA PRIMERA PÁGINA DESHABILITO EL BOTON DE PREVIOUS, MUESTRO EL 1 COMO ACTIVO Y MUESTRO EL RESTO DE PÁGINAS ?>
+                    <li class="disabled"><a href="#">&laquo; Previous</a></li>
+                    <li class="active" ><a href="#">1</a></li>
+                    
+                    <?php for ($i = $pag['page']+1; $i <= $pag['last_page']; $i++) : ?>
+                        <li><a href="/portfolio/category/<?php echo $category_id ?>/<?php echo $i;?>"><?php echo $i;?></a></li>
+                    <?php endfor; ?>                    
+                    
+                    <?php if ($pag['last_page'] > $pag['page'] ) : //Y SI LA ULTIMA PÁGINA ES MAYOR QUE LA ACTUAL MUESTRO EL BOTON NEXT O LO DESHABILITO ?>
+                        <li class="next"><a href="/portfolio/category/<?php echo $category_id ?>/<?php echo $nextpage;?>" >Next &raquo;</a></li>
+                    <?php else : ?>
+                        <li class="disabled"><a href="#">Next &raquo;</a></li> 
+                    <?php endif; ?>
+                    
+                <?php else : //EN CAMBIO SI NO ESTAMOS EN LA PÁGINA UNO HABILITO EL BOTON DE PREVIUS Y MUESTRO LAS DEMÁS ?>
+                    <li class="previous"><a href="/portfolio/category/<?php echo $category_id ?>/<?php echo $prevpage;?>">&laquo; Previous</a></li>                   
+                
+                    <?php for($i= 1; $i<= $pag['last_page'] ; $i++) : ?>
+                        <?php  if($pag['page'] == $i) :  //COMPRUEBO SI ES LA PÁGINA ACTIVA O NO ?>
+                            <li class="active"><a href="#"><?php echo $i;?></a></li>
+                        <?php else : ?>
+                            <li><a href="/portfolio/category/<?php echo $category_id ?>/<?php echo $i;?>" ><?php echo $i;?></a></li>
+                        <?php endif; ?>
+                    <?php endfor; ?>
+                            
+                    <?php if ($pag['last_page'] > $pag['page']) : //Y SI NO ES LA ÚLTIMA PÁGINA ACTIVO EL BOTON NEXT ?>
+                        <li><a href="/portfolio/category/<?php echo $category_id ?>/<?php echo $nextpage;?>">Next &raquo;</a></li>
+                    <?php else : ?>
+                        <li class="disabled"><a href="#">Next &raquo;</a></li>
+                    <?php endif; ?>     
+                    
+                <?php endif; ?>
+                <!-- code old -->
+
             </ul>
         </div>
         <!--End Paginador-->            

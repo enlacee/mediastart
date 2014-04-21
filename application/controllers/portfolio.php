@@ -33,7 +33,7 @@ class Portfolio extends MY_Controller {
         
         // ----- init pagination
         //$page = 1;
-        $limit = 9;        
+        $limit = 3;        
         $count = $this->Portfolio_model->listPortfolioByCategory($id, '', '', '',true);
 
         if ($count > 0) {
@@ -42,10 +42,14 @@ class Portfolio extends MY_Controller {
            $total_pages = 1; 
         }
         if ($page > $total_pages) { $page = $total_pages; }// $page = 0
+        if ($page < 1) { $page = 1; }
+        
         $start = $limit * $page - $limit;
         
-        $data['limit'] = $limit;
-        $data['page'] = $page;
+        $data['pag']['limit'] = $limit;
+        $data['pag']['page'] = $page;
+        $data['pag']['last_page'] = $total_pages;
+        $data['pag']['start'] = $start;
         // ----- end pagination        
         
         if(is_array($category)) {
