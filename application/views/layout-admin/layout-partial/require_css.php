@@ -16,6 +16,9 @@
             <!--<link href='http://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>-->
     <!--Editor-->
     
+    <!-- file UPLOAD -->
+    <link href="<?php echo getPublicUrl() ?>/css/admin/custom.css" rel="stylesheet"> 
+    
 <?php if (isset($css)): ?>
     <?php foreach ($css as $key => $value): ?>
         <link rel="stylesheet" type="text/css" href="<?php echo getPublicUrl() . $value; ?>" >

@@ -62,3 +62,13 @@
             </div>
         </div>
         <!--End Menu-->
+        
+        <!-- flashMessage -->
+        <div class="container">
+            <?php if(!empty($this->load->get_var('flashMessage'))) : ?>   
+            <div class="alert alert-warning fade in">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                  <?php echo $flashMessage; ?>
+            </div>
+            <?php endif; ?>
+        </div>    

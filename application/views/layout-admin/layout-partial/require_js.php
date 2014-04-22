@@ -10,6 +10,9 @@
 </script>
 <!--Menu-->
 
+<!-- file UPLOAD -->
+<script type="text/javascript" src="<?php echo getPublicUrl() ?>/js/admin/pekeUpload.min.js"></script>
+
 <?php if (isset($js)) : ?>
     <?php foreach ($js as $key => $value): ?>
         <script type="text/javascript" src="<?php echo getPublicUrl() . $value; ?>"></script>

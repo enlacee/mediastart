@@ -37,6 +37,13 @@ class MY_Controller extends CI_Controller {
             'form'));
         
         $this->load->driver('cache');
+        
+        // message flash
+        if ($this->session->flashdata('flashMessage') != '') {            
+            $flashMessage['flashMessage'] = $this->session->flashdata('flashMessage');
+            $this->load->vars($flashMessage); // $this->load->get_var('flashMessage');
+        }        
+        
     }    
     
     /**

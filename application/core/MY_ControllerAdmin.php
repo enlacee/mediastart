@@ -40,4 +40,13 @@ class MY_ControllerAdmin extends MY_Controller {
         $this->load->vars($pages);
     }
     
+    /**
+     * Clear cache (option CRUD in db)
+     */ 
+    protected function clearCache()
+    {   
+        $this->load->driver('cache');
+        $this->cache->file->clean();
+    }             
+    
 }
