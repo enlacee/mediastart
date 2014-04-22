@@ -70,12 +70,15 @@ class Admin_post extends MY_ControllerAdmin {
                 
             // 02 - validate                
             $('#form').validate({
+                rules: {
+                    nombre: {required : true, minlength: 3, maxlength: 100}
+                  },
+                      
                 //Detecta cuando se realiza el submit o se presiona el boton
                 submitHandler: function(){
-
-                        $("#guardar").attr("type","button");
-                        $( "#form" ).submit();
-                        return false;
+                    $("#guardar").attr("type","button");
+                    $( "#form" ).submit();
+                    return false;
                 },
 
                 //Detecta los error y abre los span con los posibles errores
