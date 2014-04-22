@@ -8,8 +8,8 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <title>My Panel</title>
-        <link rel="stylesheet" type="text/css" href="<?php echo getPublicUrl() ?>/css/bootstrap.css">
-        <link rel="stylesheet" type="text/css" href="<?php echo getPublicUrl() ?>/css/styleAdmin.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo getPublicUrl() ?>/css/admin/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo getPublicUrl() ?>/css/admin/style.css">
 
         <!--[if lt IE 9]>
         <script src="<?php echo getPublicUrl() ?>/js/html5.js"></script>
