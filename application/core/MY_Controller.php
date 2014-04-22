@@ -17,8 +17,10 @@ class MY_Controller extends CI_Controller {
         parent::__construct();
         $this->dependencias();
         $this->loadVariableImage();
+        //language
+        $this->loadLanguage();
+        $this->loadSessionLanguage();
 
-        //var_dump($this->uri->segment(1));// exit;
     }   
     
     private function dependencias()
@@ -154,17 +156,45 @@ class MY_Controller extends CI_Controller {
      */
     public function loadLanguage()
     {        
+        $language['language'][] = array('id' => 1, 'name' => 'ESPA&Ntilde;OL', 'short_name' => 'es');
         $language['language'][] = array('id' => 0, 'name' => 'ENGLISH', 'short_name' => 'en');
-        $language['language'][] = array('id' => 1, 'name' => 'ESPAÑOL', 'short_name' => 'es');
         $language['language'][] = array('id' => 2, 'name' => 'FRANÇAIS', 'short_name' => 'fr');
         $language['language'][] = array('id' => 3, 'name' => 'DEUTSCH', 'short_name' => 'de');
         $language['language'][] = array('id' => 4, 'name' => 'ITALIANO', 'short_name' => 'it');
-        $language['language'][] = array('id' => 5, 'name' => 'PORTUGUÊS', 'short_name' => 'pt'); // portugues brasil
+        $language['language'][] = array('id' => 5, 'name' => 'PORTUGUÊS', 'short_name' => 'pt-br'); // portugues brasil
         $language['language'][] = array('id' => 6, 'name' => 'РУССКИЙ', 'short_name' => 'ru'); // ruso
-        $language['language'][] = array('id' => 7, 'name' => '简体中文', 'short_name' => 'ch'); // chino
+        $language['language'][] = array('id' => 7, 'name' => '简体中文', 'short_name' => 'zh-hans'); // chino
         $language['language'][] = array('id' => 8, 'name' => 'العربية', 'short_name' => 'ar'); // arabe
         $language['language'][] = array('id' => 9, 'name' => '日本語', 'short_name' => 'ja'); // japones
-
+        
         $this->load->vars($language); //$language = $this->load->get_var('language');
     }
+    
+    /*
+     * Search id_language ('es', 'en', 'it')
+     */
+    protected function is_language($id_lang)
+    {
+        // load languaje avaiable
+        $language = $this->load->get_var('language');
+        $flag = false;
+        for ($i = 0; $i < count($language); $i++) {
+            if ($id_lang == $language[$i]['short_name']) {
+               $flag = true;
+            }
+        }
+        return $flag;
+    }
+    /**
+     * init session by URL (usuer anonimo)
+     */
+    private function loadSessionLanguage()
+    {
+        //var_dump($this->uri->segment(1));// exit;        
+        $id_lang = $this->uri->segment(1);
+        if ($this->is_language($id_lang)) {            
+            $this->session->set_userdata(array('id_lang' => $id_lang));            
+        }
+    }
+    
 }

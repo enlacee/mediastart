@@ -10,16 +10,13 @@
                                 <div class="dropdown floatRight fuenteOswald mayuscula color_ft414447">
                                     <a data-toggle="dropdown" href="#">Idioma</a>
                                     <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                                        <li><a href="/language/set/1"><img src="<?php echo getPublicUrl() ?>/images/iconos/es.png" width="18" height="12" /> Espa&ntilde;ol </a></li>
-                                        <li><a href="/language/set"><img src="<?php echo getPublicUrl() ?>/images/iconos/en.png" width="18" height="12" /> English </a></li>
-                                        <li><a href="/language/set/2"><img src="<?php echo getPublicUrl() ?>/images/iconos/fr.png" width="18" height="12" /> Français</a></li>
-                                        <li><a href="/language/set/3"><img src="<?php echo getPublicUrl() ?>/images/iconos/de.png" width="18" height="12" /> Deutsch</a></li>
-                                        <li><a href="/language/set/4"><img src="<?php echo getPublicUrl() ?>/images/iconos/it.png" width="18" height="12" /> Italiano</a></li>
-                                        <li><a href="/language/set/5"><img src="<?php echo getPublicUrl() ?>/images/iconos/pt-br.png" width="18" height="12" /> Português</a></li>
-                                        <li><a href="/language/set/6"><img src="<?php echo getPublicUrl() ?>/images/iconos/ru.png" width="18" height="12" /> Русский</a></li>
-                                        <li><a href="/language/set/7"><img src="<?php echo getPublicUrl() ?>/images/iconos/zh-hans.png" width="18" height="12" /> 简体中文</a></li>
-                                        <li><a href="/language/set/8"><img src="<?php echo getPublicUrl() ?>/images/iconos/ar.png" width="18" height="12" /> العربية</a></li>
-                                        <li><a href="/language/set/9"><img src="<?php echo getPublicUrl() ?>/images/iconos/ja.png" width="18" height="12" /> 日本語</a></li>
+                                        <?php if(!empty($this->load->get_var('language')) && count($this->load->get_var('language')) > 0) : ?>
+                                            <?php foreach ($language as $array) : ?>
+                                                <li><a href="/language/set/<?php echo $array['short_name']?>"><img src="<?php echo getPublicUrl() ?>/images/iconos/<?php echo $array['short_name']?>.png" width="18" height="12" /><?php echo $array['name'] ?></a></li>
+                                            <?php endforeach; ?> 
+                                        <?php else : ?>                                              
+                                            <li><a href="#"><img src="" width="18" height="12" />Not found data.</a></li>                                                
+                                        <?php endif;?>
                                     </ul>
 
                                 </div>
@@ -53,9 +50,9 @@
                                         <li class="dropdown">
                                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">About US</a>
                                             <ul class="dropdown-menu">
-                                                <?php if(isset($pagesAboutUs) && is_array($pagesAboutUs) && count($pagesAboutUs) > 0): ?>
+                                                <?php if(!empty($this->load->get_var('pagesAboutUs')) && count($this->load->get_var('pagesAboutUs')) > 0) : ?>
                                                     <?php foreach ($pagesAboutUs as $array) : ?>
-                                                        <li><a href="/page/about/<?php echo $array['id'] ?>"><?php echo $array['title'] ?></a></li>
+                                                <li><a href="<?php base_url_lang('page/about/')?><?php echo $array['id'] ?>"><?php echo $array['title'] ?></a></li>
                                                     <?php endforeach; ?>
                                                 <?php else: ?>
                                                     <li><a href="#">no found data</a></li>
@@ -64,7 +61,7 @@
                                         </li>
                                         <li class="dropdown"><a href="#">Porfolio</a>
                                             <ul class="dropdown-menu">
-                                                <?php if (isset($category) && is_array($category) && count($pagesAboutUs) > 0) : ?>
+                                                <?php if (!empty($this->load->get_var('category')) && count($this->load->get_var('category')) > 0) : ?>
                                                 <?php foreach ($category as $array) : ?>
                                                 <li><a href="/portfolio/category/<?php echo $array['id'] ?>"><?php echo $array['name'] ?></a></li>
                                                 <?php endforeach;?>

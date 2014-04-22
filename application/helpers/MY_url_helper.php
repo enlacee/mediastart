@@ -11,11 +11,12 @@ if ( ! function_exists('base_url_lang'))
 {
 	function base_url_lang($uri = '')
 	{
-		$url = '';
-		if(/*$id_lang == 'es'*/true) {
-			$url = '/en/';
-		}	
-
-		return base_url($url . $uri);;
+            $CI =& get_instance();               
+            $id_lang = $CI->session->userdata('id_lang'); 
+            $url = '';
+            if(!empty($id_lang)) {
+                $url = "/$id_lang/";
+            }
+            return base_url($url . $uri);
 	}
 }

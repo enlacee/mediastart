@@ -43,12 +43,21 @@ class Page extends MY_Controller {
         $response = $this->Post_model->get($id, $post_type = 'page-about');        
         $id_lang = $this->session->userdata('id_lang');  
         
-        if(!empty($id_lang) && $id_lang != false) {
-            $response['title'] =  $response["title_$id_lang"];
-            $response['content'] =  $response["content_$id_lang"];
+        //  seting (language with  field db)
+        if(!empty($id_lang) && $id_lang != false ) {
+            $id = '';
+            $language = $this->load->get_var('language');            
+            
+            for ($i = 0; $i < count($language); $i++) {
+                if ($id_lang == $language[$i]['short_name'] && $id_lang != 'en') {
+                   $id =  '_'. $language[$i]['id'];
+                }
+            }            
+                        
+            $response['title'] =  $response["title$id"];
+            $response['content'] =  $response["content$id"];
         }
-        
-        //var_dump($response);exit;
+
         $data = array('page' => $response);
         $this->layout->setLayout('layout/layout_contact');
         $this->layout->view('page/about', $data);  
