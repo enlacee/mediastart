@@ -159,11 +159,11 @@ class MY_Controller extends CI_Controller {
         $language['language'][] = array('id' => 2, 'name' => 'FRANÇAIS', 'short_name' => 'fr');
         $language['language'][] = array('id' => 3, 'name' => 'DEUTSCH', 'short_name' => 'de');
         $language['language'][] = array('id' => 4, 'name' => 'ITALIANO', 'short_name' => 'it');
-        $language['language'][] = array('id' => 5, 'name' => 'PORTUGUÊS', 'short_name' => 'po');
-        $language['language'][] = array('id' => 6, 'name' => 'РУССКИЙ', 'short_name' => 'rs'); // ruso
+        $language['language'][] = array('id' => 5, 'name' => 'PORTUGUÊS', 'short_name' => 'pt'); // portugues brasil
+        $language['language'][] = array('id' => 6, 'name' => 'РУССКИЙ', 'short_name' => 'ru'); // ruso
         $language['language'][] = array('id' => 7, 'name' => '简体中文', 'short_name' => 'ch'); // chino
         $language['language'][] = array('id' => 8, 'name' => 'العربية', 'short_name' => 'ar'); // arabe
-        $language['language'][] = array('id' => 9, 'name' => '日本語', 'short_name' => 'jp'); // japones
+        $language['language'][] = array('id' => 9, 'name' => '日本語', 'short_name' => 'ja'); // japones
 
         $this->load->vars($language); //$language = $this->load->get_var('language');
     }

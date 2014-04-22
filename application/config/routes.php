@@ -42,7 +42,15 @@ $route['default_controller'] = "index";
 $route['404_override'] = '';
 
 $route['^en/(.+)$'] = "$1";
-$route['^es/(.+)$'] = "$1"; 
+$route['^es/(.+)$'] = "$1";
+$route['^fr/(.+)$'] = "$1";
+$route['^de/(.+)$'] = "$1";
+$route['^it/(.+)$'] = "$1";
+$route['^pt/(.+)$'] = "$1";
+$route['^ru/(.+)$'] = "$1";
+$route['^ch/(.+)$'] = "$1";
+$route['^ar/(.+)$'] = "$1";
+$route['^ja/(.+)$'] = "$1";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
