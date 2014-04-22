@@ -2,31 +2,31 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <title>My Panel</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>My Panel</title>
         <?php //require 'layout-partial/require_css.php'; ?>
 
-        <link rel="stylesheet" type="text/css" href="<?php echo getPublicUrl() ?>/css/bootstrap.css">
-        <link rel="stylesheet" type="text/css" href="<?php echo getPublicUrl() ?>/css/styleAdmin.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo getPublicUrl() ?>/css/admin/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo getPublicUrl() ?>/css/admin/style.css">
 
-        <!--[if lt IE 9]>
+<!--[if lt IE 9]>
         <script src="<?php echo getPublicUrl() ?>/js/html5.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
 
-        <!--Menu-->
-        <link rel="stylesheet" type="text/css" href="<?php echo getPublicUrl() ?>/menuElegante/css/menu.css">
-        <link href="<?php echo getPublicUrl() ?>/menuElegante/css/maps.css" rel="stylesheet" />
-        <!--Menu-->  
+<!--Menu-->
+<link rel="stylesheet" type="text/css" href="<?php echo getPublicUrl() ?>/menuElegante/css/menu.css">
+<link href="<?php echo getPublicUrl() ?>/menuElegante/css/maps.css" rel="stylesheet" />
+<!--Menu-->
 
-        <!--Editor-->
-        <link rel="stylesheet" type="text/css" href="<?php echo getPublicUrl() ?>/editor/bootstrap/bootstrap_extend.css">
+<!--Editor-->
+<link rel="stylesheet" type="text/css" href="<?php echo getPublicUrl() ?>/editor/bootstrap/bootstrap_extend.css">
         <!--<link href='http://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>-->
-        <!--Editor-->
+<!--Editor-->
 
     </head>
 
