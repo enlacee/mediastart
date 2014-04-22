@@ -10,6 +10,7 @@ class MY_ControllerAdmin extends MY_Controller {
         parent::__construct();
         $this->validateUser();
         $this->layout->setLayout('layout-admin/layout');
+        $this->loadVariable();
     }
     
     /*
@@ -24,6 +25,19 @@ class MY_ControllerAdmin extends MY_Controller {
         } else {
             $this->adminSession = false;
         }
-    }     
+    }
+    
+    
+    private function loadVariable()
+    {
+        //load pages (footer)
+        $this->load->model('Post_model');
+        $pages = array();
+        $pages['pages'] = $this->Post_model->listPost(
+                $post_type = 'page',
+                $order = 'desc',
+                $limit = 2);
+        $this->load->vars($pages);
+    }
     
 }

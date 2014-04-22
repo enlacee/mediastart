@@ -136,7 +136,7 @@ class MY_Controller extends CI_Controller {
                 $post_type = 'page-about',
                 $order = 'desc',
                 $limit = 2);
-        $this->load->vars($pagesAboutUs);
+        $this->load->vars($pagesAboutUs);        
         
         //load category partners (temp)
         $categoryPartner['categoryPartner'][] = array('id' => 1, 'name' => 'Agencies');
@@ -185,6 +185,7 @@ class MY_Controller extends CI_Controller {
         }
         return $flag;
     }
+    
     /**
      * init session by URL (usuer anonimo)
      */

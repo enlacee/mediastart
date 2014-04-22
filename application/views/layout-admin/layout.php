@@ -58,15 +58,28 @@
                 <div class="row clearfix">
                     <div class="col-md-12">
                         <ul class="venus-menu">
-                            <li class="active"><a href="admin.php">Panel</a></li>
+                            <li class="active"><a href="/admin/dashboard">Panel</a></li>
                             <li><a href="/admin_banner">Banner</a></li>
-                            <li><a href="#">Post</a>
+                            <li><a href="/admin_post/post">Last News</a></li>
+                            <li><a href="/admin_post/pageabout">Page-About</a>                                
                                 <ul>
-                                    <li><a href="/admin_post/post">Last News</a></li>
-                                    <li><a href="/admin_post/pageabout">Page-About</a></li>
-                                    <li><a href="/admin_post/page">Page</a></li>
+                                <?php if (!empty($this->load->get_var('pagesAboutUs'))) : ?>
+                                    <?php foreach ($pagesAboutUs as $array) : ?>
+                                        <li><a href="/admin_post/pageabout/index/<?php echo $array['id'] ?>"><?php echo $array['title'] ?></a></li>                                            
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                                </ul>                                
+                            </li>
+                            <li><a href="/admin_post/page">Page</a>
+                                <ul>
+                                <?php if (!empty($this->load->get_var('pages'))) : ?>
+                                    <?php foreach ($pages as $array) : ?>
+                                        <li><a href="/admin_post/page/index/<?php echo $array['id'] ?>"><?php echo $array['title'] ?></a></li>                                            
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
                                 </ul>
                             </li>                            
+                            
                             <li><a href="/admin_portfolio">Portfolio</a></li>
                             <li><a href="/admin_contact" >Contact</a></li>
                             <li><a href="/admin_lastwork" >Last work</a></li>
