@@ -93,6 +93,23 @@ class Post_model  extends CI_Model {
         return $flag;
     }
     
+    public function update($id, $post_type, $data = array())
+    {   
+        $flag = false;
+        if (!empty($id)) {
+            $this->db->where('id', $id);
+            if (!empty($post_type)) {
+                $this->db->where('post_type', $post_type);
+            }
+            if(is_array($data) && count($data) > 0 ) {
+                $dataUpdate = $data;//array('nombre' => $this->input->post('nombre'));
+                $this->db->update( $this->_name, $dataUpdate);
+                $flag = true;
+            }            
+        }
+        return $flag;
+    }    
+    
     /**
      * 
      * @param Integer $id

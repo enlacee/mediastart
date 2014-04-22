@@ -43,7 +43,7 @@ class MY_ControllerAdmin extends MY_Controller {
     /**
      * Clear cache (option CRUD in db)
      */ 
-    protected function clearCache()
+    protected function cleanCache()
     {   
         $this->load->driver('cache');
         $this->cache->file->clean();
