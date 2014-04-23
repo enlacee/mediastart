@@ -1,6 +1,5 @@
                 <div class="col-md-12">
-                	<h1><?php echo $page_title; ?> : <a href="/admin_contact/add">Add</a></h1>
-                        
+                	<h1><?php echo $page_title; ?> : <a href="/admin_contact/add">Add</a></h1>                        
 
                     	<table class="table table-hover table-striped table-condensed table-responsive table-bordered">
                             <thead>    

@@ -46,7 +46,7 @@ class Admin_contact extends MY_ControllerAdmin {
      */
     public function add($estatus = '')
     {    
-        if( $this->input->post() && $estatus == 'true') {            
+        if( $this->input->post() && $estatus == 'true') {
             // update imagen of session
             $dataSession = $this->session->userdata('contact');
             $imgTmp = is_array($dataSession['img_tmp']) ? $dataSession['img_tmp'] : '';

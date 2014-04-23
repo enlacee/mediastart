@@ -60,7 +60,7 @@ class MY_ControllerAdmin extends MY_Controller {
      */
     protected function saveSession($dataSession = array())
     {        
-        $arrayControl = array('post', 'contact');
+        $arrayControl = array('post', 'contact', 'work');
         foreach ($arrayControl as $key) {
             if (array_key_exists($key, $dataSession)) {
                 $this->session->set_userdata($dataSession); //$this->session->userdata('post');   

@@ -28,7 +28,7 @@
                             <li class="active"><a href="/admin/dashboard">Panel</a></li>
                             <li><a href="/admin_banner">Banner</a></li>
                             <li><a href="/admin_post/post">Last News</a></li>
-                            <li><a href="/admin_post/pageabout">Page-About</a>                                
+                            <li><a href="#">Page-About</a>                                
                                 <ul>
                                 <?php if (!empty($this->load->get_var('pagesAboutUs'))) : ?>
                                     <?php foreach ($pagesAboutUs as $array) : ?>
@@ -37,7 +37,7 @@
                                 <?php endif; ?>
                                 </ul>                                
                             </li>
-                            <li><a href="/admin_post/page">Page</a>
+                            <li><a href="#">Page</a>
                                 <ul>
                                 <?php if (!empty($this->load->get_var('pages'))) : ?>
                                     <?php foreach ($pages as $array) : ?>
@@ -49,8 +49,7 @@
 
                             <li><a href="/admin_portfolio">Portfolio</a></li>
                             <li><a href="/admin_contact" >Contact</a></li>
-                            <li><a href="/admin_lastwork" >Last work</a></li>
-                            <li><a href="/admin/logout">Salir</a></li>
+                            <li><a href="/admin_lastwork" >Last work</a></li>                            
                             <li class="search">
                                 <form name="buscar" id="buscar" method="post">
                                     <input type="text" name="search" class="search" placeholder="Buscar" />

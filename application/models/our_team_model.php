@@ -12,7 +12,7 @@ class Our_team_model  extends CI_Model {
     const STATUS_TRUE = 1;
     const STATUS_FALSE = 0;
 
-        public function __construct() {
+    public function __construct() {
         parent::__construct();
     }    
 
@@ -24,7 +24,7 @@ class Our_team_model  extends CI_Model {
         $strRows = (int) $rows;   
         $keyCache = __CLASS__ . __FUNCTION__ .'_'. $strRows.'_'.$order.$limit.'_'.$offset;     
                 
-        if (true/*($rs = $this->cache->file->get($keyCache)) == false*/) {
+        if (($rs = $this->cache->file->get($keyCache)) == false) {
             $this->db->select("$this->_name.*, ac_cargos.name AS cargo");
             $this->db->from($this->_name);
             $this->db->join('ac_cargos', "$this->_name.cargo_id = ac_cargos.id", 'left'); //'a.category_id = c.categories.id'
@@ -48,7 +48,7 @@ class Our_team_model  extends CI_Model {
                $rs = $query->result_array(); 
             }            
             // -------- end
-            log_message('error', print_r($rs,true));
+            
             $this->cache->file->save($keyCache, $rs, 600);
         }
         return $rs;
