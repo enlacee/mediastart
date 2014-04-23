@@ -5,13 +5,13 @@
                         <div class="col-md-12">
                             <div class="col-md-6">
                                 <div class="logo">
-                                    <a href="admin.php"><img src="<?php echo getPublicUrl() ?>/images/logo.png" class="img-responsive" width="230" height="61" /></a>
+                                    <a href="/admin/dashboard"><img src="<?php echo getPublicUrl() ?>/images/logo.png" class="img-responsive" width="230" height="61" /></a>
                                 </div>
                             </div>
 
                             <div class="col-md-6 pdTop5 text-right">
                                 <p class="colorBlanco">Hello <strong style="text-transform:capitalize;"><?php echo $admin['name']?></strong>, Welcome!</p>
-                                <p><a href="mi-cuenta.php">My Account</a> <span class="colorBlanco">|</span> <a href="/admin/logout">Logout</a></p>
+                                <p><a href="#">My Account</a> <span class="colorBlanco">|</span> <a href="/admin/logout">Logout</a></p>
                             </div>
                         </div>
                     </div>
