@@ -16,3 +16,29 @@ if(!function_exists('truncate_string'))
         
     }
 }
+
+if(!function_exists('uniqueFileName'))
+{
+    /**
+     * Soport file extension (2,3 or 4 char)
+     * ejem: $targetFileUrl('.py')
+     * @param String $fileName
+     * @return string
+     */
+    function uniqueFileName($fileName)
+    {   
+        $rs = false;
+        if(strlen($fileName) >= 3) {
+            for ($i = 3; $i <= 5; $i++) { 
+                $extension =  substr($fileName, (strlen($fileName)-$i));
+                if(strpos($extension, '.') !== false) {
+                    $rs = time().$extension;
+                    break;
+                }
+            }            
+        }
+        return $rs;
+    }
+}
+
+

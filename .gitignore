@@ -34,10 +34,13 @@ application/logs/*
 /public/images/porfolio/*
 !/public/images/ourTeam/image.jpg
 
-
 # image porfolio
 /public/images/partners/*
 !/public/images/partners/image.jpg
+
+# image temp (file temp)
+/public/images/tmp/*
+
 
 
 # ide

@@ -69,7 +69,7 @@ class Admin extends MY_ControllerAdmin {
     /**
      * Save Session
      */
-    private function saveSession($data) 
+    public function saveSession($data) 
     {   
         $flag = false;
         if (count($data) > 0) {             

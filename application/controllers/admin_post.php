@@ -41,11 +41,30 @@ class Admin_post extends MY_ControllerAdmin {
     
     public function postedit($id = '', $estatus = '')
     {
-        if( $this->input->post() && !empty($id) && $estatus == 'true') {            
-            $dataPost = array(
-                'title' => $this->input->post('nombre'),
-                'content' => $this->input->post('editor'),
-            );
+        if( $this->input->post() && !empty($id) && $estatus == 'true') {
+            
+            // update imagen of session
+            $dataSession = $this->session->userdata('post'); //var_dump($dataSession); exit;
+            $imgTmp = is_array($dataSession['img_tmp']) ? $dataSession['img_tmp'] : '';
+            if (!empty($imgTmp)) {                                
+                $targetFile = $this->load->get_var('latestNewsPath') . $imgTmp['name'];
+                if (!copy($imgTmp['path'], $targetFile)) { /*echo "failed to copy";*/ }
+                $dataPost['url_image'] = $imgTmp['name'];
+                $this->session->set_userdata('post',''); // LIMPIAR IMAGEN
+                log_message('error',' clean ---------');
+                log_message('error', print_r($this->session->userdata('post'),true));
+            }
+            
+            
+
+            $dataPost ['title'] = $this->input->post('nombre');
+            $dataPost ['content'] = $this->input->post('editor');
+            $dataPost ['updated_at'] = date('Y-m-d H:i:s');
+            
+            log_message('error','-- A GUARDAR--');
+            log_message('error', print_r($dataPost,true));
+            log_message('error','-- A GUARDAR fin--');
+
             $this->Post_model->update($id, Post_model::TIPO_POST, $dataPost);            
             $this->cleanCache();
             $this->session->set_flashdata('flashMessage', "updated correctly last news. Id (<b>$id</b>)");  
@@ -75,10 +94,8 @@ class Admin_post extends MY_ControllerAdmin {
                   },
                       
                 //Detecta cuando se realiza el submit o se presiona el boton
-                submitHandler: function(){
-                    $("#guardar").attr("type","button");
-                    $( "#form" ).submit();
-                    return false;
+                submitHandler: function(form){
+                    form.submit();
                 },
 
                 //Detecta los error y abre los span con los posibles errores
@@ -90,11 +107,14 @@ class Admin_post extends MY_ControllerAdmin {
             // 03 - img
             $("#file").pekeUpload({
                 btnText : "Browse files...",
-                //url : "/admin_banner/upload",
-                url : "upload.php",                
-                theme : 'bootstrap',
+                url : "/admin_post/upload/$id",
+                data:{uno : "uno"},                
+                //theme : 'bootstrap',
+                multi : false,
+                //showFilename : false,
                 allowedExtensions : "jpeg|jpg|png|gif",
-                onFileError: function(file,error){alert("error on file: "+file.name+" error: "+error+"")}
+                onFileError: function(file,error){alert("error on file: "+file.name+" error: "+error+"")},
+                onFileSuccess : function (file, data) {console.log('file',file); console.log('data',data); }
             });
                 
                 
@@ -105,6 +125,7 @@ EOT;
         $data['data'] = '';
         $data['page_title'] = 'Last News';
         if (!empty($id)) {
+            $this->session->set_userdata('post',''); // LIMPIAR IMAGEN
             $data['data'] = $this->Post_model->get($id, Post_model::TIPO_POST);
         }
 
@@ -134,8 +155,52 @@ EOT;
     {
         $data = array();
         $this->layout->view('admin/post/postadd', $data);
-    }     
+    }
+    
+    
+    public function upload($id = '')
+    {
+        $path = $this->load->get_var('tmpPath');
+        $url = $this->load->get_var('tmpUrl');         
+        
+        if (!empty($path) && !empty($url)) {            
+            $targetFolder = $path;
+            if (!empty($_FILES)) {                
+                $tempFile = $_FILES['file']['tmp_name'];
+                $fileName = uniqueFileName($_FILES['file']['name']);
+                
+                $targetFile = rtrim($targetFolder,'/') . '/' . $fileName;
+                $targetFileUrl = rtrim($url,'/') .'/'.$fileName;
+                // Validate the file type
+                $fileTypes = array('jpg','jpeg','gif','png'); // File extensions
+                $fileParts = pathinfo($_FILES['file']['name']);
 
+                if (in_array($fileParts['extension'], $fileTypes)) {
+                    move_uploaded_file($tempFile,$targetFile);
+                    $this->uploadSave($id, $fileName, $targetFile, $targetFileUrl);
+                    echo '1';
+                } else {
+                    echo 'Invalid file type.';
+                }
+            }
+        }
+        //$this->output->set_content_type('application/json');
+        //$this->output->set_output(json_encode($responce));        
+    }
+    
+    private function uploadSave($id, $fileName, $path, $url)
+    {
+        $dataSession['post']['img_tmp'] =  array(
+            'id' => $id,
+            'name' => $fileName,
+            'path' =>  $path,
+            'url' => $url
+        );
+        $this->saveSession($dataSession);
+        log_message('error', "----GUARDANDO EN SESSION-----");
+        $dataSession = $this->session->userdata('post');
+        log_message('error', print_r($dataSession,true));
+    }
 
     /*
      * List all Page

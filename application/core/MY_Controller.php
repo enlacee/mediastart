@@ -125,7 +125,11 @@ class MY_Controller extends CI_Controller {
         $data['partnerPath'] = FCPATH . 'public/images/partners/';
         $data['partnerUrl'] = getPublicUrl() .'/images/partners/';          
         
-        $this->load->vars($data);
+        // images tmp (imagenes temporales)
+        $data['tmpPath'] = FCPATH . 'public/images/tmp/';
+        $data['tmpUrl'] = getPublicUrl() .'/images/tmp/';        
+        
+        $this->load->vars($data); 
         
 
         

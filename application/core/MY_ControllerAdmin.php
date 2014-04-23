@@ -47,6 +47,17 @@ class MY_ControllerAdmin extends MY_Controller {
     {   
         $this->load->driver('cache');
         $this->cache->file->clean();
-    }             
+    }
+    
+    /**
+     * Funtion General save Session (controller)
+     */
+    protected function saveSession($dataSession = array())
+    {        
+        //$array = array('post');
+        if (array_key_exists('post', $dataSession)) {
+            $this->session->set_userdata($dataSession); //$this->session->userdata('post');   
+        } 
+    }
     
 }
