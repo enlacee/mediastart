@@ -1,7 +1,7 @@
 <div class="col-md-12">
     <h1><?php echo (isset($page_title)) ? $page_title : ''; ?></h1>
 
-    <form name="form" id="form" method="post" action="/admin_post/postdel/<?php echo $id ?>/true">
+    <form name="form" id="form" method="post" action="/admin_contact/del/<?php echo $id ?>/true">
         <p>Content</p>
         <div class="bg-danger pd10">
             <p class="fontBold mg0">This sure you want to delete this record? This option can not be undone!</p>

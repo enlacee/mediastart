@@ -9,7 +9,7 @@
                     <td width="15%" class="text-right tableBGTD fontBold">Title:</td>
                     <td width="85%" class="text-left">
                         <span class="pdRight20 center-block">
-                            <input type="text" name="nombre" id="nombre" class="{required:true,minlength:4,maxlength:25} form-control" placeholder="Coloque su nombre"
+                            <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Name"
                                    value="<?php echo $data['title'] ?>">
                         </span>
                     </td>
@@ -25,13 +25,13 @@
                 <tr>
                   <td class="text-right tableBGTD fontBold">Content:</td>
                   <td class="text-left"><label for="editor"></label>
-                  <textarea class="{required:true,minlength:4,maxlength:25}" name="editor" id="editor"><?php echo $data['content'] ?></textarea></td>
+                  <textarea class="" name="editor" id="editor"><?php echo $data['content'] ?></textarea></td>
                 </tr>
                 <tr>
                     <td width="15%" class="text-right tableBGTD fontBold">&nbsp;</td>
                     <td width="85%" class="text-left">
-                        <input type="submit" name="guardar" id="guardar" class="btn btn-success" value="Guardar Cambios" />&nbsp;
-                        <input type="button" name="cancelar" id="cancelar" class="btn btn-primary" onClick="javascript:history.back()" value="P&aacute;gina Anterior" />
+                        <input type="submit" name="guardar" id="guardar" class="btn btn-success" value="Save" />&nbsp;
+                        <input type="button" name="cancelar" id="cancelar" class="btn btn-primary" onClick="javascript:history.back()" value="Back" />
                     </td>
                 </tr>
                 
@@ -42,6 +42,6 @@
 </div>
 
 
-                <div class="col-md-12">
-        <a href="javascript:voice(0);" class="btn btn-primary enlaceBlanco" onClick="javascript:history.back();">P&aacute;gina anterior</a>
+<div class="col-md-12">
+    <a href="javascript:voice(0);" class="btn btn-primary enlaceBlanco" onClick="javascript:history.back();">Back</a>
 </div>

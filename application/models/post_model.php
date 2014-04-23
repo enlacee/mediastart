@@ -11,9 +11,12 @@ class Post_model  extends CI_Model {
     
     const TIPO_POST = 'post';
     const TIPO_PAGE = 'page';
-    const TIPO_PAGE_ABOUT = 'page-about';    
+    const TIPO_PAGE_ABOUT = 'page-about';
     
-    public function __construct() {
+    const STATUS_TRUE = 1;
+    const STATUS_FALSE = 0;
+
+        public function __construct() {
         parent::__construct();
     }    
 
@@ -23,8 +26,7 @@ class Post_model  extends CI_Model {
     public function listPost($post_type = Post_model::TIPO_POST , $order = 'desc', $limit = 10, $offset = '', $rows = false)
     {   
         $str_post_type = str_replace('-', '_', $post_type);
-        $strRows = (int) $rows;
-        
+        $strRows = (int) $rows;        
         $keyCache = __CLASS__ . __FUNCTION__ .'_'. $str_post_type.'_'.$strRows.'_'.$order.$limit.'_'.$offset;
         
         if (($rs = $this->cache->file->get($keyCache)) == false) {
@@ -55,6 +57,18 @@ class Post_model  extends CI_Model {
         }
         return $rs;
     }
+    
+    /**
+     * 
+     * @param Array $data
+     * @return Boolean 
+     */
+    public function add($data)
+    {
+        if (is_array($data) && count($data) > 0) {
+            $this->db->insert($this->_name, $data);
+        }        
+    }    
     
     /**
      * 

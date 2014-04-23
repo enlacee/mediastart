@@ -14,7 +14,7 @@ class Admin_post extends MY_ControllerAdmin {
      */
     public function post($page = 1)
     {
-        $limit = 3;
+        $limit = MY_ControllerAdmin::LIMIT;
         $count = $this->Post_model->listPost(Post_model::TIPO_POST, '', '', '',true);
         
         if ($count > 0) {
@@ -51,10 +51,7 @@ class Admin_post extends MY_ControllerAdmin {
                 if (!copy($imgTmp['path'], $targetFile)) { /*echo "failed to copy";*/ }
                 $dataPost['url_image'] = $imgTmp['name'];
                 $this->session->set_userdata('post',''); // LIMPIAR IMAGEN
-                log_message('error',' clean ---------');
-                log_message('error', print_r($this->session->userdata('post'),true));
-            }
-            
+            }            
             
 
             $dataPost ['title'] = $this->input->post('nombre');
@@ -140,7 +137,8 @@ EOT;
     }
     
     public function postdel($id = '', $estatus = '')
-    {        
+    {   
+        $data['page_title'] = 'Last News';
         $data['id'] = $id;
         if( !empty($id) && $estatus == 'true') {
             $this->Post_model->del($id, Post_model::TIPO_POST);
@@ -151,13 +149,101 @@ EOT;
         $this->layout->view('admin/post/postdel', $data);        
     }    
     
-    public function postadd()
-    {
-        $data = array();
+    /**
+     * 
+     * @param String $estatus
+     */
+    public function postadd($estatus = '')
+    {    
+        if( $this->input->post() && $estatus == 'true') {            
+            // update imagen of session
+            $dataSession = $this->session->userdata('post');
+            $imgTmp = is_array($dataSession['img_tmp']) ? $dataSession['img_tmp'] : '';
+            if (!empty($imgTmp)) {                                
+                $targetFile = $this->load->get_var('latestNewsPath') . $imgTmp['name'];
+                if (!copy($imgTmp['path'], $targetFile)) { log_message("error", "failed to copy"); }
+                $dataPost['url_image'] = $imgTmp['name'];
+                $this->session->set_userdata('post',''); // LIMPIAR IMAGEN
+            } else {
+                $dataPost['url_image'] = 'image.jpg';
+            }
+
+            $dataPost ['title'] = $this->input->post('nombre');
+            $dataPost ['content'] = $this->input->post('editor');
+            $dataPost ['status'] = Post_model::STATUS_TRUE;
+            $dataPost ['post_type'] = Post_model::TIPO_POST;            
+            $dataPost ['created_at'] = date('Y-m-d H:i:s');
+            $this->Post_model->add($dataPost);            
+            $this->cleanCache();
+            $this->session->set_flashdata('flashMessage', "Added  correctly Last News.");
+            redirect('admin_post/post');
+        } 
+
+        $stringJs = <<<EOT
+        $(function () {
+            // 01 - editor
+            $('#editor').liveEdit({
+                height: 350,
+                css: ['editor/bootstrap/css/bootstrap.min.css', 'editor/bootstrap/bootstrap_extend.css'] /* Apply bootstrap css into the editing area */,
+                groups: [
+                    ["group1", "", ["Bold", "Italic", "Underline", "ForeColor", "RemoveFormat"]],
+                    ["group2", "", ["Bullets", "Numbering", "Indent", "Outdent"]],
+                    ["group3", "", ["Paragraph", "FontSize", "FontDialog", "TextDialog"]],
+                    ["group4", "", ["LinkDialog", "ImageDialog", "TableDialog", "Emoticons", "Snippets"]],
+                    ["group5", "", ["Undo", "Redo", "FullScreen", "SourceDialog"]]
+                    ] /* Toolbar configuration */
+            });
+            $('#editor').data('liveEdit').startedit();
+                
+            // 02 - validate                
+            $('#form').validate({
+                rules: {
+                    nombre: {required : true, minlength: 3, maxlength: 100}
+                  },
+                      
+                //Detecta cuando se realiza el submit o se presiona el boton
+                submitHandler: function(form){
+                    form.submit();
+                },
+
+                //Detecta los error y abre los span con los posibles errores
+                errorPlacement: function(error, element){
+                error.insertAfter(element);
+                }
+            });
+                
+            // 03 - img
+            $("#file").pekeUpload({
+                btnText : "Browse files...",
+                url : "/admin_post/upload",                               
+                //theme : 'bootstrap',
+                multi : false,                
+                allowedExtensions : "jpeg|jpg|png|gif",
+                onFileError: function(file,error){alert("error on file: "+file.name+" error: "+error+"")},
+                onFileSuccess : function (file, data) { }
+            });
+                
+                
+        });
+
+EOT;
+        $data['data'] = '';
+        $data['page_title'] = 'Last News';          
+        $this->loadStatic(array('js' => '/js/validate/jquery.validate.js'));
+        $this->loadStatic(array('js' => '/js/validate/jquery.metadata.js'));
+        $this->loadStatic(array('js' => '/js/validate/messages_es.js'));
+        
+        $this->loadStatic(array('js' => '/editor/scripts/innovaeditor.js'));
+        $this->loadStatic(array('js' => '/editor/scripts/innovamanager.js'));
+        $this->loadStatic(array("jstring" => $stringJs));       
+        
         $this->layout->view('admin/post/postadd', $data);
     }
     
-    
+    /**
+     * 
+     * @param type $id
+     */
     public function upload($id = '')
     {
         $path = $this->load->get_var('tmpPath');
@@ -197,9 +283,6 @@ EOT;
             'url' => $url
         );
         $this->saveSession($dataSession);
-        log_message('error', "----GUARDANDO EN SESSION-----");
-        $dataSession = $this->session->userdata('post');
-        log_message('error', print_r($dataSession,true));
     }
 
     /*

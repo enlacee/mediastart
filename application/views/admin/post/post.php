@@ -1,5 +1,5 @@
                 <div class="col-md-12">
-                	<h1><?php echo $page_title; ?></h1>
+                	<h1><?php echo $page_title; ?> : <a href="/admin_post/postadd">Add</a></h1>
 
                     	<table class="table table-hover table-striped table-condensed table-responsive table-bordered">
                             <thead>    
@@ -79,6 +79,6 @@
                 </div>
 
 
-				<div class="col-md-12">
-                	<a href="javascript:voice(0);" class="btn btn-primary enlaceBlanco" onClick="javascript:history.back();">P&aacute;gina anterior</a>
+                <div class="col-md-12">
+                    <a href="javascript:voice(0);" class="btn btn-primary enlaceBlanco" onClick="javascript:history.back();">Back</a>
                 </div>

@@ -1,7 +1,10 @@
 <?php
 
 class MY_ControllerAdmin extends MY_Controller {
-
+		
+	// paginator
+	const LIMIT = 3;
+	
     public $adminSession;
     public $idAdmin;
     
@@ -33,11 +36,14 @@ class MY_ControllerAdmin extends MY_Controller {
         //load pages (footer)
         $this->load->model('Post_model');
         $pages = array();
-        $pages['pages'] = $this->Post_model->listPost(
-                $post_type = 'page',
-                $order = 'desc',
-                $limit = 2);
+        $pages['pages'] = $this->Post_model->listPost('page', 'desc', 2);
         $this->load->vars($pages);
+        
+        // load cargos for Contact (ours teams)
+        $this->load->model('Cargo_model');
+        $cargos['cargos'] = $this->Cargo_model->listCargo();
+        $this->load->vars($cargos);
+        
     }
     
     /**
@@ -54,10 +60,12 @@ class MY_ControllerAdmin extends MY_Controller {
      */
     protected function saveSession($dataSession = array())
     {        
-        //$array = array('post');
-        if (array_key_exists('post', $dataSession)) {
-            $this->session->set_userdata($dataSession); //$this->session->userdata('post');   
-        } 
+        $arrayControl = array('post', 'contact');
+        foreach ($arrayControl as $key) {
+            if (array_key_exists($key, $dataSession)) {
+                $this->session->set_userdata($dataSession); //$this->session->userdata('post');   
+            }           
+        }
     }
     
 }
