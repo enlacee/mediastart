@@ -36,13 +36,13 @@ if(!function_exists('app_getOnePortfolioByCategory')) {
      * List portfolio by category
      * @return Array
      */
-    function app_getOnePortfolioByCategory()
+    function app_getOnePortfolioByCategory() 
     {   
         $CI =& get_instance();
         $CI->load->model('Portfolio_model');
         $CI->load->model('Category_model');
         // category
-        $dataCategory = $CI->Category_model->listCategory();
+        $dataCategory = $CI->Category_model->listCategory(Category_model::ID_CATEGORY_PORTFOLIO);
         $listPortfolio = array();
         $limitt = 4;
         if (is_array($dataCategory) && count($dataCategory) > 0) {

@@ -9,14 +9,12 @@ class Partner extends MY_Controller {
     
     public function category($id)
     {
-        $this->load->model('Partner_model');
-        
-        
+        $this->load->model('Partner_model');       
         $category = $this->load->get_var('categoryPartner');
         $flagSearch = false;
         $category_name = '';
+        $data = array();
         //$data['columRight'] = false;
-
 
         if(is_array($category)) {
             foreach ($category as $array) {

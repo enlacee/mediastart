@@ -135,30 +135,31 @@ class MY_Controller extends CI_Controller {
         
         
                 
-        //load category 
+        //load category (portfolio)
         $this->load->model('Category_model');
-        $category['category'] = $this->Category_model->listCategory();        
+        $category['category'] = $this->Category_model->listCategory(Category_model::ID_CATEGORY_PORTFOLIO);        
         $this->load->vars($category);
         
         //load pages (about us)
         $this->load->model('Post_model');
         $pagesAboutUs = array();
-        $pagesAboutUs['pagesAboutUs'] = $this->Post_model->listPost(
-                $post_type = 'page-about',
-                $order = 'desc',
-                $limit = 2);
+        $pagesAboutUs['pagesAboutUs'] = $this->Post_model->listPost('page-about','desc',2);
         $this->load->vars($pagesAboutUs);        
         
-        //load category partners (temp)
-        $categoryPartner['categoryPartner'][] = array('id' => 1, 'name' => 'Agencies');
-        $categoryPartner['categoryPartner'][] = array('id' => 2, 'name' => 'Producers');
-        $categoryPartner['categoryPartner'][] = array('id' => 3, 'name' => 'Directors');
-        $categoryPartner['categoryPartner'][] = array('id' => 4, 'name' => 'Directors of Photography');        
-        $categoryPartner['categoryPartner'][] = array('id' => 5, 'name' => 'Filmakers');
-        $categoryPartner['categoryPartner'][] = array('id' => 6, 'name' => 'Postproduction');
-        $categoryPartner['categoryPartner'][] = array('id' => 7, 'name' => 'Photographer');
-        $categoryPartner['categoryPartner'][] = array('id' => 8, 'name' => 'Other');
+        //load Categorypartners
+        $this->load->model('Category_model');
+        $categoryPartner['categoryPartner'] = $this->Category_model->listCategory(Category_model::ID_CATEGORY_PARTNERS);        
         $this->load->vars($categoryPartner);
+        
+//        $categoryPartner['categoryPartner'][] = array('id' => 1, 'name' => 'Agencies');
+//        $categoryPartner['categoryPartner'][] = array('id' => 2, 'name' => 'Producers');
+//        $categoryPartner['categoryPartner'][] = array('id' => 3, 'name' => 'Directors');
+//        $categoryPartner['categoryPartner'][] = array('id' => 4, 'name' => 'Directors of Photography');        
+//        $categoryPartner['categoryPartner'][] = array('id' => 5, 'name' => 'Filmakers');
+//        $categoryPartner['categoryPartner'][] = array('id' => 6, 'name' => 'Postproduction');
+//        $categoryPartner['categoryPartner'][] = array('id' => 7, 'name' => 'Photographer');
+//        $categoryPartner['categoryPartner'][] = array('id' => 8, 'name' => 'Other');
+        
     }
 
     /**
