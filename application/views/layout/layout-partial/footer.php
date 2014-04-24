@@ -30,8 +30,8 @@
                         <div class="col-md-3">
                             <div class="footerWebBox">
                                 <h4>AREA DE CLIENTES</h4>
-                                <p><img src="<?php echo getPublicUrl() ?>/images/footer/image.jpg" width="206" height="123" class="img-responsive" /></p>
-                                <p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto de.</p>
+                                <p><img src="<?php echo getPublicUrl() ?>/images/latest-news/image.jpg" width="206" height="123" class="img-responsive" /></p>
+                                <p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto relleno estándarpara paginas web.</p>
                                 <p><a href="#">LOG IN</a></p>
                             </div>
                         </div>

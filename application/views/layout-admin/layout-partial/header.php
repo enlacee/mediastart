@@ -32,7 +32,7 @@
                                 <ul>
                                 <?php if (!empty($this->load->get_var('pagesAboutUs'))) : ?>
                                     <?php foreach ($pagesAboutUs as $array) : ?>
-                                        <li><a href="/admin_post/pageabout/index/<?php echo $array['id'] ?>"><?php echo $array['title'] ?></a></li>                                            
+                                        <li><a href="/admin_post/pageabout/<?php echo $array['id'] ?>"><?php echo $array['title'] ?></a></li>                                            
                                     <?php endforeach; ?>
                                 <?php endif; ?>
                                 </ul>                                
@@ -41,7 +41,7 @@
                                 <ul>
                                 <?php if (!empty($this->load->get_var('pages'))) : ?>
                                     <?php foreach ($pages as $array) : ?>
-                                        <li><a href="/admin_post/page/index/<?php echo $array['id'] ?>"><?php echo $array['title'] ?></a></li>                                            
+                                        <li><a href="/admin_post/page/<?php echo $array['id'] ?>"><?php echo $array['title'] ?></a></li>                                            
                                     <?php endforeach; ?>
                                 <?php endif; ?>
                                 </ul>

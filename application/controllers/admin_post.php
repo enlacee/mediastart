@@ -286,19 +286,182 @@ EOT;
         $this->saveSession($dataSession);
     }
 
-    /*
-     * List all Page
+    /**
+     * 
+     *  ------------------ PAGE ------------------
+     * 
+     * 
      */
-    public function page() {
-        $data = array();
+    public function page($id='', $status='')
+    {
+        if( $this->input->post() && !empty($id) && $status == 'true') {            
+            // update imagen of session
+            $dataSession = $this->session->userdata('post'); //var_dump($dataSession); exit;
+            $imgTmp = is_array($dataSession['img_tmp']) ? $dataSession['img_tmp'] : '';
+            if (!empty($imgTmp)) {                                
+                $targetFile = $this->load->get_var('latestNewsPath') . $imgTmp['name'];
+                if (!copy($imgTmp['path'], $targetFile)) { log_message('error','failed to copy'); }
+                $dataPost['url_image'] = $imgTmp['name'];
+                $this->session->set_userdata('post',''); // LIMPIAR IMAGEN
+            }
+
+            $dataPost ['title'] = $this->input->post('nombre');
+            $dataPost ['content'] = $this->input->post('editor');            
+            $dataPost ['updated_at'] = date('Y-m-d H:i:s');
+
+            $this->Post_model->update($id, Post_model::TIPO_PAGE, $dataPost);            
+            $this->cleanCache();
+            $this->session->set_flashdata('flashMessage', "updated correctly Page. Id (<b>$id</b>)");  
+            redirect('admin/dashboard');
+        }        
+        
+        $stringJs = <<<EOT
+        $(function () {
+            // 01 - editor
+            $('#editor').liveEdit({
+                height: 350,
+                css: ['editor/bootstrap/css/bootstrap.min.css', 'editor/bootstrap/bootstrap_extend.css'] /* Apply bootstrap css into the editing area */,
+                groups: [
+                    ["group1", "", ["Bold", "Italic", "Underline", "ForeColor", "RemoveFormat"]],
+                    ["group2", "", ["Bullets", "Numbering", "Indent", "Outdent"]],
+                    ["group3", "", ["Paragraph", "FontSize", "FontDialog", "TextDialog"]],
+                    ["group4", "", ["LinkDialog", "ImageDialog", "TableDialog", "Emoticons", "Snippets"]],
+                    ["group5", "", ["Undo", "Redo", "FullScreen", "SourceDialog"]]
+                    ] /* Toolbar configuration */
+            });
+            $('#editor').data('liveEdit').startedit();
+                
+            // 02 - validate                
+            $('#form').validate({
+                rules: {
+                    nombre: {required : true, minlength: 3, maxlength: 100}
+                  },
+                      
+                //Detecta cuando se realiza el submit o se presiona el boton
+                submitHandler: function(form){
+                    form.submit();
+                },
+
+                //Detecta los error y abre los span con los posibles errores
+                errorPlacement: function(error, element){
+                error.insertAfter(element);
+                }
+            });
+                
+            // 03 - img
+            $("#file").pekeUpload({
+                btnText : "Browse files...",
+                url : "/admin_post/upload/$id",                               
+                //theme : 'bootstrap',
+                multi : false,                
+                allowedExtensions : "jpeg|jpg|png|gif",
+                onFileError: function(file,error){alert("error on file: "+file.name+" error: "+error+"")},
+                onFileSuccess : function (file, data) { }
+            }); 
+                
+        });
+EOT;
+        
+        $data['data'] = '';
+        $data['page_title'] = 'Page';
+        if (!empty($id)) {
+            $this->session->set_userdata('post',''); // LIMPIAR IMAGEN
+            $data['data'] = $this->Post_model->get($id, Post_model::TIPO_PAGE);
+        }
+
+        $this->loadStatic(array('js' => '/js/validate/jquery.validate.js'));
+        $this->loadStatic(array('js' => '/js/validate/jquery.metadata.js'));
+        $this->loadStatic(array('js' => '/js/validate/messages_es.js'));
+        
+        $this->loadStatic(array('js' => '/editor/scripts/innovaeditor.js'));
+        $this->loadStatic(array('js' => '/editor/scripts/innovamanager.js'));
+        $this->loadStatic(array("jstring" => $stringJs));
         $this->layout->view('admin/post/page', $data);
     }
+    
+    
+    
+    
 
-    /*
-     * List all PageAbout
-     */
-    public function pageabout() {
-        $data = array();
+    /**
+     * 
+     *  ------------------ PAGE ABOUT------------------
+     * 
+     * 
+     */    
+    public function pageabout($id='', $status='')
+    {
+        if( $this->input->post() && !empty($id) && $status == 'true') {            
+            // update imagen of session
+            $dataSession = $this->session->userdata('post');
+            $imgTmp = is_array($dataSession['img_tmp']) ? $dataSession['img_tmp'] : '';
+            if (!empty($imgTmp)) {                                
+                $targetFile = $this->load->get_var('latestNewsPath') . $imgTmp['name'];
+                if (!copy($imgTmp['path'], $targetFile)) { log_message('error','failed to copy'); }
+                $dataPost['url_image'] = $imgTmp['name'];
+                $this->session->set_userdata('post',''); // LIMPIAR IMAGEN
+            }
+
+            $dataPost ['title'] = $this->input->post('nombre');
+            $dataPost ['content'] = $this->input->post('editor');
+            $dataPost ['content_1'] = $this->input->post('editor_1');
+            $dataPost ['content_2'] = $this->input->post('editor_2');
+            $dataPost ['content_3'] = $this->input->post('editor_3');
+            $dataPost ['content_4'] = $this->input->post('editor_4');
+            $dataPost ['content_5'] = $this->input->post('editor_5');
+            $dataPost ['content_6'] = $this->input->post('editor_6');
+            $dataPost ['content_7'] = $this->input->post('editor_7');
+            $dataPost ['content_8'] = $this->input->post('editor_8');
+            $dataPost ['content_9'] = $this->input->post('editor_9');
+            
+            $dataPost ['title_1'] = $this->input->post('nombre_1');
+            $dataPost ['title_2'] = $this->input->post('nombre_2');
+            $dataPost ['title_3'] = $this->input->post('nombre_3');
+            $dataPost ['title_4'] = $this->input->post('nombre_4');
+            $dataPost ['title_5'] = $this->input->post('nombre_5');
+            $dataPost ['title_6'] = $this->input->post('nombre_6');
+            $dataPost ['title_7'] = $this->input->post('nombre_7');
+            $dataPost ['title_8'] = $this->input->post('nombre_8');
+            $dataPost ['title_9'] = $this->input->post('nombre_9');            
+            $dataPost ['updated_at'] = date('Y-m-d H:i:s');
+
+            $this->Post_model->update($id, Post_model::TIPO_PAGE_ABOUT, $dataPost);            
+            $this->cleanCache();
+            $this->session->set_flashdata('flashMessage', "updated correctly Page About. Id (<b>$id</b>)");  
+            redirect('admin/dashboard');
+        }        
+        
+        $stringJs = <<<EOT
+        ;$(function () {
+            // 03 - img
+            $("#file").pekeUpload({
+                btnText : "Browse files...",
+                url : "/admin_post/upload/$id",                               
+                //theme : 'bootstrap',
+                multi : false,                
+                allowedExtensions : "jpeg|jpg|png|gif",
+                onFileError: function(file,error){alert("error on file: "+file.name+" error: "+error+"")},
+                onFileSuccess : function (file, data) { }
+            }); 
+                
+        });
+EOT;
+        
+        $data['data'] = '';
+        $data['page_title'] = 'Page About';
+        if (!empty($id)) {
+            $this->session->set_userdata('post',''); // LIMPIAR IMAGEN
+            $data['data'] = $this->Post_model->get($id, Post_model::TIPO_PAGE_ABOUT);
+        }
+
+        $this->loadStatic(array('js' => '/js/validate/jquery.validate.js'));
+        $this->loadStatic(array('js' => '/js/validate/jquery.metadata.js'));
+        $this->loadStatic(array('js' => '/js/validate/messages_es.js'));
+        
+        $this->loadStatic(array('js' => '/editor/scripts/innovaeditor.js'));
+        $this->loadStatic(array('js' => '/editor/scripts/innovamanager.js'));
+        $this->loadStatic(array('js' => '/js/admin/post/pageabout.js'));
+        $this->loadStatic(array("jstring" => $stringJs));
         $this->layout->view('admin/post/pageabout', $data);
     }
 
