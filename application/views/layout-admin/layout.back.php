@@ -331,8 +331,7 @@
 
         <!--Validador-->
         <script type="text/javascript" src="js/validate/jquery.validate.js"></script>
-        <script type="text/javascript" src="js/validate/jquery.metadata.js"></script>
-        <script type="text/javascript" src="js/validate/messages_es.js"></script>
+        <script type="text/javascript" src="js/validate/jquery.metadata.js"></script>        
         <!--Validador-->
 
 

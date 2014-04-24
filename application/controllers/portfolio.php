@@ -32,8 +32,7 @@ class Portfolio extends MY_Controller {
         $data['columRight'] = false;
         
         // ----- init pagination
-        //$page = 1;
-        $limit = 3;        
+        $limit = 9;        
         $count = $this->Portfolio_model->listPorfolio($id, Portfolio_model::STATUS_TRUE, '', '', '', true);        
 
         if ($count > 0) {
@@ -97,15 +96,17 @@ EOT;
         $this->layout->view('portfolio/category', $data);
     }
     
-    public function video($id)
+    public function video($id='')
     {
-        $data = array(
-            'portfolio' => $this->Portfolio_model->get($id, '',  Portfolio_model::STATUS_TRUE)
-        );
-        $this->layout->setLayout('layout/layout_body');
-        $this->layout->view('portfolio/video', $data);        
+        if (!empty($id)) {
+            $data = array(
+                'portfolio' => $this->Portfolio_model->get($id, '',  Portfolio_model::STATUS_TRUE)
+            );
+            $this->Portfolio_model->countView($id);
+            $this->cleanCache();
+            $this->layout->setLayout('layout/layout_body');
+            $this->layout->view('portfolio/video', $data);
+        }
     }
-    
-
     
 }

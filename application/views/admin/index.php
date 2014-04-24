@@ -121,8 +121,7 @@
 
         <!--Validador-->
         <script type="text/javascript" src="<?php echo getPublicUrl() ?>/js/validate/jquery.validate.js"></script>
-        <script type="text/javascript" src="<?php echo getPublicUrl() ?>/js/validate/jquery.metadata.js"></script>
-        <script type="text/javascript" src="<?php echo getPublicUrl() ?>/js/validate/messages_es.js"></script>
+        <script type="text/javascript" src="<?php echo getPublicUrl() ?>/js/validate/jquery.metadata.js"></script>        
         <!--Validador-->
 
         <script type="text/javascript">

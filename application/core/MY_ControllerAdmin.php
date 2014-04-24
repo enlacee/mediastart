@@ -3,7 +3,7 @@
 class MY_ControllerAdmin extends MY_Controller {
 		
 	// paginator
-	const LIMIT = 3;
+	const LIMIT = 5;
 	
     public $adminSession;
     public $idAdmin;
@@ -60,7 +60,7 @@ class MY_ControllerAdmin extends MY_Controller {
      */
     protected function saveSession($dataSession = array())
     {        
-        $arrayControl = array('post', 'contact', 'work','partner','portfolio');
+        $arrayControl = array('post', 'contact', 'work','partner','portfolio','banner');
         foreach ($arrayControl as $key) {
             if (array_key_exists($key, $dataSession)) {
                 $this->session->set_userdata($dataSession); //$this->session->userdata('post');   

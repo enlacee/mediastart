@@ -211,4 +211,13 @@ class MY_Controller extends CI_Controller {
         }
     }
     
+    /**
+     * Clear cache (option CRUD in db)
+     */ 
+    protected function cleanCache()
+    {   
+        $this->load->driver('cache');
+        $this->cache->file->clean();
+    }    
+    
 }

@@ -1,6 +1,4 @@
 <h2>LATEST NEWS</h2>
-
-
     <!--Box LatestNews-->
     <?php if (isset($latestNews) && count($latestNews) > 0) : ?>
         <?php foreach ($latestNews as $array) : ?>

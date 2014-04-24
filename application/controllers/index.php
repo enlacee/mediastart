@@ -2,6 +2,10 @@
 
 class Index extends MY_Controller {
     
+    const NUM_BANNER_HOME = 5;
+    const NUM_LAST_NEW = 4;
+
+
     public function __construct()
     {
         parent::__construct();
@@ -32,10 +36,15 @@ class Index extends MY_Controller {
         $this->load->model('Post_model');
         $this->load->model('Our_team_model');
         
+        $banner = $this->Banner_model->listBanner(Banner_model::STATUS_TRUE, 'desc', self::NUM_BANNER_HOME);
+        $latestNews = $this->Post_model->listPost('post', Post_model::STATUS_TRUE, 'desc', self::NUM_LAST_NEW);
+        
+        
         $data = array (
-            'banner' => $this->Banner_model->listBanner(),
-            'bannerPopular' => $this->Banner_model->listPopular(),            
-            'latestNews' => $this->Post_model->listPost('post',  Post_model::STATUS_TRUE, 'desc', 4));
+            'bannerSlide' => $banner,          
+            'latestNews' => $latestNews
+        );
+
 
         //$this->loadStatic(array('css' => '/css/anibal.css'));
         //$this->loadStatic(array('js' => '/js/anibal.js'));        

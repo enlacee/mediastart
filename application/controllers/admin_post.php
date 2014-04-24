@@ -129,7 +129,6 @@ EOT;
 
         $this->loadStatic(array('js' => '/js/validate/jquery.validate.js'));
         $this->loadStatic(array('js' => '/js/validate/jquery.metadata.js'));
-        $this->loadStatic(array('js' => '/js/validate/messages_es.js'));
         
         $this->loadStatic(array('js' => '/editor/scripts/innovaeditor.js'));
         $this->loadStatic(array('js' => '/editor/scripts/innovamanager.js'));
@@ -232,7 +231,6 @@ EOT;
         $data['page_title'] = 'Last News';          
         $this->loadStatic(array('js' => '/js/validate/jquery.validate.js'));
         $this->loadStatic(array('js' => '/js/validate/jquery.metadata.js'));
-        $this->loadStatic(array('js' => '/js/validate/messages_es.js'));
         
         $this->loadStatic(array('js' => '/editor/scripts/innovaeditor.js'));
         $this->loadStatic(array('js' => '/editor/scripts/innovamanager.js'));
@@ -370,8 +368,7 @@ EOT;
         }
 
         $this->loadStatic(array('js' => '/js/validate/jquery.validate.js'));
-        $this->loadStatic(array('js' => '/js/validate/jquery.metadata.js'));
-        $this->loadStatic(array('js' => '/js/validate/messages_es.js'));
+        $this->loadStatic(array('js' => '/js/validate/jquery.metadata.js'));        
         
         $this->loadStatic(array('js' => '/editor/scripts/innovaeditor.js'));
         $this->loadStatic(array('js' => '/editor/scripts/innovamanager.js'));
@@ -455,8 +452,7 @@ EOT;
         }
 
         $this->loadStatic(array('js' => '/js/validate/jquery.validate.js'));
-        $this->loadStatic(array('js' => '/js/validate/jquery.metadata.js'));
-        $this->loadStatic(array('js' => '/js/validate/messages_es.js'));
+        $this->loadStatic(array('js' => '/js/validate/jquery.metadata.js'));        
         
         $this->loadStatic(array('js' => '/editor/scripts/innovaeditor.js'));
         $this->loadStatic(array('js' => '/editor/scripts/innovamanager.js'));

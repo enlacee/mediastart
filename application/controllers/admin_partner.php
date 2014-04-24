@@ -107,10 +107,8 @@ EOT;
         $data['data'] = '';
         $data['page_title'] = self::PAGE_TITLE;            
         $this->loadStatic(array('js' => '/js/validate/jquery.validate.js'));
-        $this->loadStatic(array('js' => '/js/validate/jquery.metadata.js'));
-        $this->loadStatic(array('js' => '/js/validate/messages_es.js'));        
-        $this->loadStatic(array("jstring" => $stringJs));
-        
+        $this->loadStatic(array('js' => '/js/validate/jquery.metadata.js'));        
+        $this->loadStatic(array("jstring" => $stringJs));        
         $this->layout->view('admin/partner/add', $data);
     }
     

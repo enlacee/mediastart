@@ -7,53 +7,113 @@
  */
 class Banner_model  extends CI_Model {
     
+    const STATUS_TRUE = 1;
+    const STATUS_FALSE = 0;
     protected $_name = 'ac_banners';
     
     public function __construct() {
         parent::__construct();
-    }    
-
-    /***
-     * list of banner  by status
-     */
-    public function listBanner($status = 1, $limit = 5)
+    }
+    
+    public function listBanner($status='', $order = 'desc', $limit = '', $offset = '', $rows = false)
     {   
-        $keyCache = __CLASS__ . __FUNCTION__ .'_'. $status.$limit;
-        
+        $strRows = (int) $rows;   
+        $keyCache = __CLASS__ . __FUNCTION__ .'_'.$status.'_'.$strRows.'_'.$order.$limit.'_'.$offset;     
+                
         if (($rs = $this->cache->file->get($keyCache)) == false) {
-            $this->db->select()->from($this->_name);
-            $this->db->where('status', $status);
-            $this->db->limit($limit);
+            $this->db->select()->from($this->_name);            
+            if(!empty($status)) {
+                $this->db->where("status", $status);
+            }
+            
+            // -------- init
+            if (!empty($limit) && !empty ($offset)) {
+                $this->db->limit($limit, $offset);
+            } elseif (!empty($limit)) {
+                $this->db->limit($limit);
+            }            
+            //order
+            if (!empty($order)) {
+                $this->db->order_by("created_at", $order);
+            }
+            
             $query = $this->db->get();
-            $rs = $query->result_array();
+            if ($rows == true) {
+                $rs = $query->num_rows();
+            } else {
+               $rs = $query->result_array(); 
+            }            
+            // -------- end
             
             $this->cache->file->save($keyCache, $rs, 600);
         }
         return $rs;
     }
     
+ /**
+     * 
+     * @param Array $data
+     * @return Boolean 
+     */
+    public function add($data)
+    {
+        $this->db->insert($this->_name, $data);
+    }
+    
     /**
-     * List of banner Random.
-     * @param type $status
-     * @param type $limit
+     * 
+     * @param Integer $id
      * @return type
      */
-    public function listPopular($status = 1, $limit = 5)
-    {   
-        $keyCache = __CLASS__ . __FUNCTION__ .'_'. $status.$limit;
+    public function get($id, $status = '')
+    {
+        $keyCache = __CLASS__ . __FUNCTION__ .'_'. $id.'_'.$status; 
         
-        if (($rs = $this->cache->file->get($keyCache)) == false ) {
+        if (($rs = $this->cache->file->get($keyCache)) == false) {
             $this->db->select()->from($this->_name);
-            $this->db->where('status', $status);
-            $this->db->order_by('id', 'random');
-            $this->db->limit($limit);
-            $query = $this->db->get();        
-            $rs = $query->result_array();
-            
+            $this->db->where('id', $id);
+            if (!empty($status)) {
+                $this->db->where('status', $status);
+            }            
+            $this->db->limit(1);
+            $query = $this->db->get();
+            $response = $query->result_array();
+            $rs = ($response == false) ? null : $response[0];
             $this->cache->file->save($keyCache, $rs, 600);
-        }        
+        }
         return $rs;
-    }    
+    }
+    
+    /**
+     * 
+     * @param Integer $id
+     * @param Array $data
+     * @return boolean
+     */
+    public function update($id, $data = array())
+    {
+        $flag = false;
+        if (!empty($id)) {
+            $this->db->where('id', $id);
+            if(is_array($data) && count($data) > 0 ) {
+                $dataUpdate = $data;
+                $this->db->update( $this->_name, $dataUpdate);
+                $flag = true;
+            }            
+        }
+        return $flag;
+    }
+    
+    public function del($id)
+    {   
+        $flag = false;
+        if (!empty($id)) {
+            $this->db->where('id', $id);            
+            $this->db->delete( $this->_name);
+            $flag = true;
+        }
+        return $flag;
+    }   
     
     
 }

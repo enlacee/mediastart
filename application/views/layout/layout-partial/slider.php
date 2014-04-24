@@ -1,18 +1,19 @@
-<?php if (isset($banner) && count($banner) > 0) : ?>
+
+<?php if (isset($bannerSlide) && is_array($bannerSlide) && count($bannerSlide) > 0) : ?>
 <!--Slider-->
             <div class="row clearfix">
                 <div class="col-md-12" id="esliderWeb">
                     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                         <!-- Indicators -->
                         <ol class="carousel-indicators">
-                            <?php $count = 0; foreach($banner as $array): $active = ($count == 0) ? 'active' : '';?>
+                            <?php $count = 0; foreach($bannerSlide as $array): $active = ($count == 0) ? 'active' : '';?>
                             <li data-target="#carousel-example-generic" data-slide-to="<?php echo $count ?>" class="<?php echo $active ?>"></li>
                             <?php $count++; endforeach; ?>
                         </ol>
 
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner borderRadiusButtom" id="esliderWeb">
-                            <?php foreach ($banner as $array): ?>
+                            <?php foreach ($bannerSlide as $array): ?>
                             <?php 
                             $pathImagen = $bannerPath . $array['url_image'];
                             $width = 1001;

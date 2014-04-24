@@ -109,8 +109,7 @@ EOT;
         $data['data'] = '';
         $data['page_title'] = 'Contact';            
         $this->loadStatic(array('js' => '/js/validate/jquery.validate.js'));
-        $this->loadStatic(array('js' => '/js/validate/jquery.metadata.js'));
-        $this->loadStatic(array('js' => '/js/validate/messages_es.js'));        
+        $this->loadStatic(array('js' => '/js/validate/jquery.metadata.js'));                
         $this->loadStatic(array("jstring" => $stringJs));
         
         $this->layout->view('admin/contact/add', $data);
@@ -194,8 +193,7 @@ EOT;
         }
 
         $this->loadStatic(array('js' => '/js/validate/jquery.validate.js'));
-        $this->loadStatic(array('js' => '/js/validate/jquery.metadata.js'));
-        $this->loadStatic(array('js' => '/js/validate/messages_es.js'));
+        $this->loadStatic(array('js' => '/js/validate/jquery.metadata.js'));        
 
         $this->loadStatic(array("jstring" => $stringJs));
         $this->layout->view('admin/contact/edit', $data);

@@ -26,6 +26,9 @@ if(!function_exists('createThumbnail'))
         }
         
         // filtro 02
+        $flag = (is_file($pathImagen)) ? true : false;
+        
+        // filtro 03
         if (!empty($flag)) {
             // cargar libreria de imagen    
             $CI =& get_instance();
