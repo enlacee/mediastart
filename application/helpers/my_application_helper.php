@@ -47,10 +47,7 @@ if(!function_exists('app_getOnePortfolioByCategory')) {
         $limitt = 4;
         if (is_array($dataCategory) && count($dataCategory) > 0) {
             foreach ($dataCategory as $array) {
-                $response = $CI->Portfolio_model->listPortfolioByCategory(
-                        $array['id'],
-                        $order = 'desc',
-                        $limit = 1);  
+                $response = $CI->Portfolio_model->listPorfolio($array['id'], Portfolio_model::STATUS_TRUE, 'desc', 1); 
                 if (isset($response[0])) {
                     $listPortfolio[] = $response[0];
                     if ($limitt == count($listPortfolio)) { break; }

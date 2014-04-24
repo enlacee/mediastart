@@ -14,7 +14,7 @@ class Portfolio extends MY_Controller {
     public function index($id)
     {      
         $data = array(
-            'portfolio' => $this->Portfolio_model->get($id),
+            'portfolio' => $this->Portfolio_model->get($id, '', Portfolio_model::STATUS_TRUE),
         );
         
         $this->layout->view('portfolio/index', $data);   
@@ -34,7 +34,7 @@ class Portfolio extends MY_Controller {
         // ----- init pagination
         //$page = 1;
         $limit = 3;        
-        $count = $this->Portfolio_model->listPortfolioByCategory($id, '', '', '',true);
+        $count = $this->Portfolio_model->listPorfolio($id, Portfolio_model::STATUS_TRUE, '', '', '', true);        
 
         if ($count > 0) {
             $total_pages = ceil($count/$limit);
@@ -63,9 +63,8 @@ class Portfolio extends MY_Controller {
             // list by category
             if ($flagSearch) {                
                 $data['category_name'] = $category_name;
-                $data['category_id'] = $id;
-                //$data['portfolioCount'] = $this->Portfolio_model->listPortfolioByCategory($id, 'desc', $limit, $start,true);
-                $data['portfolio'] = $this->Portfolio_model->listPortfolioByCategory($id, 'desc', $limit, $start,false);
+                $data['category_id'] = $id;                
+                $data['portfolio'] = $this->Portfolio_model->listPorfolio($id, Portfolio_model::STATUS_TRUE, 'desc', $limit, $start,false);
             }
         }
         
@@ -101,7 +100,7 @@ EOT;
     public function video($id)
     {
         $data = array(
-            'portfolio' => $this->Portfolio_model->get($id)
+            'portfolio' => $this->Portfolio_model->get($id, '',  Portfolio_model::STATUS_TRUE)
         );
         $this->layout->setLayout('layout/layout_body');
         $this->layout->view('portfolio/video', $data);        

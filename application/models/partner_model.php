@@ -78,11 +78,6 @@ class Partner_model  extends CI_Model {
         return $rs;
     }
     
-    public function add($data)
-    {
-        $this->db->insert($this->_name, $data);
-    }    
-    
     public function get($id, $status = '')
     {
         $keyCache = __CLASS__ . __FUNCTION__ .'_'. $id.'_'.$status;        
@@ -100,6 +95,11 @@ class Partner_model  extends CI_Model {
         }
         return $rs;
     }
+    
+    public function add($data)
+    {
+        $this->db->insert($this->_name, $data);
+    }  
     
     public function update($id, $data = array())
     {   
