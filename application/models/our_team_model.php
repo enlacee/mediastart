@@ -19,7 +19,7 @@ class Our_team_model  extends CI_Model {
     /***
      * list of teams
      */     
-    public function listTeam($order = 'desc', $limit = 7, $offset = '', $rows = false)
+    public function listTeam($status='', $order = 'desc', $limit = 7, $offset = '', $rows = false)
     {   
         $strRows = (int) $rows;   
         $keyCache = __CLASS__ . __FUNCTION__ .'_'. $strRows.'_'.$order.$limit.'_'.$offset;     
@@ -28,7 +28,9 @@ class Our_team_model  extends CI_Model {
             $this->db->select("$this->_name.*, ac_cargos.name AS cargo");
             $this->db->from($this->_name);
             $this->db->join('ac_cargos', "$this->_name.cargo_id = ac_cargos.id", 'left'); //'a.category_id = c.categories.id'
-            $this->db->where("$this->_name.status", 1);
+            if(!empty($status)) {
+                $this->db->where("$this->_name.status", $status);
+            }            
             
             // -------- init
             if (!empty($limit) && !empty ($offset)) {
@@ -69,13 +71,15 @@ class Our_team_model  extends CI_Model {
      * @param Integer $id
      * @return type
      */
-    public function get($id)
+    public function get($id, $status = '')
     {
-        $keyCache = __CLASS__ . __FUNCTION__ .'_'. $id;        
+        $keyCache = __CLASS__ . __FUNCTION__ .'_'. $id.'_'.$status;        
         if (($rs = $this->cache->file->get($keyCache)) == false) {
             $this->db->select()->from($this->_name);
-            $this->db->where('id', $id);            
-            $this->db->where('status', 1);
+            $this->db->where('id', $id);
+            if (!empty($status)) {
+                $this->db->where('status', $status);
+            }            
             $this->db->limit(1);
             $query = $this->db->get();
             $response = $query->result_array();
@@ -92,7 +96,7 @@ class Our_team_model  extends CI_Model {
      * @return boolean
      */
     public function update($id, $data = array())
-    {   
+    {
         $flag = false;
         if (!empty($id)) {
             $this->db->where('id', $id);
@@ -109,8 +113,7 @@ class Our_team_model  extends CI_Model {
     {   
         $flag = false;
         if (!empty($id)) {
-            $this->db->where('id', $id);
-            $this->db->where('status', 1);
+            $this->db->where('id', $id);            
             $this->db->delete( $this->_name);
             $flag = true;
         }

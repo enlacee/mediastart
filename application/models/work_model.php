@@ -7,6 +7,10 @@
  */
 class Work_model  extends CI_Model {
     
+    const STATUS_TRUE = 1;
+    const STATUS_FALSE = 0;
+
+
     protected $_name = 'ac_works';
     
     public function __construct() {
@@ -16,14 +20,16 @@ class Work_model  extends CI_Model {
     /***
      * list of teams
      */
-    public function listWork($order = 'desc', $limit = 7, $offset = '', $rows = false)
+    public function listWork($status = '', $order = 'desc', $limit = 7, $offset = '', $rows = false)
     {   
         $strRows = (int) $rows;
-        $keyCache = __CLASS__ . __FUNCTION__ .'_'.$strRows.'_'.$order.$limit.'_'.$offset;
+        $keyCache = __CLASS__ . __FUNCTION__ .'_'.$status.'_'.$strRows.'_'.$order.$limit.'_'.$offset;
         
         if (($rs = $this->cache->file->get($keyCache)) == false) {
             $this->db->select()->from($this->_name);
-            $this->db->where("$this->_name.status", 1);
+            if(!empty($status)) {
+                $this->db->where("$this->_name.status", $status);
+            }            
 
             // -------- init
             if (!empty($limit) && !empty ($offset)) {
@@ -54,14 +60,17 @@ class Work_model  extends CI_Model {
      * @param Integer $id
      * @return Array data Element.
      */
-    public function get($id)
+    public function get($id, $status = '')
     {
         $keyCache = __CLASS__ . __FUNCTION__ .'_'. $id;
         
         if (($rs = $this->cache->file->get($keyCache)) == false) {
             $this->db->select()->from($this->_name);
             $this->db->where('id', $id);
-            $this->db->where('status', 1);
+            if(!empty($status)) {
+                $this->db->where('status', $status);
+            }
+            
             $this->db->limit(1);
             $query = $this->db->get();
             $response = $query->result_array();

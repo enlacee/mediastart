@@ -88,6 +88,13 @@ class Admin extends MY_ControllerAdmin {
         $this->session->sess_destroy();
         $this->cache->file->clean();
         redirect('/admin');
-    }    
+    }
+    
+    public function clean()
+    {
+        $this->cleanCache();
+        echo "clean all cache!";
+        
+    }
     
 }

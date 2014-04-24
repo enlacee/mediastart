@@ -9,7 +9,7 @@ if(!function_exists('app_getOurTeam')) {
     {
         $CI =& get_instance();
         $CI->load->model('Our_team_model');
-        $ourTeam = $CI->Our_team_model->listTeam();
+        $ourTeam = $CI->Our_team_model->listTeam(Our_team_model::STATUS_TRUE);
         
         return $ourTeam;
     }
@@ -25,7 +25,7 @@ if(!function_exists('app_getWork')) {
     {
         $CI =& get_instance();
         $CI->load->model('Work_model');
-        $works = $CI->Work_model->listWork();
+        $works = $CI->Work_model->listWork(Work_model::STATUS_TRUE);
         
         return $works;
     }
@@ -88,7 +88,7 @@ if(!function_exists('app_getPageFooter')) {
         $CI =& get_instance();
         $CI->load->model('Post_model');
         $limit = 2 ;
-        $response = $CI->Post_model->listPost('page', 'desc', $limit);
+        $response = $CI->Post_model->listPost('page', Post_model::STATUS_TRUE,'desc', $limit);
         return $response;
     }
 }

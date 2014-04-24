@@ -16,23 +16,25 @@ class Post_model  extends CI_Model {
     const STATUS_TRUE = 1;
     const STATUS_FALSE = 0;
 
-        public function __construct() {
+    public function __construct() {
         parent::__construct();
     }    
 
     /***
      * list of post (lastest news)
      */
-    public function listPost($post_type = Post_model::TIPO_POST , $order = 'desc', $limit = 10, $offset = '', $rows = false)
+    public function listPost($post_type=Post_model::TIPO_POST, $status='', $order='desc', $limit=10, $offset='', $rows=false)
     {   
         $str_post_type = str_replace('-', '_', $post_type);
         $strRows = (int) $rows;        
-        $keyCache = __CLASS__ . __FUNCTION__ .'_'. $str_post_type.'_'.$strRows.'_'.$order.$limit.'_'.$offset;
+        $keyCache = __CLASS__ . __FUNCTION__ .'_'. $str_post_type.'_'.$status.'_'.$strRows.'_'.$order.$limit.'_'.$offset;
         
         if (($rs = $this->cache->file->get($keyCache)) == false) {
             $this->db->select()->from($this->_name);
             $this->db->where('post_type', $post_type);
-            $this->db->where('status', 1);
+            if(!empty($status)) {
+                $this->db->where('status', $status);
+            }
             
             // -------- init
             if (!empty($limit) && !empty ($offset)) {
@@ -75,15 +77,17 @@ class Post_model  extends CI_Model {
      * @param Integer $id
      * @return Array data Element.
      */
-    public function get($id, $post_type = Post_model::TIPO_POST)
+    public function get($id, $post_type = Post_model::TIPO_POST, $status='')
     {
-        $keyCache = __CLASS__ . __FUNCTION__ .'_'. $id.$post_type;
+        $keyCache = __CLASS__ . __FUNCTION__ .'_'. $id.'_'.$post_type.'_'.$status;
         
         if (($rs = $this->cache->file->get($keyCache)) == false) {
             $this->db->select()->from($this->_name);
             $this->db->where('id', $id);
             $this->db->where('post_type', $post_type);
-            $this->db->where('status', 1);
+            if(!empty($status)) {
+                $this->db->where('status', $status);
+            }            
             $this->db->limit(1);
             $query = $this->db->get();
             $response = $query->result_array();

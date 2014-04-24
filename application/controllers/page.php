@@ -13,7 +13,7 @@ class Page extends MY_Controller {
         
         $data = array (
             'columRight' => 'latestWorks',
-            'ourTeam' => $this->Our_team_model->listTeam('desc',4));
+            'ourTeam' => $this->Our_team_model->listTeam(Our_team_model::STATUS_TRUE, 'desc',4));
         
         $this->layout->view('page/contact', $data);
     }
@@ -28,7 +28,7 @@ class Page extends MY_Controller {
         
         $data = array (
             'columRight' => false,            
-            'latestNews' => $this->Post_model->get($id),
+            'latestNews' => $this->Post_model->get($id, 'post', Post_model::STATUS_TRUE),
         );        
         
         $this->layout->view('page/index', $data);
@@ -40,7 +40,7 @@ class Page extends MY_Controller {
      */
     public function about($id)
     {
-        $response = $this->Post_model->get($id, $post_type = 'page-about');        
+        $response = $this->Post_model->get($id, $post_type = 'page-about', Post_model::STATUS_TRUE);        
         $id_lang = $this->session->userdata('id_lang');  
         
         //  seting (language with  field db)
@@ -73,7 +73,7 @@ class Page extends MY_Controller {
         
         $data = array (
             'columRight' => false,            
-            'latestNews' => $this->Post_model->get($id, 'page')
+            'latestNews' => $this->Post_model->get($id, 'page', Post_model::STATUS_TRUE)
         );        
         
         $this->layout->view('page/admin', $data);

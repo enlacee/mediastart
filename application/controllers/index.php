@@ -35,7 +35,7 @@ class Index extends MY_Controller {
         $data = array (
             'banner' => $this->Banner_model->listBanner(),
             'bannerPopular' => $this->Banner_model->listPopular(),            
-            'latestNews' => $this->Post_model->listPost('post', 'desc', 4));
+            'latestNews' => $this->Post_model->listPost('post',  Post_model::STATUS_TRUE, 'desc', 4));
 
         //$this->loadStatic(array('css' => '/css/anibal.css'));
         //$this->loadStatic(array('js' => '/js/anibal.js'));        

@@ -34,7 +34,8 @@ class MY_Controller extends CI_Controller {
             'my_string_helper',
             'my_application_helper',
             'url',
-            'form'));
+            'form',
+            'security'));
         
         $this->load->driver('cache');
         
@@ -143,7 +144,7 @@ class MY_Controller extends CI_Controller {
         //load pages (about us)
         $this->load->model('Post_model');
         $pagesAboutUs = array();
-        $pagesAboutUs['pagesAboutUs'] = $this->Post_model->listPost('page-about','desc',2);
+        $pagesAboutUs['pagesAboutUs'] = $this->Post_model->listPost('page-about', Post_model::STATUS_TRUE, 'desc', 2);
         $this->load->vars($pagesAboutUs);        
         
         //load Categorypartners

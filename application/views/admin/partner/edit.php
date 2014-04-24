@@ -1,7 +1,7 @@
 <div class="col-md-12">
     <h1><?php echo (isset($page_title) && !empty($page_title)) ? $page_title : '' ?></h1>
     <?php if (isset($data) && !empty($data) && is_array($data)) : ?>
-        <form name="form" id="form" method="post" action="/admin_contact/edit/<?php echo $data['id'] ?>/true">
+        <form name="form" id="form" method="post" action="/admin_partner/edit/<?php echo $data['id'] ?>/true">
         <table class="table table-hover table-striped table-condensed table-responsive table-bordered" style="background-image:none !important;">
             <tbody>
                 
@@ -9,7 +9,7 @@
                     <td width="15%" class="text-right tableBGTD fontBold">Name:</td>
                     <td width="85%" class="text-left">
                         <span class="pdRight20 center-block">
-                            <input type="text" name="name" id="nombre" class="form-control" placeholder="name"
+                            <input type="text" name="name" id="name" class="form-control" placeholder="name"
                                    value="<?php echo $data['name'] ?>">
                         </span>
                     </td>
@@ -23,13 +23,13 @@
                     </td>
                 </tr>
                 <tr>
-                  <td class="text-right tableBGTD fontBold">Cargo:</td>
+                  <td class="text-right tableBGTD fontBold">Category:</td>
                   <td class="text-left">
-                    <select name="cargo" id="cargo" class="form-control input-sm">
+                    <select name="category_id" id="category_id" class="form-control input-sm">
                     <option value="">-</option>
-                    <?php if ($this->load->get_var('cargos')) : ?>
-                        <?php foreach ($cargos as $array) : ?>
-                        <?php $select = ($data['cargo_id'] == $array['id']) ? 'selected="selected"' : '';?>
+                    <?php if ($this->load->get_var('categoryPartner')) : ?>
+                        <?php foreach ($categoryPartner as $array) : ?>
+                        <?php $select = ($data['category_id'] == $array['id']) ? 'selected="selected"' : '';?>
                         <option <?php echo $select ?> value="<?php echo $array['id'] ?>"><?php echo $array['name'] ?></option>
                         <?php endforeach;?>                        
                     <?php endif; ?>
@@ -37,39 +37,23 @@
                   </td>
                 </tr>
                 <tr>
-                    <td width="15%" class="text-right tableBGTD fontBold">Phone:</td>
+                    <td width="15%" class="text-right tableBGTD fontBold">URL:</td>
                     <td width="85%" class="text-left">
                         <span class="pdRight20 center-block">
-                            <input type="text" name="phone" id="phone" class="form-control" value="<?php echo $data['phone'] ?>"/>
+                            <input type="text" name="link_image" id="link_image" class="form-control" value="<?php echo $data['link_image'] ?>"/>
                         </span>
                     </td>
                 </tr>
-                <tr>
-                    <td width="15%" class="text-right tableBGTD fontBold">Email:</td>
-                    <td width="85%" class="text-left">
-                        <span class="pdRight20 center-block">
-                            <input type="text" name="email" id="email" class="form-control" value="<?php echo $data['email'] ?>"/>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td width="15%" class="text-right tableBGTD fontBold">Skype:</td>
-                    <td width="85%" class="text-left">
-                        <span class="pdRight20 center-block">
-                            <input type="text" name="skype" id="skype" class="form-control" value="<?php echo $data['skype'] ?>"/>
-                        </span>
-                    </td>
-                </tr>                
                 <tr>
                   <td class="text-right tableBGTD fontBold">Status:</td>
                   <td class="text-left">
                     <select name="status" id="status" class="form-control input-sm">
                     <option value="">-</option>                    
-                    <option <?php echo ($data['status'] == Our_team_model::STATUS_TRUE ) ? 'selected="selected"' : '';?> value="1">1</option>
-                    <option <?php echo ($data['status'] == Our_team_model::STATUS_FALSE ) ? 'selected="selected"' : '';?>value="0">0</option>
+                    <option <?php echo ($data['status'] == Partner_model::STATUS_TRUE ) ? 'selected="selected"' : '';?> value="1">1</option>
+                    <option <?php echo ($data['status'] == Partner_model::STATUS_FALSE ) ? 'selected="selected"' : '';?>value="0">0</option>
                     </select>
                   </td>
-                </tr>                 
+                </tr>                
                 
                 <tr>
                     <td width="15%" class="text-right tableBGTD fontBold">&nbsp;</td>

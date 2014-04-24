@@ -36,7 +36,7 @@ class MY_ControllerAdmin extends MY_Controller {
         //load pages (footer)
         $this->load->model('Post_model');
         $pages = array();
-        $pages['pages'] = $this->Post_model->listPost('page', 'desc', 2);
+        $pages['pages'] = $this->Post_model->listPost('page', Post_model::STATUS_TRUE, 'desc', 2);
         $this->load->vars($pages);
         
         // load cargos for Contact (ours teams)
@@ -60,7 +60,7 @@ class MY_ControllerAdmin extends MY_Controller {
      */
     protected function saveSession($dataSession = array())
     {        
-        $arrayControl = array('post', 'contact', 'work');
+        $arrayControl = array('post', 'contact', 'work','partner');
         foreach ($arrayControl as $key) {
             if (array_key_exists($key, $dataSession)) {
                 $this->session->set_userdata($dataSession); //$this->session->userdata('post');   

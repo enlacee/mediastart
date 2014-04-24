@@ -15,7 +15,7 @@ class Admin_lastwork extends MY_ControllerAdmin {
     public function index($page = 1)
     {
       	$limit = MY_ControllerAdmin::LIMIT;
-        $count = $this->Work_model->listWork('', '', '', true);
+        $count = $this->Work_model->listWork('', '', '', '', true);
         
         if ($count > 0) {
             $total_pages = ceil($count/$limit);
@@ -34,7 +34,7 @@ class Admin_lastwork extends MY_ControllerAdmin {
         // ----- end pagination
         
         $data['page_title'] = self::PAGE_TITLE;
-        $data['data'] = $this->Work_model->listWork('desc', $limit, $start, false);
+        $data['data'] = $this->Work_model->listWork('', 'desc', $limit, $start, false);
         
         $this->layout->view('admin/lastwork/index', $data);
     }
@@ -62,7 +62,7 @@ class Admin_lastwork extends MY_ControllerAdmin {
 
             $dataPost ['title'] = $this->input->post('title');
             $dataPost ['description'] = $this->input->post('editor');
-            $dataPost ['status'] = 1;
+            $dataPost ['status'] = Work_model::STATUS_TRUE;
             $dataPost ['created_at'] = date('Y-m-d H:i:s');
             $this->Work_model->add($dataPost);            
             $this->cleanCache();
@@ -155,6 +155,7 @@ EOT;
 
             $dataPost ['title'] = $this->input->post('title');
             $dataPost ['description'] = $this->input->post('editor');
+            $dataPost ['status'] = $this->input->post('status');
             $dataPost ['updated_at'] = date('Y-m-d H:i:s');
             $this->Work_model->update($id, $dataPost);            
             $this->cleanCache();

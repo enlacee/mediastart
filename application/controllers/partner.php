@@ -28,8 +28,9 @@ class Partner extends MY_Controller {
             if ($flagSearch) {                
                 $data['category_name'] = $category_name;
                 $data['category_id'] = $id;
-                //$data['portfolioCount'] = $this->Portfolio_model->listPortfolioByCategory($id, 'desc', $limit, $start,true);
-                $data['partners'] = $this->Partner_model->listCategory($category_name, 18);
+                
+                //$data['partners'] = $this->Partner_model->listCategory($id, 18);
+                $data['partners'] = $this->Partner_model->listPartner($id, $status='1', $order = 'desc', $limit = 18, $offset = '', $rows = false);
             }
         }        
         

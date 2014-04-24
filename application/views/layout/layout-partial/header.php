@@ -52,7 +52,7 @@
                                             <ul class="dropdown-menu">
                                                 <?php if(!empty($this->load->get_var('pagesAboutUs')) && count($this->load->get_var('pagesAboutUs')) > 0) : ?>
                                                     <?php foreach ($pagesAboutUs as $array) : ?>
-                                                <li><a href="<?php base_url_lang('page/about/')?><?php echo $array['id'] ?>"><?php echo $array['title'] ?></a></li>
+                                                <li><a href="<?php echo base_url_lang("page/about/".$array['id'])?>"><?php echo $array['title'] ?></a></li>
                                                     <?php endforeach; ?>
                                                 <?php else: ?>
                                                     <li><a href="#">no found data</a></li>

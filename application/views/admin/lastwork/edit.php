@@ -28,6 +28,16 @@
                       <textarea class="" name="editor" id="editor"><?php echo $data['description'] ?></textarea></td>
 
                 </tr>
+                <tr>
+                  <td class="text-right tableBGTD fontBold">Status:</td>
+                  <td class="text-left">
+                    <select name="status" id="status" class="form-control input-sm">
+                    <option value="">-</option>                    
+                    <option <?php echo ($data['status'] == Work_model::STATUS_TRUE ) ? 'selected="selected"' : '';?> value="1">1</option>
+                    <option <?php echo ($data['status'] == Work_model::STATUS_FALSE ) ? 'selected="selected"' : '';?>value="0">0</option>
+                    </select>
+                  </td>
+                </tr>                 
                 
                 <tr>
                     <td width="15%" class="text-right tableBGTD fontBold">&nbsp;</td>

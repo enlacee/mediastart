@@ -48,8 +48,10 @@
                             </li>                            
 
                             <li><a href="/admin_portfolio">Portfolio</a></li>
-                            <li><a href="/admin_contact" >Contact</a></li>
-                            <li><a href="/admin_lastwork" >Last work</a></li>                            
+                            <li><a href="/admin_lastwork" >Last work</a></li> 
+                            <li><a href="/admin_contact" >Contact</a></li>                             
+                            <li><a href="/admin_partner" >Partners</a></li>  
+                            
                             <li class="search">
                                 <form name="buscar" id="buscar" method="post">
                                     <input type="text" name="search" class="search" placeholder="Buscar" />

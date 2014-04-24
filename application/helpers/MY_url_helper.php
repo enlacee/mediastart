@@ -15,8 +15,9 @@ if ( ! function_exists('base_url_lang'))
             $id_lang = $CI->session->userdata('id_lang'); 
             $url = '';
             if(!empty($id_lang)) {
-                $url = "/$id_lang/";
+                $url .= "/$id_lang/";
             }
-            return base_url($url . $uri);
+            $stringUrl = $url . $uri;
+            return base_url($stringUrl);
 	}
 }

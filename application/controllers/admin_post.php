@@ -15,7 +15,7 @@ class Admin_post extends MY_ControllerAdmin {
     public function post($page = 1)
     {
         $limit = MY_ControllerAdmin::LIMIT;
-        $count = $this->Post_model->listPost(Post_model::TIPO_POST, '', '', '',true);
+        $count = $this->Post_model->listPost(Post_model::TIPO_POST,'', '', '', '',true);
         
         if ($count > 0) {
             $total_pages = ceil($count/$limit);
@@ -34,7 +34,7 @@ class Admin_post extends MY_ControllerAdmin {
         // ----- end pagination
         
         $data['page_title'] = 'Last News';
-        $data['data'] = $this->Post_model->listPost(Post_model::TIPO_POST, 'desc', $limit, $start, false);
+        $data['data'] = $this->Post_model->listPost(Post_model::TIPO_POST, '', 'desc', $limit, $start, false);
         
         $this->layout->view('admin/post/post', $data);
     }
@@ -56,6 +56,7 @@ class Admin_post extends MY_ControllerAdmin {
 
             $dataPost ['title'] = $this->input->post('nombre');
             $dataPost ['content'] = $this->input->post('editor');
+            $dataPost ['status'] = $this->input->post('status');
             $dataPost ['updated_at'] = date('Y-m-d H:i:s');
             
             log_message('error','-- A GUARDAR--');
