@@ -30,7 +30,7 @@
                             <li><a href="/admin_post/post">Last News</a></li>
                             <li><a href="#">Page-About</a>                                
                                 <ul>
-                                <?php if (!empty($this->load->get_var('pagesAboutUs'))) : ?>
+                                <?php $pagesAboutUs=$this->load->get_var('pagesAboutUs'); if (!empty($pagesAboutUs)) : ?>
                                     <?php foreach ($pagesAboutUs as $array) : ?>
                                         <li><a href="/admin_post/pageabout/<?php echo $array['id'] ?>"><?php echo $array['title'] ?></a></li>                                            
                                     <?php endforeach; ?>
@@ -39,7 +39,7 @@
                             </li>
                             <li><a href="#">Page</a>
                                 <ul>
-                                <?php if (!empty($this->load->get_var('pages'))) : ?>
+                                <?php $pages = $this->load->get_var('pages'); if (!empty($pages)) : ?>
                                     <?php foreach ($pages as $array) : ?>
                                         <li><a href="/admin_post/page/<?php echo $array['id'] ?>"><?php echo $array['title'] ?></a></li>                                            
                                     <?php endforeach; ?>
@@ -66,7 +66,7 @@
         
         <!-- flashMessage -->
         <div class="container">
-            <?php if(!empty($this->load->get_var('flashMessage'))) : ?>   
+            <?php $flashMessage= $this->load->get_var('flashMessage'); if(!empty($flashMessage)) : ?>   
             <div class="alert alert-warning fade in">
                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                   <?php echo $flashMessage; ?>
