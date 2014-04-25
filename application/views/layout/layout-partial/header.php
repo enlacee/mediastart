@@ -10,7 +10,7 @@
                                 <div class="dropdown floatRight fuenteOswald mayuscula color_ft414447">
                                     <a data-toggle="dropdown" href="#">Idioma</a>
                                     <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                                        <?php if(!empty($this->load->get_var('language')) && count($this->load->get_var('language')) > 0) : ?>
+                                        <?php $language = $this->load->get_var('language'); if(!empty($language) && count($language) > 0) : ?>
                                             <?php foreach ($language as $array) : ?>
                                                 <li><a href="/language/set/<?php echo $array['short_name']?>"><img src="<?php echo getPublicUrl() ?>/images/iconos/<?php echo $array['short_name']?>.png" width="18" height="12" /><?php echo $array['name'] ?></a></li>
                                             <?php endforeach; ?> 
@@ -50,7 +50,7 @@
                                         <li class="dropdown">
                                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">About US</a>
                                             <ul class="dropdown-menu">
-                                                <?php if(!empty($this->load->get_var('pagesAboutUs')) && count($this->load->get_var('pagesAboutUs')) > 0) : ?>
+                                                <?php $pagesAboutUs = $this->load->get_var('pagesAboutUs'); if(!empty($pagesAboutUs) && count($pagesAboutUs) > 0) : ?>
                                                     <?php foreach ($pagesAboutUs as $array) : ?>
                                                 <li><a href="<?php echo base_url_lang("page/about/".$array['id'])?>"><?php echo $array['title'] ?></a></li>
                                                     <?php endforeach; ?>
@@ -61,7 +61,7 @@
                                         </li>
                                         <li class="dropdown"><a href="#">Porfolio</a>
                                             <ul class="dropdown-menu">
-                                                <?php if (!empty($this->load->get_var('category')) && count($this->load->get_var('category')) > 0) : ?>
+                                                <?php $category=$this->load->get_var('category'); if (!empty($category) && count($category) > 0) : ?>
                                                 <?php foreach ($category as $array) : ?>
                                                 <li><a href="/portfolio/category/<?php echo $array['id'] ?>"><?php echo $array['name'] ?></a></li>
                                                 <?php endforeach;?>
