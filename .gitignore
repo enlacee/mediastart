@@ -1,16 +1,14 @@
 .DS_Store
 
 application/cache/*
-!application/cache/index.html
-!application/cache/.htaccess
+!application/cache/empty
 
 application/logs/*
-!application/logs/index.html
-!application/logs/.htaccess
+!application/logs/empty
 
 # image banner
 /public/images/banner/*
-!/public/images/ourTeam/image.jpg
+!/public/images/banner/image.jpg
 
 # image latest-news
 /public/images/latest-news/*
@@ -19,10 +17,7 @@ application/logs/*
 
 # image ourTeam
 /public/images/ourTeam/*
-!/public/images/ourTeam/t/*
 !/public/images/ourTeam/image.jpg
-!/public/images/ourTeam/mario.jpg
-!/public/images/ourTeam/mario1.jpg
 
 # image porfolio
 /public/images/porfolio/*
@@ -34,6 +29,7 @@ application/logs/*
 
 # image temp (file temp)
 /public/images/tmp/*
+!/public/images/tmp/empty
 
 
 
