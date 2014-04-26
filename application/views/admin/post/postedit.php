@@ -32,9 +32,9 @@
                   <td class="text-right tableBGTD fontBold">Status:</td>
                   <td class="text-left">
                     <select name="status" id="status" class="form-control input-sm">
-                    <option value="">-</option>                    
-                    <option <?php echo ($data['status'] == Post_model::STATUS_TRUE ) ? 'selected="selected"' : '';?> value="1">1</option>
-                    <option <?php echo ($data['status'] == Post_model::STATUS_FALSE ) ? 'selected="selected"' : '';?>value="0">0</option>
+                    <option value="">Select</option>                    
+                    <option <?php echo ($data['status'] == Post_model::STATUS_TRUE ) ? 'selected="selected"' : '';?> value="1">On</option>
+                    <option <?php echo ($data['status'] == Post_model::STATUS_FALSE ) ? 'selected="selected"' : '';?>value="0">Off</option>
                     </select>
                   </td>
                 </tr>                

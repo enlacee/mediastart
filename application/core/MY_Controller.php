@@ -110,7 +110,7 @@ class MY_Controller extends CI_Controller {
         $data['latestNewsPath'] = FCPATH . 'public/images/latest-news/';
         $data['latestNewsUrl'] = getPublicUrl() .'/images/latest-news/';
 
-        // ourTeam
+        // ourTeam - contact
         $data['ourTeamPath'] = FCPATH . 'public/images/ourTeam/';
         $data['ourTeamUrl'] = getPublicUrl() .'/images/ourTeam/';  
         

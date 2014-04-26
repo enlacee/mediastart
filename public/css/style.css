@@ -1124,3 +1124,8 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#38373d', endC
 		max-width:31%;
 	}
 }
+
+/* modificacion menu*/
+.menuClass{
+    left: -90px !important;
+}

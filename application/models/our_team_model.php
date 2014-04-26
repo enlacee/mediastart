@@ -19,7 +19,7 @@ class Our_team_model  extends CI_Model {
     /***
      * list of teams
      */     
-    public function listTeam($status='', $order = 'desc', $limit = 7, $offset = '', $rows = false)
+    public function listTeam($status='', $order = 'desc', $limit = '', $offset = '', $rows = false)
     {   
         $strRows = (int) $rows;   
         $keyCache = __CLASS__ . __FUNCTION__ .'_'. $strRows.'_'.$order.$limit.'_'.$offset;     

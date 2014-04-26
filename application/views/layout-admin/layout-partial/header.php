@@ -37,7 +37,7 @@
                                 <?php endif; ?>
                                 </ul>                                
                             </li>
-                            <li><a href="#">Page</a>
+                            <li><a href="#">AreaFooter</a>
                                 <ul>
                                 <?php $pages = $this->load->get_var('pages'); if (!empty($pages)) : ?>
                                     <?php foreach ($pages as $array) : ?>
@@ -50,13 +50,8 @@
                             <li><a href="/admin_portfolio">Portfolio</a></li>
                             <li><a href="/admin_lastwork" >Last work</a></li> 
                             <li><a href="/admin_contact" >Contact</a></li>                             
-                            <li><a href="/admin_partner" >Partners</a></li>  
-                            
-                            <li class="search">
-                                <form name="buscar" id="buscar" method="post">
-                                    <input type="text" name="search" class="search" placeholder="Buscar" />
-                                </form>
-                            </li>
+                            <li><a href="/admin_partner" >Partners</a></li>
+                            <li><a href="/admin/clean" target="_blank">Clean Cache</a></li>
                         </ul>
                     </div>
                 </div>

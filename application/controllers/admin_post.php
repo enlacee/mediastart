@@ -365,6 +365,7 @@ EOT;
         if (!empty($id)) {
             $this->session->set_userdata('post',''); // LIMPIAR IMAGEN
             $data['data'] = $this->Post_model->get($id, Post_model::TIPO_PAGE);
+            $data['page_title'] = $data['data']['title'];
         }
 
         $this->loadStatic(array('js' => '/js/validate/jquery.validate.js'));
@@ -449,6 +450,7 @@ EOT;
         if (!empty($id)) {
             $this->session->set_userdata('post',''); // LIMPIAR IMAGEN
             $data['data'] = $this->Post_model->get($id, Post_model::TIPO_PAGE_ABOUT);
+            $data['page_title'] = $data['data']['title'];
         }
 
         $this->loadStatic(array('js' => '/js/validate/jquery.validate.js'));

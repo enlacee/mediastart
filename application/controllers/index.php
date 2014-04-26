@@ -3,7 +3,7 @@
 class Index extends MY_Controller {
     
     const NUM_BANNER_HOME = 5;
-    const NUM_LAST_NEW = 4;
+    const NUM_LAST_NEW = 5;
 
 
     public function __construct()

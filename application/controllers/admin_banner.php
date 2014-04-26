@@ -36,7 +36,7 @@ class Admin_banner extends MY_ControllerAdmin {
         // ----- end pagination
       
         $data['page_title'] = self::PAGE_TITLE;        
-        $data['data'] = $this->Banner_model->listBanner('', $order = 'desc', $limit, $start, false);
+        $data['data'] = $this->Banner_model->listBanner('', $order = 'desc', $limit, $start, false);        
         $this->layout->view('admin/banner/index', $data);
     }
     

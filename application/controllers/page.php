@@ -13,7 +13,7 @@ class Page extends MY_Controller {
         
         $data = array (
             'columRight' => 'latestWorks',
-            'ourTeam' => $this->Our_team_model->listTeam(Our_team_model::STATUS_TRUE, 'desc',4));
+            'ourTeam' => $this->Our_team_model->listTeam(Our_team_model::STATUS_TRUE, 'desc'));
         
         $this->layout->view('page/contact', $data);
     }

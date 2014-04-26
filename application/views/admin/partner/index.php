@@ -1,12 +1,13 @@
 <div class="col-md-12">
-        <h1><?php echo $page_title; ?> : <a href="/admin_partner/add">Add</a></h1>                        
+        <h1><?php echo $page_title; ?> : <a href="/admin_partner/add" class="btn btn-primary">Add</a></h1>                        
 
         <table class="table table-hover table-striped table-condensed table-responsive table-bordered">
             <thead>    
                 <tr>
                     <th width="3%" class="text-center">ID</th>
-                    <th width="40%">Name</th>
+                    <th width="30%">Name</th>
                     <th width="47%">Category</th>
+                    <th width="10%">Image</th>
                     <th width="10%" class="text-center">Accion</th>
                 </tr>
             </thead>    
@@ -14,10 +15,18 @@
             <tbody>                            	
             <?php if (isset($data) && is_array($data) && count($data) > 0) : ?>
                 <?php foreach ($data as $array) :?>
+                <?php 
+                    $pathImagen = $this->load->get_var('partnerPath') . $array['url_image'];
+                    $width = 100;
+                    $height = 150;
+                    $imageNameThumb = create_thumbnail($pathImagen, $width, $height);
+                    $urlImg = $this->load->get_var('partnerUrl') . $imageNameThumb;
+                ?>                
                     <tr>
                         <td class="text-center"><?php echo $array['id']?></td>
                         <td><?php echo truncate_string($array['name'], 30, ' ', '') ?></td>
                         <td><?php echo truncate_string($array['category'], 50, ' ', '') ?></td>
+                        <td><img src="<?php echo $urlImg; ?>" class="img-responsive" width="100" height="150"></td>
                         <td class="text-center">
                         <a href="/admin_partner/edit/<?php echo $array['id'] ?>"><img src="<?php echo getPublicUrl() ?>/images/actualizar.png" width="20" height="20" /></a>
                         &nbsp;

@@ -9,7 +9,7 @@
                             <span class="selectIdioma">
                                 <div class="dropdown floatRight fuenteOswald mayuscula color_ft414447">
                                     <a data-toggle="dropdown" href="#">Idioma</a>
-                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                    <ul class="menuClass dropdown-menu" role="menu" aria-labelledby="dLabel">
                                         <?php $language = $this->load->get_var('language'); if(!empty($language) && count($language) > 0) : ?>
                                             <?php foreach ($language as $array) : ?>
                                                 <li><a href="/language/set/<?php echo $array['short_name']?>"><img src="<?php echo getPublicUrl() ?>/images/iconos/<?php echo $array['short_name']?>.png" width="18" height="12" /><?php echo $array['name'] ?></a></li>
