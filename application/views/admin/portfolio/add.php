@@ -36,11 +36,11 @@
                   </td>
                 </tr>
                 <tr>
-                    <td width="15%" class="text-right tableBGTD fontBold">URL Video:</td>
+                    <td width="15%" class="text-right tableBGTD fontBold">Video ID:</td>
                     <td width="85%" class="text-left">
                         <span class="pdRight20 center-block">
                             <input type="text" name="url_video" id="url_video" class="form-control" value=""/>
-                        </span>Ejm : http://player.vimeo.com/video/81244498
+                        </span>Ejm : https://vimeo.com/<b>81244498</b>
                     </td>
                 </tr>               
                 

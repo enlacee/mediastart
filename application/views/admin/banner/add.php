@@ -40,16 +40,7 @@
                         </span>ejm : http://www.google.com
                     </td>
                 </tr>
-                <tr>
-                  <td class="text-right tableBGTD fontBold">Status:</td>
-                  <td class="text-left">
-                    <select name="status" id="status" class="form-control input-sm">
-                    <option value="">-</option>                    
-                    <option value="1">1</option>
-                    <option value="0">0</option>
-                    </select>
-                  </td>
-                </tr>                
+             
                 
                 <tr>
                     <td width="15%" class="text-right tableBGTD fontBold">&nbsp;</td>

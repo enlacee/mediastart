@@ -63,9 +63,21 @@ class MY_ControllerAdmin extends MY_Controller {
         $arrayControl = array('post', 'contact', 'work','partner','portfolio','banner');
         foreach ($arrayControl as $key) {
             if (array_key_exists($key, $dataSession)) {
+                $dataSession[$key]['img_tmp']['path'] = $this->formatDirectoryIsWindows($dataSession[$key]['img_tmp']['path']);
                 $this->session->set_userdata($dataSession); //$this->session->userdata('post');   
             }           
         }
+    }
+
+
+    // Bug in windows 
+    private function formatDirectoryIsWindows($string)
+    {
+        if( strpos($string, ":")!==false){
+            // windows
+            $string = str_replace("\\", "/", $string);            
+        }        
+        return $string;
     }
     
 }
