@@ -49,10 +49,10 @@ class Admin_banner extends MY_ControllerAdmin {
         if( $this->input->post() && $estatus == 'true') {
             // update imagen of session
             $dataSession = $this->session->userdata('banner');
-            $imgTmp = is_array($dataSession['img_tmp']) ? $dataSession['img_tmp'] : '';
+            $imgTmp = (!empty($dataSession['img_tmp']) && is_array($dataSession['img_tmp'])) ? $dataSession['img_tmp'] : '';
             if (!empty($imgTmp)) {                                
                 $targetFile = $this->load->get_var('bannerPath') . $imgTmp['name'];
-                if (!copy($imgTmp['path'], $targetFile)) { log_message("error", "failed to copy"); }
+                if (!copy($imgTmp['path'], $targetFile)) { }
                 $dataPost['url_image'] = $imgTmp['name'];
                 $this->session->set_userdata('banner',''); // LIMPIAR IMAGEN
             } else {

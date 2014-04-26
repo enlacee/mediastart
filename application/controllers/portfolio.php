@@ -69,26 +69,33 @@ class Portfolio extends MY_Controller {
         
         $stringJs = <<<EOT
         //Muestra video
+        var idVideo = '';
         $(".porfolioCtnVideoShow img").click(function(){
             // -- Load video
             var img = $(this);
-            var urlVideo = img.attr('data');
+            idVideo = img.attr('data');
             
+            var url = 'http://vimeo.com/api/v2/video/'+idVideo+'.json';
+            $.getJSON( url, function( data ) {                
+                data = data[0];                      
+                var image = '<img class="btn" src="'+data.thumbnail_large+'" title="'+data.title+'" alt="'+data.title+'" >';                
+                $("#porfolioCtnVideoIframeShow").html(image);
+
+            });   
+            // -- load modal    
+            $('#videoPorfolio').modal({backdrop: true,show: true});                
+        });
+                
+        $("#porfolioCtnVideoIframeShow").click(function(){
+            // 02 video  <iframe src="//player.vimeo.com/video/91590180" width="500" height="281" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
             var contenHtml = '<iframe ';
-            contenHtml = contenHtml + 'src="'+ urlVideo +'" ';
+            contenHtml = contenHtml + 'src="//player.vimeo.com/video/'+ idVideo +'" ';
             contenHtml += 'width="500" height="281" frameborder="0" ';
             contenHtml += 'webkitallowfullscreen mozallowfullscreen allowfullscreen> ';
             contenHtml += '</iframe> ';
-
-            $("#porfolioCtnVideoIframeShow").html(contenHtml);
-   
-            // -- load modal    
-            $('#videoPorfolio').modal({
-                    backdrop: true,
-                    show: true
-            });
-                
-        });                
+            $(this).html(contenHtml);
+        });     
+            
 EOT;
         
         $this->loadStatic(array("jstring" => $stringJs));
