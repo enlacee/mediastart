@@ -25,12 +25,57 @@ class Page extends MY_Controller {
     {
         $this->load->model('Banner_model');
         $this->load->model('Post_model');
+        $this->load->helper('form');     
+        
+        $this->load->library('form_validation');
+        $this->load->model('Post_model');
+        $this->load->model('Comment_model');
+        
+        // validacion form
+        $this->form_validation->set_rules('name', 'Name', 'required');
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+        $this->form_validation->set_rules('comment', 'Comment', 'trim|required');
+        $this->form_validation->set_rules('captcha', 'Captcha', 'required|matches[captcha_word]');
+        
+        if ($this->input->post()) {
+            // validation csrf
+            if ($this->input->post('token') == $this->session->userdata('token')) {
+                if ($this->form_validation->run() == FALSE) {
+                    
+                } else {
+                    // insert new comment                    
+                    $dataComment ['id_post'] = $this->input->post('id_post');
+                    $dataComment ['name'] = $this->input->post('name');
+                    $dataComment ['email'] = $this->input->post('email');
+                    $dataComment ['comment'] = $this->input->post('comment');
+                    $dataComment ['created_at'] = date('Y-m-d H:i:s');
+                    $dataComment ['status'] = Comment_model::STATUS_FALSE;                    
+                    $this->Comment_model->add($dataComment);                                        
+                    redirect('/page/index/'.$dataComment ['id_post']);
+                    
+                }
+            }
+            
+        }       
+        
+        // captcha
+        $cap_word = random_string('alnum', 8);
+        $configCaptcha = array(
+            'word' => strtoupper($cap_word),
+            'img_path' => FCPATH . 'public/images/captcha/',
+            'img_url' => getPublicUrl() .'/images/captcha/',
+            'img_width' => '120');
+        $cap = create_captcha($configCaptcha);
         
         $data = array (
             'columRight' => false,            
             'latestNews' => $this->Post_model->get($id, 'post', Post_model::STATUS_TRUE),
-        );        
-        
+            'latestNewsComment' => $this->Comment_model->getCommentByPost($id, Comment_model::STATUS_TRUE),
+            'token' =>$this->auth->token(),            
+            'captcha_time' => $cap['time'],
+            'captcha_word' => $cap['word'],
+            'captcha_image'=> $cap['image']
+        );
         $this->layout->view('page/index', $data);
     }
     
