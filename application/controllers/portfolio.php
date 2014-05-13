@@ -68,7 +68,7 @@ class Portfolio extends MY_Controller {
         }
         
         $stringJs = <<<EOT
-        //Muestra video
+        // Muestra video
         var idVideo = '';
         $(".porfolioCtnVideoShow img").click(function(){
             // -- Load video
