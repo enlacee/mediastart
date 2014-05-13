@@ -35,3 +35,14 @@ application/logs/*
 
 # ide
 nbproject/*
+
+
+# captcha
+/public/images/captcha/*
+!/public/images/captcha/empty
+
+
+
+
+
+

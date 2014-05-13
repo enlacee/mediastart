@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `free_mediastart` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
 USE `free_mediastart`;
--- MySQL dump 10.13  Distrib 5.5.34, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.5.37, for debian-linux-gnu (x86_64)
 --
--- Host: localhost    Database: free_mediastart
+-- Host: 127.0.0.1    Database: free_mediastart
 -- ------------------------------------------------------
--- Server version	5.5.34-0ubuntu0.13.10.1
+-- Server version	5.5.37-0ubuntu0.13.10.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -108,13 +108,15 @@ DROP TABLE IF EXISTS `ac_comments`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `ac_comments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `author` varchar(30) DEFAULT NULL,
-  `author_email` varchar(100) DEFAULT NULL,
+  `id_post` int(11) DEFAULT NULL,
+  `name` varchar(30) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `comment` text,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
-  `approved` int(1) DEFAULT '1',
+  `status` int(1) DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -123,6 +125,7 @@ CREATE TABLE `ac_comments` (
 
 LOCK TABLES `ac_comments` WRITE;
 /*!40000 ALTER TABLE `ac_comments` DISABLE KEYS */;
+INSERT INTO `ac_comments` VALUES (2,2,'maria','maria@gmail.com','maria comment','2014-05-13 11:54:00',NULL,1),(3,2,'juan','juan@gmail.com','juan comment','2014-05-13 11:56:10',NULL,1),(4,2,'marco','marcoa@gmail.com','marco comment','2014-05-13 11:59:34',NULL,1),(5,2,'mario mario','mario@mario.com','es un comentario de prueba','2014-05-13 14:27:29',NULL,0);
 /*!40000 ALTER TABLE `ac_comments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -200,6 +203,7 @@ CREATE TABLE `ac_portfolios` (
   `category_id` int(11) DEFAULT NULL,
   `title` varchar(50) DEFAULT NULL,
   `url_image` varchar(100) DEFAULT NULL,
+  `url_image_link` varchar(200) DEFAULT NULL,
   `url_video` varchar(150) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
@@ -208,7 +212,7 @@ CREATE TABLE `ac_portfolios` (
   PRIMARY KEY (`id`),
   KEY `fk_ac_portfolio_ac_category_idx` (`category_id`),
   CONSTRAINT `fk_ac_portfolio_ac_category` FOREIGN KEY (`category_id`) REFERENCES `ac_category` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -217,7 +221,7 @@ CREATE TABLE `ac_portfolios` (
 
 LOCK TABLES `ac_portfolios` WRITE;
 /*!40000 ALTER TABLE `ac_portfolios` DISABLE KEYS */;
-INSERT INTO `ac_portfolios` VALUES (1,3,'portolio 001100','image.jpg','81244498','2014-04-15 00:00:00','2014-04-24 03:34:21',1,5),(2,9,'portolio 002','image.jpg','81244498','2014-04-15 00:00:00',NULL,1,0),(3,3,'portolio 003','image.jpg','91590180','2014-04-15 00:00:00',NULL,1,3),(4,1,'portolio 004','image.jpg','81244498','2014-04-15 00:00:00',NULL,1,1),(5,1,'portolio 005','image.jpg','91590180','2014-04-15 00:00:00',NULL,1,3),(6,1,'portolio 006','image.jpg','81244498','2014-04-15 00:00:00',NULL,1,2),(7,5,'portolio 007','image.jpg','81244498','2014-04-15 00:00:00',NULL,1,3),(8,1,'portolio 008','image.jpg','81244498','2014-04-15 00:00:00',NULL,1,3),(9,2,'portolio 009','image.jpg','91590180','2014-04-15 00:00:00',NULL,1,2),(11,1,'new porfolio','image.jpg','81244498','2014-04-01 00:00:00',NULL,1,1),(12,1,'portfolio 1111','image.jpg','91590180','2014-04-24 03:49:42',NULL,1,7),(13,1,'nuevo nuevo','image.jpg','91590180','2014-04-24 03:53:37','2014-04-26 01:40:05',1,0),(14,1,'ddddd','image.jpg','81244498','2014-04-26 06:38:16',NULL,1,4);
+INSERT INTO `ac_portfolios` VALUES (1,3,'portolio 001100','image.jpg',NULL,'81244498','2014-04-15 00:00:00','2014-04-24 03:34:21',1,5),(2,9,'portolio 002','image.jpg',NULL,'81244498','2014-04-15 00:00:00',NULL,1,0),(3,3,'portolio 003','image.jpg',NULL,'91590180','2014-04-15 00:00:00',NULL,1,3),(4,1,'portolio 004','image.jpg',NULL,'81244498','2014-04-15 00:00:00',NULL,1,1),(5,1,'portolio 005','image.jpg',NULL,'91590180','2014-04-15 00:00:00',NULL,1,3),(6,1,'portolio 006','image.jpg',NULL,'81244498','2014-04-15 00:00:00',NULL,1,2),(7,5,'portolio 007','image.jpg',NULL,'81244498','2014-04-15 00:00:00',NULL,1,3),(8,1,'portolio 008','image.jpg',NULL,'81244498','2014-04-15 00:00:00',NULL,1,3),(9,2,'portolio 009','image.jpg',NULL,'91590180','2014-04-15 00:00:00',NULL,1,2),(11,1,'new porfolio','image.jpg',NULL,'81244498','2014-04-01 00:00:00',NULL,1,1),(12,1,'portfolio 1111','image.jpg',NULL,'91590180','2014-04-24 03:49:42',NULL,1,7),(13,1,'nuevo nuevo','image.jpg',NULL,'91590180','2014-04-24 03:53:37','2014-04-26 01:40:05',1,0),(14,1,'ddddd','image.jpg','http://i.vimeocdn.com/video/474840671_640.jpg','94936857','2014-04-26 06:38:16','2014-05-12 21:00:08',1,4),(15,1,'name 81244498',NULL,'http://i.vimeocdn.com/video/458164484_640.jpg','81244498','2014-05-12 21:09:58',NULL,1,0);
 /*!40000 ALTER TABLE `ac_portfolios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -237,7 +241,6 @@ CREATE TABLE `ac_posts` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `status` int(1) DEFAULT '1',
-  `comment_count` int(11) NOT NULL DEFAULT '0',
   `content_1` longtext,
   `content_2` longtext,
   `content_3` longtext,
@@ -266,7 +269,7 @@ CREATE TABLE `ac_posts` (
 
 LOCK TABLES `ac_posts` WRITE;
 /*!40000 ALTER TABLE `ac_posts` DISABLE KEYS */;
-INSERT INTO `ac_posts` VALUES (2,'post','Lorem Ipsum es simplemente el texto de relleno','Lorem Ipsum es simplemente el texto de relleno, Lorem Ipsum es simplemente el texto de relleno, Lorem Ipsum es simplemente el texto de relleno, Lorem Ipsum es simplemente el texto de relleno, Lorem Ipsum es simplemente el texto de relleno, Lorem Ipsum es simplemente el texto de relleno, Lorem Ipsum es simplemente el texto de relleno, Lorem Ipsum es simplemente el texto de relleno, Lorem Ipsum es simplemente el texto de relleno, Lorem Ipsum es simplemente el texto de relleno, Lorem Ipsum es simplemente el texto de relleno, Lorem Ipsum es simplemente el texto de relleno, Lorem Ipsum es simplemente el texto de relleno, Lorem Ipsum es simplemente el texto de relleno, Lorem Ipsum es simplemente el texto de relleno, Lorem Ipsum es simplemente el texto de relleno, Lorem Ipsum es simplemente el texto de relleno, Lorem Ipsum es simplemente el texto de relleno, Lorem Ipsum es simplemente el texto de relleno, Lorem Ipsum es simplemente el texto de relleno,  ','image.jpg','2014-04-15 00:00:00','2014-04-22 19:43:02',1,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(3,'post','tittle of post with description','conten without description, conten without description, conten without description, conten without description, conten without description, conten without description, conten without description, conten without description, conten without description, conten without description, conten without description, conten without description, conten without description, conten without description, conten without description, conten without description, conten without description, conten without description, conten without description, conten without description, conten without description, conten without description, conten without description, conten without description, conten without description, conten without description, conten without description, conten without description, ','image.jpg','2014-04-15 00:00:00','2014-04-15 00:00:00',1,3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(4,'post','tittle of post with description 2','tittle of post with description, 2 tittle of post with description, 2 tittle of post with description, 2 tittle of post with description, 2 tittle of post with description, 2 tittle of post with description, 2 tittle of post with description, 2 tittle of post with description, 2 tittle of post with description, 2 tittle of post with description, 2 tittle of post with description, 2 tittle of post with description, 2 tittle of post with description, 2 tittle of post with description, 2 tittle of post with description, 2 tittle of post with description, 2 tittle of post with description, 2 tittle of post with description, 2 tittle of post with description, 2 tittle of post with description, 2 ','image.jpg','2014-04-15 00:00:00','2014-04-15 00:00:00',1,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(5,'post','post 3','without content. without content. without content.','image.jpg','2014-04-15 00:00:00','2014-04-15 00:00:00',1,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(9,'page-about','What we do','Content What we do, What we do (US)   ','image.jpg','2014-04-15 00:00:00','2014-04-25 23:04:31',1,0,' ESPAÑOL   ',' FRANÇAIS   ',' DEUTSCH   ',' ITALIANO   ',' PORTUGUÊS   ','РУССКИЙ   ','简体中文   ','العربية arabe 123 ','日本語 chino 123','What we do (ES)','What we do (What we do (FR)','title 3','title 4','title 5','title 6','title 7','arabe 123','123'),(10,'page-about','How we do it','content How we do it, (US)  ','image.jpg','2014-04-15 00:00:00','2014-04-25 23:05:35',1,0,' ESPAÑOL  ',' FRANÇAIS  ',' DEUTSCH  ',' ITALIANO  ',' PORTUGUÊS  ','РУССКИЙ  ','简体中文  ','العربية  ','日本語','How we do it (ES)','How we do it (FR)','How we do it','How we do it','How we do it','How we do it','How we do it','How we do it','How we do it'),(11,'page','TITULO PYMES SS','Lorem <span style=\"font-weight: bold;\">Ipsum</span> es simplemente el texto de relleno de las imprentas y archivos de texto de relleno estándarpara paginas web. 2     ','image.jpg','2014-04-15 00:00:00','2014-04-24 04:36:06',1,1,'','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(12,'page','POPULAR','Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto de relleno estándarpara paginas web.','image.jpg','2014-04-15 00:00:00','2014-04-15 00:00:00',1,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(13,'post','post demo OK','post demo    ','image.jpg','2014-04-23 05:10:47','2014-04-24 01:09:47',1,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `ac_posts` VALUES (2,'post','Lorem Ipsum es simplemente el texto de relleno','Lorem Ipsum es simplemente el texto de relleno, Lorem Ipsum es simplemente el texto de relleno, Lorem Ipsum es simplemente el texto de relleno, Lorem Ipsum es simplemente el texto de relleno, Lorem Ipsum es simplemente el texto de relleno, Lorem Ipsum es simplemente el texto de relleno, Lorem Ipsum es simplemente el texto de relleno, Lorem Ipsum es simplemente el texto de relleno, Lorem Ipsum es simplemente el texto de relleno, Lorem Ipsum es simplemente el texto de relleno, Lorem Ipsum es simplemente el texto de relleno, Lorem Ipsum es simplemente el texto de relleno, Lorem Ipsum es simplemente el texto de relleno, Lorem Ipsum es simplemente el texto de relleno, Lorem Ipsum es simplemente el texto de relleno, Lorem Ipsum es simplemente el texto de relleno, Lorem Ipsum es simplemente el texto de relleno, Lorem Ipsum es simplemente el texto de relleno, Lorem Ipsum es simplemente el texto de relleno, Lorem Ipsum es simplemente el texto de relleno,  ','image.jpg','2014-04-15 00:00:00','2014-04-22 19:43:02',1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(3,'post','tittle of post with description','conten without description, conten without description, conten without description, conten without description, conten without description, conten without description, conten without description, conten without description, conten without description, conten without description, conten without description, conten without description, conten without description, conten without description, conten without description, conten without description, conten without description, conten without description, conten without description, conten without description, conten without description, conten without description, conten without description, conten without description, conten without description, conten without description, conten without description, conten without description, ','image.jpg','2014-04-15 00:00:00','2014-04-15 00:00:00',1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(4,'post','tittle of post with description 2','tittle of post with description, 2 tittle of post with description, 2 tittle of post with description, 2 tittle of post with description, 2 tittle of post with description, 2 tittle of post with description, 2 tittle of post with description, 2 tittle of post with description, 2 tittle of post with description, 2 tittle of post with description, 2 tittle of post with description, 2 tittle of post with description, 2 tittle of post with description, 2 tittle of post with description, 2 tittle of post with description, 2 tittle of post with description, 2 tittle of post with description, 2 tittle of post with description, 2 tittle of post with description, 2 tittle of post with description, 2 ','image.jpg','2014-04-15 00:00:00','2014-04-15 00:00:00',1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(5,'post','post 3','without content. without content. without content.','image.jpg','2014-04-15 00:00:00','2014-04-15 00:00:00',1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(9,'page-about','What we do','Content What we do, What we do (US)   ','image.jpg','2014-04-15 00:00:00','2014-04-25 23:04:31',1,' ESPAÑOL   ',' FRANÇAIS   ',' DEUTSCH   ',' ITALIANO   ',' PORTUGUÊS   ','РУССКИЙ   ','简体中文   ','العربية arabe 123 ','日本語 chino 123','What we do (ES)','What we do (What we do (FR)','title 3','title 4','title 5','title 6','title 7','arabe 123','123'),(10,'page-about','How we do it','content How we do it, (US)  ','image.jpg','2014-04-15 00:00:00','2014-04-25 23:05:35',1,' ESPAÑOL  ',' FRANÇAIS  ',' DEUTSCH  ',' ITALIANO  ',' PORTUGUÊS  ','РУССКИЙ  ','简体中文  ','العربية  ','日本語','How we do it (ES)','How we do it (FR)','How we do it','How we do it','How we do it','How we do it','How we do it','How we do it','How we do it'),(11,'page','TITULO PYMES SS','Lorem <span style=\"font-weight: bold;\">Ipsum</span> es simplemente el texto de relleno de las imprentas y archivos de texto de relleno estándarpara paginas web. 2     ','image.jpg','2014-04-15 00:00:00','2014-04-24 04:36:06',1,'','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(12,'page','POPULAR','Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto de relleno estándarpara paginas web.','image.jpg','2014-04-15 00:00:00','2014-04-15 00:00:00',1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(13,'post','post demo OK','post demo    ','image.jpg','2014-04-23 05:10:47','2014-04-24 01:09:47',1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `ac_posts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -353,13 +356,9 @@ CREATE TABLE `ci_sessions` (
 
 LOCK TABLES `ci_sessions` WRITE;
 /*!40000 ALTER TABLE `ci_sessions` DISABLE KEYS */;
-INSERT INTO `ci_sessions` VALUES ('ab6a40c5aecebd2e8c3fbf4ed22357b5','127.0.0.1','Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/33.0.1750.152 Chrome/33.0.1750.15',1398512895,'a:6:{s:9:\"user_data\";s:0:\"\";s:5:\"token\";s:32:\"ce74d9319cab476785b703fc7612d585\";s:5:\"admin\";a:8:{s:2:\"id\";s:1:\"1\";s:4:\"name\";s:12:\"Luis Figuera\";s:9:\"user_name\";s:4:\"luis\";s:8:\"password\";s:32:\"e10adc3949ba59abbe56e057f20f883e\";s:5:\"email\";s:18:\"milindex@gmail.com\";s:10:\"created_at\";s:19:\"2014-04-18 00:00:00\";s:10:\"updated_at\";s:19:\"2014-04-18 00:00:00\";s:6:\"status\";s:1:\"1\";}s:6:\"banner\";s:0:\"\";s:9:\"portfolio\";s:0:\"\";s:7:\"id_lang\";s:5:\"pt-br\";}');
+INSERT INTO `ci_sessions` VALUES ('1c1f23112e1aaa40e0702229788157d3','127.0.0.1','Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.132 Safari/537.36',1400025036,'a:3:{s:5:\"token\";s:32:\"241493007c11f5e26584f266ee85ce6b\";s:5:\"admin\";a:8:{s:2:\"id\";s:1:\"1\";s:4:\"name\";s:12:\"Luis Figuera\";s:9:\"user_name\";s:4:\"luis\";s:8:\"password\";s:32:\"e10adc3949ba59abbe56e057f20f883e\";s:5:\"email\";s:18:\"milindex@gmail.com\";s:10:\"created_at\";s:19:\"2014-04-18 00:00:00\";s:10:\"updated_at\";s:19:\"2014-04-18 00:00:00\";s:6:\"status\";s:1:\"1\";}s:4:\"post\";s:0:\"\";}');
 /*!40000 ALTER TABLE `ci_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping routines for database 'free_mediastart'
---
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -370,4 +369,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-04-26  6:50:42
+-- Dump completed on 2014-05-13 18:56:26

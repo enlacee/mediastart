@@ -51,7 +51,8 @@ class Post_model  extends CI_Model {
             if ($rows == true) {
                 $rs = $query->num_rows();
             } else {
-               $rs = $query->result_array(); 
+               $rs = $query->result_array();
+               $rs = $this->listPostAddComment($rs, $status);
             }            
             // -------- end
             
@@ -60,6 +61,26 @@ class Post_model  extends CI_Model {
         return $rs;
     }
     
+    /**
+     * helper private for nummber of comment by post
+     */
+    private function listPostAddComment($dataPost, $status = '')
+    {   
+        $CI =& get_instance();
+        $CI->load->model('Comment_model');     
+        
+        $rs = $dataPost;
+        if (is_array($rs) && count($rs) > 0) {
+            foreach ($rs as $key => $array) {
+                $idPost = $array['id'];
+                $comment_count = $CI->Comment_model->listComment($idPost, $status,'','','',true);
+                $rs[$key]['comment_count'] = (int) $comment_count;
+            }
+        }
+
+        return $rs;
+    }
+
     /**
      * 
      * @param Array $data

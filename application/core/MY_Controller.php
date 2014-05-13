@@ -35,7 +35,8 @@ class MY_Controller extends CI_Controller {
             'my_application_helper',
             'url',
             'form',
-            'security'));
+            'security',
+            'captcha'));
         
         $this->load->driver('cache');
         

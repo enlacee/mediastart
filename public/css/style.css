@@ -1129,3 +1129,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#38373d', endC
 .menuClass{
     left: -90px !important;
 }
+
+.comment{
+    margin: 0 0 35px 0;
+}

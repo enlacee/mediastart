@@ -1,3 +1,4 @@
+<?php// var_dump($data); exit; ?>
 <div class="col-md-12">
         <h1><?php echo $page_title; ?> : <a href="/admin_post/postadd" class="btn btn-primary">Add</a></h1>
 
@@ -6,7 +7,8 @@
                 <tr>
                     <th width="3%" class="text-center">ID</th>
                     <th width="30%">Title</th>
-                    <th width="47%">Content</th>
+                    <th width="42%">Content</th>
+                    <th width="5%">Comment</th>
                     <th width="10%">Image</th>
                     <th width="10%" class="text-center">Accion</th>
                 </tr>
@@ -24,8 +26,9 @@
                 ?>                
                     <tr>
                         <td class="text-center"><?php echo $array['id']?></td>                        
-                        <td><?php echo truncate_string($array['title'], 30, ' ', '') ?></td>                        
+                        <td><?php echo truncate_string($array['title'], 30, ' ', '') ?></td>
                         <td><?php echo truncate_string(xss_clean($array['content']), 30, ' ', '') ?></td>
+                        <td><a href="/admin_comment/comment/<?php echo $array['id']?>"><span class="badge pull-right"><?php echo $array['comment_count']; ?></span></a></td>
                         <td><img src="<?php echo $urlImg; ?>" class="img-responsive" width="100" height="150"></td>
                         <td class="text-center">
                         <a href="/admin_post/postedit/<?php echo $array['id'] ?>"><img src="<?php echo getPublicUrl() ?>/images/actualizar.png" width="20" height="20" /></a>

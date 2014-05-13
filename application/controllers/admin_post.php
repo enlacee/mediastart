@@ -462,5 +462,5 @@ EOT;
         $this->loadStatic(array("jstring" => $stringJs));
         $this->layout->view('admin/post/pageabout', $data);
     }
-
+    
 }
