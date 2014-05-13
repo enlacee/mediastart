@@ -12,6 +12,10 @@
             $height = 197;
             $imageNameThumb = create_thumbnail($pathImagen, $width, $height);
             $urlImg = $portfolioUrl . $imageNameThumb;
+            
+            if (!empty($array['url_image_link'])) {
+               $urlImg =  $array['url_image_link'];
+            }
         ?>             
             <!--Box-->
             <div class="porfolioCtnVideo">

@@ -45,7 +45,7 @@ class Admin_portfolio extends MY_ControllerAdmin {
     {    
         if( $this->input->post() && $estatus == 'true') {
             // update imagen of session
-            $dataSession = $this->session->userdata('portfolio');
+            /*$dataSession = $this->session->userdata('portfolio');
             $imgTmp = is_array($dataSession['img_tmp']) ? $dataSession['img_tmp'] : '';
             if (!empty($imgTmp)) {                                
                 $targetFile = $this->load->get_var('portfolioPath') . $imgTmp['name'];
@@ -54,11 +54,12 @@ class Admin_portfolio extends MY_ControllerAdmin {
                 $this->session->set_userdata('portfolio',''); // LIMPIAR IMAGEN
             }else{
                 $dataPost['url_image'] = 'image.jpg';
-            }
+            }*/
 
             $dataPost ['title'] = $this->input->post('title');
             $dataPost ['category_id'] = $this->input->post('category_id');
             $dataPost ['url_video'] = $this->input->post('url_video');
+            $dataPost ['url_image_link'] = $this->input->post('url_image_link');
             $dataPost ['status'] = Portfolio_model::STATUS_TRUE;
             $dataPost ['created_at'] = date('Y-m-d H:i:s');
             $this->Portfolio_model->add($dataPost);            
@@ -95,7 +96,25 @@ class Admin_portfolio extends MY_ControllerAdmin {
                 allowedExtensions : "jpeg|jpg|png|gif",
                 onFileError: function(file,error){alert("error on file: "+file.name+" error: "+error+"")},
                 onFileSuccess : function (file, data) {}
-            }); 
+            });
+                
+            // ----------- listener  00 key up -----------
+            $( "#url_video" ).keyup(function() {                  
+                var idVideo = $(this).val();
+                getImageVimeo(idVideo);
+            });
+            function getImageVimeo(idVideo){
+                console.log('idVideo',idVideo);
+                if (idVideo.length == 8) {
+                    $("#url_image_link").val('');
+                    var url = 'http://vimeo.com/api/v2/video/'+idVideo+'.json';
+                    $.getJSON( url, function( data ) {
+                        data = data[0];
+                        $("#url_image_link").val(data.thumbnail_large);
+                    });
+                }
+            }                
+                
                 
         });
 
@@ -114,18 +133,19 @@ EOT;
     {
         if( $this->input->post() && !empty($id) && $estatus == 'true') {            
             // update imagen of session
-            $dataSession = $this->session->userdata('portfolio');
+            /*$dataSession = $this->session->userdata('portfolio');
             $imgTmp = is_array($dataSession['img_tmp']) ? $dataSession['img_tmp'] : '';
             if (!empty($imgTmp)) {                                
                 $targetFile = $this->load->get_var('portfolioPath') . $imgTmp['name'];
                 if (!copy($imgTmp['path'], $targetFile)) { log_message("error", "failed to copy"); }
                 $dataPost['url_image'] = $imgTmp['name'];
                 $this->session->set_userdata('portfolio',''); // LIMPIAR IMAGEN
-            }
+            }*/
             
             $dataPost ['title'] = $this->input->post('title');
-            $dataPost ['category_id'] = $this->input->post('category_id');
+            $dataPost ['category_id'] = $this->input->post('category_id');            
             $dataPost ['url_video'] = $this->input->post('url_video');
+            $dataPost ['url_image_link'] = $this->input->post('url_image_link');
             $dataPost ['status'] = $this->input->post('status');
             $dataPost ['updated_at'] = date('Y-m-d H:i:s');
             $this->Portfolio_model->update($id, $dataPost);            
@@ -162,7 +182,24 @@ EOT;
                 allowedExtensions : "jpeg|jpg|png|gif",
                 onFileError: function(file,error){alert("error on file: "+file.name+" error: "+error+"")},
                 onFileSuccess : function (file, data) { }
-            }); 
+            });
+                
+            // ----------- listener  00 key up -----------
+            $( "#url_video" ).keyup(function() {                  
+                var idVideo = $(this).val();
+                getImageVimeo(idVideo);
+            });
+            function getImageVimeo(idVideo){
+                console.log('idVideo',idVideo);
+                if (idVideo.length == 8) {
+                    $("#url_image_link").val('');
+                    var url = 'http://vimeo.com/api/v2/video/'+idVideo+'.json';
+                    $.getJSON( url, function( data ) {
+                        data = data[0];
+                        $("#url_image_link").val(data.thumbnail_large);
+                    });
+                }
+            } 
                 
         });
 

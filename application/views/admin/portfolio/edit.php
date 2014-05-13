@@ -14,14 +14,14 @@
                         </span>
                     </td>
                 </tr>
-                <tr>
+                <!--<tr>
                     <td width="15%" class="text-right tableBGTD fontBold">Image:</td>
                     <td width="85%" class="text-left">
                         <span class="pdRight20 center-block">
                             <input type="file" id="file" name="file" />
                         </span>
                     </td>
-                </tr>
+                </tr>-->
                 <tr>
                   <td class="text-right tableBGTD fontBold">Category:</td>
                   <td class="text-left">
@@ -40,7 +40,8 @@
                     <td width="15%" class="text-right tableBGTD fontBold">Video ID:</td>
                     <td width="85%" class="text-left">
                         <span class="pdRight20 center-block">
-                            <input type="text" name="url_video" id="url_video" class="form-control" value="<?php echo $data['url_video'] ?>"/>
+                            <input type="text" name="url_video" id="url_video" class="form-control" value="<?php echo $data['url_video'] ?>" autocomplete="off"/>
+                            <input type="text" name="url_image_link" id="url_image_link" class="form-control" value="<?php echo $data['url_image_link'] ?>" readonly="" />
                         </span>Ejm : https://vimeo.com/<b>81244498</b>
                     </td>
                 </tr>
