@@ -16,42 +16,7 @@
         
         <div class="latestNewsDescripcion">
             <p class=""><?php echo $latestNews['content'] ?></p>
-            <br/>
-            <p class="clearfix"> 
-                <a href="#"><img src="<?php echo getPublicUrl() ?>/images/iconos/social/facebook.png" width="40" height="40" /></a> 
-                <a href="#"><img src="<?php echo getPublicUrl() ?>/images/iconos/social/twitter.png" width="40" height="40" /></a> 
-                <a href="#"><img src="<?php echo getPublicUrl() ?>/images/iconos/social/myspace.png" width="40" height="40" /></a> 
-                <a href="#"><img src="<?php echo getPublicUrl() ?>/images/iconos/social/yahoo.png" width="40" height="40" /></a>  
-                <a href="#"><img src="<?php echo getPublicUrl() ?>/images/iconos/social/linkedin.png" width="40" height="40" /></a> 
-                <a href="#"><img src="<?php echo getPublicUrl() ?>/images/iconos/social/delicious.png" width="40" height="40" /></a> 
-                <a href="#"><img src="<?php echo getPublicUrl() ?>/images/iconos/social/orkut.png" width="40" height="40" /></a> 
-                <a href="#"><img src="<?php echo getPublicUrl() ?>/images/iconos/social/digg.png" width="40" height="40" /></a> 
-            </p>             
-            <br/>
-            
-            <?php if (is_array($latestNewsComment)&& count($latestNewsComment)>0) : ?>
-            <h2>Comment Post (<?php echo count($latestNewsComment) ?>)</h2>
-            <div>
-                <ul>
-                <?php foreach ($latestNewsComment as $array) : ?>
-                <li class="comment">
-                    <article class="comment-body">
-                        <footer class="comment-meta">
-                            <div class="comment-author vcard">                                
-                                <img alt="" src="<?php echo getPublicUrl() ?>/images/avatar.png" height="34" width="34"/>
-                                <b class="fn"><?php echo $array['name'] ?></b>
-                            </div>
-                            <div class="label label-default"><?php echo $array['created_at'] ?></div>
-                        </footer>
-
-                        <div class=""><?php echo $array['comment'] ?></div>
-                    </article>
-                </li>
-                <?php endforeach; ?>
-                </ul>
-            </div>
-            <?php endif; ?>
-           
+                       
             <h2>Comment</h2>     
             <?php if (validation_errors()):?>
             <div class="alert alert-danger">
@@ -107,11 +72,43 @@
            
         </div>
         
-        
+        <?php if (is_array($latestNewsComment)&& count($latestNewsComment)>0) : ?>
+        <h2>Comment Post (<?php echo count($latestNewsComment) ?>)</h2>
+        <div>
+            <ul>
+            <?php foreach ($latestNewsComment as $array) : ?>
+            <li class="comment">
+                <article class="comment-body">
+                    <footer class="comment-meta">
+                        <div class="comment-author vcard">                                
+                            <img alt="" src="<?php echo getPublicUrl() ?>/images/avatar.png" height="34" width="34"/>
+                            <b class="fn"><?php echo $array['name'] ?></b>
+                        </div>
+                        <div class="label label-default"><?php echo $array['created_at'] ?></div>
+                    </footer>
+
+                    <div class=""><?php echo $array['comment'] ?></div>
+                </article>
+            </li>
+            <?php endforeach; ?>
+            </ul>
+        </div>
+        <?php endif; ?>        
 
 
         <!--RedesSociales-->
-        <p><?php //include "social.php"; ?></p>
+            <br/>
+            <p class="clearfix"> 
+                <a href="#"><img src="<?php echo getPublicUrl() ?>/images/iconos/social/facebook.png" width="40" height="40" /></a> 
+                <a href="#"><img src="<?php echo getPublicUrl() ?>/images/iconos/social/twitter.png" width="40" height="40" /></a> 
+                <a href="#"><img src="<?php echo getPublicUrl() ?>/images/iconos/social/myspace.png" width="40" height="40" /></a> 
+                <a href="#"><img src="<?php echo getPublicUrl() ?>/images/iconos/social/yahoo.png" width="40" height="40" /></a>  
+                <a href="#"><img src="<?php echo getPublicUrl() ?>/images/iconos/social/linkedin.png" width="40" height="40" /></a> 
+                <a href="#"><img src="<?php echo getPublicUrl() ?>/images/iconos/social/delicious.png" width="40" height="40" /></a> 
+                <a href="#"><img src="<?php echo getPublicUrl() ?>/images/iconos/social/orkut.png" width="40" height="40" /></a> 
+                <a href="#"><img src="<?php echo getPublicUrl() ?>/images/iconos/social/digg.png" width="40" height="40" /></a> 
+            </p>             
+            <br/>
         <!--End RedesSociales-->
     </div>
 <?php else: ?>
