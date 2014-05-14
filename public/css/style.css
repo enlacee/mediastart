@@ -203,14 +203,6 @@ p,a,ul,li,ol,span,strong,table,thead,tbody,tr,td{
 	position:relative;	
 }
 
-.tabShowRell {
-	display:inline;
-	width:100%;
-	max-width:22.7%;
-	margin:10px;
-	float:left;	
-}
-
 #ctnBody {
 	background:#E7E7E7;
 	margin:0;
@@ -1086,10 +1078,6 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#38373d', endC
 		float:left;
 	}
 	
-	.tabShowRell {
-		max-width:21.7% !important;
-	}
-	
 	.porfolioCtn .porfolioCtnVideo {
 		max-width:30%;
 	}
@@ -1097,9 +1085,6 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#38373d', endC
 }
 
 @media (max-width: 980px) {
-	.tabShowRell {
-		max-width:22.7%;
-	}
 	
 	#ctnBody #rightColBG {
 		background-image:none;

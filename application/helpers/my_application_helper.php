@@ -36,7 +36,7 @@ if(!function_exists('app_getOnePortfolioByCategory')) {
      * List portfolio by category
      * @return Array
      */
-    function app_getOnePortfolioByCategory() 
+    function app_getOnePortfolioByCategory($limitt='') 
     {   
         $CI =& get_instance();
         $CI->load->model('Portfolio_model');
@@ -44,7 +44,7 @@ if(!function_exists('app_getOnePortfolioByCategory')) {
         // category
         $dataCategory = $CI->Category_model->listCategory(Category_model::ID_CATEGORY_PORTFOLIO);
         $listPortfolio = array();
-        $limitt = 4;
+        $limitt = (empty($limitt)) ? 5 : $limitt;
         if (is_array($dataCategory) && count($dataCategory) > 0) {
             foreach ($dataCategory as $array) {
                 $response = $CI->Portfolio_model->listPorfolio($array['id'], Portfolio_model::STATUS_TRUE, 'desc', 1); 
@@ -64,12 +64,12 @@ if(!function_exists('app_getPortfolioTopView')) {
      * List portfolio by category
      * @return Array
      */
-    function app_getPortfolioTopView()
+    function app_getPortfolioTopView($limitt)
     {   
         $CI =& get_instance();
         $CI->load->model('Portfolio_model');
-        $limit = 4 ;
-        $response = $CI->Portfolio_model->topView($limit);   
+        $limitt = (empty($limitt)) ? 5 : $limitt;
+        $response = $CI->Portfolio_model->topView($limitt);   
         return $response;
     }
 }

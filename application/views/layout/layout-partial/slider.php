@@ -46,7 +46,7 @@
                         <!-- Nav tabs -->
                         <ul class="nav nav-tabs" id="ulTab">
                             <li class="active" style="background:url(<?php echo getPublicUrl() ?>/images/tab/tab_border_right.jpg) right 10px no-repeat;">
-                                <a href="#one" data-toggle="tab">Home</a>
+                                <a href="#one" data-toggle="tab">SHOWREEL</a>
                             </li>
                             <li><a href="#two" data-toggle="tab">Populars</a></li>
                         </ul>
@@ -54,43 +54,82 @@
                         <!-- Tab panes -->
                         <div class="tab-content">
                             <div class="tab-pane active" id="one">
-                                <?php
-                                $portfolios = app_getOnePortfolioByCategory();
-                                if (is_array($portfolios) && count($portfolios) > 0 ) : ?>
-                                    <?php $count = 0; foreach ($portfolios as $array) : ?>
-                                        <?php 
-                                            if ($count == 4) { break; } 
-                                            $pathImagen = $portfolioPath . $array['url_image'];
-                                            $width = 218;
-                                            $height = 200;
-                                            $imageNameThumb = create_thumbnail($pathImagen, $width, $height);
-                                            $urlImg = $portfolioUrl . $imageNameThumb;
-                                        ?>
-                                        <div class="tabShowRell"><a href="/portfolio/video/<?php echo $array['id']?>" title="<?php echo $array['title']?>" target="">
-                                            <img src="<?php echo $urlImg ?>" alt="<?php echo $array['title'] ?>" title="<?php echo $array['title'] ?>" 
-                                                 class="img-responsive" width="218" height="200" /></a>
-                                        </div>                                
-                                    <?php $count++; endforeach; ?>
-                                <?php else : ?>                             
-                                <?php endif; ?>
+<div id="myCarousel" class="carousel slide">
+    <div class="carousel-inner">
+        <!--php logic-->
+            <?php 
+            $portfolios = app_getOnePortfolioByCategory(5);
+            if (is_array($portfolios) && count($portfolios) > 0 ) : ?>
+                <?php $numItem = 4; $block = ceil(count($portfolios)/$numItem);?>
+                <?php for($i = 0; $i < $block; $i++) : 
+                    $offset = $i * $numItem;
+                    $arrayBase =  array_slice($portfolios, $offset, $numItem);
+                    $activeClass = ($i == 0) ? 'active' : '';
+                ?>
+                <div class="item <?php echo $activeClass ?>">
+                    <div class="row">
+                    <?php foreach ($arrayBase as $array) : ?>
+                        <?php                                     
+                            $pathImagen = $portfolioPath; $width = 500; $height = 500;
+                            $imageNameThumb = create_thumbnail($pathImagen, $width, $height);
+                            $urlImg = $portfolioUrl . $imageNameThumb;                                    
+                            if (!empty($array['url_image_link'])) {
+                                $urlImg =  $array['url_image_link'];
+                            }                               
+                        ?>                        
+                        <div class="col-sm-3"><a href="/portfolio/video/<?php echo $array['id']?>"><img src="<?php echo $urlImg ?>" alt="Image" class="img-responsive"></a></div>
+                <?php endforeach; ?>
+                </div><!--/row-->
+                </div><!--/item-->
+                <?php endfor; ?>
+            <?php else : ?>
+            not found data.
+            <?php endif; ?>                        
+        <!--php logic-->                    
+    </div>
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+</div><!-- end carrusel-->      
                             </div>
                             
                             <div class="tab-pane" id="two">
-                                <?php $portfolios = app_getPortfolioTopView(); ?>
-                                <?php $count = 0; foreach ($portfolios as $array) : ?>
-                                    <?php
-                                        if ($count == 4) { break; }
-                                        $pathImagen = $portfolioPath . $array['url_image'];
-                                        $width = 218;
-                                        $height = 200;
-                                        $imageNameThumb = create_thumbnail($pathImagen, $width, $height);
-                                        $urlImg = $portfolioUrl . $imageNameThumb;
-                                    ?>
-                                    <div class="tabShowRell"><a href="/portfolio/video/<?php echo $array['id']?>" title="<?php echo $array['title']?>" target="">
-                                        <img src="<?php echo $urlImg ?>" alt="<?php echo $array['title'] ?>" title="<?php echo $array['title'] ?>" 
-                                             class="img-responsive" width="218" height="200" /></a>
-                                    </div>                                
-                                <?php $count++; endforeach; ?>
+<div id="myCarousel" class="carousel slide">
+    <div class="carousel-inner">
+        <!--php logic-->
+            <?php 
+            $portfolios = app_getPortfolioTopView(5);
+            if (is_array($portfolios) && count($portfolios) > 0 ) : ?>
+                <?php $numItem = 4; $block = ceil(count($portfolios)/$numItem);?>
+                <?php for($i = 0; $i < $block; $i++) : 
+                    $offset = $i * $numItem;
+                    $arrayBase =  array_slice($portfolios, $offset, $numItem);
+                    $activeClass = ($i == 0) ? 'active' : '';
+                ?>
+                <div class="item <?php echo $activeClass ?>">
+                    <div class="row">
+                    <?php foreach ($arrayBase as $array) : ?>
+                        <?php                                     
+                            $pathImagen = $portfolioPath; $width = 500; $height = 500;
+                            $imageNameThumb = create_thumbnail($pathImagen, $width, $height);
+                            $urlImg = $portfolioUrl . $imageNameThumb;                                    
+                            if (!empty($array['url_image_link'])) {
+                                $urlImg =  $array['url_image_link'];
+                            }                               
+                        ?>                        
+                        <div class="col-sm-3"><a href="/portfolio/video/<?php echo $array['id']?>"><img src="<?php echo $urlImg ?>" alt="Image" class="img-responsive"></a></div>
+                <?php endforeach; ?>
+                </div><!--/row-->
+                </div><!--/item-->
+                <?php endfor; ?>
+            <?php else : ?>
+            not found data.
+            <?php endif; ?>                        
+        <!--php logic-->                    
+    </div>
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+</div><!-- end carrusel-->
+                                
                             </div>
                         </div>
                         <!-- END Nav tabs -->
