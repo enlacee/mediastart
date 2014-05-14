@@ -93,7 +93,7 @@
                             </div>
                             
                             <div class="tab-pane" id="two">
-<div id="myCarousel" class="carousel slide">
+<div id="myCarousel2" class="carousel slide">
     <div class="carousel-inner">
         <!--php logic-->
             <?php 
@@ -126,8 +126,8 @@
             <?php endif; ?>                        
         <!--php logic-->                    
     </div>
-    <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
-    <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+    <a class="left carousel-control" href="#myCarousel2" data-slide="prev">‹</a>
+    <a class="right carousel-control" href="#myCarousel2" data-slide="next">›</a>
 </div><!-- end carrusel-->
                                 
                             </div>
