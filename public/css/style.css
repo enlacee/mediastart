@@ -1069,6 +1069,98 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#38373d', endC
 	}
 }
 
+/* AÑADIDOS */
+@media (min-width: 768px) {
+	
+	.responsive-main{
+		display: none!important;
+	}
+	
+	.navbar-collapse.collapse{
+		display: none!important;
+	}
+}
+
+@media (max-width: 768px) {
+	.navbar-collapse.in {
+		overflow-y: visible;
+	}
+	
+	.navbar-collapse{
+		max-height: none;
+	}
+	
+	li.dropdown ul{
+		display: block;
+		-webkit-transition: opacity .4s ease-out;
+		-moz-transition: opacity .4s ease-out;
+		-ms-transition: opacity .4s ease-out;
+		-o-transition: opacity .4s ease-out;
+		transition: opacity .4s ease-out;
+		opacity: 0; 
+		height: 0;
+		overflow: hidden;
+	}
+	
+	li.dropdown.open ul{
+		opacity: 1;
+		height: auto;
+		-webkit-transition: opacity .4s ease-in;
+		-moz-transition: opacity .4s ease-in;
+		-ms-transition: opacity .4s ease-in;
+		-o-transition: opacity .4s ease-in;
+		transition: opacity .4s ease-in;
+	}
+	
+	.nav-main{
+		display: none!important;
+	}
+	
+	.panel-body {
+		padding: 0 15px;
+		background: #191A1A;
+	}
+	
+	.panel-body a {
+		display: block;
+		margin: 10px 0;
+		border-bottom: 1px solid #CCC;
+		padding-bottom: 12px;
+		text-decoration: none;
+		color: #ffffff;
+	}
+	
+	.panel-body a:hover{
+		color: #2CB1B9;
+	}
+	
+	.panel-body a:last-child{
+		border-bottom: none;
+		padding-bottom: 0;
+	}
+	
+	.panel-title a{
+		display: block;
+		padding: 15px;
+		text-decoration: none;
+	}
+	
+	.panel-title a:hover, .click{
+		color: #FFF!important;
+		background: url(../images/menu/menu-hover.gif);
+	}
+	
+	.panel-heading, .responsive-main, .panel-title{
+		padding: 0;
+	}
+	
+	.panel-default, .panel-heading, .panel-title a.collapsed{
+		border: none;
+		background-color: transparent!important;
+	}
+}
+/* AÑADIDOS */
+
 @media (min-width: 768px) and (max-width: 979px) {
 	.navbar-collapse {
 		float:none !important;	
@@ -1077,6 +1169,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#38373d', endC
 	.selectIdiomaDiv{
 		float:left;
 	}
+	
 	
 	.porfolioCtn .porfolioCtnVideo {
 		max-width:30%;

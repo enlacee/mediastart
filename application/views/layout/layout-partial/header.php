@@ -41,56 +41,114 @@
                     </div>
                 </div>
             </header><!--End Header-->
-
+            
             <!--SectionMenu-->
             <section>
                 <div class="row clearfix">
                     <div class="col-md-12 mgTop20" id="menuOpenHover">
-                        
                         <div role="navigation" class="navbar navbar-default menuStyle">
                             <div class="container-fluid">
                                 <div class="navbar-header">
-                                    <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
-                                        <span class="sr-only">Toggle navigation</span>
-                                        <span class="icon-bar"></span>
-                                        <span class="icon-bar"></span>
-                                        <span class="icon-bar"></span>
-                                    </button>
-                                    <a href="/" class="navbar-brand"><img src="<?php echo getPublicUrl() ?>/images/menu/logo.png" class="img-responsive" width="221" height="79" /></a>
+                                  <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                  </button>
+                                  <a href="/" class="navbar-brand"><img src="<?php echo getPublicUrl() ?>/images/menu/logo.png" class="img-responsive" width="221" height="79" /></a>
                                 </div>
 
-                                <div class="navbar-collapse collapse floatRight" style="height: auto; margin-right:0;">
-                                    <ul class="nav navbar-nav">
-                                        <li class="active"><a href="/">Home</a></li>
-                                        <li class="dropdown">
-                                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">About US</a>
-                                            <ul class="dropdown-menu">
-                                                <?php $pagesAboutUs = $this->load->get_var('pagesAboutUs'); if(!empty($pagesAboutUs) && count($pagesAboutUs) > 0) : ?>
-                                                    <?php foreach ($pagesAboutUs as $array) : ?>
-                                                <li><a href="<?php echo base_url_lang("page/about/".$array['id'])?>"><?php echo $array['title'] ?></a></li>
-                                                    <?php endforeach; ?>
-                                                <?php else: ?>
+                                <div class="floatRight nav-main" style="height: auto; margin-right:0;">
+                                  <ul class="nav navbar-nav">
+                                    <li class="active"><a href="/">Home</a></li>                                    
+                                    <li class="dropdown">
+                                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">About US</a>
+                                        <ul class="dropdown-menu col-xs-12 col-sm-12" role="menu" aria-labelledby="dLabel">
+                                            <?php $pagesAboutUs = $this->load->get_var('pagesAboutUs'); if(!empty($pagesAboutUs) && count($pagesAboutUs) > 0) : ?>
+                                                <?php foreach ($pagesAboutUs as $array) : ?>
+                                                    <li><a href="<?php echo base_url_lang("page/about/".$array['id'])?>"><?php echo $array['title'] ?></a></li>
+                                                <?php endforeach; ?>
+                                            <?php else: ?>
+                                                <li><a href="#">no found data</a></li>
+                                            <?php endif; ?>
+                                        </ul>           
+                                    </li>                                    
+                                    
+                                    <li class="dropdown">
+                                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">Porfolio
+                                            <ul class="dropdown-menu col-xs-12 col-sm-12" role="menu" aria-labelledby="dLabel">
+                                                <?php $category=$this->load->get_var('category'); if (!empty($category) && count($category) > 0) : ?>
+                                                <?php foreach ($category as $array) : ?>
+                                                    <li><a href="/portfolio/category/<?php echo $array['id'] ?>"><?php echo $array['name'] ?></a></li>
+                                                <?php endforeach; ?>
+                                                <?php else : ?>
                                                     <li><a href="#">no found data</a></li>
                                                 <?php endif; ?>
                                             </ul>
-                                        </li>
-                                        <li class="dropdown"><a href="#">Porfolio</a>
-                                            <ul class="dropdown-menu">
-                                                <?php $category=$this->load->get_var('category'); if (!empty($category) && count($category) > 0) : ?>
-                                                <?php foreach ($category as $array) : ?>
-                                                <li><a href="/portfolio/category/<?php echo $array['id'] ?>"><?php echo $array['name'] ?></a></li>
-                                                <?php endforeach;?>
-                                                <?php else :?>
-                                                <li><a href="#">no found data</a></li>
-                                                <?php endif;?>
-                                            </ul>
-                                        </li>
-                                        <li><a href="/page/contact">Contacts</a></li>
-                                    </ul>
-
+                                        </a>                
+                                    </li>
+                                    <li><a href="/page/contact">Contacts</a></li>
+                                  </ul>
                                 </div><!--/.nav-collapse -->
+
+                                  <!-- reponsive menu -->
+                                <div class="navbar-collapse collapse floatRight col-xs-12 responsive-main" style="height: auto; margin-right:0;">
+                                    <div class="panel-group" id="accordion">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="/">Home</a>
+                                                </h4>
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">About</a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseOne" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <?php $pagesAboutUs = $this->load->get_var('pagesAboutUs'); if(!empty($pagesAboutUs) && count($pagesAboutUs) > 0) : ?>
+                                                        <?php foreach ($pagesAboutUs as $array) : ?>
+                                                            <a href="<?php echo base_url_lang("page/about/".$array['id'])?>"><?php echo $array['title'] ?></a>
+                                                        <?php endforeach; ?>
+                                                    <?php else: ?>
+                                                        <a href="#">no found data</a>
+                                                    <?php endif; ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapsethree">Portfolio</a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapsethree" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <?php $category=$this->load->get_var('category'); if (!empty($category) && count($category) > 0) : ?>
+                                                    <?php foreach ($category as $array) : ?>
+                                                        <a href="/portfolio/category/<?php echo $array['id'] ?>"><?php echo $array['name'] ?></a>
+                                                    <?php endforeach; ?>
+                                                    <?php else : ?>
+                                                        <a href="#">no found data</a>
+                                                    <?php endif; ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default">
+                                              <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="" data-parent="#accordion" href="/page/contact">Contact</a>
+                                                </h4>
+                                              </div>
+                                        </div>
+                                    </div>
+                                </div><!-- reponsive menu -->
                             </div><!--/.container-fluid -->
-                        </div>
+                        </div> 
 
                     </div><!--End Col-md-12-->
-                </div><!--End Row--></section><!--End SectionMenu-->
+                </div><!--End Row-->
+            </section><!--End SectionMenu-->
