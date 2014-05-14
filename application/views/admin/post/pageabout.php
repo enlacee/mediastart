@@ -25,7 +25,7 @@
                 <tr>
                   <td class="text-right tableBGTD fontBold">Content:</td>
                   <td class="text-left">
-                  <textarea class="editore" name="editor" id="editor"><?php echo $data['content'] ?></textarea>
+                  <textarea class="form-control" name="editor" id="editor"><?php echo $data['content'] ?></textarea>
                   </td>
                 </tr>
                 <tr>
@@ -47,7 +47,7 @@
                     <tr>
                       <td class="text-right tableBGTD fontBold">Content (<?php echo $i ?>):</td>
                       <td class="text-left">
-                      <textarea name="editor_<?php echo $i ?>" id="editor_<?php echo $i ?>"><?php echo $data["content_$i"] ?></textarea>
+                          <textarea class="form-control" name="editor_<?php echo $i ?>" id="editor_<?php echo $i ?>"><?php echo $data["content_$i"] ?></textarea>
                       </td>
                     </tr>
                 <?php endfor; ?>

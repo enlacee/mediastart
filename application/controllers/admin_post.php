@@ -431,7 +431,7 @@ EOT;
         
         $stringJs = <<<EOT
         ;$(function () {
-            // 03 - img
+            // 01 - img
             $("#file").pekeUpload({
                 btnText : "Browse files...",
                 url : "/admin_post/upload/$id",                               
@@ -440,8 +440,11 @@ EOT;
                 allowedExtensions : "jpeg|jpg|png|gif",
                 onFileError: function(file,error){alert("error on file: "+file.name+" error: "+error+"")},
                 onFileSuccess : function (file, data) { }
-            }); 
+            });
                 
+            // 02 plugin editor nicEditors
+            bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
+            
         });
 EOT;
         
@@ -454,11 +457,9 @@ EOT;
         }
 
         $this->loadStatic(array('js' => '/js/validate/jquery.validate.js'));
-        $this->loadStatic(array('js' => '/js/validate/jquery.metadata.js'));        
-        
-        $this->loadStatic(array('js' => '/editor/scripts/innovaeditor.js'));
-        $this->loadStatic(array('js' => '/editor/scripts/innovamanager.js'));
-        $this->loadStatic(array('js' => '/js/admin/post/pageabout.js'));
+        $this->loadStatic(array('js' => '/js/validate/jquery.metadata.js'));
+
+        $this->loadStatic(array('js' => '/js/nicEdit/nicEdit.js'));
         $this->loadStatic(array("jstring" => $stringJs));
         $this->layout->view('admin/post/pageabout', $data);
     }
