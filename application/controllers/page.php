@@ -60,7 +60,7 @@ class Page extends MY_Controller {
         }       
         
         // captcha
-        $cap_word = random_string('alnum', 8);
+        $cap_word = random_string('alnum', 4);
         $configCaptcha = array(
             'word' => strtoupper($cap_word),
             'img_path' => FCPATH . 'public/images/captcha/',
@@ -72,11 +72,38 @@ class Page extends MY_Controller {
             'columRight' => false,            
             'latestNews' => $this->Post_model->get($id, 'post', Post_model::STATUS_TRUE),
             'latestNewsComment' => $this->Comment_model->getCommentByPost($id, Comment_model::STATUS_TRUE),
-            'token' =>$this->auth->token(),            
+            'token' => $this->auth->token(),            
             'captcha_time' => $cap['time'],
             'captcha_word' => $cap['word'],
             'captcha_image'=> $cap['image']
         );
+        
+        $stringJs = <<<EOT
+        ;$(function () {
+            // 01 validate                
+            $('#comment').validate({
+                rules: {
+                    name: {required : true, minlength: 3, maxlength: 100},
+                    email: {required: true, email: true},
+                    comment : {required: true, minlength: 3}
+                  },
+                      
+                //Detecta cuando se realiza el submit o se presiona el boton
+                submitHandler: function(form){
+                    form.submit();
+                },
+
+                //Detecta los error y abre los span con los posibles errores
+                errorPlacement: function(error, element){
+                error.insertAfter(element);
+                }
+            });
+            
+        });
+EOT;
+        $this->loadStatic(array('js' => '/js/validate/jquery.validate.js'));
+        $this->loadStatic(array('js' => '/js/validate/jquery.metadata.js'));        
+        $this->loadStatic(array("jstring" => $stringJs));              
         $this->layout->view('page/index', $data);
     }
     
