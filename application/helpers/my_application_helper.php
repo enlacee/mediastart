@@ -64,7 +64,7 @@ if(!function_exists('app_getPortfolioTopView')) {
      * List portfolio by category
      * @return Array
      */
-    function app_getPortfolioTopView($limitt)
+    function app_getPortfolioTopView($limitt='')
     {   
         $CI =& get_instance();
         $CI->load->model('Portfolio_model');
