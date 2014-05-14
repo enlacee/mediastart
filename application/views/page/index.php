@@ -15,9 +15,10 @@
         </div>        
         
         <div class="latestNewsDescripcion">
-            <p class=""><?php echo $latestNews['content'] ?></p>
+            <p><?php echo $latestNews['content'] ?></p>
+            <p class="clearfix"></p>
                        
-            <h2>Comment</h2>     
+            <h2 >Comment</h2>     
             <?php if (validation_errors()):?>
             <div class="alert alert-danger">
             <?php echo validation_errors();?>
