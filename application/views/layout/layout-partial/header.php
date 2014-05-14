@@ -19,6 +19,11 @@
                             <span class="selectIdioma">
                                 <div class="dropdown floatRight fuenteOswald mayuscula color_ft414447">
                                     <a data-toggle="dropdown" href="#">Idioma</a>
+                                    <!-- flag language -->
+                                    <?php $id_lang = $this->load->get_var('id_lang'); if(!empty($id_lang) && isset($id_lang)) : ?>
+                                    <a href="#"><img src="<?php echo getPublicUrl() ?>/images/iconos/<?php echo $id_lang ?>.png" width="18" height="12" /><?php echo $id_lang ?></a>
+                                    <?php endif; ?>
+                                    
                                     <ul class="menuClass dropdown-menu" role="menu" aria-labelledby="dLabel">
                                         <?php $language = $this->load->get_var('language'); if(!empty($language) && count($language) > 0) : ?>
                                             <?php foreach ($language as $array) : ?>
