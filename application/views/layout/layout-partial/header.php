@@ -1,4 +1,14 @@
-            <!--Header-->
+        <!-- flashMessage -->
+        <div class="container">
+            <?php $flashMessage= $this->load->get_var('flashMessage'); if(!empty($flashMessage)) : ?>   
+            <div class="alert alert-warning fade in">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                  <?php echo $flashMessage; ?>
+            </div>
+            <?php endif; ?>
+        </div>
+        
+        <!--Header-->
             <header>
                 <div class="row clearfix">
                     <div class="col-md-12 mgTop20">

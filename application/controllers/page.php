@@ -49,8 +49,9 @@ class Page extends MY_Controller {
                     $dataComment ['email'] = $this->input->post('email');
                     $dataComment ['comment'] = $this->input->post('comment');
                     $dataComment ['created_at'] = date('Y-m-d H:i:s');
-                    $dataComment ['status'] = Comment_model::STATUS_FALSE;                    
-                    $this->Comment_model->add($dataComment);                                        
+                    $dataComment ['status'] = Comment_model::STATUS_FALSE;                   
+                    $this->Comment_model->add($dataComment);
+                    $this->session->set_flashdata('flashMessage', "Your comment must be approved before being published.");   
                     redirect('/page/index/'.$dataComment ['id_post']);
                     
                 }

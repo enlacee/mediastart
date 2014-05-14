@@ -7,7 +7,8 @@
                 <tr>
                     <th width="3%" class="text-center">ID</th>
                     <th width="30%">Author</th>
-                    <th width="57%">Content</th>
+                    <th width="47%">Content</th>
+                    <th width="10%">Status</th>
                     <th width="10%" class="text-center">Accion</th>
                 </tr>
             </thead>    
@@ -19,6 +20,7 @@
                         <td class="text-center"><?php echo $array['id']?></td>                        
                         <td><?php echo $array['name'] . " : " .$array['email'] ?></td>
                         <td><?php echo truncate_string(xss_clean($array['comment']), 30, ' ', '') ?></td>
+                        <td><?php echo $array['status'] ?></td>
                         <td class="text-center">
                         <a href="/admin_comment/commentedit/<?php echo $array['id'] ?>"><img src="<?php echo getPublicUrl() ?>/images/actualizar.png" width="20" height="20" /></a>
                         &nbsp;

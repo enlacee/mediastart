@@ -1,4 +1,3 @@
-<?php// var_dump($data); exit; ?>
 <div class="col-md-12">
         <h1><?php echo $page_title; ?> : <a href="/admin_post/postadd" class="btn btn-primary">Add</a></h1>
 

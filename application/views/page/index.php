@@ -15,8 +15,8 @@
         </div>        
         
         <div class="latestNewsDescripcion">
-            <p class="clearfix"><?php echo $latestNews['content'] ?></p>
-            
+            <p class=""><?php echo $latestNews['content'] ?></p>
+            <br/>
             <p class="clearfix"> 
                 <a href="#"><img src="<?php echo getPublicUrl() ?>/images/iconos/social/facebook.png" width="40" height="40" /></a> 
                 <a href="#"><img src="<?php echo getPublicUrl() ?>/images/iconos/social/twitter.png" width="40" height="40" /></a> 
@@ -27,7 +27,7 @@
                 <a href="#"><img src="<?php echo getPublicUrl() ?>/images/iconos/social/orkut.png" width="40" height="40" /></a> 
                 <a href="#"><img src="<?php echo getPublicUrl() ?>/images/iconos/social/digg.png" width="40" height="40" /></a> 
             </p>             
-            
+            <br/>
             
             <?php if (is_array($latestNewsComment)&& count($latestNewsComment)>0) : ?>
             <h2>Comment Post (<?php echo count($latestNewsComment) ?>)</h2>

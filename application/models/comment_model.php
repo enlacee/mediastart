@@ -90,6 +90,21 @@ class Comment_model  extends CI_Model {
         return $rs;
     }     
     
+    // get comment
+    public function get($id)
+    {
+        $keyCache = __CLASS__ . __FUNCTION__ .'_'. $id;        
+        if (($rs = $this->cache->file->get($keyCache)) == false) {
+            $this->db->select()->from($this->_name);
+            $this->db->where('id', $id);            
+            $this->db->limit(1);
+            $query = $this->db->get();
+            $response = $query->row_array();
+            $rs = ($response == false) ? null : $response;
+            $this->cache->file->save($keyCache, $rs, 600);
+        }
+        return $rs;
+    }
 
     // delete
     public function del($id)
@@ -103,5 +118,19 @@ class Comment_model  extends CI_Model {
         return $flag;
     }    
     
+    // update
+    public function update($id, $data = array())
+    {   
+        $flag = false;
+        if (!empty($id)) {
+            $this->db->where('id', $id);
+            if(is_array($data) && count($data) > 0 ) {
+                $dataUpdate = $data;
+                $this->db->update( $this->_name, $dataUpdate);
+                $flag = true;
+            }            
+        }
+        return $flag;
+    }    
     
 }
