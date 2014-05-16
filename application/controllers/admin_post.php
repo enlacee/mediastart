@@ -45,7 +45,7 @@ class Admin_post extends MY_ControllerAdmin {
             
             // update imagen of session
             $dataSession = $this->session->userdata('post'); //var_dump($dataSession); exit;
-            $imgTmp = is_array($dataSession['img_tmp']) ? $dataSession['img_tmp'] : '';
+            $imgTmp = (isset($dataSession['img_tmp']) && is_array($dataSession['img_tmp'])) ? $dataSession['img_tmp'] : '';
             if (!empty($imgTmp)) {                                
                 $targetFile = $this->load->get_var('latestNewsPath') . $imgTmp['name'];
                 if (!copy($imgTmp['path'], $targetFile)) { /*echo "failed to copy";*/ }
@@ -158,7 +158,7 @@ EOT;
         if( $this->input->post() && $estatus == 'true') {            
             // update imagen of session
             $dataSession = $this->session->userdata('post');
-            $imgTmp = is_array($dataSession['img_tmp']) ? $dataSession['img_tmp'] : '';
+            $imgTmp = (isset($dataSession['img_tmp']) && is_array($dataSession['img_tmp'])) ? $dataSession['img_tmp'] : '';
             if (!empty($imgTmp)) {                                
                 $targetFile = $this->load->get_var('latestNewsPath') . $imgTmp['name'];
                 if (!copy($imgTmp['path'], $targetFile)) { log_message("error", "failed to copy"); }
@@ -295,7 +295,7 @@ EOT;
         if( $this->input->post() && !empty($id) && $status == 'true') {            
             // update imagen of session
             $dataSession = $this->session->userdata('post'); //var_dump($dataSession); exit;
-            $imgTmp = is_array($dataSession['img_tmp']) ? $dataSession['img_tmp'] : '';
+            $imgTmp = (isset($dataSession['img_tmp']) && is_array($dataSession['img_tmp'])) ? $dataSession['img_tmp'] : '';
             if (!empty($imgTmp)) {                                
                 $targetFile = $this->load->get_var('latestNewsPath') . $imgTmp['name'];
                 if (!copy($imgTmp['path'], $targetFile)) { log_message('error','failed to copy'); }
@@ -392,7 +392,7 @@ EOT;
         if( $this->input->post() && !empty($id) && $status == 'true') {            
             // update imagen of session
             $dataSession = $this->session->userdata('post');
-            $imgTmp = is_array($dataSession['img_tmp']) ? $dataSession['img_tmp'] : '';
+            $imgTmp = (isset($dataSession['img_tmp']) && is_array($dataSession['img_tmp'])) ? $dataSession['img_tmp'] : '';
             if (!empty($imgTmp)) {                                
                 $targetFile = $this->load->get_var('latestNewsPath') . $imgTmp['name'];
                 if (!copy($imgTmp['path'], $targetFile)) { log_message('error','failed to copy'); }

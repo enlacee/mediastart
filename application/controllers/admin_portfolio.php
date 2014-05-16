@@ -46,7 +46,7 @@ class Admin_portfolio extends MY_ControllerAdmin {
         if( $this->input->post() && $estatus == 'true') {
             // update imagen of session
             /*$dataSession = $this->session->userdata('portfolio');
-            $imgTmp = is_array($dataSession['img_tmp']) ? $dataSession['img_tmp'] : '';
+            $imgTmp = (isset($dataSession['img_tmp']) && is_array($dataSession['img_tmp'])) ? $dataSession['img_tmp'] : '';
             if (!empty($imgTmp)) {                                
                 $targetFile = $this->load->get_var('portfolioPath') . $imgTmp['name'];
                 if (!copy($imgTmp['path'], $targetFile)) { log_message("error", "failed to copy"); }
@@ -134,7 +134,7 @@ EOT;
         if( $this->input->post() && !empty($id) && $estatus == 'true') {            
             // update imagen of session
             /*$dataSession = $this->session->userdata('portfolio');
-            $imgTmp = is_array($dataSession['img_tmp']) ? $dataSession['img_tmp'] : '';
+            $imgTmp = (isset($dataSession['img_tmp']) && is_array($dataSession['img_tmp'])) ? $dataSession['img_tmp'] : '';
             if (!empty($imgTmp)) {                                
                 $targetFile = $this->load->get_var('portfolioPath') . $imgTmp['name'];
                 if (!copy($imgTmp['path'], $targetFile)) { log_message("error", "failed to copy"); }
