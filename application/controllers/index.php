@@ -41,10 +41,11 @@ class Index extends MY_Controller {
         
         
         $data = array (
+            'title' => 'Home',
             'bannerSlide' => $banner,          
             'latestNews' => $latestNews
         );
-
+        
 
         //$this->loadStatic(array('css' => '/css/anibal.css'));
         //$this->loadStatic(array('js' => '/js/anibal.js'));        

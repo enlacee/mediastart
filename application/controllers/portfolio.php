@@ -9,18 +9,6 @@ class Portfolio extends MY_Controller {
     }
     
     /**
-     * page of company by id
-     */
-    public function index($id)
-    {      
-        $data = array(
-            'portfolio' => $this->Portfolio_model->get($id, '', Portfolio_model::STATUS_TRUE),
-        );
-        
-        $this->layout->view('portfolio/index', $data);   
-    }
-    
-    /**
      *  List by category
      * @param type $id
      */
@@ -91,6 +79,7 @@ class Portfolio extends MY_Controller {
         });                
 EOT;
         
+        $data['title'] = isset($data['category_name']) ? $data['category_name'] : NULL;
         $this->loadStatic(array("jstring" => $stringJs));
         $this->layout->setLayout('layout/layout_body');
         $this->layout->view('portfolio/category', $data);
@@ -99,9 +88,9 @@ EOT;
     public function video($id='')
     {
         if (!empty($id)) {
-            $data = array(
-                'portfolio' => $this->Portfolio_model->get($id, '',  Portfolio_model::STATUS_TRUE)
-            );
+            $data['portfolio'] = $this->Portfolio_model->get($id, '',  Portfolio_model::STATUS_TRUE);            
+            $data['title'] = isset($data['portfolio']['title']) ? $data['portfolio']['title'] : NULL;
+            
             $this->Portfolio_model->countView($id);
             $this->cleanCache();
             $this->layout->setLayout('layout/layout_body');

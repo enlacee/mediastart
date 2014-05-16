@@ -13,10 +13,9 @@ class Work extends MY_Controller {
     public function company($id)
     {
         $this->load->model('Work_model');        
-        $data = array(
-            //'columRight' => false,
-            'work' => $this->Work_model->get($id),
-        );
+
+        $data['work'] = $this->Work_model->get($id);
+        $data['title'] = isset($data['work']['title']) ? $data['work']['title'] : NULL;
         
         $this->layout->view('work/company', $data);   
     }    

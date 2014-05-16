@@ -32,7 +32,9 @@ class Partner extends MY_Controller {
                 //$data['partners'] = $this->Partner_model->listCategory($id, 18);
                 $data['partners'] = $this->Partner_model->listPartner($id, $status='1', $order = 'desc', $limit = 18, $offset = '', $rows = false);
             }
-        }        
+        }    
+        
+        $data['title'] = isset($category_name) ? $category_name : NULL;
         
         $this->layout->view('partner/category', $data);
     }

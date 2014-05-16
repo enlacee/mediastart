@@ -12,6 +12,7 @@ class Page extends MY_Controller {
         $this->load->model('Our_team_model');
         
         $data = array (
+            'title' => 'Contact',
             'columRight' => 'latestWorks',
             'ourTeam' => $this->Our_team_model->listTeam(Our_team_model::STATUS_TRUE, 'desc'));
         
@@ -43,7 +44,7 @@ class Page extends MY_Controller {
                 if ($this->form_validation->run() == FALSE) {
                     
                 } else {
-                    // insert new comment                    
+                    // insert new comment
                     $dataComment ['id_post'] = $this->input->post('id_post');
                     $dataComment ['name'] = $this->input->post('name');
                     $dataComment ['email'] = $this->input->post('email');
@@ -68,15 +69,14 @@ class Page extends MY_Controller {
             'img_width' => '120');
         $cap = create_captcha($configCaptcha);
         
-        $data = array (
-            'columRight' => false,            
-            'latestNews' => $this->Post_model->get($id, 'post', Post_model::STATUS_TRUE),
-            'latestNewsComment' => $this->Comment_model->getCommentByPost($id, Comment_model::STATUS_TRUE),
-            'token' => $this->auth->token(),            
-            'captcha_time' => $cap['time'],
-            'captcha_word' => $cap['word'],
-            'captcha_image'=> $cap['image']
-        );
+        $data['columRight'] = false;
+        $data['latestNews'] = $this->Post_model->get($id, 'post', Post_model::STATUS_TRUE);
+        $data['latestNewsComment'] = $this->Comment_model->getCommentByPost($id, Comment_model::STATUS_TRUE);
+        $data['title'] = isset($data['latestNews']['title']) ? $data['latestNews']['title'] : NULL;
+        $data['token'] = $this->auth->token();
+        $data['captcha_time'] = $cap['time'];
+        $data['captcha_word'] = $cap['word'];
+        $data['captcha_image'] = $cap['image'];        
         
         $stringJs = <<<EOT
         ;$(function () {
@@ -131,7 +131,8 @@ EOT;
             $response['content'] =  $response["content$id"];
         }
 
-        $data = array('page' => $response);
+        $data['page']= $response;
+        $data['title'] = isset($data['page']['title']) ? $data['page']['title'] : NULL;        
         $this->layout->setLayout('layout/layout_contact');
         $this->layout->view('page/about', $data);  
     }
@@ -144,10 +145,9 @@ EOT;
     {   
         $this->load->model('Post_model');
         
-        $data = array (
-            'columRight' => false,            
-            'latestNews' => $this->Post_model->get($id, 'page', Post_model::STATUS_TRUE)
-        );        
+        $data['columRight'] = false;
+        $data['latestNews'] = $this->Post_model->get($id, 'page', Post_model::STATUS_TRUE);
+        $data['title'] = isset($data['latestNews']['title']) ? $data['latestNews']['title'] : '';     
         
         $this->layout->view('page/admin', $data);
     }    
