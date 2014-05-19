@@ -22,7 +22,7 @@ class Page extends MY_Controller {
     /*
      * list only post by category(post)
      */
-    public function index($id)
+    public function index($id = '')
     {
         $this->load->model('Banner_model');
         $this->load->model('Post_model');
