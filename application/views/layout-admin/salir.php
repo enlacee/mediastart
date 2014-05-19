@@ -24,7 +24,7 @@
       <div class="starter-template">
         <h1>Session over.</h1>
         <p class="lead">try again the system</p>
-        <a href="/admin"><span class="colorBlue">inicio</span></a>
+        <a href="<?php echo base_url('admin')?>"><span class="colorBlue">inicio</span></a>
       </div>
 
     </div><!-- /.container -->
