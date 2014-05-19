@@ -21,7 +21,7 @@
         </div>
 
         <div class="ourTeamCtn">
-            <h3><a href="/page/contact"><?php echo $array['name'] ?></a></h3>
+            <h3><a href="<?php echo base_url('page/contact') ?>"><?php echo $array['name'] ?></a></h3>
             <p>INTERNACIONAL
                 <br />
                 <?php echo $array['cargo'] ?>

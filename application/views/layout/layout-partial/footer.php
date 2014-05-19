@@ -19,7 +19,7 @@
                                 <p><img src="<?php echo $urlImg; ?>" width="206" height="123" class="img-responsive"
                                         alt="<?php echo $array['title'] ?>"/></p>
                                 <p><?php echo truncate_string($array['content'], 120, ' ', '')?></p>
-                                <p><a href="/page/admin/<?php echo $array['id'] ?>">READ MORE</a></p>
+                                <p><a href="<?php echo base_url('page/admin/' . $array['id']) ?>">READ MORE</a></p>
                             </div>
                         </div>
                         <!--End Box-->
@@ -47,9 +47,9 @@
                                                 foreach ($categoryPartner as $array) : ?>    
                                             
                                                 <?php if ($ultimate == $array['id']): ?>
-                                                    <li style="border:none;"><a href="/partner/category/<?php echo $array['id'] ?>"><?php echo $array['name'] ?></a></li>
+                                    <li style="border:none;"><a href="<?php echo base_url('partner/category/' . $array['id']) ?>"><?php echo $array['name'] ?></a></li>
                                                 <?php else : ?>
-                                                    <li><a href="/partner/category/<?php echo $array['id'] ?>"><?php echo $array['name'] ?></a></li>
+                                    <li><a href="<?php echo base_url('partner/category/' . $array['id']) ?>"><?php echo $array['name'] ?></a></li>
                                                 <?php endif; ?>
                                             
                                         <?php endforeach; ?>
@@ -57,7 +57,7 @@
                                     <li><a href="#">Not found data.</a></li>
                                     <?php endif; ?>
                                 </ul>
-                                <p><a href="">READ MORE</a></p>
+                                <p><a href="#">READ MORE</a></p>
                             </div>
                         </div>
                         <!--End Box-->

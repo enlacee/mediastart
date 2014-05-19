@@ -77,7 +77,7 @@
                                 $urlImg =  $array['url_image_link'];
                             }                               
                         ?>                        
-                        <div class="col-sm-3"><a href="/portfolio/video/<?php echo $array['id']?>"><img src="<?php echo $urlImg ?>" alt="Image" class="img-responsive"></a></div>
+                        <div class="col-sm-3"><a href="<?php echo base_url('portfolio/video/' . $array['id']) ?>"><img src="<?php echo $urlImg ?>" alt="Image" class="img-responsive"></a></div>
                 <?php endforeach; ?>
                 </div><!--/row-->
                 </div><!--/item-->
@@ -116,7 +116,7 @@
                                 $urlImg =  $array['url_image_link'];
                             }                               
                         ?>                        
-                        <div class="col-sm-3"><a href="/portfolio/video/<?php echo $array['id']?>"><img src="<?php echo $urlImg ?>" alt="Image" class="img-responsive"></a></div>
+                        <div class="col-sm-3"><a href="<?php echo base_url('portfolio/video/' . $array['id']) ?>"><img src="<?php echo $urlImg ?>" alt="Image" class="img-responsive"></a></div>
                 <?php endforeach; ?>
                 </div><!--/row-->
                 </div><!--/item-->

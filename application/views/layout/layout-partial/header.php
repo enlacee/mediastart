@@ -14,7 +14,7 @@
                     <div class="col-md-12 mgTop20">
                         <div class="floatRight">
                             <span class="ft_Oswald mayuscula color_ft414447 mgRight10">
-                                <a href="">Client Zone</a>
+                                <a href="#">Client Zone</a>
                             </span>
                             <span class="selectIdioma">
                                 <div class="dropdown floatRight fuenteOswald mayuscula color_ft414447">
@@ -27,7 +27,7 @@
                                     <ul class="menuClass dropdown-menu" role="menu" aria-labelledby="dLabel">
                                         <?php $language = $this->load->get_var('language'); if(!empty($language) && count($language) > 0) : ?>
                                             <?php foreach ($language as $array) : ?>
-                                                <li><a href="/language/set/<?php echo $array['short_name']?>"><img src="<?php echo getPublicUrl() ?>/images/iconos/<?php echo $array['short_name']?>.png" width="18" height="12" /><?php echo $array['name'] ?></a></li>
+                                        <li><a href="<?php echo base_url('language/set/'.$array['short_name']) ?>"><img src="<?php echo getPublicUrl() ?>/images/iconos/<?php echo $array['short_name']?>.png" width="18" height="12" /><?php echo $array['name'] ?></a></li>
                                             <?php endforeach; ?> 
                                         <?php else : ?>                                              
                                             <li><a href="#"><img src="" width="18" height="12" />Not found data.</a></li>                                                
@@ -55,12 +55,12 @@
                                     <span class="icon-bar"></span>
                                     <span class="icon-bar"></span>
                                   </button>
-                                  <a href="/" class="navbar-brand"><img src="<?php echo getPublicUrl() ?>/images/menu/logo.png" class="img-responsive" width="221" height="79" /></a>
+                                  <a href="<?php echo base_url() ?>" class="navbar-brand"><img src="<?php echo getPublicUrl() ?>/images/menu/logo.png" class="img-responsive" width="221" height="79" /></a>
                                 </div>
 
                                 <div class="floatRight nav-main" style="height: auto; margin-right:0;">
                                   <ul class="nav navbar-nav">
-                                    <li class="active"><a href="/">Home</a></li>                                    
+                                    <li class="active"><a href="<?php echo base_url() ?>">Home</a></li>                                    
                                     <li class="dropdown">
                                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">About US</a>
                                         <ul class="dropdown-menu col-xs-12 col-sm-12" role="menu" aria-labelledby="dLabel">
@@ -79,7 +79,7 @@
                                             <ul class="dropdown-menu col-xs-12 col-sm-12" role="menu" aria-labelledby="dLabel">
                                                 <?php $category=$this->load->get_var('category'); if (!empty($category) && count($category) > 0) : ?>
                                                 <?php foreach ($category as $array) : ?>
-                                                    <li><a href="/portfolio/category/<?php echo $array['id'] ?>"><?php echo $array['name'] ?></a></li>
+                                                <li><a href="<?php echo base_url('portfolio/category/' . $array['id']) ?>"><?php echo $array['name'] ?></a></li>
                                                 <?php endforeach; ?>
                                                 <?php else : ?>
                                                     <li><a href="#">no found data</a></li>
@@ -87,7 +87,7 @@
                                             </ul>
                                         </a>                
                                     </li>
-                                    <li><a href="/page/contact">Contacts</a></li>
+                                    <li><a href="<?php echo base_url('page/contact') ?>">Contacts</a></li>
                                   </ul>
                                 </div><!--/.nav-collapse -->
 
@@ -97,7 +97,7 @@
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
                                                 <h4 class="panel-title">
-                                                    <a data-toggle="collapse" data-parent="#accordion" href="/">Home</a>
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="<?php echo base_url() ?>">Home</a>
                                                 </h4>
                                             </div>
                                         </div>
@@ -111,7 +111,7 @@
                                                 <div class="panel-body">
                                                     <?php $pagesAboutUs = $this->load->get_var('pagesAboutUs'); if(!empty($pagesAboutUs) && count($pagesAboutUs) > 0) : ?>
                                                         <?php foreach ($pagesAboutUs as $array) : ?>
-                                                            <a href="<?php echo base_url_lang("page/about/".$array['id'])?>"><?php echo $array['title'] ?></a>
+                                                            <a href="<?php echo base_url_lang('page/about/' . $array['id']) ?>"><?php echo $array['title'] ?></a>
                                                         <?php endforeach; ?>
                                                     <?php else: ?>
                                                         <a href="#">no found data</a>
@@ -129,7 +129,7 @@
                                                 <div class="panel-body">
                                                     <?php $category=$this->load->get_var('category'); if (!empty($category) && count($category) > 0) : ?>
                                                     <?php foreach ($category as $array) : ?>
-                                                        <a href="/portfolio/category/<?php echo $array['id'] ?>"><?php echo $array['name'] ?></a>
+                                                    <a href="<?php echo base_url('portfolio/category/' . $array['id']) ?>"><?php echo $array['name'] ?></a>
                                                     <?php endforeach; ?>
                                                     <?php else : ?>
                                                         <a href="#">no found data</a>
@@ -140,7 +140,7 @@
                                         <div class="panel panel-default">
                                               <div class="panel-heading">
                                                 <h4 class="panel-title">
-                                                    <a data-toggle="" data-parent="#accordion" href="/page/contact">Contact</a>
+                                                    <a data-toggle="" data-parent="#accordion" href="<?php echo base_url('page/contact') ?>">Contact</a>
                                                 </h4>
                                               </div>
                                         </div>
