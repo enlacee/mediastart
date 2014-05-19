@@ -10,7 +10,7 @@
             $urlImg = $latestNewsUrl . $imageNameThumb;
         ?>    
         <div class="latesNewsBox">
-            <div class="latesNewImg"><a href="/page/index/<?php echo $array['id'] ?>" title="<?php echo $array['title']?>" target="">
+            <div class="latesNewImg"><a href="<?php echo base_url('page/index/' . $array['id']) ?>" title="<?php echo $array['title']?>" target="">
                     <img src="<?php echo $urlImg ?>" width="300" height="275" class="img-responsive"
                          title="<?php echo $array['title']?>"/></a>
             </div>
@@ -20,7 +20,7 @@
                 <h3><?php echo $array['title']?></h3>
                 <p class="font12"><?php echo truncate_string($array['content'], 100, ' ', '')?></p>
                 <div class="readMoreComment">
-                    <span class="readMore"><a href="/page/index/<?php echo $array['id']?>" class="btn btn-tamam-ashxarh-ptut-eka-1 btn-xlarge font13">READ MORE</a></span>
+                    <span class="readMore"><a href="<?php echo base_url('page/index/' . $array['id']) ?>" class="btn btn-tamam-ashxarh-ptut-eka-1 btn-xlarge font13">READ MORE</a></span>
                     <span class="latesNewComment"><a href="javascript:voice(0)"><?php echo $array['comment_count']?> comment(s)</a></span>
                 </div>
             </div>
