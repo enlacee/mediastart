@@ -69,7 +69,8 @@ class Admin_banner extends MY_ControllerAdmin {
             $this->session->set_flashdata('flashMessage', "Added  correctly ".self::PAGE_TITLE);  
             redirect('admin_banner/index');
         } 
-
+        
+        $base_url = base_url('admin_banner/upload');
         $stringJs = <<<EOT
         $(function () {                
             // 02 - validate                
@@ -92,7 +93,7 @@ class Admin_banner extends MY_ControllerAdmin {
             // 03 - img
             $("#file").pekeUpload({
                 btnText : "Browse files...",
-                url : "/admin_banner/upload",                               
+                url : "{$base_url}",                               
                 //theme : 'bootstrap',
                 multi : false,                
                 allowedExtensions : "jpeg|jpg|png|gif",
@@ -141,6 +142,7 @@ EOT;
             redirect('admin_banner/index');
         }        
         
+        $base_url = base_url('admin_banner/upload/' . $id);
         $stringJs = <<<EOT
         $(function () {                
             // 02 - validate                
@@ -163,7 +165,7 @@ EOT;
             // 03 - img
             $("#file").pekeUpload({
                 btnText : "Browse files...",
-                url : "/admin_banner/upload/$id",                                
+                url : "{$base_url}",                                
                 //theme : 'bootstrap',
                 multi : false,                
                 allowedExtensions : "jpeg|jpg|png|gif",

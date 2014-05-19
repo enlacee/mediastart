@@ -1,5 +1,5 @@
 <div class="col-md-12">
-    <h1><?php echo $page_title; ?> : <a href="/admin_banner/add" class="btn btn-primary">Add</a></h1>                        
+    <h1><?php echo $page_title; ?> : <a href="<?php echo base_url('admin_banner/add') ?>" class="btn btn-primary">Add</a></h1>                        
 
         <table class="table table-hover table-striped table-condensed table-responsive table-bordered">
             <thead>    
@@ -28,9 +28,9 @@
                         <td><?php echo truncate_string($array['description'], 50, ' ', '') ?></td>
                         <td><img src="<?php echo $urlImg; ?>" class="img-responsive" width="100" height="150"></td>
                         <td class="text-center">
-                        <a href="/admin_banner/edit/<?php echo $array['id'] ?>"><img src="<?php echo getPublicUrl() ?>/images/actualizar.png" width="20" height="20" /></a>
+                            <a href="<?php echo base_url('admin_banner/edit/' . $array['id']) ?>"><img src="<?php echo getPublicUrl() ?>/images/actualizar.png" width="20" height="20" /></a>
                         &nbsp;
-                        <a href="/admin_banner/del/<?php echo $array['id'] ?>"><img src="<?php echo getPublicUrl() ?>/images/borrar.png" width="20" height="20" /></a>
+                        <a href="<?php echo base_url('admin_banner/del/' . $array['id']) ?>"><img src="<?php echo getPublicUrl() ?>/images/borrar.png" width="20" height="20" /></a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -52,28 +52,28 @@
                     <li class="active" ><a href="#">1</a></li>
 
                     <?php for ($i = $pag['page']+1; $i <= $pag['last_page']; $i++) : ?>
-                        <li><a href="/admin_banner/index/<?php echo $i;?>"><?php echo $i;?></a></li>
+                    <li><a href="<?php echo base_url('admin_banner/index/' . $i) ?>"><?php echo $i;?></a></li>
                     <?php endfor; ?>                    
 
                     <?php if ($pag['last_page'] > $pag['page'] ) : ?>
-                        <li class="next"><a href="/admin_banner/index/<?php echo $nextpage;?>" >Next &raquo;</a></li>
+                    <li class="next"><a href="<?php echo base_url('admin_banner/index/'. $nextpage) ?>" >Next &raquo;</a></li>
                     <?php else : ?>
                         <li class="disabled"><a href="#">Next &raquo;</a></li> 
                     <?php endif; ?>
 
                 <?php else : ?>
-                    <li class="previous"><a href="/admin_banner/index/<?php echo $prevpage;?>">&laquo; Previous</a></li>                   
+                        <li class="previous"><a href="<?php echo base_url('/admin_banner/index/' . $prevpage) ?>">&laquo; Previous</a></li>                   
 
                     <?php for($i= 1; $i<= $pag['last_page'] ; $i++) : ?>
                         <?php  if($pag['page'] == $i) : ?>
                             <li class="active"><a href="#"><?php echo $i;?></a></li>
                         <?php else : ?>
-                            <li><a href="/admin_banner/index/<?php echo $i;?>" ><?php echo $i;?></a></li>
+                            <li><a href="<?php echo base_url('admin_banner/index/' . $i) ?>" ><?php echo $i;?></a></li>
                         <?php endif; ?>
                     <?php endfor; ?>
 
                     <?php if ($pag['last_page'] > $pag['page']) : ?>
-                        <li><a href="/admin_banner/index/<?php echo $nextpage;?>">Next &raquo;</a></li>
+                        <li><a href="<?php echo base_url('admin_banner/index/' . $nextpage) ?>">Next &raquo;</a></li>
                     <?php else : ?>
                         <li class="disabled"><a href="#">Next &raquo;</a></li>
                     <?php endif; ?>     
