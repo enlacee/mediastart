@@ -70,6 +70,7 @@ class Admin_lastwork extends MY_ControllerAdmin {
             redirect('admin_lastwork/index');
         }        
         
+        $base_url = base_url("admin_lastwork/upload");
         $stringJs = <<<EOT
         $(function () { 
             // 01 - editor
@@ -106,7 +107,7 @@ class Admin_lastwork extends MY_ControllerAdmin {
             // 03 - img
             $("#file").pekeUpload({
                 btnText : "Browse files...",
-                url : "/admin_lastwork/upload",                              
+                url : "{$base_url}",                              
                 //theme : 'bootstrap',
                 multi : false,                
                 allowedExtensions : "jpeg|jpg|png|gif",
@@ -162,6 +163,7 @@ EOT;
             redirect('admin_lastwork/index');
         }        
         
+        $base_url = base_url("admin_lastwork/upload/{$id}");
         $stringJs = <<<EOT
         $(function () { 
             // 01 - editor
@@ -198,7 +200,7 @@ EOT;
             // 03 - img
             $("#file").pekeUpload({
                 btnText : "Browse files...",
-                url : "/admin_lastwork/upload/$id",                              
+                url : "{$base_url}",                              
                 //theme : 'bootstrap',
                 multi : false,                
                 allowedExtensions : "jpeg|jpg|png|gif",

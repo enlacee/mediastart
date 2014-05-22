@@ -68,6 +68,7 @@ class Admin_portfolio extends MY_ControllerAdmin {
             redirect('admin_portfolio/index');
         } 
 
+        $base_url = base_url("admin_portfolio/upload");
         $stringJs = <<<EOT
         $(function () {                
             // 02 - validate                
@@ -90,7 +91,7 @@ class Admin_portfolio extends MY_ControllerAdmin {
             // 03 - img
             $("#file").pekeUpload({
                 btnText : "Browse files...",
-                url : "/admin_portfolio/upload",                               
+                url : "{$base_url}",                               
                 //theme : 'bootstrap',
                 multi : false,                
                 allowedExtensions : "jpeg|jpg|png|gif",
@@ -154,6 +155,7 @@ EOT;
             redirect('admin_portfolio/index');
         }        
         
+        $base_url = base_url("admin_portfolio/upload/{$id}");
         $stringJs = <<<EOT
         $(function () {                
             // 02 - validate                
@@ -176,7 +178,7 @@ EOT;
             // 03 - img
             $("#file").pekeUpload({
                 btnText : "Browse files...",
-                url : "/admin_portfolio/upload/$id",                                
+                url : "{$base_url}",                                
                 //theme : 'bootstrap',
                 multi : false,                
                 allowedExtensions : "jpeg|jpg|png|gif",

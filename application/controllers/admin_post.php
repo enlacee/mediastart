@@ -69,6 +69,7 @@ class Admin_post extends MY_ControllerAdmin {
             redirect('admin_post/post');
         }        
         
+        $base_url = base_url("admin_post/upload/{$id}");
         $stringJs = <<<EOT
         $(function () {
             // 01 - editor
@@ -105,7 +106,7 @@ class Admin_post extends MY_ControllerAdmin {
             // 03 - img
             $("#file").pekeUpload({
                 btnText : "Browse files...",
-                url : "/admin_post/upload/$id",
+                url : "{$base_url}",
                 data:{uno : "uno"},                
                 //theme : 'bootstrap',
                 multi : false,
@@ -179,6 +180,7 @@ EOT;
             redirect('admin_post/post');
         } 
 
+        $base_url = base_url('admin_post/upload');
         $stringJs = <<<EOT
         $(function () {
             // 01 - editor
@@ -215,7 +217,7 @@ EOT;
             // 03 - img
             $("#file").pekeUpload({
                 btnText : "Browse files...",
-                url : "/admin_post/upload",                               
+                url : "{$base_url}",                               
                 //theme : 'bootstrap',
                 multi : false,                
                 allowedExtensions : "jpeg|jpg|png|gif",
@@ -311,8 +313,9 @@ EOT;
             $this->cleanCache();
             $this->session->set_flashdata('flashMessage', "updated correctly Page. Id (<b>$id</b>)");  
             redirect('admin/dashboard');
-        }        
+        }       
         
+        $base_url = base_url("admin_post/upload/{$id}");
         $stringJs = <<<EOT
         $(function () {
             // 01 - editor
@@ -349,7 +352,7 @@ EOT;
             // 03 - img
             $("#file").pekeUpload({
                 btnText : "Browse files...",
-                url : "/admin_post/upload/$id",                               
+                url : "{$base_url}",                               
                 //theme : 'bootstrap',
                 multi : false,                
                 allowedExtensions : "jpeg|jpg|png|gif",
@@ -429,12 +432,13 @@ EOT;
             redirect('admin/dashboard');
         }        
         
+        $base_url = base_url("admin_post/upload/{$id}");
         $stringJs = <<<EOT
         ;$(function () {
             // 01 - img
             $("#file").pekeUpload({
                 btnText : "Browse files...",
-                url : "/admin_post/upload/$id",                               
+                url : "{$base_url}",                               
                 //theme : 'bootstrap',
                 multi : false,                
                 allowedExtensions : "jpeg|jpg|png|gif",

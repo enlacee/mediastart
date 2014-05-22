@@ -1,7 +1,7 @@
 <div class="col-md-12">
     <h1><?php echo (isset($page_title) && !empty($page_title)) ? $page_title : '' ?></h1>
     <?php if (isset($data) && !empty($data) && is_array($data)) : ?>
-        <form name="form" id="form" method="post" action="/admin_post/page/<?php echo $data['id'] ?>/true">
+    <form name="form" id="form" method="post" action="<?php echo base_url("admin_post/page/".$data['id']."/true") ?>">
         <table class="table table-hover table-striped table-condensed table-responsive table-bordered" style="background-image:none !important;">
             <tbody>
                 

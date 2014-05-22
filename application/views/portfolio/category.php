@@ -47,28 +47,28 @@
                     <li class="active" ><a href="#">1</a></li>
                     
                     <?php for ($i = $pag['page']+1; $i <= $pag['last_page']; $i++) : ?>
-                    <li><a href="<?php echo base_url('portfolio/category/'. $category_id . '/'. $i) ?>"><?php echo $i;?></a></li>
+                    <li><a href="<?php echo base_url("portfolio/category/{$category_id}/{$i}") ?>"><?php echo $i;?></a></li>
                     <?php endfor; ?>                    
                     
                     <?php if ($pag['last_page'] > $pag['page'] ) : //Y SI LA ULTIMA PÁGINA ES MAYOR QUE LA ACTUAL MUESTRO EL BOTON NEXT O LO DESHABILITO ?>
-                        <li class="next"><a href="<?php echo base_url('portfolio/category/' . $category_id . '/' . $nextpage) ?>" >Next &raquo;</a></li>
+                        <li class="next"><a href="<?php echo base_url("portfolio/category/{$category_id}/{$nextpage}") ?>" >Next &raquo;</a></li>
                     <?php else : ?>
                         <li class="disabled"><a href="#">Next &raquo;</a></li> 
                     <?php endif; ?>
                     
                 <?php else : //EN CAMBIO SI NO ESTAMOS EN LA PÁGINA UNO HABILITO EL BOTON DE PREVIUS Y MUESTRO LAS DEMÁS ?>
-                        <li class="previous"><a href="<?php echo base_url('portfolio/category/' . $category_id . '/' . $prevpage) ?>">&laquo; Previous</a></li>                   
+                        <li class="previous"><a href="<?php echo base_url("portfolio/category/{$category_id}/{$prevpage}") ?>">&laquo; Previous</a></li>                   
                 
                     <?php for($i= 1; $i<= $pag['last_page'] ; $i++) : ?>
                         <?php  if($pag['page'] == $i) :  //COMPRUEBO SI ES LA PÁGINA ACTIVA O NO ?>
                             <li class="active"><a href="#"><?php echo $i;?></a></li>
                         <?php else : ?>
-                            <li><a href="<?php echo base_url('portfolio/category/' . $category_id . '/' . $i) ?>" ><?php echo $i;?></a></li>
+                            <li><a href="<?php echo base_url("portfolio/category/{$category_id}/{$i}") ?>" ><?php echo $i;?></a></li>
                         <?php endif; ?>
                     <?php endfor; ?>
                             
                     <?php if ($pag['last_page'] > $pag['page']) : //Y SI NO ES LA ÚLTIMA PÁGINA ACTIVO EL BOTON NEXT ?>
-                            <li><a href="<?php echo base_url('portfolio/category/' . $category_id . '/' . $nextpage) ?>">Next &raquo;</a></li>
+                            <li><a href="<?php echo base_url("portfolio/category/{$category_id}/{$nextpage}") ?>">Next &raquo;</a></li>
                     <?php else : ?>
                         <li class="disabled"><a href="#">Next &raquo;</a></li>
                     <?php endif; ?>     

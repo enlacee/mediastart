@@ -71,7 +71,8 @@ class Admin_contact extends MY_ControllerAdmin {
             $this->session->set_flashdata('flashMessage', "Added  correctly Contact.");  
             redirect('admin_contact/index');
         } 
-
+        
+        $base_url = base_url("admin_contact/upload");
         $stringJs = <<<EOT
         $(function () {                
             // 02 - validate                
@@ -94,7 +95,7 @@ class Admin_contact extends MY_ControllerAdmin {
             // 03 - img
             $("#file").pekeUpload({
                 btnText : "Browse files...",
-                url : "/admin_contact/upload",                               
+                url : "{$base_url}",                               
                 //theme : 'bootstrap',
                 multi : false,
                 //showFilename : false,
@@ -146,8 +147,9 @@ EOT;
             $this->cleanCache();
             $this->session->set_flashdata('flashMessage', "updated correctly Contact. Id (<b>$id</b>)");  
             redirect('admin_contact/index');
-        }        
+        }
         
+        $base_url = base_url("admin_contact/upload/{$id}");
         $stringJs = <<<EOT
         $(function () {                
             // 02 - validate                
@@ -170,7 +172,7 @@ EOT;
             // 03 - img
             $("#file").pekeUpload({
                 btnText : "Browse files...",
-                url : "/admin_contact/upload/$id",
+                url : "{$base_url}",
                 data:{uno : "uno"},                
                 //theme : 'bootstrap',
                 multi : false,
@@ -253,10 +255,6 @@ EOT;
             'url' => $url
         );
         $this->saveSession($dataSession);
-    }    
-    
-    
-    
-    
+    }  
 
 }

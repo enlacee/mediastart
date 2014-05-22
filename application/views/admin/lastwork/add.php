@@ -1,7 +1,7 @@
 <div class="col-md-12">
     <h1><?php echo (isset($page_title) && !empty($page_title)) ? $page_title : '' ?></h1>
     
-        <form name="form" id="form" method="post" action="/admin_lastwork/add/true">
+    <form name="form" id="form" method="post" action="<?php echo base_url("admin_lastwork/add/true") ?>">
         <table class="table table-hover table-striped table-condensed table-responsive table-bordered" style="background-image:none !important;">
             <tbody>
                 
