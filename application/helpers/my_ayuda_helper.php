@@ -40,19 +40,20 @@ if(!function_exists('getPublicUrl'))
  * @param String $indice inicador de pagina seleccionada
  * @return Strign active
  */
-function selectActive($indice) {
-    // $this->router->fetch_class();
+function selectActive($indice) {    
     $CI =& get_instance();
     $page = $CI->uri->segment(1);
     $subPage = $CI->uri->segment(2);
+    $controller = $CI->router->fetch_class();
+    $method = $CI->router->fetch_method();
     $activeClass = '';
-
+    
     if (($page == FALSE && $subPage == FALSE && $indice == 'index' ) || $indice == $page) { // index
         $activeClass = 'active';
 
-    } else if ($page == 'page') {
+    } else if ($page == 'page' || $controller == 'page') {
 
-        if ($indice == $subPage) { // about
+        if ($indice == $subPage || $indice == $method) { // about
             $activeClass = 'active';
 
         } elseif ($indice == $subPage) { // contact
