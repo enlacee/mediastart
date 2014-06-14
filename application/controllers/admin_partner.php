@@ -52,7 +52,7 @@ class Admin_partner extends MY_ControllerAdmin {
             $dataSession = $this->session->userdata('partner');
             $imgTmp = (isset($dataSession['img_tmp']) && is_array($dataSession['img_tmp'])) ? $dataSession['img_tmp'] : '';
             if (!empty($imgTmp)) {                                
-                $targetFile = $this->load->get_var('ourTeamPath') . $imgTmp['name'];
+                $targetFile = $this->load->get_var('partnerPath') . $imgTmp['name'];
                 if (!copy($imgTmp['path'], $targetFile)) { log_message("error", "failed to copy"); }
                 $dataPost['url_image'] = $imgTmp['name'];
                 $this->session->set_userdata('partner',''); // LIMPIAR IMAGEN
@@ -71,6 +71,7 @@ class Admin_partner extends MY_ControllerAdmin {
             redirect('admin_partner/index');
         } 
 
+        $base_url = base_url("admin_partner/upload");
         $stringJs = <<<EOT
         $(function () {                
             // 02 - validate                
@@ -93,7 +94,7 @@ class Admin_partner extends MY_ControllerAdmin {
             // 03 - img
             $("#file").pekeUpload({
                 btnText : "Browse files...",
-                url : "/admin_partner/upload",                               
+                url : "{$base_url}",
                 //theme : 'bootstrap',
                 multi : false,                
                 allowedExtensions : "jpeg|jpg|png|gif",
@@ -141,6 +142,7 @@ EOT;
             redirect('admin_partner/index');
         }        
         
+        $base_url = base_url("admin_partner/upload/{$id}");
         $stringJs = <<<EOT
         $(function () {                
             // 02 - validate                
@@ -163,7 +165,7 @@ EOT;
             // 03 - img
             $("#file").pekeUpload({
                 btnText : "Browse files...",
-                url : "/admin_partner/upload/$id",                                
+                url : "{$base_url}",                                
                 //theme : 'bootstrap',
                 multi : false,                
                 allowedExtensions : "jpeg|jpg|png|gif",

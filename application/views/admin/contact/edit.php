@@ -25,7 +25,9 @@
                 <tr>
                   <td class="text-right tableBGTD fontBold">Cargo:</td>
                   <td class="text-left">
+                    <span class="pdRight20 center-block">
                     <input type="text" name="cargo" id="cargo" class="form-control" value="<?php echo $data['cargo'] ?>"/>
+                    </span>
                   </td>
                 </tr>
                 <tr>
@@ -55,11 +57,13 @@
                 <tr>
                   <td class="text-right tableBGTD fontBold">Status:</td>
                   <td class="text-left">
-                    <select name="status" id="status" class="form-control input-sm">
-                    <option value="">Select</option>                    
-                    <option <?php echo ($data['status'] == Our_team_model::STATUS_TRUE ) ? 'selected="selected"' : '';?> value="1">On</option>
-                    <option <?php echo ($data['status'] == Our_team_model::STATUS_FALSE ) ? 'selected="selected"' : '';?>value="0">Off</option>
-                    </select>
+                    <span class="pdRight20 center-block">
+                        <select name="status" id="status" class="form-control input-sm">
+                        <option value="">Select</option>                    
+                        <option <?php echo ($data['status'] == Our_team_model::STATUS_TRUE ) ? 'selected="selected"' : '';?> value="1">On</option>
+                        <option <?php echo ($data['status'] == Our_team_model::STATUS_FALSE ) ? 'selected="selected"' : '';?>value="0">Off</option>
+                        </select>
+                    </span>
                   </td>
                 </tr>                 
                 

@@ -30,8 +30,12 @@
                         
                         <!--ColumnRight-->
                         <div class="col-md-4" id="rightColBG"> 
-                            <div class="rightCtn pdTop10">                                
-                                <?php require_once "layout-partial/columRight_ourTeam.php"; ?>
+                            <div class="rightCtn pdTop10">
+                                <?php if (isset($columRight)) : // columRight_ourTeam.php ?>
+                                    <?php require_once "layout-partial/columRight_{$columRight}.php"; ?>
+                                <?php else :?>
+                                    <?php require_once "layout-partial/columRight_ourTeam.php"; ?>
+                                <?php endif; ?>                                
                             </div>            
                         </div>                          
                         <!--End ColumnRight-->

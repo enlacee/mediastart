@@ -24,14 +24,9 @@
                 <tr>
                   <td class="text-right tableBGTD fontBold">Cargo:</td>
                   <td class="text-left"><label for="editor"></label>
-                    <select name="cargo" id="cargo" class="form-control input-sm">
-                    <option value="">-</option>
-                    <?php if ($this->load->get_var('cargos')) : ?>
-                        <?php foreach ($cargos as $array) : ?>                        
-                        <option value="<?php echo $array['id'] ?>"><?php echo $array['name'] ?></option>
-                        <?php endforeach;?>                        
-                    <?php endif; ?>
-                    </select>
+                    <span class="pdRight20 center-block">
+                    <input type="text" name="cargo" id="cargo" class="form-control" value=""/>
+                    </span>
                 </tr>
                 <tr>
                     <td width="15%" class="text-right tableBGTD fontBold">Phone:</td>

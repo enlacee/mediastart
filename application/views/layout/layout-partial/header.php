@@ -1,13 +1,13 @@
-        <!-- flashMessage -->
+<!-- flashMessage -->
         <div class="container">
-            <?php $flashMessage= $this->load->get_var('flashMessage'); if(!empty($flashMessage)) : ?>   
+            <?php $flashMessage= $this->load->get_var('flashMessage'); if(!empty($flashMessage)) : ?>
             <div class="alert alert-warning fade in">
                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                   <?php echo $flashMessage; ?>
             </div>
             <?php endif; ?>
         </div>
-        
+
         <!--Header-->
             <header>
                 <div class="row clearfix">
@@ -23,14 +23,14 @@
                                     <?php $id_lang = $this->load->get_var('id_lang'); if(!empty($id_lang) && isset($id_lang)) : ?>
                                     <a href="#"><img src="<?php echo getPublicUrl() ?>/images/iconos/<?php echo $id_lang ?>.png" width="18" height="12" /><?php echo $id_lang ?></a>
                                     <?php endif; ?>
-                                    
+
                                     <ul class="menuClass dropdown-menu" role="menu" aria-labelledby="dLabel">
                                         <?php $language = $this->load->get_var('language'); if(!empty($language) && count($language) > 0) : ?>
                                             <?php foreach ($language as $array) : ?>
                                         <li><a href="<?php echo base_url('language/set/'.$array['short_name']) ?>"><img src="<?php echo getPublicUrl() ?>/images/iconos/<?php echo $array['short_name']?>.png" width="18" height="12" /><?php echo $array['name'] ?></a></li>
-                                            <?php endforeach; ?> 
-                                        <?php else : ?>                                              
-                                            <li><a href="#"><img src="" width="18" height="12" />Not found data.</a></li>                                                
+                                            <?php endforeach; ?>
+                                        <?php else : ?>
+                                            <li><a href="#"><img src="" width="18" height="12" />Not found data.</a></li>
                                         <?php endif;?>
                                     </ul>
 
@@ -41,7 +41,7 @@
                     </div>
                 </div>
             </header><!--End Header-->
-            
+
             <!--SectionMenu-->
             <section>
                 <div class="row clearfix">
@@ -60,8 +60,9 @@
 
                                 <div class="floatRight nav-main" style="height: auto; margin-right:0;">
                                   <ul class="nav navbar-nav">
-                                    <li class="active"><a href="<?php echo base_url() ?>">Home</a></li>                                    
-                                    <li class="dropdown">
+                                    <li class="<?php echo selectActive('index'); ?>"><a href="<?php echo base_url() ?>">Home</a></li>
+                                    
+                                    <li class="dropdown <?php echo selectActive('about'); ?>">
                                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">About US</a>
                                         <ul class="dropdown-menu col-xs-12 col-sm-12" role="menu" aria-labelledby="dLabel">
                                             <?php $pagesAboutUs = $this->load->get_var('pagesAboutUs'); if(!empty($pagesAboutUs) && count($pagesAboutUs) > 0) : ?>
@@ -71,10 +72,10 @@
                                             <?php else: ?>
                                                 <li><a href="#">no found data</a></li>
                                             <?php endif; ?>
-                                        </ul>           
-                                    </li>                                    
-                                    
-                                    <li class="dropdown">
+                                        </ul>
+                                    </li>
+
+                                    <li class="dropdown <?php echo selectActive('portfolio'); ?>">
                                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">Portfolio
                                             <ul class="dropdown-menu col-xs-12 col-sm-12" role="menu" aria-labelledby="dLabel">
                                                 <?php $category=$this->load->get_var('category'); if (!empty($category) && count($category) > 0) : ?>
@@ -85,9 +86,10 @@
                                                     <li><a href="#">no found data</a></li>
                                                 <?php endif; ?>
                                             </ul>
-                                        </a>                
+                                        </a>
                                     </li>
-                                    <li><a href="<?php echo base_url('page/contact') ?>">Contacts</a></li>
+                                    
+                                    <li class="<?php echo selectActive('contact'); ?>"><a href="<?php echo base_url('page/contact') ?>">Contacts</a></li>                                    
                                   </ul>
                                 </div><!--/.nav-collapse -->
 
@@ -147,7 +149,7 @@
                                     </div>
                                 </div><!-- reponsive menu -->
                             </div><!--/.container-fluid -->
-                        </div> 
+                        </div>
 
                     </div><!--End Col-md-12-->
                 </div><!--End Row-->

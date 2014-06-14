@@ -90,12 +90,44 @@ EOT;
         if (!empty($id)) {
             $data['portfolio'] = $this->Portfolio_model->get($id, '',  Portfolio_model::STATUS_TRUE);            
             $data['title'] = isset($data['portfolio']['title']) ? $data['portfolio']['title'] : NULL;
+            $data['columRight'] = 'relatedVideo';
+            $data['relatedVideo'] = array();
+            //category_id
+            $category_id = $data['portfolio']['category_id'];            
+            if ( isset($category_id) && $category_id > 0) {
+                $data['relatedVideo'] = $this->Portfolio_model->listPorfolio($category_id, Portfolio_model::STATUS_TRUE, $order = 'desc', $limit = '',$offset = '', $rows = FALSE);
+                
+                $dataDelete = $this->deleteRelatedVideo($data['relatedVideo'], $data['portfolio']['id']);
+                $data['relatedVideo'] = $dataDelete;
+            }
+            
+            
+            //var_dump($data['portfolio']); exit;
             
             $this->Portfolio_model->countView($id);
             $this->cleanCache();
-            $this->layout->setLayout('layout/layout_body');
-            $this->layout->view('portfolio/video', $data);
+            //$this->layout->setLayout('layout/layout_body'); //relatedVideo
+            //$this->layout->view('portfolio/video', $data);
+            
+        $this->layout->setLayout('layout/layout_contact');
+        $this->layout->view('portfolio/video', $data);
+            
         }
+    }
+    
+    private function deleteRelatedVideo($array , $id)
+    {
+        if (is_array($array) && count($array) > 0 && $id > 0) {
+            foreach ($array as $key => $value) {
+                if ($array[$key]['id'] == $id) {
+                    unset($array[$key]);
+                    break;
+                }
+            }            
+            $array = array_values($array);
+            //var_dump($array);exit;
+        }
+        return $array;
     }
     
 }

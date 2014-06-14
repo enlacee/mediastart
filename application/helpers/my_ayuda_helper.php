@@ -35,4 +35,33 @@ if(!function_exists('getPublicUrl'))
     }
 }*/
 
-//end application/helpers/ayuda_helper.php
+/**
+ * Ayuda a seleccionar menu (MODO DINAMICO)
+ * @param String $indice inicador de pagina seleccionada
+ * @return Strign active
+ */
+function selectActive($indice) {
+    // $this->router->fetch_class();
+    $CI =& get_instance();
+    $page = $CI->uri->segment(1);
+    $subPage = $CI->uri->segment(2);
+    $activeClass = '';
+
+    if (($page == FALSE && $subPage == FALSE && $indice == 'index' ) || $indice == $page) { // index
+        $activeClass = 'active';
+
+    } else if ($page == 'page') {
+
+        if ($indice == $subPage) { // about
+            $activeClass = 'active';
+
+        } elseif ($indice == $subPage) { // contact
+            $activeClass = 'active';
+        }
+
+    } else if ( $indice == $page) { // portfolio
+        $activeClass = 'active';
+    }
+
+    return $activeClass; 
+}
