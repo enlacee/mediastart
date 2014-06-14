@@ -60,7 +60,7 @@ class Admin_contact extends MY_ControllerAdmin {
             }
 
             $dataPost ['name'] = $this->input->post('name');
-            $dataPost ['cargo_id'] = $this->input->post('cargo');
+            $dataPost ['cargo'] = $this->input->post('cargo');
             $dataPost ['phone'] = $this->input->post('phone');
             $dataPost ['email'] = $this->input->post('email');
             $dataPost ['skype'] = $this->input->post('skype');
@@ -135,7 +135,7 @@ EOT;
             }
 
             $dataPost ['name'] = $this->input->post('name');
-            $dataPost ['cargo_id'] = $this->input->post('cargo');
+            $dataPost ['cargo'] = $this->input->post('cargo');
             $dataPost ['phone'] = $this->input->post('phone');
             $dataPost ['email'] = $this->input->post('email');
             $dataPost ['skype'] = $this->input->post('skype');

@@ -25,9 +25,9 @@ class Our_team_model  extends CI_Model {
         $keyCache = __CLASS__ . __FUNCTION__ .'_'. $strRows.'_'.$order.$limit.'_'.$offset;     
                 
         if (($rs = $this->cache->file->get($keyCache)) == false) {
-            $this->db->select("$this->_name.*, ac_cargos.name AS cargo");
+            $this->db->select("$this->_name.*");
             $this->db->from($this->_name);
-            $this->db->join('ac_cargos', "$this->_name.cargo_id = ac_cargos.id", 'left'); //'a.category_id = c.categories.id'
+
             if(!empty($status)) {
                 $this->db->where("$this->_name.status", $status);
             }            

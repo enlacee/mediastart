@@ -37,13 +37,7 @@ class MY_ControllerAdmin extends MY_Controller {
         $this->load->model('Post_model');
         $pages = array();
         $pages['pages'] = $this->Post_model->listPost('page', Post_model::STATUS_TRUE, 'desc', 2);
-        $this->load->vars($pages);
-        
-        // load cargos for Contact (ours teams)
-        $this->load->model('Cargo_model');
-        $cargos['cargos'] = $this->Cargo_model->listCargo();
-        $this->load->vars($cargos);
-        
+        $this->load->vars($pages);        
     }
     
     /**

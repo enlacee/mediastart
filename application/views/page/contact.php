@@ -21,9 +21,9 @@
         <div class="ourTeamContactImageNextCtn">
             <h3><?php echo $array['name'] ?></h3>
             <p class="mayuscula"><?php echo $array['cargo'] ?></p>
-            <p>Telefono: <?php echo $array['phone'] ?></p>
-            <p><?php echo $array['email'] ?></p>
-            <p>Skyper: <?php echo $array['skype'] ?></p>
+            <p>Phone: <?php echo $array['phone'] ?></p>
+            <p>Email: <?php echo $array['email'] ?></p>
+            <p>Skype: <?php echo $array['skype'] ?></p>
         </div>
     </div>
     <!--End ourTeamContact-->

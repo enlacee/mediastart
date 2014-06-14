@@ -75,7 +75,7 @@
                                     </li>                                    
                                     
                                     <li class="dropdown">
-                                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">Porfolio
+                                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">Portfolio
                                             <ul class="dropdown-menu col-xs-12 col-sm-12" role="menu" aria-labelledby="dLabel">
                                                 <?php $category=$this->load->get_var('category'); if (!empty($category) && count($category) > 0) : ?>
                                                 <?php foreach ($category as $array) : ?>

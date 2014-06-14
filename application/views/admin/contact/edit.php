@@ -25,15 +25,7 @@
                 <tr>
                   <td class="text-right tableBGTD fontBold">Cargo:</td>
                   <td class="text-left">
-                    <select name="cargo" id="cargo" class="form-control input-sm">
-                    <option value="">-</option>
-                    <?php if ($this->load->get_var('cargos')) : ?>
-                        <?php foreach ($cargos as $array) : ?>
-                        <?php $select = ($data['cargo_id'] == $array['id']) ? 'selected="selected"' : '';?>
-                        <option <?php echo $select ?> value="<?php echo $array['id'] ?>"><?php echo $array['name'] ?></option>
-                        <?php endforeach;?>                        
-                    <?php endif; ?>
-                    </select>
+                    <input type="text" name="cargo" id="cargo" class="form-control" value="<?php echo $data['cargo'] ?>"/>
                   </td>
                 </tr>
                 <tr>
