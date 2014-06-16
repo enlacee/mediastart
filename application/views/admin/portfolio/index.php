@@ -6,7 +6,8 @@
                 <tr>
                     <th width="3%" class="text-center">ID</th>
                     <th width="30%">Name</th>
-                    <th width="47%">Category</th>
+                    <th width="32%">Category</th>
+                    <th width="15%">Copiar URL</th>
                     <!--<th width="10%">Image</th>-->
                     <th width="10%" class="text-center">Accion</th>
                 </tr>
@@ -26,6 +27,8 @@
                         <td class="text-center"><?php echo $array['id']?></td>
                         <td><?php echo truncate_string($array['title'], 30, ' ', '') ?></td>
                         <td><?php echo truncate_string($array['category'], 50, ' ', '') ?></td>
+                        <td><input type="text" class="form-control" 
+                                   value="<?php echo base_url("portfolio/video/".$array['id']) ?>"></td>
                         <!--<td><img src="<?php echo $urlImg; ?>" class="img-responsive" width="100" height="150"></td>-->
                         <td class="text-center">
                             <a href="<?php echo base_url("admin_portfolio/edit/" . $array['id']) ?>"><img src="<?php echo getPublicUrl() ?>/images/actualizar.png" width="20" height="20" /></a>
