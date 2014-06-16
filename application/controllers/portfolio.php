@@ -101,17 +101,11 @@ EOT;
                 $data['relatedVideo'] = $dataDelete;
             }
             
-            
-            //var_dump($data['portfolio']); exit;
-            
             $this->Portfolio_model->countView($id);
             $this->cleanCache();
-            //$this->layout->setLayout('layout/layout_body'); //relatedVideo
-            //$this->layout->view('portfolio/video', $data);
-            
-        $this->layout->setLayout('layout/layout_contact');
-        $this->layout->view('portfolio/video', $data);
-            
+            //$this->layout->setLayout('layout/layout_body');         
+            $this->layout->setLayout('layout/layout_contact');
+            $this->layout->view('portfolio/video', $data);
         }
     }
     

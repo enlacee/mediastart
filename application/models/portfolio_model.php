@@ -120,12 +120,11 @@ class Portfolio_model  extends CI_Model {
     // contador de visitas
     public function countView($id)
     {
-        $data = $this->get($id);
-        if(array_key_exists('count_view', $data)) {
+        $data = $this->get($id);        
+        if (isset($data['count_view']) && array_key_exists('count_view', $data)) {
             $counter = ((int)$data['count_view']) + 1;        
             $this->db->where('id', $id);
-            $this->db->update( $this->_name, array('count_view' => $counter));
-            
+            $this->db->update( $this->_name, array('count_view' => $counter));            
         }
     }    
     
