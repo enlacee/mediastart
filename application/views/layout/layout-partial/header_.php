@@ -89,7 +89,7 @@
                                         </a>
                                     </li>
                                     
-                                    <li class="<?php echo selectActive('contact'); ?>"><a href="<?php echo base_url('page/contact') ?>">TEAM</a></li>                                    
+                                    <li class="<?php echo selectActive('contact'); ?>"><a href="<?php echo base_url('page/contact') ?>">Contacts</a></li>                                    
                                   </ul>
                                 </div><!--/.nav-collapse -->
 
@@ -142,7 +142,7 @@
                                         <div class="panel panel-default">
                                               <div class="panel-heading">
                                                 <h4 class="panel-title">
-                                                    <a data-toggle="" data-parent="#accordion" href="<?php echo base_url('page/contact') ?>">TEAM</a>
+                                                    <a data-toggle="" data-parent="#accordion" href="<?php echo base_url('page/contact') ?>">Contact</a>
                                                 </h4>
                                               </div>
                                         </div>

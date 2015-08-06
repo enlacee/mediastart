@@ -46,10 +46,6 @@ class Index extends MY_Controller {
             'latestNews' => $latestNews
         );
         
-
-        //$this->loadStatic(array('css' => '/css/anibal.css'));
-        //$this->loadStatic(array('js' => '/js/anibal.js'));        
-        //$this->loadStatic(array("jstring" => $string));
         $this->layout->setLayout('layout/layout_main');
         $this->layout->view('index/index', $data);
     }

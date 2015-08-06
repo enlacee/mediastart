@@ -61,7 +61,6 @@ class Admin_lastwork extends MY_ControllerAdmin {
             }
 
             $dataPost ['title'] = $this->input->post('title');
-			$dataPost ['enlace'] = $this->input->post('enlace');//Add
             $dataPost ['description'] = $this->input->post('editor');
             $dataPost ['status'] = Work_model::STATUS_TRUE;
             $dataPost ['created_at'] = date('Y-m-d H:i:s');
@@ -155,7 +154,6 @@ EOT;
             }
 
             $dataPost ['title'] = $this->input->post('title');
-			$dataPost ['enlace'] = $this->input->post('enlace'); //Add
             $dataPost ['description'] = $this->input->post('editor');
             $dataPost ['status'] = $this->input->post('status');
             $dataPost ['updated_at'] = date('Y-m-d H:i:s');

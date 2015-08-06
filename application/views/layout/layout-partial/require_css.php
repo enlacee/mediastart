@@ -2,6 +2,7 @@
 <link rel="stylesheet" type="text/css" href="<?php echo getPublicUrl() ?>/css/style.css">
 <link rel="stylesheet" type="text/css" href="<?php echo getPublicUrl() ?>/css/redmond/jquery-ui-1.10.4.custom.min.css"/>
 <link rel="stylesheet" type="text/css" href="<?php echo getPublicUrl() ?>/source/jquery.fancybox.css">
+<link rel="stylesheet" type="text/css" href="<?php echo getPublicUrl() ?>/mxshared/css/mxshared.min.css"/>
 
 <?php if (isset($css)): ?>
     <?php foreach ($css as $key => $value): ?>

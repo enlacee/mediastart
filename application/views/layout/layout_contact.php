@@ -23,7 +23,7 @@
                         
                         
                         <!--ColumnLef-->
-                        <div class="col-md-8 pd0">
+                        <div class="col-md-8 pd10">
                             <?php echo $content_for_layout; ?>
                         </div>
                         <!--End ColumnLef-->                        

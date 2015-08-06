@@ -35,7 +35,7 @@
         <?php endforeach; ?>
             
         <!--Paginador-->
-        <div class="text-center pdTop10" id="paginador">
+        <div class="text-center pdTop50" id="paginador">
             <ul class="pagination">
                 <?php 
                 //echo "<pre>"; print_r($pag); echo "</pre>";                

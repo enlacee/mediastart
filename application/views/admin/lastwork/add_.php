@@ -9,15 +9,10 @@
                     <td width="15%" class="text-right tableBGTD fontBold">Title:</td>
                     <td width="85%" class="text-left">
                         <span class="pdRight20 center-block">
-                            <input type="text" name="title" id="title" class="form-control" placeholder="Coloque su titulo" value="">
+                            <input type="text" name="title" id="title" class="form-control" placeholder="title"
+                                   value="">
                         </span>
                     </td>
-                </tr>
-                <tr>
-                  <td class="text-right tableBGTD fontBold">Enlace:</td>
-                  <td class="text-left"><span class="pdRight20 center-block">
-                    <input type="text" name="enlace" id="enlace" class="form-control" placeholder="Coloque su enlace" value="" />
-                  </span></td>
                 </tr>
                 <tr>
                     <td width="15%" class="text-right tableBGTD fontBold">Image:</td>

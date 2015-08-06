@@ -19,6 +19,7 @@
                         <span class="pdRight20 center-block">
                             <input type="file" id="file" name="file" />
                         </span>
+                        <div class="alert alert-danger mgTop10 mgBottom1">Image Size <strong>Width:</strong> 175px and <strong>Height:</strong> 170px</div>
                     </td>
                 </tr>
                 <tr>

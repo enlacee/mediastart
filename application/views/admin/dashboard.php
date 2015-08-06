@@ -1,8 +1,8 @@
 <!--Left-->
 <div class="col-md-8">
-    <h1>Contenido</h1>
+    <h1>Bienvenido!!!</h1>
     <div class="borderEfecto">
-        <p>Muy Pronto estaremos agregando funcionalidades a esta secci&oacute;n.</p>
+        <p>Area de administraci&oacute;n.</p>
     </div>
 </div><!--End Left-->
 
@@ -15,6 +15,8 @@
         <p><strong>Email:</strong></p> 
         <p>contacto@tb.com.ve - milindex@gmail.com</p>
         <p><strong>Tel&eacute;fonos:</strong></p>
-        <p>+58 (0281) - 996.93.65</p>
+        <p>+58 (0424) - 842.94.22 - (0281) - 996.93.65</p>
+        <p><strong>PIN:</strong> 796A23A6</p>
+        <p><strong>WhatsApp:</strong> +584248429422</p>
     </div>
 </div><!--End Right-->

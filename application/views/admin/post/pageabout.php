@@ -6,38 +6,52 @@
             <tbody>
                 
                 <tr>
-                    <td width="15%" class="text-right tableBGTD fontBold">Title:</td>
-                    <td width="85%" class="text-left">
+                    <td width="20%" valign="top" class="text-right tableBGTD fontBold">Title:</td>
+                    <td width="80%" class="text-left">
                         <span class="pdRight20 center-block">
                             <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Name"
                                    value="<?php echo $data['title'] ?>">
-                        </span>
-                    </td>
-                </tr>
+                      </span>
+                  </td>
+              </tr>
                 <tr>
-                    <td width="15%" class="text-right tableBGTD fontBold">Image:</td>
-                    <td width="85%" class="text-left">
+                    <td width="20%" valign="top" class="text-right tableBGTD fontBold">Image:</td>
+                    <td width="80%" class="text-left">
                         <span class="pdRight20 center-block">
                             <input type="file" id="file" name="file" />
                         </span>
+                        <div class="alert alert-danger mgTop10 mgBottom1">Image Size <strong>Width:</strong> 630px and <strong>Height:</strong> 320px</div>
                     </td>
                 </tr>
                 <tr>
-                  <td class="text-right tableBGTD fontBold">Content:</td>
+                  <td valign="top" class="text-right tableBGTD fontBold">Content:</td>
                   <td class="text-left">
                   <textarea class="form-control" name="editor" id="editor"><?php echo $data['content'] ?></textarea>
                   </td>
                 </tr>
                 <tr>
-                  <td class="text-right tableBGTD fontBold">Others</td>
+                  <td valign="top" class="text-right tableBGTD fontBold">Others</td>
                   <td class="text-left">Language</td>
                 </tr>
                 
                 <!-- 01 -->                
                 <?php for($i = 1; $i <= 9; $i++) : ?>
                     <tr>
-                        <td width="15%" class="text-right tableBGTD fontBold">Title (<?php echo $i ?>):</td>
-                        <td width="85%" class="text-left">
+                        <td valign="top" width="20%" class="text-right tableBGTD fontBold">
+                        	Title (
+							<?php 
+								if($i == "1" ){ echo "ESPAÑOL"; } 
+								if($i == "2" ){ echo "FRANÇAIS"; } 
+								if($i == "3" ){ echo "DEUTSCH"; } 
+								if($i == "4" ){ echo "ITALIAN"; } 
+								if($i == "5" ){ echo "PORTUGUÊS"; } 
+								if($i == "6" ){ echo "РУССКИЙ Ruso"; } 
+								if($i == "7" ){ echo "简体中文 Chino"; } 
+								if($i == "8" ){ echo "العربية arabe"; } 
+								if($i == "9" ){ echo "日本語 Japon"; } 
+							?>):
+                        </td>
+                        <td width="80%" class="text-left">
                             <span class="pdRight20 center-block">
                                 <input type="text" name="nombre_<?php echo $i ?>" id="nombre_<?php echo $i ?>" class="form-control" placeholder="Name"
                                        value="<?php echo $data["title_$i"] ?>">
@@ -45,7 +59,22 @@
                         </td>
                     </tr>
                     <tr>
-                      <td class="text-right tableBGTD fontBold">Content (<?php echo $i ?>):</td>
+                      <td valign="top" class="text-right tableBGTD fontBold">
+                      
+                      	Content (
+							<?php 
+								if($i == "1" ){ echo "ESPAÑOL"; } 
+								if($i == "2" ){ echo "FRANÇAIS"; } 
+								if($i == "3" ){ echo "DEUTSCH"; } 
+								if($i == "4" ){ echo "ITALIAN"; } 
+								if($i == "5" ){ echo "PORTUGUÊS"; } 
+								if($i == "6" ){ echo "РУССКИЙ Ruso"; } 
+								if($i == "7" ){ echo "简体中文 Chino"; } 
+								if($i == "8" ){ echo "العربية arabe"; } 
+								if($i == "9" ){ echo "日本語 Japon"; } 
+							?>):
+                      
+                      </td>
                       <td class="text-left">
                           <textarea class="form-control" name="editor_<?php echo $i ?>" id="editor_<?php echo $i ?>"><?php echo $data["content_$i"] ?></textarea>
                       </td>
@@ -56,8 +85,8 @@
                 
                 
                 <tr>
-                    <td width="15%" class="text-right tableBGTD fontBold">&nbsp;</td>
-                    <td width="85%" class="text-left">
+                    <td width="20%" class="text-right tableBGTD fontBold">&nbsp;</td>
+                    <td width="80%" class="text-left">
                         <input type="submit" name="guardar" id="guardar" class="btn btn-success" value="Save" />&nbsp;
                         <input type="button" name="cancelar" id="cancelar" class="btn btn-primary" onClick="javascript:history.back()" value="Back" />
                     </td>

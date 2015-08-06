@@ -44,7 +44,7 @@ define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 | Title of web page and url of Images Server
 |
 */
-define('TITLE', 'MediaStart');
+define('TITLE', 'Mediastart');
 define('PUBLIC_URL', '/public');
 define('MEDIA_URL', '/public/static');
 /* End of file constants.php */

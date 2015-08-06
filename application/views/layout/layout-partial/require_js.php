@@ -4,6 +4,8 @@
     <script src="<?php echo getPublicUrl() ?>/js/jquery-ui-1.10.4.custom.min.js"></script>
     <script src="<?php echo getPublicUrl() ?>/js/jquery.ui.datepicker-es.min.js"></script>
     <script src="<?php echo getPublicUrl() ?>/source/jquery.fancybox.js"></script>
+  
+	<script type="text/javascript" src="<?php echo getPublicUrl() ?>/mxshared/js/mxshared.min.js"></script>
 
     <script type="text/javascript" src="<?php echo getPublicUrl() ?>/js/validate/jquery.validate.js"></script>
     <script type="text/javascript" src="<?php echo getPublicUrl() ?>/js/validate/jquery.metadata.js"></script>

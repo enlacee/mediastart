@@ -118,6 +118,29 @@ p,a,ul,li,ol,span,strong,table,thead,tbody,tr,td{
 	text-transform:capitalize;	
 }
 
+#myCarousel .carousel-inner .row .col-sm-3 a{
+	max-height:121px !important;
+	max-width:215px !important;
+	overflow:hidden;
+	display:block;
+}
+
+#myCarousel .carousel-control, #myCarousel2 .carousel-control {
+	width:3% !important;
+	padding-top:5% !important;
+}
+
+
+#myCarousel .carousel-inner .row .col-sm-3 a, #myCarousel2 .carousel-inner .row .col-sm-3 a{
+	max-height:121px !important;
+	max-width:215px !important;
+	overflow:hidden;
+	display:block;
+}
+
+#logo {
+	padding-left:25px;	
+}
 
 /*********************************************
 // BODY
@@ -170,6 +193,15 @@ p,a,ul,li,ol,span,strong,table,thead,tbody,tr,td{
 	padding:0;
 }
 
+.tabCustom .tab-content #myCarousel .row a img.img-responsive {
+	margin:0 auto;
+}
+
+.tabCustom .tab-content #myCarousel .row a img {
+	max-height:121px !important;
+	overflow:hidden !important;
+}
+
 .tabCustom #ulTab{
 	background:url(../images/tab/tabs.gif) repeat-x;	
 }
@@ -214,6 +246,7 @@ p,a,ul,li,ol,span,strong,table,thead,tbody,tr,td{
 
 #ctnBody #rightColBG {
 	background: url(../images/body/right_col.jpg) top center no-repeat #000;
+	min-height:700px;
 }
 
 .latesNewsBox {
@@ -344,6 +377,9 @@ p,a,ul,li,ol,span,strong,table,thead,tbody,tr,td{
 .porfolioCtn .porfolioCtnVideo .porfolioCtnVideoShow {
 	margin:0;
 	padding:0;
+	height:190px;
+	max-height:190px;
+	overflow:hidden;
 }
 
 .porfolioCtn .porfolioCtnVideo .porfolioCtnVideoShow img:hover {
@@ -1124,10 +1160,26 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#38373d', endC
 	.panel-body a {
 		display: block;
 		margin: 10px 0;
-		border-bottom: 1px solid #CCC;
+		border-bottom: 1px solid #2D2D2D;
 		padding-bottom: 12px;
 		text-decoration: none;
 		color: #ffffff;
+	}
+	
+	.panel-title{
+		background:url(../images/menu/menu-hover.gif) repeat-x;
+	}
+	
+	.panel-title a{
+		color:#979797;
+	}
+	
+	#accordion {
+		margin-top:12px;	
+	}
+	
+	.panel-body {
+		border-top:#424242 !important;
 	}
 	
 	.panel-body a:hover{

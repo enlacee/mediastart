@@ -15,11 +15,20 @@
                     </td>
                 </tr>
                 <tr>
+                  <td class="text-right tableBGTD fontBold">Enlace</td>
+                  <td class="text-left">
+                      <span class="pdRight20 center-block">
+                        <input type="text" name="enlace" id="enlace" class="form-control" placeholder="Coloque su enlace" value="<?php echo $data['enlace'] ?>" />
+                      </span>
+                  </td>
+                </tr>
+                <tr>
                     <td width="15%" class="text-right tableBGTD fontBold">Image:</td>
                     <td width="85%" class="text-left">
                         <span class="pdRight20 center-block">
                             <input type="file" id="file" name="file" />
                         </span>
+                        <div class="alert alert-danger mgTop10 mgBottom1">Image Size <strong>Width:</strong> 100px and <strong>Height:</strong> 100px</div>
                     </td>
                 </tr>
                 <tr>

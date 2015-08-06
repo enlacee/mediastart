@@ -32,7 +32,7 @@
                                 <h4>AREA DE CLIENTES</h4>
                                 <p><img src="<?php echo getPublicUrl() ?>/images/latest-news/image.jpg" width="206" height="123" class="img-responsive" /></p>
                                 <p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto relleno estándarpara paginas web.</p>
-                                <p><a href="#">LOG IN</a></p>
+                                <p><a href="#link" target="_blank">LOG IN</a></p>
                             </div>
                         </div>
                         <!--End Box-->
@@ -57,7 +57,7 @@
                                     <li><a href="#">Not found data.</a></li>
                                     <?php endif; ?>
                                 </ul>
-                                <p><a href="#">READ MORE</a></p>
+                                <?php /*?><p><a href="#">READ MORE</a></p><?php */?>
                             </div>
                         </div>
                         <!--End Box-->
