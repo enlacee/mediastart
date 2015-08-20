@@ -130,7 +130,8 @@ p,a,ul,li,ol,span,strong,table,thead,tbody,tr,td{
 
 /*Selecciones Idioma*/
 .selectIdioma {
-	font-family: 'Oswald', sans-serif !important;	
+	font-family: 'Oswald', sans-serif !important;
+    display: none;
 }
 
 .selectIdioma ul, li, a {

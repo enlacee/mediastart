@@ -17,7 +17,7 @@ class Admin_social extends MY_ControllerAdmin {
     * List all post
     */
     public function index ($page = 1)
-    {$this->output->enable_profiler(TRUE);
+    {
       	$limit = MY_ControllerAdmin::LIMIT;
         $count = $this->Social_model->listPartner('', '', '', '', '', true);        
         

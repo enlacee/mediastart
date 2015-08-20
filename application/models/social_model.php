@@ -30,10 +30,10 @@ class Social_model  extends CI_Model {
                 $this->db->where("$this->_name.status", $status);
             }
 
-            if (!empty($category_id) && is_integer($category_id)) {
+            if (!empty($category_id)) {
                 $this->db->where("$this->_name.category_id", $category_id);
             } else if (is_array($category_id) && count($category_id)>0 ) {
-                $this->db->where_in("$this->_name.category_id", $this->id_categories);
+                $this->db->where_in("$this->_name.category_id", $category_id);
             } else {
                 $this->db->where_in("$this->_name.category_id", $this->id_categories);
             }

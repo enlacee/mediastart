@@ -2,39 +2,38 @@
 <div class="col-md-12">
     <div class="porfolioCtn pdTop10 pdRight10 pdBottom20 pdLeft10">
 
-        <h1>Gallery: <?php echo (isset($category_name)) ? $category_name : ''; ?></h1>
+        <h1><?php echo (isset($category_name)) ? $category_name : ''; ?></h1>
 
         <?php if (isset($portfolio) && count($portfolio) > 0) : ?>
             <?php foreach ($portfolio as $array) : ?>
         <?php 
-            $pathImagen = $portfolioPath . $array['url_image'];
+            $pathImagen = $partnerPath . $array['url_image'];
             $width = 375;
             $height = 197;
             $imageNameThumb = create_thumbnail($pathImagen, $width, $height);
-            $urlImg = $portfolioUrl . $imageNameThumb;
-            
-            $urlImgclass = '';
-            if (!empty($array['url_image'])) {
-                $urlImg =  $array['url_image'];
-            } elseif(!empty($array['url_image_link'])) {
-                $urlImg =  $array['url_image_link'];
-                $urlImgclass='img-responsive';
-            }
+            $urlImg = $partnerUrl . $imageNameThumb;
 
+            if (empty($array['url_image'])) {
+                $urlImg =  $partnerUrl . 'image.jpg';  
+            }
 
         ?>             
             <!--Box-->
             <div class="porfolioCtnVideo">
                 <div class="porfolioCtnVideoShow">
-                    <img src="<?php echo $urlImg ?>" width="375" height="150" class="img-responsive"
-                        alt="<?php echo $array['title']?>" data="<?php echo $array['url_video']?>"/>
+                    <a href="<?php echo $array['link_image']?>" target="_blank">
+                        <img src="<?php echo $urlImg ?>" width="375" height="150" class="img-responsive"
+                         alt="<?php echo $array['name']?>" data="" />
+                    </a>
                     <div class="porfolioCtnVideoIframe hide">
                         hello word.
                         <!--<iframe src="//player.vimeo.com/video/81244498" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>-->
                     </div>
                 </div>
                 <h3 class="porfolioCtnVideoTitulo">
-                    <a href="<?php echo base_url('portfolio/video/' . $array['id']) ?>"><?php echo $array['title']?></a>
+                    <a href="<?php echo $array['link_image']?>" target="_blank">
+                        <?php echo $array['name']?>
+                    </a>
                 </h3>
             </div>
             <!--End Box-->            

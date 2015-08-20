@@ -36,30 +36,6 @@
                             </div>
                         </div>
                         <!--End Box-->
-
-                        <!--Box-->
-                        <div class="col-md-3">
-                            <div class="footerWebBox" id="menuUlFooterCol4">
-                                <h4>Partners</h4>
-                                <ul>
-                                    <?php if (isset($categoryPartner) && is_array($categoryPartner) && count($categoryPartner)>0) : ?>
-                                        <?php $ultimate = count($categoryPartner);
-                                                foreach ($categoryPartner as $array) : ?>    
-                                            
-                                                <?php if ($ultimate == $array['id']): ?>
-                                    <li style="border:none;"><a href="<?php echo base_url('partner/category/' . $array['id']) ?>"><?php echo $array['name'] ?></a></li>
-                                                <?php else : ?>
-                                    <li><a href="<?php echo base_url('partner/category/' . $array['id']) ?>"><?php echo $array['name'] ?></a></li>
-                                                <?php endif; ?>
-                                            
-                                        <?php endforeach; ?>
-                                    <?php else : ?>
-                                    <li><a href="#">Not found data.</a></li>
-                                    <?php endif; ?>
-                                </ul>
-                            </div>
-                        </div>
-                        <!--End Box-->
                         
                         <!--Box-->
                         <div class="col-md-3">
