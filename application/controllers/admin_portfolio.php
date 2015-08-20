@@ -60,6 +60,7 @@ class Admin_portfolio extends MY_ControllerAdmin {
             $dataPost ['category_id'] = $this->input->post('category_id');
             $dataPost ['url_video'] = $this->input->post('url_video');
             $dataPost ['url_image_link'] = $this->input->post('url_image_link');
+            $dataPost ['url_image'] = $this->input->post('url_image');
             $dataPost ['status'] = Portfolio_model::STATUS_TRUE;
             $dataPost ['created_at'] = date('Y-m-d H:i:s');
             $this->Portfolio_model->add($dataPost);            
@@ -147,6 +148,7 @@ EOT;
             $dataPost ['category_id'] = $this->input->post('category_id');            
             $dataPost ['url_video'] = $this->input->post('url_video');
             $dataPost ['url_image_link'] = $this->input->post('url_image_link');
+            $dataPost ['url_image'] = $this->input->post('url_image');
             $dataPost ['status'] = $this->input->post('status');
             $dataPost ['updated_at'] = date('Y-m-d H:i:s');
             $this->Portfolio_model->update($id, $dataPost);            

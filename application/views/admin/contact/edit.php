@@ -15,6 +15,15 @@
                     </td>
                 </tr>
                 <tr>
+                    <td width="15%" class="text-right tableBGTD fontBold">Additional:</td>
+                    <td width="85%" class="text-left">
+                        <span class="pdRight20 center-block">
+                            <input type="text" name="additional" id="additional" class="form-control" placeholder="Optional"
+                                   value="<?php echo $data['additional'] ?>">
+                        </span>
+                    </td>
+                </tr>
+                <tr>
                     <td width="15%" class="text-right tableBGTD fontBold">Image:</td>
                     <td width="85%" class="text-left">
                         <span class="pdRight20 center-block">

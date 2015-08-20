@@ -9,7 +9,7 @@ if(!function_exists('app_getOurTeam')) {
     {
         $CI =& get_instance();
         $CI->load->model('Our_team_model');
-        $ourTeam = $CI->Our_team_model->listTeam(Our_team_model::STATUS_TRUE);
+        $ourTeam = $CI->Our_team_model->listTeam(Our_team_model::STATUS_TRUE, 'asc');
         
         return $ourTeam;
     }

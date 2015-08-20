@@ -9,9 +9,17 @@ class Category_model  extends CI_Model {
     
     const ID_CATEGORY_PARTNERS = 10;
     const ID_CATEGORY_PORTFOLIO = 11;
+    const ID_CATEGORY_SOCIAL = 20;
+    
+    const ID_CATEGORY_SOCIAL_FACEBOOK = 23;
+    const ID_CATEGORY_SOCIAL_YOUTUBE = 24;
+    const ID_CATEGORY_SOCIAL_TWITTER = 25;
+    const ID_CATEGORY_SOCIAL_INSTAGRAM = 26;
     
     protected $_name = 'ac_category';
-    
+    protected $id_categories = array(23,24,25,26);
+
+
     public function __construct() {
         parent::__construct();
     }    

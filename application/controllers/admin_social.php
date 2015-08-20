@@ -2,21 +2,24 @@
 
 $file = FCPATH."application/core/MY_ControllerAdmin.php"; (is_file($file)) ? include($file) : die("error: {$file}");
 
-class Admin_contact extends MY_ControllerAdmin {
+class Admin_social extends MY_ControllerAdmin {
+    
+    const PAGE_TITLE = 'SOCIAL';
     
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Our_team_model');
+        $this->load->model('Social_model');
+        $this->load->model('Category_model');
     }
 
     /*
     * List all post
     */
-    public function index($page = 1)
+    public function index ($page = 1)
     {
       	$limit = MY_ControllerAdmin::LIMIT;
-        $count = $this->Our_team_model->listTeam('', '', '', '', true);
+        $count = $this->Social_model->listPartner('', '', '', '', '', true);        
         
         if ($count > 0) {
             $total_pages = ceil($count/$limit);
@@ -33,11 +36,11 @@ class Admin_contact extends MY_ControllerAdmin {
         $data['pag']['last_page'] = $total_pages;
         $data['pag']['start'] = $start;
         // ----- end pagination
-        
-        $data['page_title'] = 'Contact';
-        $data['data'] = $this->Our_team_model->listTeam('', 'desc', $limit, $start, false);
-
-        $this->layout->view('admin/contact/index', $data);
+      
+        $data['page_title'] = self::PAGE_TITLE;        
+        $data['data'] = $this->Social_model->listPartner('', '', 'desc', $limit, $start, false);
+       
+        $this->layout->view('admin/social/index', $data);
     }
     
     /**
@@ -48,110 +51,29 @@ class Admin_contact extends MY_ControllerAdmin {
     {    
         if( $this->input->post() && $estatus == 'true') {
             // update imagen of session
-            $dataSession = $this->session->userdata('contact');
+            $dataSession = $this->session->userdata('partner');
             $imgTmp = (isset($dataSession['img_tmp']) && is_array($dataSession['img_tmp'])) ? $dataSession['img_tmp'] : '';
             if (!empty($imgTmp)) {                                
-                $targetFile = $this->load->get_var('ourTeamPath') . $imgTmp['name'];
+                $targetFile = $this->load->get_var('partnerPath') . $imgTmp['name'];
                 if (!copy($imgTmp['path'], $targetFile)) { log_message("error", "failed to copy"); }
                 $dataPost['url_image'] = $imgTmp['name'];
-                $this->session->set_userdata('contact',''); // LIMPIAR IMAGEN
+                $this->session->set_userdata('partner',''); // LIMPIAR IMAGEN
             }else{
                 $dataPost['url_image'] = 'image.jpg';
             }
 
             $dataPost ['name'] = $this->input->post('name');
-            $dataPost ['additional'] = $this->input->post('additional');
-            $dataPost ['cargo'] = $this->input->post('cargo');
-            $dataPost ['phone'] = $this->input->post('phone');
-            $dataPost ['email'] = $this->input->post('email');
-            $dataPost ['skype'] = $this->input->post('skype');
-            $dataPost ['status'] = Our_team_model::STATUS_TRUE;
+            $dataPost ['category_id'] = $this->input->post('category_id');
+            $dataPost ['link_image'] = $this->input->post('link_image');
+            $dataPost ['status'] = Social_model::STATUS_TRUE;
             $dataPost ['created_at'] = date('Y-m-d H:i:s');
-            $this->Our_team_model->add($dataPost);            
+            $this->Social_model->add($dataPost);            
             $this->cleanCache();
-            $this->session->set_flashdata('flashMessage', "Added  correctly Contact.");  
-            redirect('admin_contact/index');
+            $this->session->set_flashdata('flashMessage', "Added  correctly ".self::PAGE_TITLE);  
+            redirect('admin_social/index');
         } 
-        
-        $base_url = base_url("admin_contact/upload");
-        $stringJs = <<<EOT
-        $(function () {                
-            // 02 - validate                
-            $('#form').validate({
-                rules: {
-                    name: {required : true, minlength: 3, maxlength: 50}
-                  },
-                      
-                //Detecta cuando se realiza el submit o se presiona el boton
-                submitHandler: function(form){
-                    form.submit();
-                },
 
-                //Detecta los error y abre los span con los posibles errores
-                errorPlacement: function(error, element){
-                error.insertAfter(element);
-                }
-            });
-                
-            // 03 - img
-            $("#file").pekeUpload({
-                btnText : "Browse files...",
-                url : "{$base_url}",                               
-                //theme : 'bootstrap',
-                multi : false,
-                //showFilename : false,
-                allowedExtensions : "jpeg|jpg|png|gif",
-                onFileError: function(file,error){alert("error on file: "+file.name+" error: "+error+"")},
-                onFileSuccess : function (file, data) {}
-            }); 
-                
-        });
-
-EOT;
-        $data['data'] = '';
-        $data['page_title'] = 'Contact';            
-        $this->loadStatic(array('js' => '/js/validate/jquery.validate.js'));
-        $this->loadStatic(array('js' => '/js/validate/jquery.metadata.js'));                
-        $this->loadStatic(array("jstring" => $stringJs));
-        
-        $this->layout->view('admin/contact/add', $data);
-    }
-    
-    /**
-     * Double function
-     * @param type $id
-     * @param type $estatus
-     */
-    public function edit($id = '', $estatus = '')
-    {
-        if( $this->input->post() && !empty($id) && $estatus == 'true') {            
-            // update imagen of session
-            $dataSession = $this->session->userdata('contact');
-            $imgTmp = (isset($dataSession['img_tmp']) && is_array($dataSession['img_tmp'])) ? $dataSession['img_tmp'] : '';
-            if (!empty($imgTmp)) {                                
-                $targetFile = $this->load->get_var('ourTeamPath') . $imgTmp['name'];
-                if (!copy($imgTmp['path'], $targetFile)) { log_message("error", "failed to copy"); }
-                $dataPost['url_image'] = $imgTmp['name'];
-                $this->session->set_userdata('contact',''); // LIMPIAR IMAGEN
-            }
-
-            $dataPost ['name'] = $this->input->post('name');
-            $dataPost ['additional'] = $this->input->post('additional');
-            $dataPost ['cargo'] = $this->input->post('cargo');
-            $dataPost ['phone'] = $this->input->post('phone');
-            $dataPost ['email'] = $this->input->post('email');
-            $dataPost ['skype'] = $this->input->post('skype');
-            $dataPost ['status'] = $this->input->post('status');
-            $dataPost ['updated_at'] = date('Y-m-d H:i:s');
-            
-            
-            $this->Our_team_model->update($id, $dataPost);            
-            $this->cleanCache();
-            $this->session->set_flashdata('flashMessage', "updated correctly Contact. Id (<b>$id</b>)");  
-            redirect('admin_contact/index');
-        }
-        
-        $base_url = base_url("admin_contact/upload/{$id}");
+        $base_url = base_url("admin_partner/upload");
         $stringJs = <<<EOT
         $(function () {                
             // 02 - validate                
@@ -175,45 +97,115 @@ EOT;
             $("#file").pekeUpload({
                 btnText : "Browse files...",
                 url : "{$base_url}",
-                data:{uno : "uno"},                
                 //theme : 'bootstrap',
-                multi : false,
-                //showFilename : false,
+                multi : false,                
                 allowedExtensions : "jpeg|jpg|png|gif",
                 onFileError: function(file,error){alert("error on file: "+file.name+" error: "+error+"")},
-                onFileSuccess : function (file, data) {console.log('file',file); console.log('data',data); }
+                onFileSuccess : function (file, data) {}
+            }); 
+                
+        });
+
+EOT;
+        $data['data'] = '';
+        $data['page_title'] = self::PAGE_TITLE;            
+        $this->loadStatic(array('js' => '/js/validate/jquery.validate.js'));
+        $this->loadStatic(array('js' => '/js/validate/jquery.metadata.js'));        
+        $this->loadStatic(array("jstring" => $stringJs));        
+        $this->layout->view('admin/social/add', $data);
+    }
+    
+    /**
+     * Double function
+     * @param type $id
+     * @param type $estatus
+     */
+    public function edit($id = '', $estatus = '')
+    {
+        if( $this->input->post() && !empty($id) && $estatus == 'true') {            
+            // update imagen of session
+            $dataSession = $this->session->userdata('partner');
+            $imgTmp = (isset($dataSession['img_tmp']) && is_array($dataSession['img_tmp'])) ? $dataSession['img_tmp'] : '';
+            if (!empty($imgTmp)) {                                
+                $targetFile = $this->load->get_var('partnerPath') . $imgTmp['name'];
+                if (!copy($imgTmp['path'], $targetFile)) { log_message("error", "failed to copy"); }
+                $dataPost['url_image'] = $imgTmp['name'];
+                $this->session->set_userdata('partner',''); // LIMPIAR IMAGEN
+            }
+            
+            $dataPost ['name'] = $this->input->post('name');
+            $dataPost ['category_id'] = $this->input->post('category_id');
+            $dataPost ['link_image'] = $this->input->post('link_image');
+            $dataPost ['status'] = $this->input->post('status');
+            $dataPost ['updated_at'] = date('Y-m-d H:i:s');
+            $this->Social_model->update($id, $dataPost);            
+            $this->cleanCache();
+            $this->session->set_flashdata('flashMessage', "updated correctly " . strtolower(Admin_social::PAGE_TITLE) . ". Id (<b>$id</b>)");  
+            redirect('admin_social/index');
+        }        
+        
+        $base_url = base_url("admin_partner/upload/{$id}");
+        $stringJs = <<<EOT
+        $(function () {                
+            // 02 - validate                
+            $('#form').validate({
+                rules: {
+                    name: {required : true, minlength: 3, maxlength: 50}
+                  },
+                      
+                //Detecta cuando se realiza el submit o se presiona el boton
+                submitHandler: function(form){
+                    form.submit();
+                },
+
+                //Detecta los error y abre los span con los posibles errores
+                errorPlacement: function(error, element){
+                error.insertAfter(element);
+                }
             });
                 
+            // 03 - img
+            $("#file").pekeUpload({
+                btnText : "Browse files...",
+                url : "{$base_url}",                                
+                //theme : 'bootstrap',
+                multi : false,                
+                allowedExtensions : "jpeg|jpg|png|gif",
+                onFileError: function(file,error){alert("error on file: "+file.name+" error: "+error+"")},
+                onFileSuccess : function (file, data) { }
+            }); 
                 
         });
 
 EOT;
         
         $data['data'] = '';
-        $data['page_title'] = 'Contact';
+        $data['page_title'] = self::PAGE_TITLE;
         if (!empty($id)) {
-            $this->session->set_userdata('contact',''); // LIMPIAR IMAGEN
-            $data['data'] = $this->Our_team_model->get($id);
+            $this->session->set_userdata('partner',''); // LIMPIAR IMAGEN
+            $data['data'] = $this->Social_model->get($id);
+            
         }
 
         $this->loadStatic(array('js' => '/js/validate/jquery.validate.js'));
-        $this->loadStatic(array('js' => '/js/validate/jquery.metadata.js'));        
+        $this->loadStatic(array('js' => '/js/validate/jquery.metadata.js'));
+        $this->loadStatic(array('js' => '/js/validate/messages_es.js'));
 
         $this->loadStatic(array("jstring" => $stringJs));
-        $this->layout->view('admin/contact/edit', $data);
+        $this->layout->view('admin/social/edit', $data);
     }
     
     public function del($id = '', $estatus = '')
     {   
-        $data['page_title'] = 'Contact';
+        $data['page_title'] = self::PAGE_TITLE;
         $data['id'] = $id;
         if( !empty($id) && $estatus == 'true') {
-            $this->Our_team_model->del($id);
+            $this->Social_model->del($id);
             $this->cleanCache();
-            $this->session->set_flashdata('flashMessage', "Eliminated Contact. Id (<b>$id</b>)");  
-            redirect('admin_contact/index');
+            $this->session->set_flashdata('flashMessage', "Eliminated ".self::PAGE_TITLE.". Id (<b>$id</b>)");  
+            redirect('admin_social/index');
         }
-        $this->layout->view('admin/contact/del', $data);        
+        $this->layout->view('admin/social/del', $data);        
     }     
     
     /**
@@ -250,13 +242,17 @@ EOT;
     
     private function uploadSave($id, $fileName, $path, $url)
     {
-        $dataSession['contact']['img_tmp'] =  array(
+        $dataSession['partner']['img_tmp'] =  array(
             'id' => $id,
             'name' => $fileName,
             'path' =>  $path,
             'url' => $url
         );
         $this->saveSession($dataSession);
-    }  
+    }    
+    
+    
+    
+    
 
 }

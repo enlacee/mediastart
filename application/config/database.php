@@ -101,15 +101,8 @@ $db['default']['hostname'] = 'localhost';
 
 //Nombre de usuario de la base de datos
 $db['default']['username'] = 'root';
-
-//Contraseña de la base de datos
-$db['default']['password'] = '';
-
-//Nombre de la base de datos
-$db['default']['database'] = 'mediastar';
-
-
-//No cambiar estas opciónes
+$db['default']['password'] = '123456';
+$db['default']['database'] = 'mediastart';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;

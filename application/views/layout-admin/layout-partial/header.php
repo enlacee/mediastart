@@ -5,7 +5,12 @@
                         <div class="col-md-12">
                             <div class="col-md-6">
                                 <div class="logo">
-                                    <a href="<?php echo base_url('admin/dashboard') ?>"><img src="<?php echo getPublicUrl() ?>/images/logo.png" class="img-responsive" width="230" height="61" /></a>
+                                    <div class="col-md-6">
+                                        <a href="<?php echo base_url('admin/dashboard') ?>"><img src="<?php echo getPublicUrl() ?>/images/logo.png" class="img-responsive" width="230" height="61" /></a>
+                                    </div>
+                                     <div col-md-6>
+                                         <a href="<?php echo site_url() ?>" target="_blank" style="color:black; font-weight: bold">ver sitio</a>
+                                    </div>
                                 </div>
                             </div>
 
@@ -50,7 +55,7 @@
                             <li><a href="<?php echo base_url('admin_portfolio') ?>">Portfolio</a></li>
                             <li><a href="<?php echo base_url('admin_lastwork') ?>">Last work</a></li> 
                             <li><a href="<?php echo base_url('admin_contact') ?>">Contact</a></li>                             
-                            <li><a href="<?php echo base_url('admin_partner') ?>">Partners</a></li>
+                            <li><a href="<?php echo base_url('admin_social') ?>">Social</a></li>
                             <li><a href="<?php echo base_url('admin/clean') ?>" target="_blank">Clean Cache</a></li>
                         </ul>
                     </div>

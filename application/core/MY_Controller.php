@@ -146,6 +146,11 @@ class MY_Controller extends CI_Controller {
         $categoryPartner['categoryPartner'] = $this->Category_model->listCategory(Category_model::ID_CATEGORY_PARTNERS);        
         $this->load->vars($categoryPartner);
         
+        //load Categorysocial
+        $this->load->model('Category_model');
+        $categorySocial['categorySocial'] = $this->Category_model->listCategory(Category_model::ID_CATEGORY_SOCIAL);        
+        $this->load->vars($categorySocial);
+        
 //        $categoryPartner['categoryPartner'][] = array('id' => 1, 'name' => 'Agencies');
 //        $categoryPartner['categoryPartner'][] = array('id' => 2, 'name' => 'Producers');
 //        $categoryPartner['categoryPartner'][] = array('id' => 3, 'name' => 'Directors');
