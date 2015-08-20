@@ -1,7 +1,7 @@
 <div class="col-md-12">
     <h1><?php echo (isset($page_title) && !empty($page_title)) ? $page_title : '' ?></h1>
     <?php if (isset($data) && !empty($data) && is_array($data)) : ?>
-    <form name="form" id="form" method="post" action="<?php echo base_url("admin_portfolio/edit/" . $data['id'] . "/true") ?>">
+    <form name="form" id="form" method="post" action="<?php echo base_url("admin_social/edit/".$data['id']."/true") ?>">
         <table class="table table-hover table-striped table-condensed table-responsive table-bordered" style="background-image:none !important;">
             <tbody>
                 
@@ -9,26 +9,26 @@
                     <td width="15%" class="text-right tableBGTD fontBold">Name:</td>
                     <td width="85%" class="text-left">
                         <span class="pdRight20 center-block">
-                            <input type="text" name="title" id="title" class="form-control" placeholder="title"
-                                   value="<?php echo $data['title'] ?>">
+                            <input type="text" name="name" id="name" class="form-control" placeholder="name"
+                                   value="<?php echo $data['name'] ?>">
                         </span>
                     </td>
                 </tr>
-                <!--<tr>
+                <tr>
                     <td width="15%" class="text-right tableBGTD fontBold">Image:</td>
                     <td width="85%" class="text-left">
                         <span class="pdRight20 center-block">
                             <input type="file" id="file" name="file" />
                         </span>
                     </td>
-                </tr>-->
+                </tr>
                 <tr>
                   <td class="text-right tableBGTD fontBold">Category:</td>
                   <td class="text-left">
                     <select name="category_id" id="category_id" class="form-control input-sm">
                     <option value="">-</option>
-                    <?php if ($this->load->get_var('category')) : ?>
-                        <?php foreach ($category as $array) : ?>
+                    <?php if ($this->load->get_var('categorySocial')) : ?>
+                        <?php foreach ($categorySocial as $array) : ?>
                         <?php $select = ($data['category_id'] == $array['id']) ? 'selected="selected"' : '';?>
                         <option <?php echo $select ?> value="<?php echo $array['id'] ?>"><?php echo $array['name'] ?></option>
                         <?php endforeach;?>                        
@@ -37,19 +37,11 @@
                   </td>
                 </tr>
                 <tr>
-                    <td class="text-right tableBGTD fontBold">Link image:</td>
-                    <td class="text-left">
-                        <input type="text" name="url_image" id="url_image" class="form-control" placeholder="URL image"
-                                   value="<?php echo $data['url_image'] ?>">
-                    </td>
-                </tr>  
-                <tr>
-                    <td width="15%" class="text-right tableBGTD fontBold">Video ID:</td>
+                    <td width="15%" class="text-right tableBGTD fontBold">URL:</td>
                     <td width="85%" class="text-left">
                         <span class="pdRight20 center-block">
-                            <input type="text" name="url_video" id="url_video" class="form-control" value="<?php echo $data['url_video'] ?>" autocomplete="off"/>
-                            <input type="text" name="url_image_link" id="url_image_link" class="form-control" value="<?php echo $data['url_image_link'] ?>" readonly="" />
-                        </span>Ejm : https://vimeo.com/<b>81244498</b>
+                            <input type="text" name="link_image" id="link_image" class="form-control" value="<?php echo $data['link_image'] ?>"/>
+                        </span>
                     </td>
                 </tr>
                 <tr>
@@ -57,8 +49,8 @@
                   <td class="text-left">
                     <select name="status" id="status" class="form-control input-sm">
                     <option value="">Select</option>                    
-                    <option <?php echo ($data['status'] == Portfolio_model::STATUS_TRUE ) ? 'selected="selected"' : '';?> value="1">On</option>
-                    <option <?php echo ($data['status'] == Portfolio_model::STATUS_FALSE ) ? 'selected="selected"' : '';?>value="0">Off</option>
+                    <option <?php echo ($data['status'] == Social_model::STATUS_TRUE ) ? 'selected="selected"' : '';?> value="1">On</option>
+                    <option <?php echo ($data['status'] == Social_model::STATUS_FALSE ) ? 'selected="selected"' : '';?>value="0">Off</option>
                     </select>
                   </td>
                 </tr>                

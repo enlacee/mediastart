@@ -26,6 +26,7 @@ application/logs/*
 # image porfolio
 /public/images/partners/*
 !/public/images/partners/image.jpg
+!public/images/tmp/empty
 
 # image temp (file temp)
 /public/images/tmp/*

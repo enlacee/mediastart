@@ -339,6 +339,7 @@ p,a,ul,li,ol,span,strong,table,thead,tbody,tr,td{
     min-height: 120px;
 	float:left;
 	display:block;
+        margin-bottom: 50px;
 }
 
 .porfolioCtn .porfolioCtnVideo .porfolioCtnVideoShow {

@@ -57,10 +57,34 @@
                                     <li><a href="#">Not found data.</a></li>
                                     <?php endif; ?>
                                 </ul>
-                                <p><a href="#">READ MORE</a></p>
                             </div>
                         </div>
                         <!--End Box-->
+                        
+                        <!--Box-->
+                        <div class="col-md-3">
+                            <div class="footerWebBox" id="menuUlFooterCol4">
+                                <h4>Social</h4>
+                                <ul>
+                                    <?php if (isset($categorySocial) && is_array($categorySocial) && count($categorySocial)>0) : ?>
+                                        <?php $ultimate = count($categorySocial);
+                                                foreach ($categorySocial as $array) : ?>    
+                                            
+                                                <?php if ($ultimate == $array['id']): ?>
+                                    <li style="border:none;"><a href="<?php echo base_url('social/category/' . $array['id']) ?>"><?php echo $array['name'] ?></a></li>
+                                                <?php else : ?>
+                                    <li><a href="<?php echo base_url('social/category/' . $array['id']) ?>"><?php echo $array['name'] ?></a></li>
+                                                <?php endif; ?>
+                                            
+                                        <?php endforeach; ?>
+                                    <?php else : ?>
+                                    <li><a href="#">Not found data.</a></li>
+                                    <?php endif; ?>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--End Box-->
+                        
 
                     </div>
                 </div></div>
