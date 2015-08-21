@@ -2,7 +2,7 @@
     <h1><?php echo (isset($page_title)) ? $page_title : ''; ?></h1>
 
     <form name="form" id="form" method="post" 
-          action="<?php echo base_url('admin_banner/del/' . $id . '/true') ?>">
+          action="<?php echo base_url('admin_category_portfolio/del/' . $id . '/true') ?>">
         <p>Content</p>
         <div class="bg-danger pd10">
             <p class="fontBold mg0">This sure you want to delete this record? This option can not be undone!</p>

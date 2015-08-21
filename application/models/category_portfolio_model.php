@@ -11,6 +11,7 @@ class Category_portfolio_model  extends CI_Model {
     const STATUS_FALSE = 0;
     const CATEGORY_PARENT = 11;
     protected $_name = 'ac_category';
+    protected $_name_portfolio = 'ac_portfolios';
 
     public function __construct() {
         parent::__construct();
@@ -81,6 +82,33 @@ class Category_portfolio_model  extends CI_Model {
             $query = $this->db->get();
             $response = $query->result_array();
             $rs = ($response == false) ? null : $response[0];
+            $this->cache->file->save($keyCache, $rs, 600);
+        }
+        return $rs;
+    }
+    
+    /**
+     * seleccionar el numero de porfolios relacionados con una categoria
+     * @param type $id ID_CATEGORY 
+     * @param type $status
+     * @return type
+     */
+    public function getChildren($id, $status = '')
+    {
+        $keyCache = __CLASS__ . __FUNCTION__ .'_'. $id.'_'.$status; 
+        
+        if (($rs = $this->cache->file->get($keyCache)) == false) {
+            $this->db->select("count($this->_name.id) as count");
+            $this->db->from($this->_name);
+            $this->db->join('ac_portfolios', "$this->_name.id = ac_portfolios.category_id", 'join');
+            $this->db->where("$this->_name.id", $id);
+            /*if(!empty($status)) {
+                $this->db->where("$this->_name.status", $status);
+            }*/
+            
+            $query = $this->db->get(); 
+            $response = $query->row_array();
+            $rs = empty($response['count']) ? null : $response['count'];
             $this->cache->file->save($keyCache, $rs, 600);
         }
         return $rs;

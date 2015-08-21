@@ -15,7 +15,7 @@ class Admin_category_portfolio extends MY_ControllerAdmin {
     * List all post
     */
     public function index ($page = 1)
-    {$this->output->enable_profiler(TRUE);
+    {
       	$limit = MY_ControllerAdmin::LIMIT;
         $count = $this->Category_portfolio_model->listItems('', '', '', '', true);     
         
@@ -125,20 +125,34 @@ EOT;
         
         $data['data'] = '';
         $data['page_title'] = self::PAGE_TITLE;
-
+        if (!empty($id)) {
+            $data['data'] = $this->Category_portfolio_model->get($id);
+        }
         $this->loadStatic(array('js' => '/js/validate/jquery.validate.js'));
         $this->loadStatic(array('js' => '/js/validate/jquery.metadata.js'));        
         $this->loadStatic(array("jstring" => $stringJs));
         $this->layout->view('admin/category_portfolio/edit', $data);
     }
     
+    /**
+     * Delete records Only when no records reference to that Category.
+     * @param type $id (id_categoria)
+     * @param type $estatus
+     */
     public function del($id = '', $estatus = '')
-    {   
+    {
         $data['page_title'] = self::PAGE_TITLE;
         $data['id'] = $id;
         if( !empty($id) && $estatus == 'true') {
-            $this->Category_portfolio_model->del($id);
             $this->cleanCache();
+            $requestCount = (int) $this->Category_portfolio_model->getChildren($id);
+            if ($requestCount > 0) {
+                $this->session->set_flashdata('flashMessage', "You can not be deleted CATEGORY Id(<b>$id</b>) because there are records reference.".self::PAGE_TITLE);  
+                redirect('admin_category_portfolio/index');
+                exit;
+            }
+            
+            $this->Category_portfolio_model->del($id);
             $this->session->set_flashdata('flashMessage', "Eliminated ".self::PAGE_TITLE.". Id (<b>$id</b>)");  
             redirect('admin_category_portfolio/index');
         }
