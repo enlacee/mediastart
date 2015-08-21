@@ -31,6 +31,7 @@
                     <div class="col-md-12">
                         <ul class="venus-menu">
                             <li class="active"><a href="<?php echo base_url('admin/dashboard') ?>">Panel</a></li>
+                            <li><a href="<?php echo base_url('admin_category_portfolio') ?>">Categorias Portfolio</a></li>
                             <li><a href="<?php echo base_url('admin_banner') ?>">Banner</a></li>
                             <li><a href="<?php echo base_url('admin_post/post') ?>">Last News</a></li>
                             <li><a href="#">Page-About</a>                                

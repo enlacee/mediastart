@@ -38,7 +38,8 @@
                         <!--End Box-->
                         
                         <!--Box-->
-                        <div class="col-md-3">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-2">
                             <div class="footerWebBox" id="menuUlFooterCol4">
                                 <h4>Social</h4>
                                 <ul>

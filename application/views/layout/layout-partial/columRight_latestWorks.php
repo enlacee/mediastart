@@ -21,7 +21,7 @@
             </div>
 
             <div class="ourWorkCtn pdTop30">
-                <h3><a href="<?php echo $array['enlace']; //echo base_url('work/company/' . $array['id']) ?>"><?php echo $array['title'] ?></a></h3>
+                <h3><a href="<?php echo $array['enlace']; ?>"><?php echo $array['title'] ?></a></h3>
             </div>
 
         </div>

@@ -625,24 +625,39 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#38373d', endC
 }
 
 #menuUlFooterCol4 ul li{
-	margin:3px 0;
-	padding:2px 0;
+	/*margin:3px 0;
+	padding:2px 0;*/
 	list-style:none;
 	font-family: 'Open Sans', sans-serif !important;
-	border-bottom:1px solid #2F2F2F;
 }
 
 #menuUlFooterCol4 ul li a{
-	font-size:12px;
+	font-size:20px;
 	font-family: 'Open Sans', sans-serif !important;
 	color:#727374;
+    top: -32px;
+    position: relative;
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
 }
 
-#menuUlFooterCol4 ul li a:hover{
-	color:#FFF;
+#menuUlFooterCol4 ul li a:hover {
+    background-image: transparent;
 }
 
-
+#menuUlFooterCol4 ul li:nth-child(1) {
+    list-style-image: url("../images/red1.png");
+}
+#menuUlFooterCol4 ul li:nth-child(2) {
+    list-style-image: url("../images/red2.png");
+}
+#menuUlFooterCol4 ul li:nth-child(3) {
+    list-style-image: url("../images/red3.png");
+}
+#menuUlFooterCol4 ul li:nth-child(4) {
+    list-style-image: url("../images/red4.png");
+}
 /*********************************************
 // OTHER STYLES
 **********************************************/
