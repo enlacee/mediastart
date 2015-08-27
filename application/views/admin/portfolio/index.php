@@ -27,7 +27,7 @@
                         <td class="text-center"><?php echo $array['id']?></td>
                         <td><?php echo truncate_string($array['title'], 30, ' ', '') ?></td>
                         <td><?php echo truncate_string($array['category'], 50, ' ', '') ?></td>
-                        <td><a href="<?php echo base_url("portfolio/video/".$array['id']) ?>" target="_blank" class="btn btn-sm btn-success pdTop1 pdBottom1">Link Video</a></td>
+                        <td><a href="<?php echo base_url("portfolio/video/".$array['id']) ?>" target="_blank" class="btn btn-sm btn-success pdTop1 pdBottom1">Link</a></td>
                         <!--<td><img src="<?php echo $urlImg; ?>" class="img-responsive" width="100" height="150"></td>-->
                         <td class="text-center">
                             <a href="<?php echo base_url("admin_portfolio/edit/" . $array['id']) ?>"><img src="<?php echo getPublicUrl() ?>/images/actualizar.png" width="20" height="20" /></a>
