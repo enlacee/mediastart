@@ -61,20 +61,20 @@ class Portfolio extends MY_Controller {
             // -- Load video
             var img = $(this);
             var idVideo = img.attr('data');
-                            
-            var contenHtml = '<iframe ';
-            contenHtml = contenHtml + 'src="//player.vimeo.com/video/'+ idVideo +'" ';
-            contenHtml += 'width="500" height="281" frameborder="0" ';
-            contenHtml += 'webkitallowfullscreen mozallowfullscreen allowfullscreen> ';
-            contenHtml += '</iframe> ';
-
+            if (typeof idVideo == 'string' && idVideo.length == 0) {
+                var urlImg = img.attr('src');
+                var contenHtml = '<img src="'+urlImg+'"/>'
+            } else {
+                var contenHtml = '<iframe ';
+                contenHtml = contenHtml + 'src="//player.vimeo.com/video/'+ idVideo +'" ';
+                contenHtml += 'width="500" height="281" frameborder="0" ';
+                contenHtml += 'webkitallowfullscreen mozallowfullscreen allowfullscreen> ';
+                contenHtml += '</iframe> ';
+            }
+                
             $("#porfolioCtnVideoIframeShow").html(contenHtml);
-   
             // -- load modal    
-            $('#videoPorfolio').modal({
-                    backdrop: true,
-                    show: true
-            });
+            $('#videoPorfolio').modal({backdrop: true,show: true});
                 
         });                
 EOT;
@@ -90,7 +90,7 @@ EOT;
         if (!empty($id)) {
             $data['portfolio'] = $this->Portfolio_model->get($id, '',  Portfolio_model::STATUS_TRUE);            
             $data['title'] = isset($data['portfolio']['title']) ? $data['portfolio']['title'] : NULL;
-            $data['columRight'] = 'relatedVideo';
+            $data['columRight'] = 'relatedVideo'; 
             $data['relatedVideo'] = array();
             //category_id
             $category_id = $data['portfolio']['category_id'];            

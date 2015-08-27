@@ -9,7 +9,6 @@ class Social extends MY_Controller {
     
     public function category($id, $page=1)
     {   
-        $this->output->enable_profiler(TRUE);
         $this->load->model('Social_model');       
         $category = $this->load->get_var('categorySocial');
         $flagSearch = false;

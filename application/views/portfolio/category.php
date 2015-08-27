@@ -29,7 +29,7 @@
                     <img src="<?php echo $urlImg ?>" width="375" height="150" class="img-responsive"
                         alt="<?php echo $array['title']?>" data="<?php echo $array['url_video']?>"/>
                     <div class="porfolioCtnVideoIframe hide">
-                        hello word.
+                        hello word. 
                         <!--<iframe src="//player.vimeo.com/video/81244498" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>-->
                     </div>
                 </div>
