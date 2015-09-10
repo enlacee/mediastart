@@ -1,32 +1,30 @@
 <div class="col-md-12">
-    <h1><?php echo $page_title; ?> : <a href="<?php echo base_url("/admin_social/add") ?>" class="btn btn-primary">Add</a></h1>                        
+    <h1><?php echo $page_title; ?> : <a href="<?php echo base_url("/admin_social/add") ?>" class="btn btn-primary">Add</a></h1>
 
         <table class="table table-hover table-striped table-condensed table-responsive table-bordered">
-            <thead>    
+            <thead>
                 <tr>
                     <th width="3%" class="text-center">ID</th>
-                    <th width="30%">Name</th>
-                    <th width="47%">Category</th>
+                    <th width="77%">Title</th>
                     <th width="10%">Image</th>
                     <th width="10%" class="text-center">Accion</th>
                 </tr>
-            </thead>    
+            </thead>
 
-            <tbody>                            	
+            <tbody>
             <?php if (isset($data) && is_array($data) && count($data) > 0) : ?>
                 <?php foreach ($data as $array) :?>
-                <?php 
-                    $pathImagen = $this->load->get_var('partnerPath') . $array['url_image'];
-                    $width = 100;
-                    $height = 150;
-                    $imageNameThumb = create_thumbnail($pathImagen, $width, $height);
-                    $urlImg = $this->load->get_var('partnerUrl') . $imageNameThumb;
-                ?>                
+                <?php
+                    if (!empty($array['url_image'])) {
+                        $urlImg = $array['url_image'];
+                    } else {
+                        $urlImg = $this->load->get_var('partnerUrl') . 'image.jpg';
+                    }
+                ?>
                     <tr>
                         <td class="text-center"><?php echo $array['id']?></td>
                         <td><?php echo truncate_string($array['name'], 30, ' ', '') ?></td>
-                        <td><?php echo truncate_string($array['category'], 50, ' ', '') ?></td>
-                        <td><img src="<?php echo $urlImg; ?>" class="img-responsive" width="100" height="150"></td>
+                        <td><img src="<?php echo $urlImg; ?>" class="img-responsive" height="100%"></td>
                         <td class="text-center">
                         <a href="<?php echo base_url("admin_social/edit/" .$array['id']) ?>"><img src="<?php echo getPublicUrl() ?>/images/actualizar.png" width="20" height="20" /></a>
                         &nbsp;
@@ -34,16 +32,16 @@
                         </td>
                     </tr>
                 <?php endforeach; ?>
-            <?php endif; ?>                                
+            <?php endif; ?>
             </tbody>
 
-        </table>                        
+        </table>
 
         <!--Paginador-->
         <div class="text-center pdTop10" id="paginador">
             <ul class="pagination">
-                <?php 
-                //echo "<pre>"; print_r($pag); echo "</pre>";                
+                <?php
+                //echo "<pre>"; print_r($pag); echo "</pre>";
                 $nextpage= $pag['page'] +1;
                 $prevpage= $pag['page'] -1;
                 ?>
@@ -53,16 +51,16 @@
 
                     <?php for ($i = $pag['page']+1; $i <= $pag['last_page']; $i++) : ?>
                         <li><a href="<?php echo base_url("admin_social/index/{$i}") ?>"><?php echo $i;?></a></li>
-                    <?php endfor; ?>                    
+                    <?php endfor; ?>
 
                     <?php if ($pag['last_page'] > $pag['page'] ) : ?>
                         <li class="next"><a href="<?php echo base_url("admin_social/index/{$nextpage}") ?>" >Next &raquo;</a></li>
                     <?php else : ?>
-                        <li class="disabled"><a href="#">Next &raquo;</a></li> 
+                        <li class="disabled"><a href="#">Next &raquo;</a></li>
                     <?php endif; ?>
 
                 <?php else : ?>
-                        <li class="previous"><a href="<?php echo base_url("admin_social/index/{$prevpage}") ?>">&laquo; Previous</a></li>                   
+                        <li class="previous"><a href="<?php echo base_url("admin_social/index/{$prevpage}") ?>">&laquo; Previous</a></li>
 
                     <?php for($i= 1; $i<= $pag['last_page'] ; $i++) : ?>
                         <?php  if($pag['page'] == $i) : ?>
@@ -76,7 +74,7 @@
                             <li><a href="<?php echo base_url("admin_social/index/{$nextpage}") ?>">Next &raquo;</a></li>
                     <?php else : ?>
                         <li class="disabled"><a href="#">Next &raquo;</a></li>
-                    <?php endif; ?>     
+                    <?php endif; ?>
 
                 <?php endif; ?>
                 <!-- code old -->

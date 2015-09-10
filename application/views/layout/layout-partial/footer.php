@@ -11,7 +11,7 @@
                             $height = 123;
                             $imageNameThumb = create_thumbnail($pathImagen, $width, $height);
                             $urlImg = $latestNewsUrl . $imageNameThumb;
-                        ?>                        
+                        ?>
                         <!--Box-->
                         <div class="col-md-3">
                             <div class="footerWebBox">
@@ -36,23 +36,23 @@
                             </div>
                         </div>
                         <!--End Box-->
-                        
+
                         <!--Box-->
-                        <div class="col-md-1"></div>
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             <div class="footerWebBox" id="menuUlFooterCol4">
                                 <h4>Social</h4>
                                 <ul>
                                     <?php if (isset($categorySocial) && is_array($categorySocial) && count($categorySocial)>0) : ?>
                                         <?php $ultimate = count($categorySocial);
-                                                foreach ($categorySocial as $array) : ?>    
-                                            
-                                                <?php if ($ultimate == $array['id']): ?>
-                                    <li style="border:none;"><a href="<?php echo base_url('social/category/' . $array['id']) ?>"><?php echo $array['name'] ?></a></li>
-                                                <?php else : ?>
-                                    <li><a href="<?php echo base_url('social/category/' . $array['id']) ?>"><?php echo $array['name'] ?></a></li>
-                                                <?php endif; ?>
-                                            
+                                                foreach ($categorySocial as $array) : ?>
+                                                  <li style="border:none;">
+                                                      <div class="">
+                                                         <img src="<?php echo $array['url_image'] ?>" alt="<?php echo $array['name'] ?>" />
+                                                      </div>
+                                                      <div class="">
+                                                        <a href="<?php echo $array['link_image'] ?>"><?php echo $array['name'] ?></a>
+                                                      </div>
+                                                  </li>
                                         <?php endforeach; ?>
                                     <?php else : ?>
                                     <li><a href="#">Not found data.</a></li>
@@ -61,7 +61,7 @@
                             </div>
                         </div>
                         <!--End Box-->
-                        
+
 
                     </div>
                 </div></div>

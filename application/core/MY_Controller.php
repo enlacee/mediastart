@@ -1,8 +1,8 @@
 <?php
 
-class MY_Controller extends CI_Controller {    
+class MY_Controller extends CI_Controller {
 
-    public $dataView = array();       
+    public $dataView = array();
     private $flagGrid = false;
 
     public function __construct()
@@ -14,12 +14,12 @@ class MY_Controller extends CI_Controller {
         $this->loadLanguage();
         $this->loadSessionLanguage();
 
-    }   
-    
+    }
+
     private function dependencias()
-    {  
+    {
         $this->load->library(array('layout', 'auth'));
-        
+
         $this->load->helper(array(
             'my_ayuda_helper',
             'my_thumbnail_helper',
@@ -30,38 +30,38 @@ class MY_Controller extends CI_Controller {
             'form',
             'security',
             'captcha'));
-        
+
         $this->load->driver('cache');
-        
+
         // message flash
-        if ($this->session->flashdata('flashMessage') != '') {            
+        if ($this->session->flashdata('flashMessage') != '') {
             $flashMessage['flashMessage'] = $this->session->flashdata('flashMessage');
             $this->load->vars($flashMessage); // $this->load->get_var('flashMessage');
-        }        
-        
-    }    
-    
+        }
+
+    }
+
     /**
-     * Carga la libreria jqgrid util para la VISTA     
+     * Carga la libreria jqgrid util para la VISTA
      *  $data['css'] = array ('file.css');
      *  $data['js'] = array ('file.js');
      */
     protected function loadJqgrid()
-    {   
-        if ($this->flagGrid == false) {           
+    {
+        if ($this->flagGrid == false) {
             $this->dataView['css'][] = "jqgrid/css/cupertino/jquery-ui-1.10.4.custom.min.css";
-            $this->dataView['css'][] = "jqgrid/css/ui.jqgrid.css";                  
+            $this->dataView['css'][] = "jqgrid/css/ui.jqgrid.css";
             $this->dataView['js'][] = "jqgrid/i18n/grid.locale-es.js";
             $this->dataView['js'][] = "jqgrid/jquery.jqGrid.min.js";
             $this->dataView['js'][] = "jqgrid/fixGridSize.js";
             $this->flagGrid = true;
-        }        
+        }
         $this->load->vars($this->dataView);
-        return $this->dataView;       
+        return $this->dataView;
     }
-    
+
     protected function loadStatic(array $data = array()) {
-      
+
         foreach ($data as $key => $value) {
             if ($key === 'css') {
                 if (is_string($data[$key])) {
@@ -69,7 +69,7 @@ class MY_Controller extends CI_Controller {
                 } elseif (count($data[$key] > 0)) {
                     foreach ($data['css'] as $llave => $valor) {
                         $this->dataView['css'][] = $valor;
-                    }                        
+                    }
                 }
             } elseif ($key === 'js') {
                 if (is_string($data[$key])) {
@@ -77,89 +77,89 @@ class MY_Controller extends CI_Controller {
                 } elseif (count($data[$key] > 0)) {
                     foreach ($data['js'] as $llave => $valor) {
                         $this->dataView['js'][] = $valor;
-                    }                        
-                }                
+                    }
+                }
             } elseif ($key === 'jstring') {
                 if (is_string($data[$key])) {
                     $this->dataView['jstring'][] = $value;
                 }
-            }   
-        }          
+            }
+        }
         //$this->load->get_var($key)
         $this->load->vars($this->dataView);
         return $this->dataView;
     }
-    
+
     /**
      * list of variables for consummer and response
      * process (create thumbnail)
      */
     public function loadVariableImage()
-    {   
+    {
         // banner
         $data['bannerPath'] = FCPATH . 'public/images/banner/';
         $data['bannerUrl'] = getPublicUrl() .'/images/banner/';
-        
+
         // latestNewsUrl
         $data['latestNewsPath'] = FCPATH . 'public/images/latest-news/';
         $data['latestNewsUrl'] = getPublicUrl() .'/images/latest-news/';
 
         // ourTeam - contact
         $data['ourTeamPath'] = FCPATH . 'public/images/ourTeam/';
-        $data['ourTeamUrl'] = getPublicUrl() .'/images/ourTeam/';  
-        
+        $data['ourTeamUrl'] = getPublicUrl() .'/images/ourTeam/';
+
         // work ourTeam
         $data['workPath'] = FCPATH . 'public/images/ourTeam/';
-        $data['workUrl'] = getPublicUrl() .'/images/ourTeam/';  
-        
+        $data['workUrl'] = getPublicUrl() .'/images/ourTeam/';
+
         // portfolio
         $data['portfolioPath'] = FCPATH . 'public/images/porfolio/';
-        $data['portfolioUrl'] = getPublicUrl() .'/images/porfolio/';          
-             
+        $data['portfolioUrl'] = getPublicUrl() .'/images/porfolio/';
+
         //partners
         $data['partnerPath'] = FCPATH . 'public/images/partners/';
-        $data['partnerUrl'] = getPublicUrl() .'/images/partners/';          
-        
+        $data['partnerUrl'] = getPublicUrl() .'/images/partners/';
+
         // images tmp (imagenes temporales)
         $data['tmpPath'] = FCPATH . 'public/images/tmp/';
-        $data['tmpUrl'] = getPublicUrl() .'/images/tmp/';        
-        
-        $this->load->vars($data); 
-        
+        $data['tmpUrl'] = getPublicUrl() .'/images/tmp/';
 
-        
-        
-                
+        $this->load->vars($data);
+
+
+
+
+
         //load category (portfolio)
         $this->load->model('Category_model');
-        $category['category'] = $this->Category_model->listCategory(Category_model::ID_CATEGORY_PORTFOLIO);        
+        $category['category'] = $this->Category_model->listCategory(Category_model::ID_CATEGORY_PORTFOLIO);
         $this->load->vars($category);
-        
+
         //load pages (about us)
         $this->load->model('Post_model');
         $pagesAboutUs = array();
         $pagesAboutUs['pagesAboutUs'] = $this->Post_model->listPost('page-about', Post_model::STATUS_TRUE, 'desc', 2);
-        $this->load->vars($pagesAboutUs);        
-        
+        $this->load->vars($pagesAboutUs);
+
         //load Categorypartners
         $this->load->model('Category_model');
-        $categoryPartner['categoryPartner'] = $this->Category_model->listCategory(Category_model::ID_CATEGORY_PARTNERS);        
+        $categoryPartner['categoryPartner'] = $this->Category_model->listCategory(Category_model::ID_CATEGORY_PARTNERS);
         $this->load->vars($categoryPartner);
-        
+
         //load Categorysocial
-        $this->load->model('Category_model');
-        $categorySocial['categorySocial'] = $this->Category_model->listCategory(Category_model::ID_CATEGORY_SOCIAL);        
-        $this->load->vars($categorySocial);
-        
+        $this->load->model('Social_model');
+        $category['categorySocial'] = $this->Social_model->listPartner(Social_model::STATUS_TRUE, '', '', '', false);
+        $this->load->vars($category);
+
 //        $categoryPartner['categoryPartner'][] = array('id' => 1, 'name' => 'Agencies');
 //        $categoryPartner['categoryPartner'][] = array('id' => 2, 'name' => 'Producers');
 //        $categoryPartner['categoryPartner'][] = array('id' => 3, 'name' => 'Directors');
-//        $categoryPartner['categoryPartner'][] = array('id' => 4, 'name' => 'Directors of Photography');        
+//        $categoryPartner['categoryPartner'][] = array('id' => 4, 'name' => 'Directors of Photography');
 //        $categoryPartner['categoryPartner'][] = array('id' => 5, 'name' => 'Filmakers');
 //        $categoryPartner['categoryPartner'][] = array('id' => 6, 'name' => 'Postproduction');
 //        $categoryPartner['categoryPartner'][] = array('id' => 7, 'name' => 'Photographer');
 //        $categoryPartner['categoryPartner'][] = array('id' => 8, 'name' => 'Other');
-        
+
     }
 
     /**
@@ -167,7 +167,7 @@ class MY_Controller extends CI_Controller {
      * @return Void()
      */
     public function loadLanguage()
-    {        
+    {
         $language['language'][] = array('id' => 1, 'name' => 'ESPA&Ntilde;OL', 'short_name' => 'es');
         $language['language'][] = array('id' => 0, 'name' => 'ENGLISH', 'short_name' => 'en');
         $language['language'][] = array('id' => 2, 'name' => 'FRANÇAIS', 'short_name' => 'fr');
@@ -178,10 +178,10 @@ class MY_Controller extends CI_Controller {
         $language['language'][] = array('id' => 7, 'name' => '简体中文', 'short_name' => 'zh-hans'); // chino
         $language['language'][] = array('id' => 8, 'name' => 'العربية', 'short_name' => 'ar'); // arabe
         $language['language'][] = array('id' => 9, 'name' => '日本語', 'short_name' => 'ja'); // japones
-        
+
         $this->load->vars($language); //$language = $this->load->get_var('language');
     }
-    
+
     /*
      * Search id_language ('es', 'en', 'it')
      */
@@ -197,26 +197,26 @@ class MY_Controller extends CI_Controller {
         }
         return $flag;
     }
-    
+
     /**
      * init session by URL (usuer anonimo)
      */
     private function loadSessionLanguage()
     {
-        //var_dump($this->uri->segment(1));// exit;        
+        //var_dump($this->uri->segment(1));// exit;
         $id_lang = $this->uri->segment(1);
-        if ($this->is_language($id_lang)) {            
-            $this->session->set_userdata(array('id_lang' => $id_lang));            
+        if ($this->is_language($id_lang)) {
+            $this->session->set_userdata(array('id_lang' => $id_lang));
         }
     }
-    
+
     /**
      * Clear cache (option CRUD in db)
-     */ 
+     */
     protected function cleanCache()
-    {   
+    {
         $this->load->driver('cache');
         $this->cache->file->clean();
-    }    
-    
+    }
+
 }
