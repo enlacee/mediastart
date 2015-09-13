@@ -20,5 +20,5 @@
 <?php if (isset($jstring)) : ?>
     <?php foreach ($jstring as $key => $value): ?>
 <script type="text/javascript"><?php echo $value; ?></script>
-    <?php endforeach; ?>        
+    <?php endforeach; ?>
 <?php endif; ?>
