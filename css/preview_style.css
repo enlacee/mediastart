@@ -1,0 +1,109 @@
+body{
+margin:0;
+background-color:#E6E5E1;
+font-family: 'Raleway', sans-serif;
+}
+#header{
+
+width:100%;
+height:100px;
+background-color:#0C79C3;
+box-shadow:0.4em 0.4em 1em -0.2em black;
+}
+
+.box h2{
+	text-align:center;
+	position:relative;
+	padding-top:20px;
+	color:rgb(82, 82, 82);
+}
+.box {
+	width:70%;
+	height:440px;
+	background:#FFF;
+	margin:40px auto;
+}
+
+/*==================================================
+ * Effect 2
+ * ===============================================*/
+.effect2
+{
+  position: relative;
+}
+.effect2:before, .effect2:after
+{
+  z-index: -1;
+  position: absolute;
+  content: "";
+  bottom: 15px;
+  left: 10px;
+  width: 50%;
+  top: 80%;
+  max-width:300px;
+  background: #777;
+  -webkit-box-shadow: 0 15px 10px #777;
+  -moz-box-shadow: 0 15px 10px #777;
+  box-shadow: 0 15px 10px #777;
+  -webkit-transform: rotate(-3deg);
+  -moz-transform: rotate(-3deg);
+  -o-transform: rotate(-3deg);
+  -ms-transform: rotate(-3deg);
+  transform: rotate(-3deg);
+}
+.effect2:after
+{
+  -webkit-transform: rotate(3deg);
+  -moz-transform: rotate(3deg);
+  -o-transform: rotate(3deg);
+  -ms-transform: rotate(3deg);
+  transform: rotate(3deg);
+  right: 10px;
+  left: auto;
+}
+.first{
+width:30%;
+height:400px;
+
+float:left;	
+}
+
+.second{
+	width:70%;
+height:400px;
+
+float:left;
+}
+.second_crop{
+	width:100%;
+height:400px;
+
+float:left;
+}
+iframe { overflow:hidden;  
+   
+	border:none; 
+	padding-top:10px;
+	
+	}
+	#flist{
+	width: 80%;
+height: 280px;
+margin-top: 20px;
+margin-left: 30px;
+border: 1px dashed #E2E2E2;	
+		
+	}
+	#logo{
+	margin: 0 auto;
+margin-left: 40%;
+padding: 6px;
+	
+	}
+	ul{
+	
+	line-height: 30px;
+	}
+	
+	
+	

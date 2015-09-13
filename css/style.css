@@ -1,0 +1,217 @@
+@charset "utf-8";
+/* CSS Document */
+
+a, h1{
+
+    font-size: 170%;
+    color: #645348;
+    font-style: italic;
+    text-decoration: none;
+    font-weight: 100;
+    padding: 8px;
+}
+body{
+    font-family: 'Raleway', sans-serif;
+    text-transform: inherit;
+    color: #582A00;
+    background-color:#FFF;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.upload{
+    background-color:#09F;
+    width:100px;
+    height:100px;
+    overflow: hidden;
+    float:left;
+    margin:10px;
+    position:relative;
+    z-index: 2;
+    opacity: 0;
+}
+#upload_btn{
+    background-image:url(../images/upload.jpg);
+    background-size:100px 100px;
+    width:100px;
+    height:100px;
+    overflow: hidden;
+    float:left;
+    margin:10px;
+    position:relative;
+
+    box-shadow:inset 0 0 1em #CCCCCC;
+
+}
+
+
+.preview{
+    box-shadow:inset 0 0 1em #CCCCCC;
+    width:100px;
+    height:100px;
+    overflow: hidden;
+    float:left;
+    margin: 10px;
+
+}
+.err_msg{
+    width: 100px;
+    height: 50px;
+    margin-top: 11px;
+    position: absolute;
+    font-size: 11px;
+    color: red;
+    margin-left: 9px;
+}
+
+.err_msg img{
+    width: 80px;
+    height: 80px;
+}
+#form_container{
+
+
+
+    width: 300px;
+    height: 200px;
+
+
+    margin: 0 auto;
+    margin-top: 100px;
+}
+#crop_file{
+    opacity: 0;
+    width: 150px;
+    height: 50px;
+}
+
+#file_btn{
+    width: 150px;
+    height: 50px; 
+    background-size: 150px 50px;
+    background-color: rgb(226, 226, 226);
+    float: left;
+    background-image: url('../images/browse.png');
+}
+
+.btn-primary{
+    width: 150px;
+    height: 50px; 
+    background-color: rgb(147, 147, 147);
+    float: left;   
+}
+#close{
+    display: block;
+    float:right;
+    position: relative;
+    background:url(../images/cross_btn.png) no-repeat center center;
+    cursor: pointer;
+}
+
+#rotate_img{
+    display: block;
+    float:right;
+    position: relative;
+    background:url("../images/rotate.png") no-repeat;
+    background-size: 16px 16px;
+    cursor: pointer;
+}
+#dynamic{
+    margin-left: -1px;
+    margin-top: -20px;
+}
+
+#img_area{
+    float:left;
+
+}
+
+#img_info{
+    float:left;
+    position: absolute;
+    margin-left: 400px;
+}
+.coordinate{
+
+    width:50px;
+
+}
+#save_img{
+
+    width:300px;
+    height:300px;
+    margin-top: 50px;
+
+}
+
+.fg-button{
+    position: relative;
+    top: 0;
+    border-radius: 4;
+    font-size: 18px;
+    padding: 8px 28px;
+    text-decoration: none;
+    border: 0px solid;
+    cursor: pointer;
+    border-bottom-width: 3px;
+    outline: none;
+    -webkit-transition: 0.3s background;
+    -moz-transition: 0.3s background;
+    transition: 0.3s background;
+}
+
+.fg-button:active{
+    top: 2px;
+}
+
+
+.fg-button.blue{
+    color: #fff;
+    border-color: #0A68A7;
+    background-color: #0C79C3;
+    margin-left:70px;
+}
+
+.fg-button.blue:hover{
+    background: #1094ed;
+}
+
+
+.fg-button.blue:active{
+    background: #1094ed;
+    top: 2px;
+    border-bottom-width: 1px;
+}
+table th{
+
+    font-size:20px;
+    color:gray;
+    padding-bottom:15px;
+}
+table {
+    color:gray;
+
+}
+
+#crop_img{
+
+    width:500px;
+    height: 300px;
+    margin:0 auto;
+
+}
+#crop_back{
+
+    margin-top: 100px;
+    width:500px;
+    height: 100px;
+    margin:0 auto;
+
+}
+
+#crop_back a{
+    font-size: 18px;
+    font-style: normal;
+
+}
