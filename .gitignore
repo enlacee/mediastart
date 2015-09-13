@@ -43,7 +43,8 @@ nbproject/*
 !/public/images/captcha/empty
 
 
-
+# gallery portfolio
+/public/ci_image_upload/upload/*
 
 
 

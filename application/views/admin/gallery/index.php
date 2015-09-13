@@ -1,4 +1,4 @@
-<div class="col-md-12" style="border:1px solid red">
+<div class="col-md-12">
 
     <div class="row">
         <div class="col-md-12">
@@ -52,13 +52,31 @@
                     }
                 });
             }
+
+            function delete_img2(obj, img) {
+                delete_img(obj, img);
+                obj.parentNode.style.display='none'
+            }
         </script>
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-12">
-            abc
+            <h2>All Images</h2>
+            <div class="" style="height: 200px; border:2px solid gray;display: flex;flex-wrap: wrap;overflow-y: scroll; padding:5px 0">
+                <?php if (isset($data) && is_array($data) && count($data) > 0) : ?>
+                    <?php foreach($data as $array) : ?>
+                    <div class="items" style="margin:5px; display:block;">
+                        <?php $imgInfo = pathinfo($array['image_path']); ?>
+                        <a id="close" onclick="delete_img2(this, '<?php echo  $imgInfo['basename'] ?>');"></a>
+                        <img src="<?php echo $array['image_path'] ?>" width="100px" height="100px" />
+                    </div>
+                    <?php endforeach; ?>
+                <?php else : ?>
+                    <p>Not founds images.</p>
+                <?php endif; ?>
+            </div>
         </div>
     </div>
 

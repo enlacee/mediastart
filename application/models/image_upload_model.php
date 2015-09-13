@@ -2,6 +2,16 @@
 
 class Image_Upload_Model extends CI_Model {
 
+    public function getAll()
+    {
+        $this->db->select('id, image_path');
+		$this->db->from('image_upload');
+		$this->db->order_by('id', 'asc');
+		$query = $this->db->get();
+
+        return $query->result_array();
+    }
+
     // Insert Image Into Database.
     public function insert_image($data) {
         $this->db->insert('image_upload', $data);
@@ -56,7 +66,7 @@ class Image_Upload_Model extends CI_Model {
     public function resize_image_insert($data) {
         $this->db->insert('image_resize', $data);
     }
-    
+
         // Update Rotate Image Into Database.
     public function resize_image_update($original_img, $data) {
         $this->db->where('original_img_path', $original_img);

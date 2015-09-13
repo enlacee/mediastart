@@ -21,16 +21,12 @@ class img_con extends MY_ControllerAdmin {
         //$this->loadStatic(array('js' => '/ci_image_upload/js/jquery.min.js'));
         $this->loadStatic(array('js' => '/ci_image_upload/js/jquery.form.js'));
         $this->loadStatic(array('js' => '/ci_image_upload/js/jquery-ui.min.js'));
-
         $this->loadStatic(array('css' => '/ci_image_upload/css/style.css'));
-
         //$this->loadStatic(array("jstring" => $stringJs));
 
+        $data['data'] = $this->image_upload_model->getAll();
+
         $this->layout->view('admin/gallery/index', $data);
-
-
-
-        //$this->load->view('img_view');
     }
 
     // This Function For View Front Page For All Functionality.
