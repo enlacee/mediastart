@@ -15,6 +15,38 @@
                     </td>
                 </tr>
                 <tr>
+                  <td width="15%" class="text-right tableBGTD fontBold">Iconos:</td>
+                  <td width="85%" class="text-left">
+                    <span class="pdRight20 center-block">
+                        <ul class="social_copy">
+                            <?php $ps2 = getPublicUrl() . '/images/iconos/social2/'; ?>
+                            <li><a target="_blank" href="<?php echo $ps2 ?>amazon.png"><img src="<?php echo $ps2 ?>amazon.png"></a></li>
+                            <li><a target="_blank" href="<?php echo $ps2 ?>android.png"><img src="<?php echo $ps2 ?>android.png"></a></li>
+                            <li><a target="_blank" href="<?php echo $ps2 ?>appstore.png"><img src="<?php echo $ps2 ?>appstore.png"></a></li>
+                            <li><a target="_blank" href="<?php echo $ps2 ?>blogger.png"><img src="<?php echo $ps2 ?>blogger.png"></a></li>
+                            <li><a target="_blank" href="<?php echo $ps2 ?>bluetooth.png"><img src="<?php echo $ps2 ?>bluetooth.png"></a></li>
+                            <li><a target="_blank" href="<?php echo $ps2 ?>camera.png"><img src="<?php echo $ps2 ?>camera.png"></a></li>
+                            <li><a target="_blank" href="<?php echo $ps2 ?>fb.png"><img src="<?php echo $ps2 ?>fb.png"></a></li>
+                            <li><a target="_blank" href="<?php echo $ps2 ?>flickr.png"><img src="<?php echo $ps2 ?>flickr.png"></a></li>
+                            <li><a target="_blank" href="<?php echo $ps2 ?>foursquare.png"><img src="<?php echo $ps2 ?>foursquare.png"></a></li>
+                            <li><a target="_blank" href="<?php echo $ps2 ?>gmail.png"><img src="<?php echo $ps2 ?>gmail.png"></a></li>
+                            <li><a target="_blank" href="<?php echo $ps2 ?>google-buzz.png"><img src="<?php echo $ps2 ?>google-buzz.png"></a></li>
+                            <li><a target="_blank" href="<?php echo $ps2 ?>google-plus.png"><img src="<?php echo $ps2 ?>google-plus.png"></a></li>
+                            <li><a target="_blank" href="<?php echo $ps2 ?>instagram.png"><img src="<?php echo $ps2 ?>instagram.png"></a></li>
+                            <li><a target="_blank" href="<?php echo $ps2 ?>line.png"><img src="<?php echo $ps2 ?>line.png"></a></li>
+                            <li><a target="_blank" href="<?php echo $ps2 ?>linkedin.png"><img src="<?php echo $ps2 ?>linkedin.png"></a></li>
+                            <li><a target="_blank" href="<?php echo $ps2 ?>notepad.png"><img src="<?php echo $ps2 ?>notepad.png"></a></li>
+                            <li><a target="_blank" href="<?php echo $ps2 ?>skype.png"><img src="<?php echo $ps2 ?>skype.png"></a></li>
+                            <li><a target="_blank" href="<?php echo $ps2 ?>twitter.png"><img src="<?php echo $ps2 ?>twitter.png"></a></li>
+                            <li><a target="_blank" href="<?php echo $ps2 ?>utorrent.png"><img src="<?php echo $ps2 ?>utorrent.png"></a></li>
+                            <li><a target="_blank" href="<?php echo $ps2 ?>vimeo.png"><img src="<?php echo $ps2 ?>vimeo.png"></a></li>
+                            <li><a target="_blank" href="<?php echo $ps2 ?>whatsapp.png"><img src="<?php echo $ps2 ?>whatsapp.png"></a></li>
+                            <li><a target="_blank" href="<?php echo $ps2 ?>youtube.png"><img src="<?php echo $ps2 ?>youtube.png"></a></li>
+                        </ul>
+                    </span>
+                  </td>
+                </tr>
+                <tr>
                     <td width="15%" class="text-right tableBGTD fontBold">URL IMAGE:</td>
                     <td width="85%" class="text-left">
                       <span class="pdRight20 center-block">

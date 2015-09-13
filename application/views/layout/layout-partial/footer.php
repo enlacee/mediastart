@@ -41,17 +41,17 @@
                         <div class="col-md-3">
                             <div class="footerWebBox" id="menuUlFooterCol4">
                                 <h4>Social</h4>
-                                <ul>
+                                <ul class="display-flex-social">
                                     <?php if (isset($categorySocial) && is_array($categorySocial) && count($categorySocial)>0) : ?>
                                         <?php $ultimate = count($categorySocial);
                                                 foreach ($categorySocial as $array) : ?>
                                                   <li style="border:none;">
-                                                      <div class="">
-                                                         <img src="<?php echo $array['url_image'] ?>" alt="<?php echo $array['name'] ?>" />
+                                                      <div>
+                                                        <a target="_blank" href="<?php echo $array['link_image'] ?>">
+                                                            <img src="<?php echo $array['url_image'] ?>" alt="<?php echo $array['name'] ?>" />
+                                                        </a>
                                                       </div>
-                                                      <div class="">
-                                                        <a href="<?php echo $array['link_image'] ?>"><?php echo $array['name'] ?></a>
-                                                      </div>
+
                                                   </li>
                                         <?php endforeach; ?>
                                     <?php else : ?>
