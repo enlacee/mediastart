@@ -64,7 +64,8 @@ class Portfolio extends MY_Controller {
             var flag = img.attr('data-flag');
 
             if (flag == 'image') {
-                console.log("GALLRTY")
+                var URL = img.parent().next().find('a').attr('href')
+                location.href = URL;
                 //var urlImg = img.attr('src');
                 //var contenHtml = '<img src="'+urlImg+'"/>'
 
@@ -78,11 +79,11 @@ class Portfolio extends MY_Controller {
                 contenHtml += 'width="500" height="281" frameborder="0" ';
                 contenHtml += 'webkitallowfullscreen mozallowfullscreen allowfullscreen> ';
                 contenHtml += '</iframe> ';
-            }
 
-            $("#porfolioCtnVideoIframeShow").html(contenHtml);
-            // -- load modal
-            $('#videoPorfolio').modal({backdrop: true,show: true});
+                $("#porfolioCtnVideoIframeShow").html(contenHtml);
+                // -- load modal
+                $('#videoPorfolio').modal({backdrop: true,show: true});
+            }
 
         });
 EOT;
