@@ -33,7 +33,7 @@
                         <div class="row">
                             <div class="col-md-12">
 
-                                <h2>All Images : selected images</h2>
+                                <p>Gallery : selected images</p>
                                 <div class="" style="height: 130px; border:2px solid gray;display: flex;flex-wrap: wrap;overflow-y: scroll; padding:5px 0">
                                     <?php if (isset($data) && is_array($data) && count($data) > 0) : ?>
                                         <?php foreach($data as $array) : ?>
