@@ -49,7 +49,9 @@ class Admin_portfolio extends MY_ControllerAdmin {
             $dataPost ['category_id'] = $this->input->post('category_id');
             $dataPost ['url_video'] = $this->input->post('url_video');
             $dataPost ['url_image_link'] = $this->input->post('url_image_link');
-            $dataPost ['url_image'] = serialize($this->input->post('url_image'));
+            $dataPost ['url_image'] = !empty($this->input->post('url_image'))
+                ? serialize($this->input->post('url_image'))
+                : '';
             $dataPost ['status'] = Portfolio_model::STATUS_TRUE;
             $dataPost ['created_at'] = date('Y-m-d H:i:s');
             $this->Portfolio_model->add($dataPost);
@@ -92,10 +94,10 @@ class Admin_portfolio extends MY_ControllerAdmin {
             // ----------- listener  00 key up -----------
             $( "#url_video" ).keyup(function() {
                 var idVideo = $(this).val();
-                getImageVimeo(idVideo);
+                var res = idVideo.split("/");
+                getImageVimeo(res[(res.length-1)]);
             });
             function getImageVimeo(idVideo){
-                console.log('idVideo',idVideo);
                 if (idVideo.length == 8) {
                     $("#url_image_link").val('');
                     var url = 'http://vimeo.com/api/v2/video/'+idVideo+'.json';
@@ -130,7 +132,9 @@ EOT;
             $dataPost ['category_id'] = $this->input->post('category_id');
             $dataPost ['url_video'] = $this->input->post('url_video');
             $dataPost ['url_image_link'] = $this->input->post('url_image_link');
-            $dataPost ['url_image'] = serialize($this->input->post('url_image'));
+            $dataPost ['url_image'] = !empty($this->input->post('url_image'))
+                ? serialize($this->input->post('url_image'))
+                : '';
             $dataPost ['status'] = $this->input->post('status');
             $dataPost ['updated_at'] = date('Y-m-d H:i:s');
             $this->Portfolio_model->update($id, $dataPost);
@@ -163,10 +167,10 @@ EOT;
             // ----------- listener  00 key up -----------
             $( "#url_video" ).keyup(function() {
                 var idVideo = $(this).val();
-                getImageVimeo(idVideo);
+                var res = idVideo.split("/");
+                getImageVimeo(res[(res.length-1)]);
             });
             function getImageVimeo(idVideo){
-                console.log('idVideo',idVideo);
                 if (idVideo.length == 8) {
                     $("#url_image_link").val('');
                     var url = 'http://vimeo.com/api/v2/video/'+idVideo+'.json';
@@ -190,7 +194,8 @@ EOT;
         if (!empty($id)) {
             $this->session->set_userdata('portfolio',''); // LIMPIAR IMAGEN
             $data['data'] = $this->Portfolio_model->get($id);
-            $data['data']['url_image'] = unserialize($data['data']['url_image']);
+            $data['data']['url_image'] = empty($data['data']['url_image'])
+                ? '' : unserialize($data['data']['url_image']);
         }
 
         $this->loadStatic(array('js' => '/js/validate/jquery.validate.js'));
