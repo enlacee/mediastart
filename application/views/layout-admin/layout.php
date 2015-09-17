@@ -31,7 +31,7 @@
                 <div style="color:#777777; text-align:center; width:100%;">Diseño y desarrollo exclusivo <a href="http://www.tb.com.ve" style="color:#0076AB !important;" target="_blank">www.tb.comve</a></div>
                 <div style="color:#777777; text-align:center; width:100%;">&copy; 2015 - Todos los derechos reservados</div>
             </div>
-        </div>      
+        </div>
 
         <?php require 'layout-partial/require_js.php';?>
     </body>

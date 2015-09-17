@@ -21,7 +21,7 @@ class Portfolio extends MY_Controller {
 
         // ----- init pagination
         $limit = 9;
-        $count = $this->Portfolio_model->listPorfolio($id, Portfolio_model::STATUS_TRUE, '', '', '', true);
+        $count = $this->Portfolio_model->listPorfolio('',$id, Portfolio_model::STATUS_TRUE, '', '', '', true);
 
         if ($count > 0) {
             $total_pages = ceil($count/$limit);
@@ -51,25 +51,26 @@ class Portfolio extends MY_Controller {
             if ($flagSearch) {
                 $data['category_name'] = $category_name;
                 $data['category_id'] = $id;
-                $data['portfolio'] = $this->Portfolio_model->listPorfolio($id, Portfolio_model::STATUS_TRUE, 'desc', $limit, $start,false);
+                $data['portfolio'] = $this->Portfolio_model->listPorfolio('',$id, Portfolio_model::STATUS_TRUE, 'desc', $limit, $start,false);
             }
         }
 
         $stringJs = <<<EOT
         //Muestra video
         $(".porfolioCtnVideoShow img").click(function(){
-            // -- Load video
             var img = $(this);
             var contenHtml = '';
             var flag = img.attr('data-flag');
 
             if (flag == 'image') {
-                var URL = img.parent().next().find('a').attr('href')
-                location.href = URL;
-                //var urlImg = img.attr('src');
-                //var contenHtml = '<img src="'+urlImg+'"/>'
+                agregarItemsSlider(JSON.parse(img.attr('data-json')));
+                $('#carousel-example-generic').show();
+                $('#carousel-example-generic').insertBefore('#porfolioCtnVideoIframeShow');
+                $('#porfolioCtnVideoIframeShow').css({"margin": "0px","padding": "0px"});
 
             } else if (flag == 'video') {
+                $('#carousel-example-generic').hide();
+                $('#porfolioCtnVideoIframeShow').attr('style','');
                 var attData = img.attr('data');
                 var elArray = attData.split('/');
                 var idVideo = elArray[(elArray.length-1)];
@@ -79,13 +80,36 @@ class Portfolio extends MY_Controller {
                 contenHtml += 'width="500" height="281" frameborder="0" ';
                 contenHtml += 'webkitallowfullscreen mozallowfullscreen allowfullscreen> ';
                 contenHtml += '</iframe> ';
-
-                $("#porfolioCtnVideoIframeShow").html(contenHtml);
-                // -- load modal
-                $('#videoPorfolio').modal({backdrop: true,show: true});
             }
-
+            $("#porfolioCtnVideoIframeShow").html(contenHtml);
+            $('#videoPorfolio').modal({backdrop: true,show: true});
         });
+
+        function agregarItemsSlider(object) {
+            var _carosel = $('#carousel-indicators');
+            _carosel.html('');
+            var li = '';
+            for (var i = 0; i<object.length; i++) {
+                var active = (i==0) ? 'active' : '';
+                li += '<li data-target="#carousel-example-generic" data-slide-to="'+i+'" class="'+active+'"></li>';
+            }
+            _carosel.html(li);
+
+            var _carousel_inner = $('#carousel-inner');
+            _carousel_inner.html('');
+            var div = '';
+            for (var i = 0; i<object.length; i++) {
+                var active = (i==0) ? 'active' : '';
+                div += ''
+                +'<div class="item '+active+'">'
+                +'    <img src="'+object[i].href+'" >'
+                +'    <div class="carousel-caption">'
+                +'    '
+                +'    </div>'
+                +'</div>';
+            }
+            _carousel_inner.html(div);
+        }
 EOT;
 
         $data['title'] = isset($data['category_name']) ? $data['category_name'] : NULL;
@@ -98,8 +122,7 @@ EOT;
     {
         if (!empty($id)) {
             $data['portfolio'] = $this->Portfolio_model->get($id, '',  Portfolio_model::STATUS_TRUE);
-            $data['portfolio']['url_image'] = empty($data['portfolio']['url_image'])
-                ? '' : unserialize($data['portfolio']['url_image']);
+            $data['portfolio']['url_image'] = $data['portfolio']['url_image'];
 
             $data['title'] = isset($data['portfolio']['title']) ? $data['portfolio']['title'] : NULL;
             $data['columRight'] = 'relatedVideo';
@@ -107,7 +130,7 @@ EOT;
             //category_id
             $category_id = $data['portfolio']['category_id'];
             if ( isset($category_id) && $category_id > 0) {
-                $data['relatedVideo'] = $this->Portfolio_model->listPorfolio($category_id, Portfolio_model::STATUS_TRUE, $order = 'desc', $limit = '',$offset = '', $rows = FALSE);
+                $data['relatedVideo'] = $this->Portfolio_model->listPorfolio('',$category_id, Portfolio_model::STATUS_TRUE, $order = 'desc', $limit = '',$offset = '', $rows = FALSE);
 
                 $dataDelete = $this->deleteRelatedVideo($data['relatedVideo'], $data['portfolio']['id']);
                 $data['relatedVideo'] = $dataDelete;

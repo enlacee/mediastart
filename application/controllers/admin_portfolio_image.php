@@ -2,14 +2,15 @@
 
 $file = FCPATH."application/core/MY_ControllerAdmin.php"; (is_file($file)) ? include($file) : die("error: {$file}");
 
-class Admin_portfolio extends MY_ControllerAdmin {
+class admin_portfolio_image extends MY_ControllerAdmin {
 
-    const PAGE_TITLE = 'Portfolio Video';
+    const PAGE_TITLE = 'Portfolio Images';
 
     public function __construct()
     {
         parent::__construct();
         $this->load->model('Portfolio_model');
+        $this->load->model('image_upload_model');
     }
 
     /*
@@ -19,7 +20,7 @@ class Admin_portfolio extends MY_ControllerAdmin {
     {
       	$limit = MY_ControllerAdmin::LIMIT;
         $count = $this->Portfolio_model
-            ->listPorfolio(Portfolio_model::FLAG_VIDEO,'', '', '', '', '', true);
+            ->listPorfolio(Portfolio_model::FLAG_IMAGE,'', '', '', '', '', true);
 
         if ($count > 0) {
             $total_pages = ceil($count/$limit);
@@ -39,8 +40,8 @@ class Admin_portfolio extends MY_ControllerAdmin {
 
         $data['page_title'] = self::PAGE_TITLE;
         $data['data'] = $this->Portfolio_model
-            ->listPorfolio(Portfolio_model::FLAG_VIDEO,'', '', 'desc', $limit, $start, false);
-        $this->layout->view('admin/portfolio/index', $data);
+            ->listPorfolio(Portfolio_model::FLAG_IMAGE, '', '', 'desc', $limit, $start, false);
+        $this->layout->view('admin/portfolio_image/index', $data);
     }
 
     public function add($estatus = '')
@@ -52,67 +53,47 @@ class Admin_portfolio extends MY_ControllerAdmin {
             $dataPost ['url_video'] = $this->input->post('url_video');
             $dataPost ['url_image_link'] = $this->input->post('url_image_link');
             $dataPost ['url_image'] = $this->input->post('url_image');
-                : '';
             $dataPost ['status'] = Portfolio_model::STATUS_TRUE;
             $dataPost ['created_at'] = date('Y-m-d H:i:s');
-            $dataPost ['flag'] = $this->input->post('flag');
             $this->Portfolio_model->add($dataPost);
             $this->cleanCache();
             $this->session->set_flashdata('flashMessage', "Added  correctly ".self::PAGE_TITLE);
-            redirect('admin_portfolio/index');
+            redirect('admin_portfolio_image/index');
         }
 
-        $base_url = base_url("admin_portfolio/upload");
+        $baseLoading = getPublicUrl() .'/ci_image_upload/images/loading.gif';
         $stringJs = <<<EOT
         $(function () {
-            // 02 - validate
             $('#form').validate({
-                rules: {
-                    title: {required : true, minlength: 3, maxlength: 50}
-                  },
-
-                //Detecta cuando se realiza el submit o se presiona el boton
                 submitHandler: function(form){
+                    saveImagesToInput();
                     form.submit();
-                },
-
-                //Detecta los error y abre los span con los posibles errores
-                errorPlacement: function(error, element){
-                error.insertAfter(element);
                 }
             });
-
-            // ----------- listener  00 key up -----------
-            $( "#url_video" ).keyup(function() {
-                var idVideo = $(this).val();
-                var res = idVideo.split("/");
-                getImageVimeo(res[(res.length-1)]);
+             
+            // load gallery
+            $('#file').on('change', function(e) {
+                e.preventDefault();
+                document.getElementById('imagePreview').innerHTML = 
+                    '<img src="{$baseLoading}">';
+                $("#imageform").ajaxForm({target: '#imagePreview'}).submit();
             });
-            function getImageVimeo(idVideo){
-                if (idVideo.length == 8) {
-                    $("#url_image_link").val('');
-                    var url = 'http://vimeo.com/api/v2/video/'+idVideo+'.json';
-                    $.getJSON( url, function( data ) {
-                        data = data[0];
-                        $("#url_image_link").val(data.thumbnail_large);
-                    });
-                }
-            }
-
-
+            //               
+                
         });
-
 EOT;
         $data['data'] = '';
         $data['page_title'] = self::PAGE_TITLE;
+        // plugin images
+        $this->loadStatic(array('js' => '/ci_image_upload/js/jquery.form.js'));
+        $this->loadStatic(array('js' => '/ci_image_upload/js/jquery-ui.min.js'));
+        $this->loadStatic(array('css' => '/ci_image_upload/css/style.css'));
+        // extra
         $this->loadStatic(array('js' => '/js/validate/jquery.validate.js'));
         $this->loadStatic(array('js' => '/js/validate/jquery.metadata.js'));
-        $this->loadStatic(array("jstring" => $stringJs));
-
-        $this->load->model('image_upload_model');
-        $data['data'] = $this->image_upload_model->getAll();
-
-        $this->layout->view('admin/portfolio/add', $data);
+        $this->loadStatic(array("jstring" => $stringJs));        
+        
+        $this->layout->view('admin/portfolio_image/add', $data);
     }
 
 
@@ -129,46 +110,27 @@ EOT;
             $this->Portfolio_model->update($id, $dataPost);
             $this->cleanCache();
             $this->session->set_flashdata('flashMessage', "updated correctly ".self::PAGE_TITLE.". Id (<b>$id</b>)");
-            redirect('admin_portfolio/index');
+            redirect('admin_portfolio_image/index');
         }
 
-        $base_url = base_url("admin_portfolio/upload/{$id}");
+        $baseLoading = getPublicUrl() .'/ci_image_upload/images/loading.gif';
         $stringJs = <<<EOT
         $(function () {
             // 02 - validate
             $('#form').validate({
-                rules: {
-                    title: {required : true, minlength: 3, maxlength: 50}
-                  },
-
-                //Detecta cuando se realiza el submit o se presiona el boton
                 submitHandler: function(form){
                     form.submit();
-                },
-
-                //Detecta los error y abre los span con los posibles errores
-                errorPlacement: function(error, element){
-                error.insertAfter(element);
                 }
             });
-
-
-            // ----------- listener  00 key up -----------
-            $( "#url_video" ).keyup(function() {
-                var idVideo = $(this).val();
-                var res = idVideo.split("/");
-                getImageVimeo(res[(res.length-1)]);
+                
+            // load gallery
+            $('#file').on('change', function(e) {
+                e.preventDefault();
+                document.getElementById('imagePreview').innerHTML = 
+                    '<img src="{$baseLoading}">';
+                $("#imageform").ajaxForm({target: '#imagePreview'}).submit();
             });
-            function getImageVimeo(idVideo){
-                if (idVideo.length == 8) {
-                    $("#url_image_link").val('');
-                    var url = 'http://vimeo.com/api/v2/video/'+idVideo+'.json';
-                    $.getJSON( url, function( data ) {
-                        data = data[0];
-                        $("#url_image_link").val(data.thumbnail_large);
-                    });
-                }
-            }
+            //
 
         });
 
@@ -183,15 +145,17 @@ EOT;
         if (!empty($id)) {
             $this->session->set_userdata('portfolio',''); // LIMPIAR IMAGEN
             $data['data'] = $this->Portfolio_model->get($id);
-            $data['data']['url_image'] = empty($data['data']['url_image'])
-                ? '' : unserialize($data['data']['url_image']);
         }
+        // plugin images
+        $this->loadStatic(array('js' => '/ci_image_upload/js/jquery.form.js'));
+        $this->loadStatic(array('js' => '/ci_image_upload/js/jquery-ui.min.js'));
+        $this->loadStatic(array('css' => '/ci_image_upload/css/style.css'));
 
         $this->loadStatic(array('js' => '/js/validate/jquery.validate.js'));
         $this->loadStatic(array('js' => '/js/validate/jquery.metadata.js'));
 
         $this->loadStatic(array("jstring" => $stringJs));
-        $this->layout->view('admin/portfolio/edit', $data);
+        $this->layout->view('admin/portfolio_image/edit', $data);
     }
 
     public function del($id = '', $estatus = '')
@@ -202,8 +166,8 @@ EOT;
             $this->Portfolio_model->del($id);
             $this->cleanCache();
             $this->session->set_flashdata('flashMessage', "Eliminated ".self::PAGE_TITLE.". Id (<b>$id</b>)");
-            redirect('admin_portfolio/index');
+            redirect('admin_portfolio_image/index');
         }
-        $this->layout->view('admin/portfolio/del', $data);
+        $this->layout->view('admin/portfolio_image/del', $data);
     }
 }

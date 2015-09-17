@@ -54,8 +54,10 @@
                             </li>
 
                             <li>
-                                <a href="<?php echo base_url('admin_portfolio') ?>">Portfolio</a>
+                                <a href="#">Portfolio</a>
                                 <ul>
+                                    <li><a href="<?php echo base_url('admin_portfolio/index') ?>">Gallery Video</a></li>
+                                    <li><a href="<?php echo base_url('admin_portfolio_image/index')?>">Gallery Image</a></li>
                                     <li><a href="<?php echo base_url('img_con/index')?>">Gallery</a></li>
                                 </ul>
                             </li>

@@ -15,6 +15,7 @@ class Image_Upload_Model extends CI_Model {
     // Insert Image Into Database.
     public function insert_image($data) {
         $this->db->insert('image_upload', $data);
+        return $this->db->insert_id();
     }
 
     // Delete Image From Database.

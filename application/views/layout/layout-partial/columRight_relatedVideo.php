@@ -10,11 +10,11 @@
                     <a href="<?php echo base_url("portfolio/video/".$array['id']) ?>"> - <?php echo $array['title'] ?></a>
                 </h3>
                 <a href="<?php echo base_url("portfolio/video/".$array['id']) ?>">
-                    <?php if (empty($array['url_image'])): ?>
+                    <?php if ($array['flag'] == 'video'): ?>
                         <img class="img-responsive" src="<?php echo $array['url_image_link'] ?>" />
-                    <?php else: ?>
-                        <?php $zip = unserialize($array['url_image']); ?>
-                        <img class="img-responsive" src="<?php echo $zip[0] ?>"/>
+                    <?php elseif ($array['flag'] == 'image'): ?>
+                        <?php $zip = json_decode($array['url_image']); ?>
+                        <img class="img-responsive" src="<?php echo isset($zip[0]->href) ? $zip[0]->href : $bannerUrl. 'image.jpg' ?>"/>
                     <?php endif; ?>
                 </a>
             </div>

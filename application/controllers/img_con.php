@@ -18,12 +18,10 @@ class img_con extends MY_ControllerAdmin {
 
         $data['data'] = '';
         $data['page_title'] = self::PAGE_TITLE;
-        //$this->loadStatic(array('js' => '/ci_image_upload/js/jquery.min.js'));
         $this->loadStatic(array('js' => '/ci_image_upload/js/jquery.form.js'));
         $this->loadStatic(array('js' => '/ci_image_upload/js/jquery-ui.min.js'));
         $this->loadStatic(array('css' => '/ci_image_upload/css/style.css'));
         //$this->loadStatic(array("jstring" => $stringJs));
-
         $data['data'] = $this->image_upload_model->getAll();
 
         $this->layout->view('admin/gallery/index', $data);
@@ -62,11 +60,12 @@ class img_con extends MY_ControllerAdmin {
                             $id = $this->image_upload_model->insert_image($img_data);
 
                             $data = uniqid();
-                            echo "<script>var img=$('<div id= $data class=preview><a id=close class= $data onclick=delete_img(" . $an_imgPath . ");></a><img id = dynamic src=$imgPath width=100px height=100px/></div>');
+                            echo "<script>var img=$('<div id= $data class=preview><a id=close class= $data onclick=delete_img(" . $an_imgPath . ");></a><img  data-id={$id} id=dynamic src=$imgPath width=100px height=100px/></div>');
      $(document.createElement('img'));
      img.appendTo('#asd').slideUp(400, function() {
         $(this).show();
     });
+    if (typeof saveImagesToInput === 'function') { saveImagesToInput();}
      </script>";
                         } else
                             echo "Image Upload Failed.";

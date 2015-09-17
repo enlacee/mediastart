@@ -2,6 +2,7 @@
     <h1><?php echo (isset($page_title) && !empty($page_title)) ? $page_title : '' ?></h1>
     <?php if (isset($data) && !empty($data) && is_array($data)) : ?>
     <form name="form" id="form" method="post" action="<?php echo base_url("admin_portfolio/edit/" . $data['id'] . "/true") ?>">
+        <input type="hidden" name="flag" value="video">
         <table class="table table-hover table-striped table-condensed table-responsive table-bordered" style="background-image:none !important;">
             <tbody>
 
@@ -27,41 +28,6 @@
                     <?php endif; ?>
                     </select>
                   </td>
-                </tr>
-                <tr>
-                    <td class="text-right tableBGTD fontBold">Link image:</td>
-                    <td class="text-left">
-                        <div class="row">
-                            <div class="col-md-12">
-
-                                <p>Gallery : selected images</p>
-                                <div class="" style="height: 130px; border:2px solid gray;display: flex;flex-wrap: wrap;overflow-y: scroll; padding:5px 0">
-                                    <?php if (isset($dataImages) && is_array($dataImages) && count($dataImages) > 0) : ?>
-                                        <?php foreach($dataImages as $array) : ?>
-                                            <div class="items" style="margin:5px; display:block; height:100px;width: 100px;">
-                                                <img src="<?php echo $array['image_path'] ?>" width="100px" height="100px" />
-                                                <span style=" position: relative;top: -16px;">
-<?php
-    $aguja = $array['image_path'];
-    $pajar = $data['url_image'];
-    $checked = '';
-    if (is_array($pajar) && count($pajar)> 0) {
-        $checked = (in_array($aguja, $pajar)) ? 'checked' : '';
-    }
-?>
-                                                    <input type="checkbox" name="url_image[]" value="<?php echo $array['image_path'] ?>" <?php echo $checked ?> />
-                                                </span>
-                                            </div>
-                                        <?php endforeach; ?>
-                                    <?php else : ?>
-                                        <p>Not founds images.</p>
-                                    <?php endif; ?>
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </td>
                 </tr>
                 <tr>
                     <td width="15%" class="text-right tableBGTD fontBold">Video ID:</td>

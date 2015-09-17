@@ -18,8 +18,8 @@
                         $urlImg =  $array['url_image_link'];
                         $urlImgclass = 'img-responsive';
                     } else {
-                        $zip = unserialize($array['url_image']);
-                        $urlImg =  (count($zip)>0) ? $zip[0] : 'none.jpg';
+                        $zip = json_decode($array['url_image']);
+                        $urlImg =  (count($zip)>0) ? $zip[0]->href : $bannerUrl. 'image.jpg';
                     }
                 ?>
                 <!--Box-->
@@ -27,7 +27,8 @@
                     <div class="porfolioCtnVideoShow">
                         <img src="<?php echo $urlImg ?>" width="375" height="150" class="img-responsive"
                             alt="<?php echo $array['title']?>" data="<?php echo $array['url_video']?>"
-                            data-flag="<?php echo empty($array['url_image']) ? 'video' : 'image' ?>"/>
+                            data-json='<?php echo $array['url_image'] ?>'
+                            data-flag="<?php echo $array['flag']?>"/>
                         <div class="porfolioCtnVideoIframe hide">
                             hello word.
                             <!--<iframe src="//player.vimeo.com/video/81244498" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>-->
@@ -106,3 +107,7 @@
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+<div class="row" style="display:none">
+    <?php $this->load->view('portfolio/_gallery.php') ?>
+</div>

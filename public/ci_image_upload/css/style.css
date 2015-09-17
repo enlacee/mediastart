@@ -1,25 +1,6 @@
 @charset "utf-8";
 /* CSS Document */
 
-a, h1{
-
-    font-size: 170%;
-    color: #645348;
-    font-style: italic;
-    text-decoration: none;
-    font-weight: 100;
-    padding: 8px;
-}
-body{
-    font-family: 'Raleway', sans-serif;
-    text-transform: inherit;
-    color: #582A00;
-    background-color:#FFF;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-}
-
 .upload{
     background-color:#09F;
     width:100px;
@@ -95,18 +76,16 @@ body{
     background-image: url('../images/browse.png');
 }
 
-.btn-primary{
-    width: 150px;
-    height: 50px; 
-    background-color: rgb(147, 147, 147);
-    float: left;   
-}
+
 #close{
     display: block;
-    float:right;
+    float: right;
     position: relative;
-    background:url(../images/cross_btn.png) no-repeat center center;
+    background: url(../images/cross_btn.png) no-repeat center center;
     cursor: pointer;
+    width: 17px;
+    height: 17px;
+    left: -17px;
 }
 
 #rotate_img{
