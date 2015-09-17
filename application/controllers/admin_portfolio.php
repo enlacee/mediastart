@@ -52,7 +52,6 @@ class Admin_portfolio extends MY_ControllerAdmin {
             $dataPost ['url_video'] = $this->input->post('url_video');
             $dataPost ['url_image_link'] = $this->input->post('url_image_link');
             $dataPost ['url_image'] = $this->input->post('url_image');
-                : '';
             $dataPost ['status'] = Portfolio_model::STATUS_TRUE;
             $dataPost ['created_at'] = date('Y-m-d H:i:s');
             $dataPost ['flag'] = $this->input->post('flag');
