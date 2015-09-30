@@ -20,7 +20,7 @@ class Portfolio extends MY_Controller {
         $data['columRight'] = false;
 
         // ----- init pagination
-        $limit = 9;
+        $limit = 6;
         $count = $this->Portfolio_model->listPorfolio('',$id, Portfolio_model::STATUS_TRUE, '', '', '', true);
 
         if ($count > 0) {
