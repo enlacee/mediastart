@@ -88,7 +88,7 @@ class Admin_portfolio extends MY_ControllerAdmin {
                 getImageVimeo(res[(res.length-1)]);
             });
             function getImageVimeo(idVideo){
-                if (idVideo.length == 8) {
+                if (idVideo.length > 0) {
                     $("#url_image_link").val('');
                     var url = 'http://vimeo.com/api/v2/video/'+idVideo+'.json';
                     $.getJSON( url, function( data ) {

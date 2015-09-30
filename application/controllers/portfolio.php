@@ -130,7 +130,7 @@ EOT;
             //category_id
             $category_id = $data['portfolio']['category_id'];
             if ( isset($category_id) && $category_id > 0) {
-                $data['relatedVideo'] = $this->Portfolio_model->listPorfolio('',$category_id, Portfolio_model::STATUS_TRUE, $order = 'desc', $limit = '',$offset = '', $rows = FALSE);
+                $data['relatedVideo'] = $this->Portfolio_model->listPorfolio('',$category_id, Portfolio_model::STATUS_TRUE, $order = 'desc', $limit = 7,$offset = '', $rows = FALSE);
 
                 $dataDelete = $this->deleteRelatedVideo($data['relatedVideo'], $data['portfolio']['id']);
                 $data['relatedVideo'] = $dataDelete;
