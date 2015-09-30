@@ -18,39 +18,45 @@
         <?php require_once 'layout-partial/slider.php'; ?>
 
             <!--CtnBody-->
-            <div class="row clearfix">
-                <div class="col-md-12">
+            <div id="ctnBody">        
+              <div class="row">
 
-                    <div id="ctnBody">
-                        <!--ColumnLef-->
-                        <div class="col-md-8">
-                            <div class="leftCtn pd10">
-                            <?php echo $content_for_layout; ?>                                
-                            </div>
-                        </div>
-                        <!--End ColumnLef-->
-
-                        <!--ColumnRight-->
-                        <?php if (isset($columRight)) : // columRight_ourTeam.php ?>
-                            <?php if(is_string($columRight)) : ?>
-                            <div class="col-md-4" id="rightColBG">
-                                <div class="rightCtn pdTop10">                                
-                                <?php   require_once "layout-partial/columRight_{$columRight}.php"; ?>
-                                </div>            
-                            </div>                                
-                            <?php endif;?>
-                        <?php elseif (isset($columRight) && $columRight == false ) : ?>   
-                        <?php else: ?>
-                            <div class="col-md-4" id="rightColBG">
-                                <div class="rightCtn pdTop10">                                  
-                           <?php    require_once "layout-partial/columRight_ourTeam.php"; ?>
-                                </div>            
-                            </div>                        
-                        <?php endif; ?>
-                        <!--End ColumnRight-->
+                <!--ColumnLef-->
+                <div class="col-md-8 col col_1">
+                  <div class="ctn">
+                    <div class="leftCtn">
+                      <?php echo $content_for_layout; ?>                                
                     </div>
-
+                  </div>
                 </div>
+                <!--End ColumnLef-->
+
+                <!--ColumnRight-->
+                <?php if (isset($columRight)) : // columRight_ourTeam.php ?>
+
+                  <?php if(is_string($columRight)) : ?>
+                  <div class="col-md-4 col col_2">
+                    <div class="ctn">
+                      <div class="rightCtn">                                
+                        <?php   require_once "layout-partial/columRight_{$columRight}.php"; ?>
+                      </div>   
+                    </div>         
+                  </div>                                
+                  <?php endif;?>
+
+                  <?php elseif (isset($columRight) && $columRight == false ) : ?> 
+
+                  <?php else: ?>
+                  <div class="col-md-4 col col_2">
+                    <div class="ctn">
+                      <div class="rightCtn">                                  
+                        <?php require_once "layout-partial/columRight_ourTeam.php"; ?>
+                      </div>   
+                    </div>         
+                  </div>
+                <?php endif; ?>
+                <!--End ColumnRight-->
+              </div>
             </div>
             <!--End CtnBody-->
 

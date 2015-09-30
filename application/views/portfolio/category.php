@@ -1,96 +1,94 @@
 <!--Column-->
-<div class="col-md-12">
-    <div class="porfolioCtn pdTop10 pdRight10 pdBottom20 pdLeft10">
+<div class="porfolioCtn pdTop10 pdRight10 pdBottom20 pdLeft10">
 
-        <h1>Gallery: <?php echo (isset($category_name)) ? $category_name : ''; ?></h1>
+    <h1>Gallery: <?php echo (isset($category_name)) ? $category_name : ''; ?></h1>
 
-        <?php if (isset($portfolio) && count($portfolio) > 0) : ?>
-            <?php foreach ($portfolio as $array) : ?>
-                <?php
-                    $pathImagen = $portfolioPath . $array['url_image'];
-                    $width = 375;
-                    $height = 197;
-                    $imageNameThumb = create_thumbnail($pathImagen, $width, $height);
-                    $urlImg = $portfolioUrl . $imageNameThumb;
+    <?php if (isset($portfolio) && count($portfolio) > 0) : ?>
+        <?php foreach ($portfolio as $array) : ?>
+            <?php
+                $pathImagen = $portfolioPath . $array['url_image'];
+                $width = 375;
+                $height = 197;
+                $imageNameThumb = create_thumbnail($pathImagen, $width, $height);
+                $urlImg = $portfolioUrl . $imageNameThumb;
 
-                    $urlImgclass = '';
-                    if (empty($array['url_image'])) {
-                        $urlImg =  $array['url_image_link'];
-                        $urlImgclass = 'img-responsive';
-                    } else {
-                        $zip = json_decode($array['url_image']);
-                        $urlImg =  (count($zip)>0) ? $zip[0]->href : $bannerUrl. 'image.jpg';
-                    }
-                ?>
-                <!--Box-->
-                <div class="porfolioCtnVideo">
-                    <div class="porfolioCtnVideoShow">
-                        <img src="<?php echo $urlImg ?>" width="375" height="150" class="img-responsive"
-                            alt="<?php echo $array['title']?>" data="<?php echo $array['url_video']?>"
-                            data-json='<?php echo $array['url_image'] ?>'
-                            data-flag="<?php echo $array['flag']?>"/>
-                        <div class="porfolioCtnVideoIframe hide">
-                            hello word.
-                            <!--<iframe src="//player.vimeo.com/video/81244498" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>-->
-                        </div>
+                $urlImgclass = '';
+                if (empty($array['url_image'])) {
+                    $urlImg =  $array['url_image_link'];
+                    $urlImgclass = 'img-responsive';
+                } else {
+                    $zip = json_decode($array['url_image']);
+                    $urlImg =  (count($zip)>0) ? $zip[0]->href : $bannerUrl. 'image.jpg';
+                }
+            ?>
+            <!--Box-->
+            <div class="porfolioCtnVideo">
+                <div class="porfolioCtnVideoShow">
+                    <img src="<?php echo $urlImg ?>" width="375" height="150" class="img-responsive"
+                        alt="<?php echo $array['title']?>" data="<?php echo $array['url_video']?>"
+                        data-json='<?php echo $array['url_image'] ?>'
+                        data-flag="<?php echo $array['flag']?>"/>
+                    <div class="porfolioCtnVideoIframe hide">
+                        hello word.
+                        <!--<iframe src="//player.vimeo.com/video/81244498" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>-->
                     </div>
-                    <h3 class="porfolioCtnVideoTitulo">
-                        <a href="<?php echo base_url('portfolio/video/' . $array['id']) ?>"><?php echo $array['title']?></a>
-                    </h3>
                 </div>
-            <!--End Box-->
-        <?php endforeach; ?>
+                <h3 class="porfolioCtnVideoTitulo">
+                    <a href="<?php echo base_url('portfolio/video/' . $array['id']) ?>"><?php echo $array['title']?></a>
+                </h3>
+            </div>
+        <!--End Box-->
+    <?php endforeach; ?>
 
-        <!--Paginador-->
-        <div class="text-center pdTop50" id="paginador">
-            <ul class="pagination">
-                <?php
-                //echo "<pre>"; print_r($pag); echo "</pre>";
-                $nextpage= $pag['page'] +1;
-                $prevpage= $pag['page'] -1;
-                ?>
-                <?php if ($pag['page'] == 1) : //SI ES LA PRIMERA PÁGINA DESHABILITO EL BOTON DE PREVIOUS, MUESTRO EL 1 COMO ACTIVO Y MUESTRO EL RESTO DE PÁGINAS ?>
-                    <li class="disabled"><a href="#">&laquo; Previous</a></li>
-                    <li class="active" ><a href="#">1</a></li>
+    <!--Paginador-->
+    <div class="text-center pdTop50" id="paginador">
+        <ul class="pagination">
+            <?php
+            //echo "<pre>"; print_r($pag); echo "</pre>";
+            $nextpage= $pag['page'] +1;
+            $prevpage= $pag['page'] -1;
+            ?>
+            <?php if ($pag['page'] == 1) : //SI ES LA PRIMERA PÁGINA DESHABILITO EL BOTON DE PREVIOUS, MUESTRO EL 1 COMO ACTIVO Y MUESTRO EL RESTO DE PÁGINAS ?>
+                <li class="disabled"><a href="#">&laquo; Previous</a></li>
+                <li class="active" ><a href="#">1</a></li>
 
-                    <?php for ($i = $pag['page']+1; $i <= $pag['last_page']; $i++) : ?>
-                    <li><a href="<?php echo base_url("portfolio/category/{$category_id}/{$i}") ?>"><?php echo $i;?></a></li>
-                    <?php endfor; ?>
+                <?php for ($i = $pag['page']+1; $i <= $pag['last_page']; $i++) : ?>
+                <li><a href="<?php echo base_url("portfolio/category/{$category_id}/{$i}") ?>"><?php echo $i;?></a></li>
+                <?php endfor; ?>
 
-                    <?php if ($pag['last_page'] > $pag['page'] ) : //Y SI LA ULTIMA PÁGINA ES MAYOR QUE LA ACTUAL MUESTRO EL BOTON NEXT O LO DESHABILITO ?>
-                        <li class="next"><a href="<?php echo base_url("portfolio/category/{$category_id}/{$nextpage}") ?>" >Next &raquo;</a></li>
-                    <?php else : ?>
-                        <li class="disabled"><a href="#">Next &raquo;</a></li>
-                    <?php endif; ?>
-
-                <?php else : //EN CAMBIO SI NO ESTAMOS EN LA PÁGINA UNO HABILITO EL BOTON DE PREVIUS Y MUESTRO LAS DEMÁS ?>
-                        <li class="previous"><a href="<?php echo base_url("portfolio/category/{$category_id}/{$prevpage}") ?>">&laquo; Previous</a></li>
-
-                    <?php for($i= 1; $i<= $pag['last_page'] ; $i++) : ?>
-                        <?php  if($pag['page'] == $i) :  //COMPRUEBO SI ES LA PÁGINA ACTIVA O NO ?>
-                            <li class="active"><a href="#"><?php echo $i;?></a></li>
-                        <?php else : ?>
-                            <li><a href="<?php echo base_url("portfolio/category/{$category_id}/{$i}") ?>" ><?php echo $i;?></a></li>
-                        <?php endif; ?>
-                    <?php endfor; ?>
-
-                    <?php if ($pag['last_page'] > $pag['page']) : //Y SI NO ES LA ÚLTIMA PÁGINA ACTIVO EL BOTON NEXT ?>
-                            <li><a href="<?php echo base_url("portfolio/category/{$category_id}/{$nextpage}") ?>">Next &raquo;</a></li>
-                    <?php else : ?>
-                        <li class="disabled"><a href="#">Next &raquo;</a></li>
-                    <?php endif; ?>
-
+                <?php if ($pag['last_page'] > $pag['page'] ) : //Y SI LA ULTIMA PÁGINA ES MAYOR QUE LA ACTUAL MUESTRO EL BOTON NEXT O LO DESHABILITO ?>
+                    <li class="next"><a href="<?php echo base_url("portfolio/category/{$category_id}/{$nextpage}") ?>" >Next &raquo;</a></li>
+                <?php else : ?>
+                    <li class="disabled"><a href="#">Next &raquo;</a></li>
                 <?php endif; ?>
-                <!-- code old -->
 
-            </ul>
-        </div>
-        <!--End Paginador-->
-        <?php else : ?>
-            Not found data.
-        <?php endif; ?>
+            <?php else : //EN CAMBIO SI NO ESTAMOS EN LA PÁGINA UNO HABILITO EL BOTON DE PREVIUS Y MUESTRO LAS DEMÁS ?>
+                    <li class="previous"><a href="<?php echo base_url("portfolio/category/{$category_id}/{$prevpage}") ?>">&laquo; Previous</a></li>
 
+                <?php for($i= 1; $i<= $pag['last_page'] ; $i++) : ?>
+                    <?php  if($pag['page'] == $i) :  //COMPRUEBO SI ES LA PÁGINA ACTIVA O NO ?>
+                        <li class="active"><a href="#"><?php echo $i;?></a></li>
+                    <?php else : ?>
+                        <li><a href="<?php echo base_url("portfolio/category/{$category_id}/{$i}") ?>" ><?php echo $i;?></a></li>
+                    <?php endif; ?>
+                <?php endfor; ?>
+
+                <?php if ($pag['last_page'] > $pag['page']) : //Y SI NO ES LA ÚLTIMA PÁGINA ACTIVO EL BOTON NEXT ?>
+                        <li><a href="<?php echo base_url("portfolio/category/{$category_id}/{$nextpage}") ?>">Next &raquo;</a></li>
+                <?php else : ?>
+                    <li class="disabled"><a href="#">Next &raquo;</a></li>
+                <?php endif; ?>
+
+            <?php endif; ?>
+            <!-- code old -->
+
+        </ul>
     </div>
+    <!--End Paginador-->
+    <?php else : ?>
+        Not found data.
+    <?php endif; ?>
+
 </div>
 <!--End Column-->
 

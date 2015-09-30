@@ -24,6 +24,17 @@ article{
 	display:block;
 }
 
+/*Function bar fixed*/
+.stick {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	max-width: 623px;
+	height: 400px;
+	z-index: 0;
+}
+
+
 .videoCtn {
     height: 0;
     margin-bottom: 20px;
@@ -238,7 +249,7 @@ p,a,ul,li,ol,span,strong,table,thead,tbody,tr,td{
 }
 
 #ctnBody {
-	background:#E7E7E7;
+	background: #E7E7E7;
 	margin:0;
 	padding:0;
 	display:block;
@@ -246,10 +257,14 @@ p,a,ul,li,ol,span,strong,table,thead,tbody,tr,td{
 	position:relative;
 }
 
-#ctnBody #rightColBG {
-	background: url(../images/body/right_col.jpg) top center no-repeat #000;
-	min-height:700px;
+#ctnBody > .row .col_2 {
+	background-color: #000;
 }
+
+#ctnBody > .row .col > .ctn {
+	padding: 15px;
+}
+
 
 .latesNewsBox {
 	border-bottom: 1px solid #B9BABA;

@@ -16,12 +16,14 @@
         <?php require_once 'layout-partial/header.php'; ?>
 
             <!--CtnBody-->
-            <div class="row clearfix">
+            <div id="ctnBody">        
+              <div class="row">
                 <div class="col-md-12">
-
-                    <div id="ctnBody"><?php echo $content_for_layout; ?></div>
-
+                  <div class="ctn">
+                    <?php echo $content_for_layout; ?>
+                  </div>
                 </div>
+              </div>
             </div>
             <!--End CtnBody-->
 

@@ -16,33 +16,32 @@
         <?php require_once 'layout-partial/header.php'; ?>
 
             <!--CtnBody-->
-            <div class="row clearfix">
-                <div class="col-md-12">
+            <div id="ctnBody">        
+              <div class="row">
 
-                    <div id="ctnBody">
-
-
-                        <!--ColumnLef-->
-                        <div class="col-md-8 pd10">
-                            <?php echo $content_for_layout; ?>
-                        </div>
-                        <!--End ColumnLef-->
-
-                        <!--ColumnRight-->
-                        <div class="col-md-4" id="rightColBG">
-                            <div class="rightCtn pdTop10">
-                                <?php if (isset($columRight)) : // columRight_ourTeam.php ?>
-                                    <?php require_once "layout-partial/columRight_{$columRight}.php"; ?>
-                                <?php else :?>
-                                    <?php require_once "layout-partial/columRight_ourTeam.php"; ?>
-                                <?php endif; ?>
-                            </div>
-                        </div>
-                        <!--End ColumnRight-->
-
-                    </div>
-
+                <!--ColumnLef-->
+                <div class="col-md-8 col col_1">
+                  <div class="ctn">
+                    <?php echo $content_for_layout; ?>
+                  </div>
                 </div>
+                <!--End ColumnLef-->
+
+                <!--ColumnRight-->
+                <div class="col-md-4 col col_2">
+                  <div class="ctn">
+                    <div class="rightCtn">
+                      <?php if (isset($columRight)) : // columRight_ourTeam.php ?>
+                          <?php require_once "layout-partial/columRight_{$columRight}.php"; ?>
+                      <?php else :?>
+                          <?php require_once "layout-partial/columRight_ourTeam.php"; ?>
+                      <?php endif; ?>
+                    </div>
+                  </div>
+                </div>
+                <!--End ColumnRight-->
+
+              </div>
             </div>
             <!--End CtnBody-->
 
