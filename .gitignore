@@ -45,6 +45,6 @@ nbproject/*
 
 # gallery portfolio
 /public/ci_image_upload/upload/*
-
+!/public/ci_image_upload/upload/empty
 
 
