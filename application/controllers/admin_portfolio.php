@@ -62,22 +62,14 @@ class Admin_portfolio extends MY_ControllerAdmin {
         }
 
         $base_url = base_url("admin_portfolio/upload");
+        $baseLoading = getPublicUrl() .'/ci_image_upload/images/loading.gif';
         $stringJs = <<<EOT
         $(function () {
             // 02 - validate
             $('#form').validate({
-                rules: {
-                    title: {required : true, minlength: 3, maxlength: 50}
-                  },
-
-                //Detecta cuando se realiza el submit o se presiona el boton
                 submitHandler: function(form){
+                    saveImagesToInput();
                     form.submit();
-                },
-
-                //Detecta los error y abre los span con los posibles errores
-                errorPlacement: function(error, element){
-                error.insertAfter(element);
                 }
             });
 
@@ -98,22 +90,47 @@ class Admin_portfolio extends MY_ControllerAdmin {
                 }
             }
 
+            // load gallery
+            $('#file').on('change', function(e) {
+                if (counterImages == 0) {
+                    e.preventDefault();
+                    document.getElementById('imagePreview').innerHTML =
+                        '<img src="{$baseLoading}">';
+                    var options = {
+                        target: '#imagePreview',
+                        success: function(rs) {
+                            if (rs == 'Invalid file format.') {counterImages--;}
+                        }
+                    };
+                    $("#imageform").ajaxForm(options).submit();
+                    counterImages++;
+                } else {
+                    alert("Solo puedes subir 1 imagen.");
+                }
+            });
 
         });
 
 EOT;
         $data['data'] = '';
         $data['page_title'] = self::PAGE_TITLE;
+        // plugin images
+        $this->loadStatic(array('js' => '/ci_image_upload/js/jquery.form.js'));
+        $this->loadStatic(array('js' => '/ci_image_upload/js/jquery-ui.min.js'));
+        $this->loadStatic(array('css' => '/ci_image_upload/css/style.css'));
+        // extra
         $this->loadStatic(array('js' => '/js/validate/jquery.validate.js'));
         $this->loadStatic(array('js' => '/js/validate/jquery.metadata.js'));
         $this->loadStatic(array("jstring" => $stringJs));
 
-        $this->load->model('image_upload_model');
-        $data['data'] = $this->image_upload_model->getAll();
-
         $this->layout->view('admin/portfolio/add', $data);
     }
 
+
+    public function scriptAddEdit() {
+
+
+    }
 
     public function edit($id = '', $estatus = '')
     {
@@ -131,26 +148,17 @@ EOT;
             redirect('admin_portfolio/index');
         }
 
+        $baseLoading = getPublicUrl() .'/ci_image_upload/images/loading.gif';
         $base_url = base_url("admin_portfolio/upload/{$id}");
         $stringJs = <<<EOT
         $(function () {
             // 02 - validate
             $('#form').validate({
-                rules: {
-                    title: {required : true, minlength: 3, maxlength: 50}
-                  },
-
-                //Detecta cuando se realiza el submit o se presiona el boton
                 submitHandler: function(form){
+                    saveImagesToInput();
                     form.submit();
-                },
-
-                //Detecta los error y abre los span con los posibles errores
-                errorPlacement: function(error, element){
-                error.insertAfter(element);
                 }
             });
-
 
             // ----------- listener  00 key up -----------
             $( "#url_video" ).keyup(function() {
@@ -168,7 +176,24 @@ EOT;
                     });
                 }
             }
-
+            // load gallery
+            $('#file').on('change', function(e) {
+                if (counterImages == 0) {
+                    e.preventDefault();
+                    document.getElementById('imagePreview').innerHTML =
+                        '<img src="{$baseLoading}">';
+                    var options = {
+                        target: '#imagePreview',
+                        success: function(rs) {
+                            if (rs == 'Invalid file format.') {counterImages--;}
+                        }
+                    };
+                    $("#imageform").ajaxForm(options).submit();
+                    counterImages++;
+                } else {
+                    alert("Solo puedes subir 1 imagen.");
+                }
+            });
         });
 
 EOT;
@@ -180,11 +205,13 @@ EOT;
         $data['dataImages'] = $this->image_upload_model->getAll();
 
         if (!empty($id)) {
-            $this->session->set_userdata('portfolio',''); // LIMPIAR IMAGEN
+            $this->session->set_userdata('portfolio','');
             $data['data'] = $this->Portfolio_model->get($id);
-            $data['data']['url_image'] = empty($data['data']['url_image'])
-                ? '' : unserialize($data['data']['url_image']);
         }
+        // plugin images
+        $this->loadStatic(array('js' => '/ci_image_upload/js/jquery.form.js'));
+        $this->loadStatic(array('js' => '/ci_image_upload/js/jquery-ui.min.js'));
+        $this->loadStatic(array('css' => '/ci_image_upload/css/style.css'));
 
         $this->loadStatic(array('js' => '/js/validate/jquery.validate.js'));
         $this->loadStatic(array('js' => '/js/validate/jquery.metadata.js'));

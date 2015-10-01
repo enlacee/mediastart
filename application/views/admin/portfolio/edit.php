@@ -1,11 +1,21 @@
 <div class="col-md-12">
     <h1><?php echo (isset($page_title) && !empty($page_title)) ? $page_title : '' ?></h1>
+    <?php $this->load->view('admin/portfolio/_gallery.php', array('data' => $data['url_image'])) ?>
+
     <?php if (isset($data) && !empty($data) && is_array($data)) : ?>
     <form name="form" id="form" method="post" action="<?php echo base_url("admin_portfolio/edit/" . $data['id'] . "/true") ?>">
         <input type="hidden" name="flag" value="video">
         <table class="table table-hover table-striped table-condensed table-responsive table-bordered" style="background-image:none !important;">
             <tbody>
-
+                <tr>
+                    <td width="15%" class="text-right tableBGTD fontBold">Gallery:</td>
+                    <td width="85%" class="text-left">
+                        <span class="pdRight20 center-block">
+                            <input type="text" name="url_image" id="url_image" class="form-control"
+                            value='<?php echo $data['url_image'] ?>' readonly>
+                        </span>
+                    </td>
+                </tr>
                 <tr>
                     <td width="15%" class="text-right tableBGTD fontBold">Name:</td>
                     <td width="85%" class="text-left">

@@ -1,6 +1,5 @@
 <div class="col-md-12">
     <h1><?php echo (isset($page_title) && !empty($page_title)) ? $page_title : '' ?></h1>
-    <?php //include_once '_gallery.php' ?>
     <?php $this->load->view('admin/portfolio_image/_gallery.php', array('data' => $data['url_image'])) ?>
 
     <?php if (isset($data) && !empty($data) && is_array($data)) : ?>
