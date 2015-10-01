@@ -27,15 +27,26 @@
                         <?php endif; ?>
 
                         <!--Box-->
-                        <div class="col-md-3">
-                            <div class="footerWebBox">
-                                <h4>AREA DE CLIENTES</h4>
-                                <p><img src="<?php echo getPublicUrl() ?>/images/latest-news/image.jpg" width="206" height="123" class="img-responsive" /></p>
-                                <p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto relleno estándarpara paginas web.</p>
-                                <p><a href="#link" target="_blank">LOG IN</a></p>
+                        <?php
+                        $array = app_getPageFooterLogin();
+                        if (!empty($array)) : ?>
+                        <?php
+                            $pathImagen = $latestNewsPath . $array['url_image'];
+                            $width = 206;
+                            $height = 123;
+                            $imageNameThumb = create_thumbnail($pathImagen, $width, $height);
+                            $urlImg = $latestNewsUrl . $imageNameThumb;
+                        ?>
+                            <div class="col-md-3">
+                                <div class="footerWebBox">
+                                    <h4><?php echo $array['title'] ?></h4>
+                                    <p><img src="<?php echo $urlImg; ?>" width="206" height="123" class="img-responsive" /></p>
+                                    <p><?php echo $array['content'] ?></p>
+                                </div>
                             </div>
-                        </div>
+                        <?php endif; ?>
                         <!--End Box-->
+
 
                         <!--Box-->
                         <div class="col-md-3">
