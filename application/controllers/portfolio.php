@@ -55,7 +55,10 @@ class Portfolio extends MY_Controller {
             }
         }
 
+        $scriptUtil = $this->stringScript();
         $stringJs = <<<EOT
+/*
+        $scriptUtil;
         //Muestra video
         $(".porfolioCtnVideoShow img").click(function(){
             var img = $(this);
@@ -84,7 +87,26 @@ class Portfolio extends MY_Controller {
             $("#porfolioCtnVideoIframeShow").html(contenHtml);
             $('#videoPorfolio').modal({backdrop: true,show: true});
         });
+*/
+        $(".porfolioCtnVideoShow img").click(function(e){
+            e.preventDefault();
+            var a = $(this).parent().next().find('a')[0];
+            window.location.href= a.getAttribute('href');
+        });
+EOT;
 
+        $data['title'] = isset($data['category_name']) ? $data['category_name'] : NULL;
+        $this->loadStatic(array("jstring" => $stringJs));
+        $this->layout->setLayout('layout/layout_body');
+        $this->layout->view('portfolio/category', $data);
+    }
+
+    /**
+    * string js
+    */
+    private function stringScript() {
+        $stringJs = <<<EOT
+        // scriptUtil
         function agregarItemsSlider(object) {
             var _carosel = $('#carousel-indicators');
             _carosel.html('');
@@ -108,14 +130,11 @@ class Portfolio extends MY_Controller {
                 +'    </div>'
                 +'</div>';
             }
+            console.log('div', div)
             _carousel_inner.html(div);
         }
 EOT;
-
-        $data['title'] = isset($data['category_name']) ? $data['category_name'] : NULL;
-        $this->loadStatic(array("jstring" => $stringJs));
-        $this->layout->setLayout('layout/layout_body');
-        $this->layout->view('portfolio/category', $data);
+        return $stringJs;
     }
 
     public function video($id='')
@@ -136,9 +155,57 @@ EOT;
                 $data['relatedVideo'] = $dataDelete;
             }
 
+
+            $scriptUtil = $this->stringScript();
+            $stringJs = <<<EOT
+
+            $scriptUtil
+            //Muestra video
+            $(".ourTeamCtn img").click(function(e){
+                e.preventDefault();
+                var img = $(this);
+                var contenHtml = '';
+                var flag = img.attr('data-flag');
+
+                var domVideo = $('#id_videoCtn');
+                var domPortfolioJs = $('#portfolio_js');
+                var domTitle = $('#portfolio_title');
+                //var domFoto =
+
+                if (flag == 'image') {
+                    domVideo.hide();
+                    domPortfolioJs.show();
+                    console.log('data',JSON.parse(img.attr('data-json')));
+
+                    agregarItemsSlider(JSON.parse(img.attr('data-json')));
+                    $('#carousel-example-generic').show();
+
+                } else if(flag == 'video') {
+                    $('#carousel-example-generic').hide();
+                    domVideo.show();
+                    domPortfolioJs.show();
+
+                    domVideo.html('');
+                    var attData = img.attr('data');
+                    var elArray = attData.split('/');
+                    var idVideo = elArray[(elArray.length-1)];
+
+                    var contenHtml = '<iframe ';
+                    contenHtml = contenHtml + 'src="//player.vimeo.com/video/'+ idVideo +'" ';
+                    contenHtml += 'width="500" height="281" frameborder="0" ';
+                    contenHtml += 'webkitallowfullscreen mozallowfullscreen allowfullscreen> ';
+                    contenHtml += '</iframe> ';
+                    domVideo.html(contenHtml);
+                }
+                domTitle.html(img.prev().text())
+
+            });
+EOT;
+
             $this->Portfolio_model->countView($id);
             $this->cleanCache();
             //$this->layout->setLayout('layout/layout_body');
+            $this->loadStatic(array("jstring" => $stringJs));
             $this->layout->setLayout('layout/layout_contact');
             $this->layout->view('portfolio/video', $data);
         }

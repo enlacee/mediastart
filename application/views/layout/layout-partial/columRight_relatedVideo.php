@@ -9,14 +9,20 @@
                 <h3>
                     <a href="<?php echo base_url("portfolio/video/".$array['id']) ?>"> - <?php echo $array['title'] ?></a>
                 </h3>
-                <a href="<?php echo base_url("portfolio/video/".$array['id']) ?>">
                     <?php if ($array['flag'] == 'video'): ?>
-                        <img class="img-responsive" src="<?php echo $array['url_image_link'] ?>" />
+                        <?php
+                            $imgVideo = !empty($array['url_image'])
+                                ? json_decode($array['url_image'])[0]->href
+                                : $array['url_image_link']; ?>
+                        <img class="img-responsive" src="<?php echo $imgVideo ?>"
+                        data="<?php echo $array['url_video']?>"
+                        data-flag="<?php echo $array['flag']?>"/>
                     <?php elseif ($array['flag'] == 'image'): ?>
                         <?php $zip = json_decode($array['url_image']); ?>
-                        <img class="img-responsive" src="<?php echo isset($zip[0]->href) ? $zip[0]->href : $bannerUrl. 'image.jpg' ?>"/>
+                        <img class="img-responsive" src="<?php echo isset($zip[0]->href) ? $zip[0]->href : $bannerUrl. 'image.jpg' ?>"
+                        data-json='<?php echo $array['url_image'] ?>'
+                        data-flag="<?php echo $array['flag']?>"/>
                     <?php endif; ?>
-                </a>
             </div>
         </div>
     <?php endforeach; ?>
