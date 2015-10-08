@@ -5,19 +5,26 @@
             $array = preg_split('#\/#', $portfolio['url_video']);
             $idVimeo = $array[(count($array)-1)];
         ?>
-
         <!--Add code-->
         <div id="sticky-anchor"></div>
         <!--/ Add code-->
 
         <div class="st_stick video">
-          <div class="st_stick_ctn">
-            <div class="overFlow">
-              <div class="videoCtn" id="id_videoCtn">
-                  <iframe src="//player.vimeo.com/video/<?php echo $idVimeo ?>" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-              </div>
+            <div class="st_stick_ctn">
+                <div class="overFlow">
+                    <div class="videoCtn" id="id_videoCtn">
+                        <iframe src="//player.vimeo.com/video/<?php echo $idVimeo ?>" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                    </div>
+                    <!-- js -->
+                    <div class="row" style="display:none" data="extra" id="portfolio_js">
+                        <?php $this->load->view('portfolio/_gallery.php') ?>
+                    </div>
+                </div>
             </div>
-          </div>
+
+            <div>
+                <?php $this->load->view('portfolio/_partial.video.content.php',  $portfolio) ?>
+            </div>
         </div>
 
     <?php elseif ($portfolio['flag'] == 'image'): ?>
@@ -25,20 +32,18 @@
 
         <?php if (count($array) > 0): ?>
             <!-- html-CARRUSEL-INICIO-->
-
             <!--Add code-->
             <div id="sticky-anchor"></div>
             <!--/ Add code-->
-
             <div class="st_stick st_image">
               <div class="st_stick_ctn">
                 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                   <!-- Indicators -->
                   <ol class="carousel-indicators" id="carousel-indicators">
-                        <?php foreach ($array as $key => $value) : ?>
-                            <li data-target="#carousel-example-generic"
-                            data-slide-to="<?php echo $key ?>" class="<?php ($key==0)? 'active' : '' ?>"></li>
-                        <?php endforeach; ?>
+                    <?php foreach ($array as $key => $value) : ?>
+                        <li data-target="#carousel-example-generic"
+                        data-slide-to="<?php echo $key ?>" class="<?php ($key==0)? 'active' : '' ?>"></li>
+                    <?php endforeach; ?>
                   </ol>
 
                   <!-- Wrapper for slides -->
@@ -63,14 +68,23 @@
                     <span class="sr-only">Next</span>
                   </a>
                 </div>
+
+                <!-- js -->
+                <div class="row" style="display:none" data="extra" id="portfolio_js">
+                    <div class="videoCtn" id="id_videoCtn">
+                    <iframe src="//player.vimeo.com/video/<?php echo $idVimeo ?>" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                    </div>
+                </div>
+
               </div>
+
+                <div>
+                    <?php $this->load->view('portfolio/_partial.video.content.php',  $portfolio) ?>
+                </div>
             </div>
             <!-- html-CARRUSEL-FIN-->
-
         <?php else: ?>
-            <p>
-                No found image.
-            </p>
+            <p>No found image.</p>
         <?php endif; ?>
     <?php endif; ?>
 <?php else : ?>
@@ -78,44 +92,3 @@
     not found data.
 </div>
 <?php endif; ?>
-
-
-
-
-<!-- extra functional video, gallery JAVASCRIPT-->
-<?php if ($portfolio['flag'] == 'video') : ?>
-<div class="row" style="display:none" data="extra" id="portfolio_js">
-    <div class="st_stick st_image">
-        <div class="st_stick_ctn">
-            <?php $this->load->view('portfolio/_gallery.php') ?>
-        </div>
-    </div>
-</div>
-<?php elseif($portfolio['flag'] == 'image') : ?>
-    <div class="row" style="display:none" data="extra" id="portfolio_js">
-        <!--Add code-->
-        <div id="sticky-anchor"></div>
-        <!--/ Add code-->
-        <div class="st_stick video">
-          <div class="st_stick_ctn">
-            <div class="overFlow">
-              <div class="videoCtn" id="id_videoCtn">
-                  <iframe src="//player.vimeo.com/video/<?php echo $idVimeo ?>" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-              </div>
-            </div>
-          </div>
-        </div>
-    </div>
-<?php endif ?>
-
-
-
-
-<div class="leftCtn pd20" >
-    <h2 id="portfolio_title"><?php echo $portfolio['title']?></h2>
-</div>
-
-<!--RedesSociales-->
-<p>
-   <div data-url="<?php echo "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']; ?>" class="mxshared" data-networks="facebook,google,twitter,linkedin" data-open="true" data-orientation="line" data-angle="0"></div>
-</p>
