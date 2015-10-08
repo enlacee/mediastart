@@ -130,7 +130,6 @@ EOT;
                 +'    </div>'
                 +'</div>';
             }
-            console.log('div', div)
             _carousel_inner.html(div);
         }
 EOT;
@@ -161,9 +160,16 @@ EOT;
 
             $scriptUtil
             //Muestra video
-            $(".ourTeamCtn img").click(function(e){
+            $(".ourTeamCtn img, .ourTeamCtn a").click(function(e){
                 e.preventDefault();
-                var img = $(this);
+                var me = $(this);
+                var img;
+                if (typeof(me[0].nodeName) != 'undefined' && me[0].nodeName == 'A') {
+                    img = me.parent().next();
+                } else {
+                    img = me;
+                }
+
                 var contenHtml = '';
                 var flag = img.attr('data-flag');
 
@@ -175,8 +181,6 @@ EOT;
                 if (flag == 'image') {
                     domVideo.hide();
                     domPortfolioJs.show();
-                    console.log('data',JSON.parse(img.attr('data-json')));
-
                     agregarItemsSlider(JSON.parse(img.attr('data-json')));
                     $('#carousel-example-generic').show();
 
