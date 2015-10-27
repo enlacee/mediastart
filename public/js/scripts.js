@@ -1,4 +1,4 @@
-$(function(){
+$(window).load(function(){
 
 	/**
 	 * Functions for left and right columns
