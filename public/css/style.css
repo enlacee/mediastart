@@ -186,6 +186,38 @@ p,a,ul,li,ol,span,strong,table,thead,tbody,tr,td{
 	margin:0 5px 0 0;
 }
 
+/*********************************************************
+* SECTION [main_header]
+*********************************************************/
+section#main_header.sm_stick {
+	position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+
+section#main_header.sm_stick > .row > div:nth-child(1) {
+	margin: 0;
+}
+
+section#main_header.sm_stick > .row > div:nth-child(1) > div.menuStyle {
+	margin: 0 auto;
+	width: 100%;
+	width: 970px;
+	border-radius: 0;
+}
+
+section#main_header.sm_stick > .row > div:nth-child(1) > div.menuStyle .navbar-nav > li > a {
+	padding: 23px 20px;
+}
+
+section#main_header.sm_stick > .row > div:nth-child(1) a.navbar-brand > img {
+	max-width: 85%; 
+}
+
+
 .menuStyle{
 	margin:0;
 	border: none;

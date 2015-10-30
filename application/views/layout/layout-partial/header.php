@@ -43,11 +43,11 @@
             </header><!--End Header-->
 
             <!--SectionMenu-->
-            <section>
+            <section id="main_header" class="">
                 <div class="row clearfix">
-                    <div class="col-md-12 mgTop20" id="menuOpenHover">
+                    <div class="col-xs-12 mgTop20" id="menuOpenHover">
                         <div role="navigation" class="navbar navbar-default menuStyle">
-                            <div class="container-fluid">
+                            <div class="main_header_ctn">
                                 <div class="navbar-header">
                                   <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
                                     <span class="sr-only">Toggle navigation</span>

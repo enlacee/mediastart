@@ -1,9 +1,12 @@
 
 <?php if (isset($bannerSlide) && is_array($bannerSlide) && count($bannerSlide) > 0) : ?>
 <!--Slider-->
+
             <div class="row clearfix">
                 <div class="col-md-12" id="esliderWeb">
+
                     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                        <div id="sm_sticky_main_home"></div>
                         <!-- Indicators -->
                         <ol class="carousel-indicators">
                             <?php $count = 0; foreach($bannerSlide as $array): $active = ($count == 0) ? 'active' : '';?>

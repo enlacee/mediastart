@@ -67,3 +67,35 @@ $(window).load(function(){
 	
 			
 });
+
+
+/**
+ * [sticky_relocate Fixed bar scroll location]
+ * @return {[css]} 
+ * @class [sm_stick]
+ * @function [sticky_relocate]
+ */
+$(function(){
+
+	function fixDiv() {
+		//Get height [#menuOpenHover]
+		var hight_main = $('#menuOpenHover').height();
+		//Check if window [scrollTop] is > [hight_main]
+		if ($(window).scrollTop() > hight_main) {
+			//Add class [#main_header-sm_stick]
+      $('#main_header').addClass('sm_stick');
+      //Add margin-top
+      $('#esliderWeb').css('margin-top', '115px');
+    }
+    else {
+    	//Remove class [sm_stick]
+      $('#main_header').removeClass('sm_stick');
+      //Reset [esliderWeb]
+      $('#esliderWeb').css('margin-top', '0px');
+    }
+	}
+	// set original position on load
+	$("#menuOpenHover").data("top", $("#menuOpenHover").offset().top); 
+	$(window).scroll(fixDiv);
+
+});
