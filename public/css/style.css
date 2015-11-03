@@ -27,7 +27,7 @@ article{
 /*Function bar fixed*/
 .stick {
 	position: fixed;
-	top: 0;
+	top: 90px;
 	width: 100%;
 	max-width: 623px;
 	height: 400px;
